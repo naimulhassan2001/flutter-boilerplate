@@ -7,13 +7,14 @@ class AppColors {
   static const Color secondary = Color(0xff454545);
   static const Color textSecondary = Color(0xFFB2B2B2);
   static const Color background = Colors.white;
-  static const Color deepOrange= Color(0xFFD07E2A);
+  static const Color deepOrange = Color(0xFFD07E2A);
   static const Color transparent = Colors.transparent;
 
+  static const Color white = Colors.white;
+  static const Color black = Colors.black;
+  static const Color blue = Colors.blue;
 
   /// ========================> Yellow <========================================
-
-
 
   static const Color yellow50 = Color(0xffFAF6EF);
   static const Color yellow100 = Color(0xffF8F2E6);
@@ -26,10 +27,7 @@ class AppColors {
   static const Color yellow800 = Color(0xff5E4B28);
   static const Color yellow900 = Color(0xff493A1F);
 
-
-/// ========================> Grey <========================================
-
-
+  /// ========================> Grey <========================================
 
   static const Color grey50 = Color(0xffECECEC);
   static const Color grey100 = Color(0xffE3E3E3);
@@ -42,9 +40,7 @@ class AppColors {
   static const Color grey800 = Color(0xff1F1F1F);
   static const Color grey900 = Color(0xff181818);
 
-
-
-/// ========================> White <========================================
+  /// ========================> White <========================================
 
   static const Color white50 = Color(0xffFFFFFF);
   static const Color white100 = Color(0xffFFFFFF);
@@ -57,11 +53,7 @@ class AppColors {
   static const Color white800 = Color(0xff737373);
   static const Color white900 = Color(0xff595959);
 
-
-
-/// ========================> Orange <========================================
-
-
+  /// ========================> Orange <========================================
 
   static const Color orange50 = Color(0xffFAF2EA);
   static const Color orange100 = Color(0xffF8ECDF);
@@ -73,9 +65,4 @@ class AppColors {
   static const Color orange700 = Color(0xff7D4C1A);
   static const Color orange800 = Color(0xff5E3913);
   static const Color orange900 = Color(0xff492C0F);
-
-
-
-
-
 }

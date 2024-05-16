@@ -1,60 +1,66 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../../utils/app_colors.dart';
-import '../text/custom_text.dart';
 
 class CustomTextField extends StatefulWidget {
   const CustomTextField(
-      {super.key,
-      this.hintText,
-      this.labelText,
-      this.prefixSvgIcon,
-      this.isPassword = false,
-      this.controller,
-      this.textInputAction = TextInputAction.next,
-      this.keyboardType = TextInputType.text,
-      this.mexLength,
-      this.validator,
-      this.prefixText,
-      this.paddingHorizontal,
-      this.paddingVertical,
-      this.inputFormatters,
-      this.fillColor = AppColors.grey800,
-      this.hintTextColor = AppColors.white50,
-      this.labelTextColor = AppColors.white50,
-      this.textColor = AppColors.white50,
-      this.borderColor = AppColors.transparent,
-      this.onSubmitted,
-      this.onTap,
-      this.suffixIcon});
+      {this.inputFormatters,
+        this.onFieldSubmitted,
+        this.controller,
+        this.focusNode,
+        this.keyboardType = TextInputType.text,
+        this.textInputAction = TextInputAction.next,
+        this.cursorColor = AppColors.black,
+        this.textAlignVertical = TextAlignVertical.center,
+        this.textAlign = TextAlign.start,
+        this.onChanged,
+        this.maxLines = 1,
+        this.validator,
+        this.labelText,
+        this.hindText,
+        this.textStyle,
+        this.fillColor = AppColors.grey500,
+        this.suffixIcon,
+        this.suffixIconColor,
+        this.fieldBorderRadius,
+        this.fieldBorderColor = const Color(0xffE7F0FD),
+        this.isPassword = false,
+        this.isPrefixIcon = true,
+        this.readOnly = false,
+        this.maxLength,
+        super.key,
+        this.prefixIcon,
+        this.onTap});
 
-  final String? hintText;
-  final String? labelText;
-  final Widget? prefixSvgIcon;
   final TextEditingController? controller;
-  final bool isPassword;
-  final TextInputAction textInputAction;
-  final FormFieldValidator? validator;
+  final FocusNode? focusNode;
   final TextInputType keyboardType;
-  final int? mexLength;
-  final List<TextInputFormatter>? inputFormatters;
-  final Widget? suffixIcon;
+  final TextInputAction textInputAction;
+  final Color cursorColor;
+  final TextAlignVertical? textAlignVertical;
+  final TextAlign textAlign;
+  final int? maxLines;
+  final void Function(String)? onChanged;
+  final void Function(String)? onFieldSubmitted;
+  final FormFieldValidator? validator;
+  final String? labelText;
+  final String? hindText;
+  final TextStyle? textStyle;
   final Color? fillColor;
-  final Color? labelTextColor;
-  final Color? hintTextColor;
-  final Color? textColor;
-  final Color borderColor;
-  final String? prefixText;
-
-  final double? paddingHorizontal;
-
-  final double? paddingVertical;
-  final Function(String)? onSubmitted;
+  final Color? suffixIconColor;
+  final Widget? suffixIcon;
+  final Widget? prefixIcon;
+  final double? fieldBorderRadius;
   final VoidCallback? onTap;
 
+  final Color fieldBorderColor;
+  final bool isPassword;
+  final bool isPrefixIcon;
+  final bool readOnly;
+  final int? maxLength;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -65,78 +71,68 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context);
     return TextFormField(
-      autovalidateMode: AutovalidateMode.onUserInteraction,
-      keyboardType: widget.keyboardType,
-      validator: widget.validator,
-      controller: widget.controller,
-      obscureText: widget.isPassword ? obscureText : false,
-      textInputAction: widget.textInputAction,
-      maxLength: widget.mexLength,
-      cursorColor: AppColors.white50,
-      inputFormatters: widget.inputFormatters,
-      style: TextStyle(fontSize: 14.sp, color: widget.textColor),
-      onFieldSubmitted: widget.onSubmitted,
       onTap: widget.onTap,
+      inputFormatters: widget.inputFormatters,
+      onFieldSubmitted: widget.onFieldSubmitted,
+      readOnly: widget.readOnly,
+      controller: widget.controller,
+      focusNode: widget.focusNode,
+      maxLength: widget.maxLength,
+      keyboardType: widget.keyboardType,
+      textInputAction: widget.textInputAction,
+      cursorColor: widget.cursorColor,
+      style: widget.textStyle,
+      onChanged: widget.onChanged,
+      maxLines: widget.maxLines,
+      obscureText: widget.isPassword ? obscureText : false,
+      validator: widget.validator,
+      showCursor: widget.keyboardType == TextInputType.none ? false : true,
       decoration: InputDecoration(
-        errorMaxLines: 2,
-        filled: true,
-        prefixIcon: widget.prefixSvgIcon,
-        fillColor: widget.fillColor,
-        counterText: "",
-        contentPadding: EdgeInsets.symmetric(
-            horizontal: widget.paddingHorizontal ?? 16.w,
-            vertical: widget.paddingVertical ?? 14.h),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.r),
-          borderSide: BorderSide(color: widget.borderColor),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.r),
-          borderSide: BorderSide(color: widget.borderColor),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.r),
-          borderSide: BorderSide(color: widget.borderColor),
-        ),
-        disabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.r),
-          borderSide: BorderSide(color: widget.borderColor),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.r),
-          borderSide: BorderSide(color: widget.borderColor),
-        ),
-        hintText: widget.hintText,
+        contentPadding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 14.w),
         labelText: widget.labelText,
-        hintStyle:
-            GoogleFonts.roboto(fontSize: 14.sp, color: widget.hintTextColor),
-        labelStyle:
-            GoogleFonts.roboto(fontSize: 14.sp, color: widget.labelTextColor),
-        prefix: CustomText(
-          text: widget.prefixText ?? "",
-          fontWeight: FontWeight.w400,
-        ),
+        hintText: widget.hindText,
+        labelStyle: widget.textStyle,
+        hintStyle: widget.textStyle,
+        fillColor: widget.fillColor,
+        filled: true,
+        prefixIcon: widget.prefixIcon,
         suffixIcon: widget.isPassword
             ? GestureDetector(
-                onTap: toggle,
-                child: Padding(
-                  padding: EdgeInsetsDirectional.only(end: 10.w),
-                  child: obscureText
-                      ? Icon(
-                          Icons.visibility_off_outlined,
-                          size: 20.sp,
-                          color: widget.textColor,
-                        )
-                      : Icon(
-                          Icons.visibility_outlined,
-                          color: widget.textColor,
-                          size: 20.sp,
-                        ),
-                ),
-              )
+          onTap: toggle,
+          child: Padding(
+            padding: const EdgeInsets.only(
+                left: 16, right: 16, top: 16, bottom: 16),
+            child: obscureText
+                ? Icon(
+              Icons.visibility_off_outlined,
+              size: 20.sp,
+              color: widget.cursorColor,
+            )
+                : Icon(
+              Icons.visibility_outlined,
+              color: widget.cursorColor,
+              size: 20.sp,
+            ),
+          ),
+        )
             : widget.suffixIcon,
+        suffixIconColor: widget.suffixIconColor,
+        border: OutlineInputBorder(
+            borderRadius:
+            BorderRadius.circular(widget.fieldBorderRadius ?? 16.r),
+            borderSide: BorderSide(color: widget.fieldBorderColor, width: 1),
+            gapPadding: 0),
+        focusedBorder: OutlineInputBorder(
+            borderRadius:
+            BorderRadius.circular(widget.fieldBorderRadius ?? 16.r),
+            borderSide: BorderSide(color: widget.fieldBorderColor, width: 1),
+            gapPadding: 0),
+        enabledBorder: OutlineInputBorder(
+            borderRadius:
+            BorderRadius.circular(widget.fieldBorderRadius ?? 16.r),
+            borderSide: BorderSide(color: widget.fieldBorderColor, width: 1),
+            gapPadding: 0),
       ),
     );
   }
