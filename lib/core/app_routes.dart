@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import 'package:flutter_boilerplate/view/screen/common_screen/notifications/notifications_screen.dart';
 import 'package:flutter_boilerplate/view/screen/common_screen/profile/edit_profile.dart';
 import 'package:flutter_boilerplate/view/screen/common_screen/setting/privacy_policy_screen.dart';
@@ -59,19 +58,8 @@ class AppRoutes {
     GetPage(name: privacyPolicy, page: () => PrivacyPolicyScreen()),
     GetPage(name: termsOfServices, page: () => TermsOfServicesScreen()),
     GetPage(name: setting, page: () => SettingScreen()),
-=======
-import 'package:get/get.dart';
-
-import '../view/screen/test_screen.dart';
 
 
-class AppRoutes {
-  static const String test = "/test_screen.dart";
 
-
-  static List<GetPage> routes = [
-    GetPage(name: test, page: () => TestScreen()),
-
->>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
   ];
 }

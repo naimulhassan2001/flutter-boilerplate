@@ -44,7 +44,7 @@ class NoInternet extends StatelessWidget {
               titleText: AppString.back,
               buttonWidth: 80.w,
               buttonHeight: 40.h,
-              buttonColor: AppColors.grey900,
+              buttonColor: AppColors.primaryColor,
             )
           ],
         ),

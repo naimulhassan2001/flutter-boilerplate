@@ -1,5 +1,4 @@
 class AppUrls {
-<<<<<<< HEAD
   static const baseUrl = "http://103.145.138.74:3000/api/v1";
   static const imageUrl = "http://103.145.138.74:3000";
   static const socketUrl = "http://103.145.138.74:3001";
@@ -30,11 +29,6 @@ class AppUrls {
   static const chats = "$baseUrl/chats";
   static const messages = "$baseUrl/messages";
 }
-=======
-  ///<<<=================Base Url=========================>>>
 
-  static const baseUrl = "http://192.168.10.14:3000/api";
-  static const imageUrl = "http://192.168.10.14:3000";
-  static const socketUrl = "http://192.168.10.14:3000";
-}
->>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
+
+

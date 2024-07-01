@@ -21,7 +21,7 @@ class CustomTextField extends StatefulWidget {
         this.labelText,
         this.hindText,
         this.textStyle,
-        this.fillColor = AppColors.grey500,
+        this.fillColor = AppColors.filledColor,
         this.suffixIcon,
         this.suffixIconColor,
         this.fieldBorderRadius,

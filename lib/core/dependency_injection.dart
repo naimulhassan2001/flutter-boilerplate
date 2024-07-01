@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import 'package:flutter_boilerplate/controllers/common_controller/notifications/notifications_controller.dart';
 import 'package:get/get.dart';
 
@@ -27,23 +26,5 @@ class DependencyInjection extends Bindings {
     Get.lazyPut(() => SettingController(), fenix: true);
     Get.lazyPut(() => PrivacyPolicyController(), fenix: true);
     Get.lazyPut(() => TermsOfServicesController(), fenix: true);
-=======
-
-
-
-import 'package:get/get.dart';
-
-
-
-class DependencyInjection extends Bindings {
-
-
-
-  @override
-  void dependencies() {
-    // Get.lazyPut(() => SignUpController(), fenix: true);
-
-
->>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
   }
 }

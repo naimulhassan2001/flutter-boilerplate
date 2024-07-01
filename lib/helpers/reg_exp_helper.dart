@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -118,13 +117,4 @@ class OtherHelper {
       "${picked.hour} : ${picked.minute < 10 ? "0${picked.minute}" : picked.minute}";
     }
   }
-=======
-
-
-
-
-class RegExpHelper {
-  static RegExp emailRegexp = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-  static RegExp passRegExp = RegExp(r'(?=.*[a-z])(?=.*[0-9])');
->>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
 }

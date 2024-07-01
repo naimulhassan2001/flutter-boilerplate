@@ -25,7 +25,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
-<<<<<<< HEAD
   cached_network_image:
     dependency: "direct main"
     description:
@@ -50,8 +49,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
-=======
->>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
   characters:
     dependency: transitive
     description:
@@ -76,7 +73,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.18.0"
-<<<<<<< HEAD
   cross_file:
     dependency: transitive
     description:
@@ -85,8 +81,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.4+1"
-=======
->>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
   crypto:
     dependency: transitive
     description:
@@ -95,7 +89,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.3"
-<<<<<<< HEAD
   csslib:
     dependency: transitive
     description:
@@ -104,8 +97,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.17.3"
-=======
->>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -146,7 +137,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.0"
-<<<<<<< HEAD
   file_selector_linux:
     dependency: transitive
     description:
@@ -187,14 +177,11 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
-=======
->>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
   flutter:
     dependency: "direct main"
     description: flutter
     source: sdk
     version: "0.0.0"
-<<<<<<< HEAD
   flutter_cache_manager:
     dependency: transitive
     description:
@@ -211,8 +198,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0-beta.2"
-=======
->>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -225,17 +210,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_local_notifications
-<<<<<<< HEAD
       sha256: ced76d337f54de33d7d9f06092137b4ac2da5079e00cee8a11a1794ffc7c61c6
       url: "https://pub.dev"
     source: hosted
     version: "17.2.1"
-=======
-      sha256: "40e6fbd2da7dcc7ed78432c5cdab1559674b4af035fddbfb2f9a8f9c2112fcef"
-      url: "https://pub.dev"
-    source: hosted
-    version: "17.1.2"
->>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
   flutter_local_notifications_linux:
     dependency: transitive
     description:
@@ -248,7 +226,6 @@ packages:
     dependency: transitive
     description:
       name: flutter_local_notifications_platform_interface
-<<<<<<< HEAD
       sha256: "85f8d07fe708c1bdcf45037f2c0109753b26ae077e9d9e899d55971711a4ea66"
       url: "https://pub.dev"
     source: hosted
@@ -261,27 +238,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.20"
-=======
-      sha256: "340abf67df238f7f0ef58f4a26d2a83e1ab74c77ab03cd2b2d5018ac64db30b7"
-      url: "https://pub.dev"
-    source: hosted
-    version: "7.1.0"
->>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
   flutter_screenutil:
     dependency: "direct main"
     description:
       name: flutter_screenutil
-<<<<<<< HEAD
       sha256: "8239210dd68bee6b0577aa4a090890342d04a136ce1c81f98ee513fc0ce891de"
       url: "https://pub.dev"
     source: hosted
     version: "5.9.3"
-=======
-      sha256: "8cf100b8e4973dc570b6415a2090b0bfaa8756ad333db46939efc3e774ee100d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.9.0"
->>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
   flutter_svg:
     dependency: "direct main"
     description:
@@ -304,17 +268,10 @@ packages:
     dependency: "direct main"
     description:
       name: fluttertoast
-<<<<<<< HEAD
       sha256: "7eae679e596a44fdf761853a706f74979f8dd3cd92cf4e23cae161fda091b847"
       url: "https://pub.dev"
     source: hosted
     version: "8.2.6"
-=======
-      sha256: "81b68579e23fcbcada2db3d50302813d2371664afe6165bc78148050ab94bf66"
-      url: "https://pub.dev"
-    source: hosted
-    version: "8.2.5"
->>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
   get:
     dependency: "direct main"
     description:
@@ -331,7 +288,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.2.1"
-<<<<<<< HEAD
   html:
     dependency: transitive
     description:
@@ -340,8 +296,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.15.4"
-=======
->>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
   http:
     dependency: transitive
     description:
@@ -358,7 +312,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
-<<<<<<< HEAD
   image_picker:
     dependency: "direct main"
     description:
@@ -439,8 +392,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.0"
-=======
->>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
   js:
     dependency: transitive
     description:
@@ -481,7 +432,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0"
-<<<<<<< HEAD
   list_counter:
     dependency: transitive
     description:
@@ -490,8 +440,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.2"
-=======
->>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
   logging:
     dependency: transitive
     description:
@@ -532,7 +480,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
-<<<<<<< HEAD
   octo_image:
     dependency: transitive
     description:
@@ -541,8 +488,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
-=======
->>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
   path:
     dependency: transitive
     description:
@@ -571,17 +516,10 @@ packages:
     dependency: transitive
     description:
       name: path_provider_android
-<<<<<<< HEAD
       sha256: bca87b0165ffd7cdb9cad8edd22d18d2201e886d9a9f19b4fb3452ea7df3a72a
       url: "https://pub.dev"
     source: hosted
     version: "2.2.6"
-=======
-      sha256: a248d8146ee5983446bf03ed5ea8f6533129a12b11f12057ad1b4a67a2b3b41d
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.2.4"
->>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
   path_provider_foundation:
     dependency: transitive
     description:
@@ -622,7 +560,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.2"
-<<<<<<< HEAD
   pin_code_fields:
     dependency: "direct main"
     description:
@@ -631,23 +568,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "8.0.1"
-=======
->>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
   platform:
     dependency: transitive
     description:
       name: platform
-<<<<<<< HEAD
       sha256: "9b71283fc13df574056616011fb138fd3b793ea47cc509c189a6c3fa5f8a1a65"
       url: "https://pub.dev"
     source: hosted
     version: "3.1.5"
-=======
-      sha256: "12220bb4b65720483f8fa9450b4332347737cf8213dd2840d8b2c823e47243ec"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.1.4"
->>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
   plugin_platform_interface:
     dependency: transitive
     description:
@@ -656,7 +584,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.8"
-<<<<<<< HEAD
   rxdart:
     dependency: transitive
     description:
@@ -665,8 +592,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.27.7"
-=======
->>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
   shared_preferences:
     dependency: "direct main"
     description:
@@ -679,17 +604,10 @@ packages:
     dependency: transitive
     description:
       name: shared_preferences_android
-<<<<<<< HEAD
       sha256: "93d0ec9dd902d85f326068e6a899487d1f65ffcd5798721a95330b26c8131577"
       url: "https://pub.dev"
     source: hosted
     version: "2.2.3"
-=======
-      sha256: "1ee8bf911094a1b592de7ab29add6f826a7331fb854273d55918693d5364a1f2"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.2.2"
->>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
   shared_preferences_foundation:
     dependency: transitive
     description:
@@ -759,7 +677,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.10.0"
-<<<<<<< HEAD
   sprintf:
     dependency: transitive
     description:
@@ -784,8 +701,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.5.4"
-=======
->>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
   stack_trace:
     dependency: transitive
     description:
@@ -810,7 +725,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
-<<<<<<< HEAD
   synchronized:
     dependency: transitive
     description:
@@ -819,8 +733,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.0+1"
-=======
->>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
   term_glyph:
     dependency: transitive
     description:
@@ -853,7 +765,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.2"
-<<<<<<< HEAD
   uuid:
     dependency: transitive
     description:
@@ -862,8 +773,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.4.0"
-=======
->>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
   vector_graphics:
     dependency: transitive
     description:
@@ -916,17 +825,10 @@ packages:
     dependency: transitive
     description:
       name: win32
-<<<<<<< HEAD
       sha256: a79dbe579cb51ecd6d30b17e0cae4e0ea15e2c0e66f69ad4198f22a6789e94f4
       url: "https://pub.dev"
     source: hosted
     version: "5.5.1"
-=======
-      sha256: "0eaf06e3446824099858367950a813472af675116bf63f008a4c2a75ae13e9cb"
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.5.0"
->>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
   xdg_directories:
     dependency: transitive
     description:
@@ -944,10 +846,5 @@ packages:
     source: hosted
     version: "6.5.0"
 sdks:
-<<<<<<< HEAD
   dart: ">=3.4.0 <4.0.0"
   flutter: ">=3.22.0"
-=======
-  dart: ">=3.3.3 <4.0.0"
-  flutter: ">=3.19.2"
->>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
