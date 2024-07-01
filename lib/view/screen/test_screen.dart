@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/view/common_widgets/button/custom_button.dart';
-import 'package:flutter_boilerplate/view/common_widgets/custom_button_loader.dart';
+import 'package:flutter_boilerplate/view/common_widgets/button/common_button.dart';
+import 'package:flutter_boilerplate/view/common_widgets/other_widgets/common_loader.dart';
 
 class TestScreen extends StatefulWidget {
   const TestScreen({super.key});
@@ -14,13 +14,11 @@ class _TestScreenState extends State<TestScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
-            child: CustomButton(
+            child: CommonButton(
                 titleText: "titleText",
-                onPressed: () {
-                  const CustomButtonLoader();
-                  setState(() {
-
-                  });
+                onTap: () {
+                  const CommonLoader();
+                  setState(() {});
                 })));
   }
 }

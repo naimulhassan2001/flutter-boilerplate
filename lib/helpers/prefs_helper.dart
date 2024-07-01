@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 class PrefsHelper extends GetxController {
   static String token = "";
   static bool isLogIn = false;
@@ -11,6 +10,7 @@ class PrefsHelper extends GetxController {
   static String myImage = "";
   static String myName = "";
   static String myEmail = "";
+  static String myRole = "";
   static String mySubscription = "shopping";
   static String localizationLanguageCode = 'en';
   static String localizationCountryCode = 'US';
@@ -25,11 +25,14 @@ class PrefsHelper extends GetxController {
     myImage = preferences.getString("myImage") ?? "";
     myName = preferences.getString("myName") ?? "";
     myEmail = preferences.getString("myEmail") ?? "";
+    myRole = preferences.getString("myRole") ?? "";
     isLogIn = preferences.getBool("isLogIn") ?? false;
     isNotifications = preferences.getBool("isNotifications") ?? true;
     mySubscription = preferences.getString("mySubscription") ?? "shopping";
-    localizationCountryCode = preferences.getString("localizationCountryCode") ?? "US";
-    localizationLanguageCode = preferences.getString("localizationLanguageCode") ?? "en";
+    localizationCountryCode =
+        preferences.getString("localizationCountryCode") ?? "US";
+    localizationLanguageCode =
+        preferences.getString("localizationLanguageCode") ?? "en";
 
     print(userId);
   }
