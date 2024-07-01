@@ -2,6 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+<<<<<<< HEAD
+=======
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+>>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
 import 'package:get/get.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -24,6 +28,10 @@ class Utils {
 
   static snackBarMessage(String title, String message) {
     Get.snackbar(kDebugMode ? title : 'oops!', message,
+<<<<<<< HEAD
         backgroundColor: AppColors.white);
+=======
+        backgroundColor: AppColors.white50);
+>>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
   }
 }

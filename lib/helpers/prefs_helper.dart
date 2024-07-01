@@ -1,6 +1,10 @@
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
 class PrefsHelper extends GetxController {
   static String token = "";
   static bool isLogIn = false;
@@ -10,7 +14,10 @@ class PrefsHelper extends GetxController {
   static String myImage = "";
   static String myName = "";
   static String myEmail = "";
+<<<<<<< HEAD
   static String myRole = "";
+=======
+>>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
   static String mySubscription = "shopping";
   static String localizationLanguageCode = 'en';
   static String localizationCountryCode = 'US';
@@ -25,6 +32,7 @@ class PrefsHelper extends GetxController {
     myImage = preferences.getString("myImage") ?? "";
     myName = preferences.getString("myName") ?? "";
     myEmail = preferences.getString("myEmail") ?? "";
+<<<<<<< HEAD
     myRole = preferences.getString("myRole") ?? "";
     isLogIn = preferences.getBool("isLogIn") ?? false;
     isNotifications = preferences.getBool("isNotifications") ?? true;
@@ -33,6 +41,13 @@ class PrefsHelper extends GetxController {
         preferences.getString("localizationCountryCode") ?? "US";
     localizationLanguageCode =
         preferences.getString("localizationLanguageCode") ?? "en";
+=======
+    isLogIn = preferences.getBool("isLogIn") ?? false;
+    isNotifications = preferences.getBool("isNotifications") ?? true;
+    mySubscription = preferences.getString("mySubscription") ?? "shopping";
+    localizationCountryCode = preferences.getString("localizationCountryCode") ?? "US";
+    localizationLanguageCode = preferences.getString("localizationLanguageCode") ?? "en";
+>>>>>>> 2549ed6079da91cbacb2737d53b6e546746db39e
 
     print(userId);
   }
