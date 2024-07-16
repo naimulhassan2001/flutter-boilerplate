@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/utils/app_string.dart';
 import '../../../../../extension/my_extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -94,12 +95,12 @@ class _MessageScreenState extends State<MessageScreen> {
             child: Padding(
               padding: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 24.h),
               child: CommonTextField(
-                hintText: "message here".tr,
+                hintText: AppString.messageHere,
                 suffixIcon: GestureDetector(
                   onTap: controller.addNewMessage,
                   child: Padding(
                     padding: EdgeInsets.all(16.sp),
-                    child:  const Icon(Icons.send),
+                    child: const Icon(Icons.send),
                   ),
                 ),
                 borderColor: Colors.white,

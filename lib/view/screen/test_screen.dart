@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/utils/app_string.dart';
 
 import '../component/button/common_button.dart';
 import '../component/other_widgets/common_loader.dart';
-
 
 class TestScreen extends StatefulWidget {
   const TestScreen({super.key});
@@ -17,7 +17,7 @@ class _TestScreenState extends State<TestScreen> {
     return Scaffold(
         body: Center(
             child: CommonButton(
-                titleText: "titleText",
+                titleText: AppString.test,
                 onTap: () {
                   const CommonLoader();
                   setState(() {});

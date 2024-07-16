@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/utils/app_string.dart';
 import '../../../../../extension/my_extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -6,8 +7,6 @@ import '../../../../core/app_routes.dart';
 import '../../../../utils/app_images.dart';
 import '../../../component/button/common_button.dart';
 import '../../../component/image/common_image.dart';
-
-
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
@@ -29,12 +28,12 @@ class OnboardingScreen extends StatelessWidget {
             )),
             120.height,
             CommonButton(
-              titleText: "Sign in with password".tr,
+              titleText: AppString.signInWithPassword,
               onTap: () => Get.toNamed(AppRoutes.signIn),
             ),
             24.height,
             CommonButton(
-              titleText: "Sign up".tr,
+              titleText: AppString.signUp,
               onTap: () => Get.toNamed(AppRoutes.signUp),
             ),
           ],

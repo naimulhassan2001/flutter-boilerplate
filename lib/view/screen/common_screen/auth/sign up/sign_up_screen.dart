@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/utils/app_string.dart';
 import '../../../../../extension/my_extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -26,8 +27,8 @@ class SignUpScreen extends StatelessWidget {
               child: Form(
                 key: formKey,
                 child: Column(children: [
-                  CommonText(
-                    text: "Create Your Account".tr,
+                  const CommonText(
+                    text: AppString.createYourAccount,
                     fontSize: 32,
                     bottom: 20,
                   ),
@@ -73,7 +74,7 @@ class SignUpScreen extends StatelessWidget {
                   ),
                   16.height,
                   CommonButton(
-                    titleText: "Sign up".tr,
+                    titleText: AppString.signUp,
                     isLoading: controller.isLoading,
                     onTap: () {
                       if (formKey.currentState!.validate()) {

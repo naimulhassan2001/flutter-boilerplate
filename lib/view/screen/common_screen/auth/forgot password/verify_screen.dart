@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/utils/app_string.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../../controllers/common_controller/auth/forget_password_controller.dart';
@@ -18,7 +19,6 @@ class VerifyScreen extends StatefulWidget {
 class _VerifyScreenState extends State<VerifyScreen> {
   final formKey = GlobalKey<FormState>();
 
-
   @override
   void initState() {
     ForgetPasswordController.instance.startTimer();
@@ -29,8 +29,8 @@ class _VerifyScreenState extends State<VerifyScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: CommonText(
-          text: "Forgot Password".tr,
+        title: const CommonText(
+          text: AppString.forgotPassword,
           fontWeight: FontWeight.w700,
           fontSize: 24,
         ),
@@ -45,7 +45,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
                 Center(
                   child: CommonText(
                     text:
-                        "${"Code has been send to".tr} ${controller.emailController.text}",
+                        "${AppString.codeHasBeenSendTo} ${controller.emailController.text}",
                     fontSize: 18,
                     top: 100,
                     bottom: 60,
@@ -59,7 +59,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
                       if (value != null && value.length == 6) {
                         return null;
                       } else {
-                        return "Otp is inValid".tr;
+                        return AppString.otpIsInValid;
                       }
                     },
                     autoDisposeControllers: false,
@@ -94,15 +94,15 @@ class _VerifyScreenState extends State<VerifyScreen> {
                       : () {},
                   child: CommonText(
                     text: controller.time == '00:00'
-                        ? "Resend Code"
-                        : "${"Resend code in".tr}  ${controller.time} minute",
+                        ? AppString.resendCode
+                        : "${AppString.resendCodeIn}  ${controller.time} ${AppString.minute}",
                     top: 60,
                     bottom: 100,
                     fontSize: 18,
                   ),
                 ),
                 CommonButton(
-                  titleText: "Verify".tr,
+                  titleText: AppString.verify,
                   isLoading: controller.isLoadingVerify,
                   onTap: () {
                     if (formKey.currentState!.validate()) {

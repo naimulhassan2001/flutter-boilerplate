@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/utils/app_string.dart';
 import '../../../../../../extension/my_extension.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,6 +11,7 @@ import '../../../../../helpers/reg_exp_helper.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../component/pop_up/common_pop_menu.dart';
 import '../../../../component/text/common_text.dart';
+import '../../../../component/text_field/common_phone_number_text_filed.dart';
 import '../../../../component/text_field/common_text_field.dart';
 
 class EditProfileAllFiled extends StatelessWidget {
@@ -22,8 +24,8 @@ class EditProfileAllFiled extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CommonText(
-              text: "Full Name".tr,
+            const CommonText(
+              text: AppString.fullName,
               fontWeight: FontWeight.w700,
               fontSize: 20,
               bottom: 12,
@@ -31,41 +33,26 @@ class EditProfileAllFiled extends StatelessWidget {
             CommonTextField(
               controller: controller.nameController,
               validator: OtherHelper.validator,
-              hintText: "Full Name".tr,
+              hintText: AppString.fullName,
               prefixIcon: const Icon(Icons.person),
               keyboardType: TextInputType.text,
               borderColor: AppColors.black,
               fillColor: AppColors.transparent,
             ),
-            CommonText(
-              text: "Contact".tr,
+            const CommonText(
+              text: AppString.contact,
               fontSize: 20,
               fontWeight: FontWeight.w700,
               top: 20,
               bottom: 12,
             ),
-            IntlPhoneField(
+            CommonPhoneNumberTextFiled(
               controller: controller.numberController,
-              onChanged: (value) {
+              countryChange: (value) {
                 if (kDebugMode) {
                   print(value);
                 }
               },
-              decoration: InputDecoration(
-                hintText: "Phone Number".tr,
-                fillColor: AppColors.transparent,
-                filled: true,
-                contentPadding:
-                    EdgeInsets.symmetric(horizontal: 4.w, vertical: 14.h),
-                focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.black),
-                    borderRadius: BorderRadius.all(Radius.circular(8))),
-                border: const OutlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.black),
-                    borderRadius: BorderRadius.all(Radius.circular(8))),
-              ),
-              initialCountryCode: "BD",
-              disableLengthCheck: false,
             ),
             20.height,
             Row(
@@ -74,8 +61,8 @@ class EditProfileAllFiled extends StatelessWidget {
                     child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CommonText(
-                      text: "Date of birth".tr,
+                    const CommonText(
+                      text: AppString.dateOfBirth,
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
                       bottom: 12,
@@ -89,7 +76,7 @@ class EditProfileAllFiled extends StatelessWidget {
                       borderRadius: 10.r,
                       onTap: () => OtherHelper.datePicker(
                           controller.dateOfBirthController),
-                      hintText: "Date of birth".tr,
+                      hintText: AppString.dateOfBirth,
                     ),
                   ],
                 )),
@@ -98,8 +85,8 @@ class EditProfileAllFiled extends StatelessWidget {
                     child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CommonText(
-                      text: "Age".tr,
+                    const CommonText(
+                      text: AppString.age,
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
                       bottom: 12,
@@ -108,8 +95,7 @@ class EditProfileAllFiled extends StatelessWidget {
                       controller: controller.ageController,
                       validator: OtherHelper.validator,
                       keyboardType: TextInputType.number,
-
-                      hintText: "Age".tr,
+                      hintText: AppString.age,
                       borderColor: AppColors.black,
                       fillColor: AppColors.transparent,
                     ),
@@ -117,8 +103,8 @@ class EditProfileAllFiled extends StatelessWidget {
                 )),
               ],
             ),
-            CommonText(
-              text: "About Me".tr,
+            const CommonText(
+              text: AppString.aboutMe,
               fontSize: 20,
               fontWeight: FontWeight.w700,
               bottom: 12,
@@ -129,14 +115,14 @@ class EditProfileAllFiled extends StatelessWidget {
               keyboardType: TextInputType.number,
               borderColor: AppColors.black,
               fillColor: AppColors.transparent,
-              hintText: "About Me".tr,
+              hintText: AppString.aboutMe,
             ),
             30.height,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CommonText(
-                  text: "Gender".tr,
+                const CommonText(
+                  text: AppString.gender,
                   fontWeight: FontWeight.w700,
                   fontSize: 18,
                 ),
@@ -145,7 +131,7 @@ class EditProfileAllFiled extends StatelessWidget {
                   child: CommonTextField(
                     controller: controller.genderController,
                     fillColor: AppColors.black,
-                    hintText: 'Gender'.tr,
+                    hintText: AppString.gender,
                     suffixIcon: PopUpMenu(
                         items: controller.gender,
                         iconColor: AppColors.white,

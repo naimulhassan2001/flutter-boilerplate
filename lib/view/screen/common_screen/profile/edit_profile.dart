@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/utils/app_string.dart';
 import '../../../../../extension/my_extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -22,8 +23,8 @@ class EditProfile extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             centerTitle: true,
-            title: CommonText(
-              text: "Book Appointment".tr,
+            title: const CommonText(
+              text: AppString.profile,
               fontSize: 20,
               fontWeight: FontWeight.w600,
             ),
@@ -75,7 +76,7 @@ class EditProfile extends StatelessWidget {
                   const EditProfileAllFiled(),
                   30.height,
                   CommonButton(
-                      titleText: "Save Changes".tr,
+                      titleText: AppString.saveAndChanges,
                       onTap: () {
                         if (formKey.currentState!.validate()) {
                           // Get.toNamed(AppRoutes.patientsProfile);

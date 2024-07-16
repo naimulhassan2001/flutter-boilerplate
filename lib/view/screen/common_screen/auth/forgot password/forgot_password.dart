@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/utils/app_string.dart';
 import '../../../../../extension/my_extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -7,7 +8,6 @@ import '../../../../../helpers/reg_exp_helper.dart';
 import '../../../../component/button/common_button.dart';
 import '../../../../component/text/common_text.dart';
 import '../../../../component/text_field/common_text_field.dart';
-
 
 class ForgotPasswordScreen extends StatelessWidget {
   ForgotPasswordScreen({super.key});
@@ -19,8 +19,8 @@ class ForgotPasswordScreen extends StatelessWidget {
     return GetBuilder<ForgetPasswordController>(
       builder: (controller) => Scaffold(
         appBar: AppBar(
-          title: CommonText(
-            text: "Forgot Password".tr,
+          title: const CommonText(
+            text: AppString.forgotPassword,
             fontWeight: FontWeight.w700,
             fontSize: 24,
           ),
@@ -35,7 +35,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                 CommonTextField(
                   controller: controller.emailController,
                   prefixIcon: const Icon(Icons.mail),
-                  labelText: "Email".tr,
+                  labelText: AppString.email,
                   validator: OtherHelper.emailValidator,
                 ),
                 100.height,
@@ -46,7 +46,7 @@ class ForgotPasswordScreen extends StatelessWidget {
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
           child: CommonButton(
-            titleText: "Continue".tr,
+            titleText: AppString.continues,
             isLoading: controller.isLoadingEmail,
             onTap: () {
               if (formKey.currentState!.validate()) {

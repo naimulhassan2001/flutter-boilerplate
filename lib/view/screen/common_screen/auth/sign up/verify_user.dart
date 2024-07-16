@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/utils/app_string.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../../controllers/common_controller/auth/sign_up_controller.dart';
@@ -28,8 +29,8 @@ class _VerifyUserState extends State<VerifyUser> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: CommonText(
-          text: "OTP Verify".tr,
+        title: const CommonText(
+          text: AppString.otpVerify,
           fontWeight: FontWeight.w700,
           fontSize: 24,
         ),
@@ -45,7 +46,7 @@ class _VerifyUserState extends State<VerifyUser> {
                   Center(
                     child: CommonText(
                       text:
-                          "${"Code has been send to".tr} ${controller.emailController.text}",
+                          "${AppString.codeHasBeenSendTo} ${controller.emailController.text}",
                       fontSize: 18,
                       top: 100,
                       bottom: 60,
@@ -81,7 +82,7 @@ class _VerifyUserState extends State<VerifyUser> {
                         if (value != null && value.length == 6) {
                           return null;
                         } else {
-                          return "Otp is inValid".tr;
+                          return AppString.otpIsInValid;
                         }
                       },
                     ),
@@ -95,15 +96,15 @@ class _VerifyUserState extends State<VerifyUser> {
                         : () {},
                     child: CommonText(
                       text: controller.time == '00:00'
-                          ? "Resend Code"
-                          : "${"Resend code in".tr}  ${controller.time} minute",
+                          ? AppString.resendCode
+                          : "${AppString.resendCodeIn} ${controller.time} ${AppString.minute}",
                       top: 60,
                       bottom: 100,
                       fontSize: 18,
                     ),
                   ),
                   CommonButton(
-                      titleText: "Verify".tr,
+                      titleText: AppString.verify,
                       isLoading: controller.isLoadingVerify,
                       onTap: () {
                         if (formKey.currentState!.validate()) {

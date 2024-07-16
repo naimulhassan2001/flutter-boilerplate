@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/utils/app_url.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../controllers/common_controller/notifications/notifications_controller.dart';
@@ -21,7 +22,7 @@ class NotificationScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: CommonText(
-          text: "Notification".tr,
+          text: AppUrls.notifications,
           fontWeight: FontWeight.w600,
           fontSize: 24.sp,
         ),

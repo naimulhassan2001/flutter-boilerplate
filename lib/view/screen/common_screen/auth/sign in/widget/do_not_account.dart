@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/utils/app_string.dart';
 import '../../../../../../extension/my_extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -9,8 +10,8 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../../../../core/app_routes.dart';
 import '../../../../../../utils/app_colors.dart';
 
-class DoNotHaveAccont extends StatelessWidget {
-  const DoNotHaveAccont({
+class DoNotHaveAccount extends StatelessWidget {
+  const DoNotHaveAccount({
     super.key,
   });
 
@@ -25,7 +26,7 @@ class DoNotHaveAccont extends StatelessWidget {
             TextSpan(
               children: [
                 TextSpan(
-                  text: "Don’t have an account".tr,
+                  text: AppString.doNotHaveAccount,
                   style: GoogleFonts.plusJakartaSans(
                     color: AppColors.secondary,
                     fontSize: 16,
@@ -33,7 +34,7 @@ class DoNotHaveAccont extends StatelessWidget {
                   ),
                 ),
                 TextSpan(
-                  text: "  ".tr,
+                  text: AppString.signUp,
                   style: GoogleFonts.plusJakartaSans(
                     color: AppColors.primaryColor,
                     fontSize: 16,
@@ -41,7 +42,7 @@ class DoNotHaveAccont extends StatelessWidget {
                   ),
                 ),
                 TextSpan(
-                  text: "Sign up".tr,
+                  text: "".tr,
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
                       Get.toNamed(AppRoutes.signUp);

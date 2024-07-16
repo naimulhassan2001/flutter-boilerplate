@@ -6,6 +6,7 @@ import '../../../../core/app_routes.dart';
 import '../../../../extension/my_extension.dart';
 import '../../../../models/api_response_model.dart';
 import '../../../../models/chat_list_model.dart';
+import '../../../../utils/app_string.dart';
 import '../../../component/bottom_nav_bar/common_bottom_bar.dart';
 import '../../../component/other_widgets/common_loader.dart';
 import '../../../component/screen/error_screen.dart';
@@ -22,8 +23,8 @@ class ChatListScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           centerTitle: true,
-          title: CommonText(
-            text: "Inbox".tr,
+          title: const CommonText(
+            text: AppString.inbox,
             fontWeight: FontWeight.w600,
             fontSize: 24,
           )),
@@ -38,11 +39,11 @@ class ChatListScreen extends StatelessWidget {
                 children: [
                   CommonTextField(
                     prefixIcon: const Icon(Icons.search),
-                    hintText: 'search a doctor'.tr,
+                    hintText: AppString.searchDoctor,
                   ),
                   controller.activeUsers.isNotEmpty
                       ? const CommonText(
-                          text: "Active Now",
+                          text: AppString.activeNow,
                           fontSize: 20,
                           top: 20,
                           fontWeight: FontWeight.w700,
@@ -73,7 +74,7 @@ class ChatListScreen extends StatelessWidget {
                             "name": item.participant.fullName,
                             "image": item.participant.image,
                           }),
-                          child: ChatListItem(
+                          child: chatListItem(
                             item: controller.chats[index],
                           ),
                         );

@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/utils/app_string.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import '../../../../controllers/common_controller/setting/privacy_policy_controller.dart';
@@ -17,8 +18,8 @@ class PrivacyPolicyScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: CommonText(
-            text: "Privacy Policy".tr,
+          title: const CommonText(
+            text: AppString.privacyPolicy,
             fontSize: 20,
             fontWeight: FontWeight.w600,
           ),

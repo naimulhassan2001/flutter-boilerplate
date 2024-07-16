@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import '../../../../../core/app_routes.dart';
 import '../../../../../extension/my_extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../../controllers/common_controller/auth/forget_password_controller.dart';
 import '../../../../../helpers/reg_exp_helper.dart';
 import '../../../../../utils/app_images.dart';
+import '../../../../../utils/app_string.dart';
 import '../../../../component/button/common_button.dart';
 import '../../../../component/image/common_image.dart';
 import '../../../../component/text/common_text.dart';
@@ -19,8 +21,8 @@ class CreatePassword extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: CommonText(
-          text: "Create New Password".tr,
+        title: const CommonText(
+          text: AppRoutes.createPassword,
           fontWeight: FontWeight.w700,
           fontSize: 24,
         ),
@@ -43,8 +45,8 @@ class CreatePassword extends StatelessWidget {
                       width: 297,
                     ),
                   ),
-                  CommonText(
-                    text: "Create Your New Password".tr,
+                  const CommonText(
+                    text: AppString.createYourNewPassword,
                     fontSize: 18,
                     textAlign: TextAlign.start,
                     top: 64,
@@ -53,7 +55,7 @@ class CreatePassword extends StatelessWidget {
                   CommonTextField(
                     controller: controller.passwordController,
                     prefixIcon: const Icon(Icons.lock),
-                    labelText: "Password".tr,
+                    labelText: AppString.password,
                     isPassword: true,
                     validator: OtherHelper.passwordValidator,
                   ),
@@ -61,14 +63,14 @@ class CreatePassword extends StatelessWidget {
                   CommonTextField(
                     controller: controller.confirmPasswordController,
                     prefixIcon: const Icon(Icons.lock),
-                    labelText: "Confirm Password".tr,
+                    labelText: AppString.confirmPassword,
                     validator: (value) => OtherHelper.confirmPasswordValidator(
                         value, controller.passwordController),
                     isPassword: true,
                   ),
                   64.height,
                   CommonButton(
-                    titleText: "Continue".tr,
+                    titleText: AppString.continues,
                     isLoading: controller.isLoadingReset,
                     onTap: () {
                       if (formKey.currentState!.validate()) {

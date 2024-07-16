@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/utils/app_string.dart';
 import '../../../../../extension/my_extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -29,9 +29,8 @@ class SignInScreen extends StatelessWidget {
                 key: formKey,
                 child: Column(
                   children: [
-
-                    CommonText(
-                      text: "Login to Your Account".tr,
+                    const CommonText(
+                      text: AppString.logIntoYourAccount,
                       fontSize: 32,
                       bottom: 20,
                       top: 36,
@@ -40,7 +39,7 @@ class SignInScreen extends StatelessWidget {
                     CommonTextField(
                       controller: controller.emailController,
                       prefixIcon: const Icon(Icons.mail),
-                      labelText: "Email".tr,
+                      labelText: AppString.email,
                       validator: OtherHelper.emailValidator,
                     ),
                     40.height,
@@ -48,15 +47,15 @@ class SignInScreen extends StatelessWidget {
                       controller: controller.passwordController,
                       prefixIcon: const Icon(Icons.lock),
                       isPassword: true,
-                      labelText: "Password".tr,
+                      labelText: AppString.password,
                       validator: OtherHelper.passwordValidator,
                     ),
                     Align(
                       alignment: Alignment.centerRight,
                       child: GestureDetector(
                         onTap: () => Get.toNamed(AppRoutes.forgotPassword),
-                        child: CommonText(
-                          text: "Forgot the password".tr,
+                        child: const CommonText(
+                          text: AppString.forgotThePassword,
                           top: 10,
                           bottom: 30,
                           color: AppColors.primaryColor,
@@ -66,17 +65,16 @@ class SignInScreen extends StatelessWidget {
                       ),
                     ),
                     CommonButton(
-                      titleText: "Sign in".tr,
+                      titleText: AppString.signIn,
                       isLoading: controller.isLoading,
                       onTap: () {
                         if (formKey.currentState!.validate()) {
-                         controller.signInUser();
+                          controller.signInUser();
                         }
                       },
                     ),
-
                     30.height,
-                    const DoNotHaveAccont()
+                    const DoNotHaveAccount()
                   ],
                 ),
               ),

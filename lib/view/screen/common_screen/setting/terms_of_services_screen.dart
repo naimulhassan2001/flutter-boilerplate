@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/utils/app_string.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 
@@ -17,8 +18,8 @@ class TermsOfServicesScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: CommonText(
-            text: "Terms of services".tr,
+          title: const CommonText(
+            text: AppString.termsOfServices,
             fontSize: 20,
             fontWeight: FontWeight.w600,
           ),
