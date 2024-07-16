@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_boilerplate/utils/app_url.dart';
 import 'package:socket_io_client/socket_io_client.dart' as io;
 
@@ -23,13 +23,17 @@ class SocketServices {
       debugPrint("=============================> Connection $data");
     });
     socket.onConnectError((data) {
-      print("============================>Connection Error $data");
+      if (kDebugMode) {
+        print("============================>Connection Error $data");
+      }
     });
 
     socket.connect();
 
     socket.on("user-notification::${PrefsHelper.userId}", (data) {
-      print("================> get Data on socket: $data");
+      if (kDebugMode) {
+        print("================> get Data on socket: $data");
+      }
       NotificationService.showNotification(data);
     });
   }

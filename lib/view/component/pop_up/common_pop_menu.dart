@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/view/common_widgets/button/common_button.dart';
-import 'package:flutter_boilerplate/view/common_widgets/text/common_text.dart';
-import 'package:flutter_boilerplate/view/common_widgets/text_field/common_text_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../helpers/prefs_helper.dart';
 import '../../../helpers/reg_exp_helper.dart';
 import '../../../utils/app_colors.dart';
+import '../../../utils/app_string.dart';
+import '../button/common_button.dart';
+import '../text/common_text.dart';
+import '../text_field/common_text_field.dart';
 
 class PopUpMenu extends StatelessWidget {
   const PopUpMenu(
@@ -102,8 +103,8 @@ logOutPopUp() {
           borderRadius: BorderRadius.circular(20.r),
         ),
         contentPadding: EdgeInsets.all(12.sp),
-        title: CommonText(
-          text: "You sure want to logout".tr,
+        title: const CommonText(
+          text: AppString.youSureWantToLogout,
           maxLines: 2,
           fontWeight: FontWeight.w600,
         ),
@@ -112,7 +113,7 @@ logOutPopUp() {
             children: [
               Expanded(
                   child: CommonButton(
-                titleText: "No".tr,
+                titleText: AppString.no,
                 borderWidth: 1.5,
                 borderColor: AppColors.primaryColor,
                 buttonColor: AppColors.transparent,
@@ -124,7 +125,7 @@ logOutPopUp() {
               ),
               Expanded(
                   child: CommonButton(
-                titleText: "Yes".tr,
+                titleText: AppString.yes,
                 onTap: () => PrefsHelper.removeAllPrefData(),
               ))
             ],
@@ -137,8 +138,8 @@ logOutPopUp() {
 
 deletePopUp(
     {required TextEditingController controller,
-      required VoidCallback onTap,
-      bool isLoading = false}) {
+    required VoidCallback onTap,
+    bool isLoading = false}) {
   final formKey = GlobalKey<FormState>();
   showDialog(
     context: Get.context!,
@@ -155,7 +156,7 @@ deletePopUp(
             children: [
               Center(
                 child: CommonText(
-                  text: "Are you sure".tr,
+                  text: AppString.areYouSure,
                   fontSize: 20.sp,
                   fontWeight: FontWeight.w700,
                   color: AppColors.black,
@@ -164,9 +165,7 @@ deletePopUp(
                 ),
               ),
               CommonText(
-                text:
-                "All your changes will be deleted and you will no longer be able to access them."
-                    .tr,
+                text: AppString.deleteDetails,
                 fontSize: 16.sp,
                 fontWeight: FontWeight.w500,
                 color: AppColors.black,
@@ -175,7 +174,7 @@ deletePopUp(
               ),
               CommonTextField(
                 controller: controller,
-                labelText: 'Enter you password',
+                labelText: AppString.enterYouPassword,
                 validator: OtherHelper.validator,
               )
             ],
@@ -186,7 +185,7 @@ deletePopUp(
             children: [
               Expanded(
                 child: CommonButton(
-                  titleText: "Cancel".tr,
+                  titleText: AppString.cancel,
                   titleColor: AppColors.black,
                   borderColor: AppColors.black,
                   buttonColor: AppColors.transparent,
@@ -200,7 +199,7 @@ deletePopUp(
               ),
               Expanded(
                 child: CommonButton(
-                  titleText: "Done".tr,
+                  titleText: AppString.done,
                   titleColor: AppColors.white,
                   buttonRadius: 4.r,
                   buttonHeight: 48.h,

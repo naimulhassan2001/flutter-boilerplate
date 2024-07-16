@@ -1,16 +1,14 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/extension/my_extension.dart';
+import '../../../../../extension/my_extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../../controllers/common_controller/auth/forget_password_controller.dart';
 import '../../../../../helpers/reg_exp_helper.dart';
 import '../../../../../utils/app_images.dart';
-import '../../../../common_widgets/button/common_button.dart';
-import '../../../../common_widgets/image/common_image.dart';
-import '../../../../common_widgets/text/common_text.dart';
-import '../../../../common_widgets/text_field/common_text_field.dart';
-
+import '../../../../component/button/common_button.dart';
+import '../../../../component/image/common_image.dart';
+import '../../../../component/text/common_text.dart';
+import '../../../../component/text_field/common_text_field.dart';
 
 class CreatePassword extends StatelessWidget {
   CreatePassword({super.key});
@@ -74,7 +72,7 @@ class CreatePassword extends StatelessWidget {
                     isLoading: controller.isLoadingReset,
                     onTap: () {
                       if (formKey.currentState!.validate()) {
-                       controller.resetPasswordRepo();
+                        controller.resetPasswordRepo();
                       }
                     },
                   ),

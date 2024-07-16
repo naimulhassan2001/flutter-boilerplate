@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -41,7 +42,9 @@ class PrefsHelper extends GetxController {
     localizationLanguageCode = preferences.getString("localizationLanguageCode") ?? "en";
 
 
-    print(userId);
+    if (kDebugMode) {
+      print(userId);
+    }
   }
 
   ///<<<======================== Get All Data Form Shared Preference ============>

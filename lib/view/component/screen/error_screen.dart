@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../utils/app_colors.dart';
+import '../../../utils/app_string.dart';
 
 class ErrorScreen extends StatelessWidget {
   const ErrorScreen({super.key, required this.onTap});
@@ -17,9 +17,9 @@ class ErrorScreen extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          Text(
-            "Some Thing Wrong".tr,
-            style: const TextStyle(
+          const Text(
+            AppString.someThingWrong,
+            style: TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 16,
                 color: AppColors.white),
@@ -37,9 +37,9 @@ class ErrorScreen extends StatelessWidget {
                   topRight: Radius.circular(32),
                   bottomLeft: Radius.circular(32),
                 ))),
-            child: Text(
-              "Try Again".tr,
-              style: const TextStyle(
+            child: const Text(
+              AppString.tryAgain,
+              style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
                   color: Colors.white),

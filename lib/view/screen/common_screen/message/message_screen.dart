@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/extension/my_extension.dart';
+import '../../../../../extension/my_extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../../../controllers/common_controller/message/message_controller.dart';
 import '../../../../models/chat_message_model.dart';
-import '../../../../utils/app_colors.dart';
-import '../../../../utils/app_icons.dart';
-import '../../../common_widgets/image/common_image.dart';
-import '../../../common_widgets/text/common_text.dart';
-import '../../../common_widgets/text_field/common_text_field.dart';
+import '../../../component/image/common_image.dart';
+import '../../../component/text/common_text.dart';
+import '../../../component/text_field/common_text_field.dart';
 import 'widget/chat_bubble_message.dart';
 
 class MessageScreen extends StatefulWidget {

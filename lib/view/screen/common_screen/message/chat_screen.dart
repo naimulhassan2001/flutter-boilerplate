@@ -6,11 +6,11 @@ import '../../../../core/app_routes.dart';
 import '../../../../extension/my_extension.dart';
 import '../../../../models/api_response_model.dart';
 import '../../../../models/chat_list_model.dart';
-import '../../../common_widgets/bottom_nav_bar/common_bottom_bar.dart';
-import '../../../common_widgets/other_widgets/common_loader.dart';
-import '../../../common_widgets/screen/error_screen.dart';
-import '../../../common_widgets/text/common_text.dart';
-import '../../../common_widgets/text_field/common_text_field.dart';
+import '../../../component/bottom_nav_bar/common_bottom_bar.dart';
+import '../../../component/other_widgets/common_loader.dart';
+import '../../../component/screen/error_screen.dart';
+import '../../../component/text/common_text.dart';
+import '../../../component/text_field/common_text_field.dart';
 import 'widget/active_user.dart';
 import 'widget/chat_list_item.dart';
 
@@ -41,7 +41,7 @@ class ChatListScreen extends StatelessWidget {
                     hintText: 'search a doctor'.tr,
                   ),
                   controller.activeUsers.isNotEmpty
-                      ? CommonText(
+                      ? const CommonText(
                           text: "Active Now",
                           fontSize: 20,
                           top: 20,

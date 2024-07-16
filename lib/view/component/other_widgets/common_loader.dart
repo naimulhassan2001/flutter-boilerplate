@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -11,7 +14,9 @@ class CommonLoader extends StatelessWidget {
     return SizedBox(
       height: size.sp,
       width: size.sp,
-      child: const Center(child: CircularProgressIndicator()),
+      child: Platform.isIOS
+          ? const CupertinoActivityIndicator()
+          : const CircularProgressIndicator(),
     );
   }
 }

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-
 import '../../../utils/app_colors.dart';
+import '../../../utils/app_string.dart';
 
 class CommonPhoneNumberTextFiled extends StatelessWidget {
   const CommonPhoneNumberTextFiled(
@@ -17,31 +16,31 @@ class CommonPhoneNumberTextFiled extends StatelessWidget {
     return IntlPhoneField(
       controller: controller,
       onCountryChanged: countryChange,
-      decoration: InputDecoration(
-        hintText: "Phone Number".tr,
+      decoration: const InputDecoration(
+        hintText: AppString.phoneNumber,
         fillColor: AppColors.filledColor,
         filled: true,
-        disabledBorder: const OutlineInputBorder(
+        disabledBorder: OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.all(Radius.circular(8)),
         ),
-        enabledBorder: const OutlineInputBorder(
+        enabledBorder: OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.all(Radius.circular(8)),
         ),
-        focusedBorder: const OutlineInputBorder(
+        focusedBorder: OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.all(Radius.circular(8)),
         ),
-        errorBorder: const OutlineInputBorder(
+        errorBorder: OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.all(Radius.circular(8)),
         ),
-        focusedErrorBorder: const OutlineInputBorder(
+        focusedErrorBorder: OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.all(Radius.circular(8)),
         ),
-        border: const OutlineInputBorder(
+        border: OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.all(Radius.circular(8)),
         ),

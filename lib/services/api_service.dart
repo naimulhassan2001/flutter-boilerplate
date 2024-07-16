@@ -8,11 +8,8 @@ import "package:http/http.dart" as http;
 import 'package:http_parser/http_parser.dart';
 import 'package:mime/mime.dart';
 
-
-
 import '../helpers/prefs_helper.dart';
 import '../models/api_response_model.dart';
-
 
 class ApiService {
   ///<<<======================== Main Header ==============================>>>
@@ -30,18 +27,16 @@ class ApiService {
       'Accept-Language': PrefsHelper.localizationLanguageCode,
     };
 
-    print("==================================================> url $url");
-    print(
-        "==================================================> url $mainHeader");
+    if (kDebugMode) {
+      print("=======================================> url $mainHeader");
+      print("==================================================> url $url");
+    }
 
     try {
       final response = await http
           .post(Uri.parse(url), body: body, headers: header ?? mainHeader)
           .timeout(const Duration(seconds: timeOut));
       responseJson = handleResponse(response);
-      print(response.body);
-
-
     } on SocketException {
       return ApiResponseModel(503, "No internet connection", '');
     } on FormatException {
@@ -66,14 +61,16 @@ class ApiService {
       'Accept-Language': PrefsHelper.localizationLanguageCode
     };
 
-    print("==================================================> url $url");
+    if (kDebugMode) {
+      print("==================================================> url $url");
+      print("================================> url ${header ?? mainHeader}");
+    }
 
     try {
       final response = await http
           .get(Uri.parse(url), headers: header ?? mainHeader)
           .timeout(const Duration(seconds: timeOut));
       responseJson = handleResponse(response);
-
     } on SocketException {
       return ApiResponseModel(503, "No internet connection", '');
     } on FormatException {
@@ -117,10 +114,10 @@ class ApiService {
   ///<<<======================== Patch Api ==============================>>>
 
   static Future<ApiResponseModel> patchApi(
-      String url, {
-        Map<String, String>? body,
-        Map<String, String>? header,
-      }) async {
+    String url, {
+    Map<String, String>? body,
+    Map<String, String>? header,
+  }) async {
     dynamic responseJson;
 
     Map<String, String> mainHeader = {
@@ -156,7 +153,7 @@ class ApiService {
   ///<<<======================== Delete Api ==============================>>>
 
   static Future<ApiResponseModel> deleteApi(String url,
-      {Map<String, String>? body ,Map<String, String>? header}) async {
+      {Map<String, String>? body, Map<String, String>? header}) async {
     dynamic responseJson;
 
     Map<String, String> mainHeader = {
@@ -165,20 +162,19 @@ class ApiService {
     };
 
     try {
-
-      if(body != null) {
+      if (body != null) {
         final response = await http
             .delete(Uri.parse(url), body: body, headers: header ?? mainHeader)
             .timeout(const Duration(seconds: timeOut));
-        responseJson = handleResponse(response) ;
-      }  else {
+        responseJson = handleResponse(response);
+      } else {
         final response = await http
             .delete(Uri.parse(url), headers: header ?? mainHeader)
             .timeout(const Duration(seconds: timeOut));
-        responseJson = handleResponse(response) ;
+        responseJson = handleResponse(response);
       }
 
-      ;
+
     } on SocketException {
       return ApiResponseModel(503, "No internet connection", '');
     } on FormatException {
@@ -195,9 +191,9 @@ class ApiService {
 
   static Future<ApiResponseModel> signUpMultipartRequest(
       {required String url,
-        String? imagePath,
-        required Map<String, String> body,
-        required String otp}) async {
+      String? imagePath,
+      required Map<String, String> body,
+      required String otp}) async {
     try {
       var request = http.MultipartRequest('POST', Uri.parse(url));
       body.forEach((key, value) {
@@ -220,7 +216,9 @@ class ApiService {
         return ApiResponseModel(200, jsonDecode(data)['message'], data);
       } else {
         String data = await response.stream.bytesToString();
-        return ApiResponseModel(response.statusCode, jsonDecode(data)['message'], data);}
+        return ApiResponseModel(
+            response.statusCode, jsonDecode(data)['message'], data);
+      }
     } on SocketException {
       return ApiResponseModel(503, "No internet connection", '');
     } on FormatException {
@@ -237,22 +235,27 @@ class ApiService {
   static dynamic handleResponse(http.Response response) {
     switch (response.statusCode) {
       case 200:
-        return ApiResponseModel(response.statusCode, jsonDecode(response.body)['message'], response.body);
+        return ApiResponseModel(response.statusCode,
+            jsonDecode(response.body)['message'], response.body);
       case 201:
-        return ApiResponseModel(response.statusCode, jsonDecode(response.body)['message'], response.body);
+        return ApiResponseModel(response.statusCode,
+            jsonDecode(response.body)['message'], response.body);
       case 401:
         // Get.offAllNamed(AppRoutes.signInScreen);
-        return ApiResponseModel(response.statusCode, jsonDecode(response.body)['message'], response.body);
+        return ApiResponseModel(response.statusCode,
+            jsonDecode(response.body)['message'], response.body);
       case 400:
-
-        return ApiResponseModel(response.statusCode, jsonDecode(response.body)['message'], response.body);
+        return ApiResponseModel(response.statusCode,
+            jsonDecode(response.body)['message'], response.body);
       case 404:
-        return ApiResponseModel(response.statusCode, jsonDecode(response.body)['message'], response.body);
+        return ApiResponseModel(response.statusCode,
+            jsonDecode(response.body)['message'], response.body);
       case 409:
-        return ApiResponseModel(response.statusCode, jsonDecode(response.body)['message'], response.body);
+        return ApiResponseModel(response.statusCode,
+            jsonDecode(response.body)['message'], response.body);
       default:
-        print(response.statusCode);
-        return ApiResponseModel(response.statusCode, jsonDecode(response.body)['message'], response.body);
+        return ApiResponseModel(response.statusCode,
+            jsonDecode(response.body)['message'], response.body);
     }
   }
 

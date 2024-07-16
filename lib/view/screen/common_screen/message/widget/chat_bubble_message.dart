@@ -3,8 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../../extension/my_extension.dart';
 import '../../../../../utils/app_images.dart';
-import '../../../../common_widgets/image/common_image.dart';
-import '../../../../common_widgets/text/common_text.dart';
+import '../../../../component/image/common_image.dart';
+import '../../../../component/text/common_text.dart';
+
 
 class ChatBubbleMessage extends StatelessWidget {
   final DateTime time;

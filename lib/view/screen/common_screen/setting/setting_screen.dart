@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/extension/my_extension.dart';
-import 'package:flutter_boilerplate/view/common_widgets/text/common_text.dart';
+import '../../../../../extension/my_extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../controllers/common_controller/setting/setting_controller.dart';
 import '../../../../core/app_routes.dart';
 import '../../../../utils/app_colors.dart';
-import '../../../common_widgets/bottom_nav_bar/common_bottom_bar.dart';
-import '../../../common_widgets/pop_up/common_pop_menu.dart';
+import '../../../component/bottom_nav_bar/common_bottom_bar.dart';
+import '../../../component/pop_up/common_pop_menu.dart';
+import '../../../component/text/common_text.dart';
 import 'widget/setting_item.dart';
 
 class SettingScreen extends StatelessWidget {

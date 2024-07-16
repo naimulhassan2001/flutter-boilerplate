@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/view/common_widgets/image/common_image.dart';
-import 'package:flutter_boilerplate/view/common_widgets/text/common_text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../utils/app_colors.dart';
+import '../image/common_image.dart';
+import '../text/common_text.dart';
 
 class Item extends StatelessWidget {
   const Item(

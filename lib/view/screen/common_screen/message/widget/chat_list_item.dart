@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/extension/my_extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../../extension/my_extension.dart';
 import '../../../../../models/chat_list_model.dart';
 import '../../../../../utils/app_colors.dart';
-import '../../../../common_widgets/image/common_image.dart';
-import '../../../../common_widgets/text/common_text.dart';
+import '../../../../component/image/common_image.dart';
+import '../../../../component/text/common_text.dart';
+
 
 
 class ChatListItem extends StatelessWidget {

@@ -1,14 +1,13 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/view/common_widgets/other_widgets/common_loader.dart';
-import 'package:flutter_boilerplate/view/common_widgets/text/common_text.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../../controllers/common_controller/setting/terms_of_services_controller.dart';
 import '../../../../models/api_response_model.dart';
-import '../../../common_widgets/screen/error_screen.dart';
+import '../../../component/other_widgets/common_loader.dart';
+import '../../../component/screen/error_screen.dart';
+import '../../../component/text/common_text.dart';
 
 class TermsOfServicesScreen extends StatelessWidget {
   const TermsOfServicesScreen({super.key});

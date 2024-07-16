@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -18,7 +17,6 @@ Future<void> main() async {
   await PrefsHelper.getAllPrefData();
   NotificationService.initLocalNotification();
   SocketServices.connectToSocket();
-
 
   runApp(const MyApp());
 }
@@ -42,6 +40,7 @@ class MyApp extends StatelessWidget {
             PrefsHelper.localizationCountryCode),
         fallbackLocale: const Locale("en", "US"),
         theme: themeData,
+        transitionDuration: const Duration(milliseconds: 300),
         initialRoute: AppRoutes.splash,
         getPages: AppRoutes.routes,
       ),
