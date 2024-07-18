@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/extension/my_extension.dart';
-import 'package:flutter_boilerplate/view/common_widgets/button/common_button.dart';
-import 'package:flutter_boilerplate/view/common_widgets/text/common_text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../../controllers/common_controller/auth/sign_up_controller.dart';
 import '../../../../../helpers/prefs_helper.dart';
 import '../../../../../utils/app_colors.dart';
+import '../../../../common_widgets/button/common_button.dart';
+import '../../../../common_widgets/text/common_text.dart';
 import 'widget/already_accunt_rich_text.dart';
 import 'widget/sign_up_all_filed.dart';
+import '../../../../../extension/my_extension.dart';
+
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({super.key});

@@ -1,4 +1,3 @@
-import 'package:flutter_boilerplate/controllers/common_controller/notifications/notifications_controller.dart';
 import 'package:get/get.dart';
 
 import '../controllers/common_controller/auth/change_password_controller.dart';
@@ -7,6 +6,7 @@ import '../controllers/common_controller/auth/sign_in_controller.dart';
 import '../controllers/common_controller/auth/sign_up_controller.dart';
 import '../controllers/common_controller/message/chat_controller.dart';
 import '../controllers/common_controller/message/message_controller.dart';
+import '../controllers/common_controller/notifications/notifications_controller.dart';
 import '../controllers/common_controller/profile/profile_controller.dart';
 import '../controllers/common_controller/setting/privacy_policy_controller.dart';
 import '../controllers/common_controller/setting/setting_controller.dart';

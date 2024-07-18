@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/view/common_widgets/button/common_button.dart';
-import 'package:flutter_boilerplate/view/common_widgets/other_widgets/common_loader.dart';
-import 'package:flutter_boilerplate/view/common_widgets/button/custom_button.dart';
-import 'package:flutter_boilerplate/view/common_widgets/custom_button_loader.dart';
+
+import '../common_widgets/button/common_button.dart';
+import '../common_widgets/other_widgets/common_loader.dart';
 
 class TestScreen extends StatefulWidget {
   const TestScreen({super.key});

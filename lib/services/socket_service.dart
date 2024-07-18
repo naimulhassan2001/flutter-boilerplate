@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_boilerplate/utils/app_url.dart';
 import 'package:socket_io_client/socket_io_client.dart' as io;
 
 import '../helpers/prefs_helper.dart';
+import '../utils/app_url.dart';
 import 'notification_service.dart';
 
 class SocketServices {

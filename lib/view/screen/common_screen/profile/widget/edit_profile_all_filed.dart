@@ -1,8 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/extension/my_extension.dart';
-import 'package:flutter_boilerplate/view/common_widgets/text/common_text.dart';
-import 'package:flutter_boilerplate/view/common_widgets/text_field/common_text_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
@@ -10,6 +7,10 @@ import '../../../../../controllers/common_controller/profile/profile_controller.
 import '../../../../../helpers/reg_exp_helper.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../common_widgets/pop_up/common_pop_menu.dart';
+import '../../../../../extension/my_extension.dart';
+import '../../../../common_widgets/text/common_text.dart';
+import '../../../../common_widgets/text_field/common_text_field.dart';
+
 
 class EditProfileAllFiled extends StatelessWidget {
   const EditProfileAllFiled({super.key});

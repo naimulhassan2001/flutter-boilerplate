@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/extension/my_extension.dart';
-import 'package:flutter_boilerplate/utils/app_images.dart';
-import 'package:flutter_boilerplate/view/common_widgets/image/common_image.dart';
-import 'package:flutter_boilerplate/view/common_widgets/other_widgets/common_loader.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import '../../../../core/app_routes.dart';
-import '../../../../helpers/prefs_helper.dart';
-import '../../../../utils/app_icons.dart';
+import '../../../../utils/app_images.dart';
+import '../../../common_widgets/image/common_image.dart';
+import '../../../common_widgets/other_widgets/common_loader.dart';
+import '../../../../../extension/my_extension.dart';
+
+
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

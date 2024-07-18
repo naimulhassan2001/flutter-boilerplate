@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/view/common_widgets/text/common_text.dart';
-import 'package:flutter_boilerplate/view/common_widgets/text_field/common_text_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../utils/app_colors.dart';
+import '../../../../common_widgets/text/common_text.dart';
 
 class SettingItem extends StatelessWidget {
   const SettingItem({super.key, required this.title, required this.iconDate});

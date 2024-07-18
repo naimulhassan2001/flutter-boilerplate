@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/view/common_widgets/other_widgets/common_loader.dart';
-import 'package:flutter_boilerplate/view/common_widgets/text/common_text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../controllers/common_controller/notifications/notifications_controller.dart';
-import '../../../../helpers/prefs_helper.dart';
 import '../../../../models/api_response_model.dart';
 import '../../../../models/notification_model.dart';
 import '../../../common_widgets/bottom_nav_bar/common_bottom_bar.dart';
+import '../../../common_widgets/other_widgets/common_loader.dart';
 import '../../../common_widgets/other_widgets/no_data.dart';
 import '../../../common_widgets/screen/error_screen.dart';
+import '../../../common_widgets/text/common_text.dart';
 import 'widget/notification_item.dart';
 
 class NotificationScreen extends StatelessWidget {

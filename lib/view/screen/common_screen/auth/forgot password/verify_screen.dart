@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/view/common_widgets/button/common_button.dart';
-import 'package:flutter_boilerplate/view/common_widgets/text/common_text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../../controllers/common_controller/auth/forget_password_controller.dart';
 import '../../../../../utils/app_colors.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+
+import '../../../../common_widgets/button/common_button.dart';
+import '../../../../common_widgets/text/common_text.dart';
 
 class VerifyScreen extends StatefulWidget {
   const VerifyScreen({super.key});

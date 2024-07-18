@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/view/common_widgets/button/common_button.dart';
-import 'package:flutter_boilerplate/view/common_widgets/text/common_text.dart';
-import 'package:flutter_boilerplate/view/common_widgets/text_field/common_text_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../helpers/prefs_helper.dart';
 import '../../../helpers/reg_exp_helper.dart';
 import '../../../utils/app_colors.dart';
+import '../button/common_button.dart';
+import '../text/common_text.dart';
+import '../text_field/common_text_field.dart';
 
 class PopUpMenu extends StatelessWidget {
   const PopUpMenu(

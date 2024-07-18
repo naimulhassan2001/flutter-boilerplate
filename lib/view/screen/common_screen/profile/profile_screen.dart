@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/view/common_widgets/image/common_image.dart';
-import 'package:flutter_boilerplate/view/common_widgets/text/common_text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../controllers/common_controller/profile/profile_controller.dart';
 import '../../../../core/app_routes.dart';
 import '../../../../utils/app_images.dart';
 import '../../../common_widgets/bottom_nav_bar/common_bottom_bar.dart';
+import '../../../common_widgets/image/common_image.dart';
 import '../../../common_widgets/other_widgets/item.dart';
 import '../../../common_widgets/pop_up/common_pop_menu.dart';
+import '../../../common_widgets/text/common_text.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});

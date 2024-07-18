@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/extension/my_extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../../controllers/common_controller/auth/change_password_controller.dart';
@@ -9,6 +8,8 @@ import '../../../../../utils/app_colors.dart';
 import '../../../../common_widgets/button/common_button.dart';
 import '../../../../common_widgets/text/common_text.dart';
 import '../../../../common_widgets/text_field/common_text_field.dart';
+import '../../../../../extension/my_extension.dart';
+
 
 
 class ChangePasswordScreen extends StatelessWidget {
