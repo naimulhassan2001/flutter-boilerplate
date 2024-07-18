@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/utils/app_string.dart';
 import '../../../../../extension/my_extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../controllers/common_controller/message/message_controller.dart';
 import '../../../../models/chat_message_model.dart';
+import '../../../../utils/app_string.dart';
 import '../../../component/image/common_image.dart';
 import '../../../component/text/common_text.dart';
 import '../../../component/text_field/common_text_field.dart';

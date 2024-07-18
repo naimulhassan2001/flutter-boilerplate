@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/utils/app_string.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
 import '../../../../controllers/common_controller/profile/profile_controller.dart';
 import '../../../../core/app_routes.dart';
 import '../../../../utils/app_images.dart';
+import '../../../../utils/app_string.dart';
 import '../../../component/bottom_nav_bar/common_bottom_bar.dart';
 import '../../../component/image/common_image.dart';
 import '../../../component/other_widgets/item.dart';

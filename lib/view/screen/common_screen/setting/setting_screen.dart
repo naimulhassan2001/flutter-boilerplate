@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/utils/app_string.dart';
 import '../../../../../extension/my_extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../controllers/common_controller/setting/setting_controller.dart';
 import '../../../../core/app_routes.dart';
 import '../../../../utils/app_colors.dart';
+import '../../../../utils/app_string.dart';
 import '../../../component/bottom_nav_bar/common_bottom_bar.dart';
 import '../../../component/pop_up/common_pop_menu.dart';
 import '../../../component/text/common_text.dart';

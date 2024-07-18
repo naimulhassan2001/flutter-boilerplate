@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/utils/app_string.dart';
-
+import '../../utils/app_string.dart';
 import '../component/button/common_button.dart';
 import '../component/other_widgets/common_loader.dart';
 

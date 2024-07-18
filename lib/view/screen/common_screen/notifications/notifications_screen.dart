@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/utils/app_url.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../controllers/common_controller/notifications/notifications_controller.dart';
 import '../../../../models/api_response_model.dart';
 import '../../../../models/notification_model.dart';
 
+import '../../../../utils/app_url.dart';
 import '../../../component/bottom_nav_bar/common_bottom_bar.dart';
 import '../../../component/other_widgets/common_loader.dart';
 import '../../../component/other_widgets/no_data.dart';
