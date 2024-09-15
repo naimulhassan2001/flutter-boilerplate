@@ -29,7 +29,7 @@ class ChangePasswordScreen extends StatelessWidget {
       ),
       body: GetBuilder<ChangePasswordController>(
         builder: (controller) {
-          return Padding(
+          return SingleChildScrollView(
             padding: EdgeInsets.symmetric(horizontal: 20.w),
             child: Form(
               key: formKey,

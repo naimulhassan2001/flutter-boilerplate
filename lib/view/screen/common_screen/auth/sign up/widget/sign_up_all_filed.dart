@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/utils/app_string.dart';
+import 'package:flutter_boilerplate/view/component/text/common_text.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../extension/my_extension.dart';
 import 'package:get/get.dart';
 import '../../../../../../controllers/common_controller/auth/sign_up_controller.dart';
@@ -21,31 +23,50 @@ class _SignUpAllFieldState extends State<SignUpAllField> {
     return GetBuilder<SignUpController>(
       builder: (controller) {
         return Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            CommonText(
+              text: AppString.fullName,
+              top: 30.h,
+              bottom: 8.h,
+            ),
             CommonTextField(
               prefixIcon: const Icon(
-                Icons.group,
+                Icons.person,
               ),
-              labelText: AppString.fullName,
+              hintText: AppString.fullName,
               controller: controller.nameController,
               validator: OtherHelper.validator,
             ),
-            30.height,
+            CommonText(
+              text: AppString.email,
+              top: 16.h,
+              bottom: 8.h,
+            ),
             CommonTextField(
               controller: controller.emailController,
               prefixIcon: const Icon(Icons.mail, color: AppColors.black),
-              labelText: AppString.email,
+              hintText: AppString.email,
               validator: OtherHelper.emailValidator,
             ),
-            30.height,
+            CommonText(
+              text: AppString.password,
+              top: 16.h,
+              bottom: 8.h,
+            ),
             CommonTextField(
               controller: controller.passwordController,
               prefixIcon: const Icon(Icons.lock, color: AppColors.black),
               isPassword: true,
-              labelText: AppString.password,
+              hintText: AppString.password,
               validator: OtherHelper.passwordValidator,
             ),
-            30.height,
+            CommonText(
+              text: AppString.confirmPassword,
+              top: 16.h,
+              bottom: 8.h,
+            ),
             CommonTextField(
               controller: controller.confirmPasswordController,
               prefixIcon: const Icon(Icons.lock, color: AppColors.black),
@@ -54,7 +75,11 @@ class _SignUpAllFieldState extends State<SignUpAllField> {
               validator: (value) => OtherHelper.confirmPasswordValidator(
                   value, controller.passwordController),
             ),
-            30.height,
+            CommonText(
+              text: AppString.phoneNumber,
+              top: 16.h,
+              bottom: 8.h,
+            ),
             CommonPhoneNumberTextFiled(
               controller: controller.numberController,
               countryChange: controller.onCountryChange,

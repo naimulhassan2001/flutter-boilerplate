@@ -52,18 +52,27 @@ class CreatePassword extends StatelessWidget {
                     top: 64,
                     bottom: 24,
                   ),
+                  CommonText(
+                    text: AppString.password,
+                    top: 16.h,
+                    bottom: 8.h,
+                  ),
                   CommonTextField(
                     controller: controller.passwordController,
                     prefixIcon: const Icon(Icons.lock),
-                    labelText: AppString.password,
+                    hintText: AppString.password,
                     isPassword: true,
                     validator: OtherHelper.passwordValidator,
                   ),
-                  24.height,
+                  CommonText(
+                    text: AppString.confirmPassword,
+                    top: 16.h,
+                    bottom: 8.h,
+                  ),
                   CommonTextField(
                     controller: controller.confirmPasswordController,
                     prefixIcon: const Icon(Icons.lock),
-                    labelText: AppString.confirmPassword,
+                    hintText: AppString.confirmPassword,
                     validator: (value) => OtherHelper.confirmPasswordValidator(
                         value, controller.passwordController),
                     isPassword: true,
