@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/utils/app_string.dart';
 import '../../../../../extension/my_extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -7,6 +6,7 @@ import '../../../../../controllers/common_controller/auth/sign_in_controller.dar
 import '../../../../../core/app_routes.dart';
 import '../../../../../helpers/reg_exp_helper.dart';
 import '../../../../../utils/app_colors.dart';
+import '../../../../../utils/app_string.dart';
 import '../../../../component/button/common_button.dart';
 import '../../../../component/text/common_text.dart';
 import '../../../../component/text_field/common_text_field.dart';
