@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import '../../../../../../extension/my_extension.dart';
+import '../../../../../helpers/my_extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../../controllers/common_controller/profile/profile_controller.dart';
-import '../../../../../helpers/reg_exp_helper.dart';
+import '../../../../../helpers/other_helper.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_string.dart';
 import '../../../../component/pop_up/common_pop_menu.dart';

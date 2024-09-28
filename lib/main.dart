@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'core/app_routes.dart';
-import 'core/dependency_injection.dart';
+import 'helpers/app_routes.dart';
+import 'helpers/dependency_injection.dart';
 import 'helpers/prefs_helper.dart';
 import 'languages/language.dart';
 import 'services/notification_service.dart';

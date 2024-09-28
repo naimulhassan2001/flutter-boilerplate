@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../models/notification_model.dart';
-import '../../../../../extension/my_extension.dart';
+import '../../../../../helpers/my_extension.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../component/text/common_text.dart';
 

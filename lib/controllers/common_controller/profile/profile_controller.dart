@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../helpers/reg_exp_helper.dart';
+import '../../../helpers/other_helper.dart';
 
 class ProfileController extends GetxController {
   List languages = ["English", "French", "Arabic"];

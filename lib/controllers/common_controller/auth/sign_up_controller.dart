@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/countries.dart';
 
-import '../../../core/app_routes.dart';
+import '../../../helpers/app_routes.dart';
+import '../../../helpers/other_helper.dart';
 import '../../../helpers/prefs_helper.dart';
-import '../../../helpers/reg_exp_helper.dart';
 import '../../../services/api_service.dart';
 import '../../../utils/app_url.dart';
 import '../../../utils/app_utils.dart';

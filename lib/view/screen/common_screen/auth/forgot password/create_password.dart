@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../../../../core/app_routes.dart';
-import '../../../../../extension/my_extension.dart';
+import '../../../../../helpers/app_routes.dart';
+import '../../../../../helpers/my_extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../../controllers/common_controller/auth/forget_password_controller.dart';
-import '../../../../../helpers/reg_exp_helper.dart';
+import '../../../../../helpers/other_helper.dart';
 import '../../../../../utils/app_images.dart';
 import '../../../../../utils/app_string.dart';
 import '../../../../component/button/common_button.dart';

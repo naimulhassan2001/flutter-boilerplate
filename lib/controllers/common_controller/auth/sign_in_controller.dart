@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
-import '../../../core/app_routes.dart';
+import '../../../helpers/app_routes.dart';
 import '../../../helpers/prefs_helper.dart';
 import '../../../services/api_service.dart';
 import '../../../utils/app_url.dart';
