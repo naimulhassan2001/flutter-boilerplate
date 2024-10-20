@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import '../../../helpers/other_helper.dart';
 import '../../../helpers/prefs_helper.dart';
-import '../../../helpers/reg_exp_helper.dart';
 import '../../../utils/app_colors.dart';
 import '../../../utils/app_string.dart';
 import '../button/common_button.dart';

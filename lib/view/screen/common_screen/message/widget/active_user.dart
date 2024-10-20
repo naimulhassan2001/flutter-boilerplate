@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../../../core/app_routes.dart';
+import '../../../../../helpers/app_routes.dart';
 import '../../../../../models/active_user_model.dart';
 import '../../../../component/image/common_image.dart';
 
