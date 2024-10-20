@@ -30,12 +30,17 @@ class ForgotPasswordScreen extends StatelessWidget {
           child: Form(
             key: formKey,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                105.height,
+                CommonText(
+                  text: AppString.email,
+                  bottom: 8,
+                  top: 80,
+                ),
                 CommonTextField(
                   controller: controller.emailController,
                   prefixIcon: const Icon(Icons.mail),
-                  labelText: AppString.email,
+                  hintText: AppString.email,
                   validator: OtherHelper.emailValidator,
                 ),
                 100.height,

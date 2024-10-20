@@ -28,6 +28,8 @@ class SignInScreen extends StatelessWidget {
               child: Form(
                 key: formKey,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const CommonText(
                       text: AppString.logIntoYourAccount,
@@ -35,19 +37,26 @@ class SignInScreen extends StatelessWidget {
                       bottom: 20,
                       top: 36,
                     ),
-                    20.height,
+                    const CommonText(
+                      text: AppString.email,
+                      bottom: 8,
+                    ),
                     CommonTextField(
                       controller: controller.emailController,
                       prefixIcon: const Icon(Icons.mail),
-                      labelText: AppString.email,
+                      hintText: AppString.email,
                       validator: OtherHelper.emailValidator,
                     ),
-                    40.height,
+                    const CommonText(
+                      text: AppString.password,
+                      bottom: 8,
+                      top: 24,
+                    ),
                     CommonTextField(
                       controller: controller.passwordController,
                       prefixIcon: const Icon(Icons.lock),
                       isPassword: true,
-                      labelText: AppString.password,
+                      hintText: AppString.password,
                       validator: OtherHelper.passwordValidator,
                     ),
                     Align(

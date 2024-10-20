@@ -34,8 +34,13 @@ class ChangePasswordScreen extends StatelessWidget {
             child: Form(
               key: formKey,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   70.height,
+                  const CommonText(
+                    text: AppString.currentPassword,
+                    bottom: 8,
+                  ),
                   CommonTextField(
                     controller: controller.currentPasswordController,
                     hintText: AppString.currentPassword,
@@ -46,7 +51,11 @@ class ChangePasswordScreen extends StatelessWidget {
                       size: 20.sp,
                     ),
                   ),
-                  16.height,
+                  const CommonText(
+                    text: AppString.newPassword,
+                    bottom: 8,
+                    top: 16,
+                  ),
                   CommonTextField(
                     controller: controller.newPasswordController,
                     hintText: AppString.newPassword,
@@ -57,7 +66,11 @@ class ChangePasswordScreen extends StatelessWidget {
                       size: 20.sp,
                     ),
                   ),
-                  16.height,
+                  const CommonText(
+                    text: AppString.confirmPassword,
+                    bottom: 8,
+                    top: 16,
+                  ),
                   CommonTextField(
                     controller: controller.confirmPasswordController,
                     hintText: AppString.confirmPassword,
