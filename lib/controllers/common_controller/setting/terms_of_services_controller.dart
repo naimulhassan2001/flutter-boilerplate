@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:get/get.dart';
 
 import '../../../models/api_response_model.dart';
@@ -24,7 +23,7 @@ class TermsOfServicesController extends GetxController {
 
     if (response.statusCode == 200) {
       data =
-          HtmlModel.fromJson(jsonDecode(response.body)['data']['attributes']);
+          HtmlModel.fromJson(response.body['data']['attributes']);
 
       status = Status.completed;
       update();

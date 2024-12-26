@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -86,7 +85,7 @@ class SignUpController extends GetxController {
     );
 
     if (response.statusCode == 200) {
-      var data = jsonDecode(response.body);
+      var data = response.body;
       signUpToken = data['data']['signUpToken'];
       Get.toNamed(AppRoutes.verifyUser);
     } else {
@@ -125,7 +124,7 @@ class SignUpController extends GetxController {
         await ApiService.postApi(AppUrls.verifyEmail, body, header: header);
 
     if (response.statusCode == 200) {
-      var data = jsonDecode(response.body);
+      var data = response.body;
 
       PrefsHelper.token = data['data']["accessToken"];
       PrefsHelper.userId = data['data']["attributes"]["_id"];

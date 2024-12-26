@@ -54,7 +54,7 @@ class OtherHelper {
     }
   }
 
-  static Future<String> datePicker(
+  static Future<String> openDatePicker(
       TextEditingController controller,
       ) async {
     final DateTime? picked = await showDatePicker(
@@ -91,6 +91,20 @@ class OtherHelper {
     return getImages.path;
   }
 
+  static Future<String?> openCamera() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? getImages =
+    await picker.pickImage(source: ImageSource.camera, imageQuality: 50);
+    if (getImages == null) return null;
+
+    if (kDebugMode) {
+      print(getImages.path);
+    }
+
+    return getImages.path;
+  }
+
+
   static Future<String?> getVideo() async {
     final ImagePicker picker = ImagePicker();
     final XFile? getImages =
@@ -106,18 +120,6 @@ class OtherHelper {
 
   //Pick Image from Camera
 
-  static Future<String?> openCamera() async {
-    final ImagePicker picker = ImagePicker();
-    final XFile? getImages =
-    await picker.pickImage(source: ImageSource.camera, imageQuality: 50);
-    if (getImages == null) return null;
-
-    if (kDebugMode) {
-      print(getImages.path);
-    }
-
-    return getImages.path;
-  }
 
   static Future<String> openTimePicker(TextEditingController controller) async {
     final TimeOfDay? picked = await showTimePicker(

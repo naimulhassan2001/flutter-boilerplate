@@ -43,15 +43,15 @@ class AppRoutes {
   static List<GetPage> routes = [
     GetPage(
         name: test,
-        page: () => TestScreen(),
+        page: () => const TestScreen(),
         transition: Transition.rightToLeftWithFade),
     GetPage(
         name: splash,
-        page: () => SplashScreen(),
+        page: () => const SplashScreen(),
         transition: Transition.rightToLeftWithFade),
     GetPage(
         name: onboarding,
-        page: () => OnboardingScreen(),
+        page: () => const OnboardingScreen(),
         transition: Transition.rightToLeftWithFade),
     GetPage(
         name: signUp,
@@ -59,7 +59,7 @@ class AppRoutes {
         transition: Transition.rightToLeftWithFade),
     GetPage(
         name: verifyUser,
-        page: () => VerifyUser(),
+        page: () => const VerifyUser(),
         transition: Transition.rightToLeftWithFade),
     GetPage(
         name: signIn,
@@ -71,7 +71,7 @@ class AppRoutes {
         transition: Transition.rightToLeftWithFade),
     GetPage(
         name: verifyEmail,
-        page: () => VerifyScreen(),
+        page: () => const VerifyScreen(),
         transition: Transition.rightToLeftWithFade),
     GetPage(
         name: createPassword,
@@ -83,19 +83,19 @@ class AppRoutes {
         transition: Transition.rightToLeftWithFade),
     GetPage(
         name: notifications,
-        page: () => NotificationScreen(),
+        page: () => const NotificationScreen(),
         transition: Transition.rightToLeftWithFade),
     GetPage(
         name: chat,
-        page: () => ChatListScreen(),
+        page: () => const ChatListScreen(),
         transition: Transition.rightToLeftWithFade),
     GetPage(
         name: message,
-        page: () => MessageScreen(),
+        page: () => const MessageScreen(),
         transition: Transition.rightToLeftWithFade),
     GetPage(
         name: profile,
-        page: () => ProfileScreen(),
+        page: () => const ProfileScreen(),
         transition: Transition.rightToLeftWithFade),
     GetPage(
         name: editProfile,
@@ -103,15 +103,15 @@ class AppRoutes {
         transition: Transition.rightToLeftWithFade),
     GetPage(
         name: privacyPolicy,
-        page: () => PrivacyPolicyScreen(),
+        page: () => const PrivacyPolicyScreen(),
         transition: Transition.rightToLeftWithFade),
     GetPage(
         name: termsOfServices,
-        page: () => TermsOfServicesScreen(),
+        page: () => const TermsOfServicesScreen(),
         transition: Transition.rightToLeftWithFade),
     GetPage(
         name: setting,
-        page: () => SettingScreen(),
+        page: () => const SettingScreen(),
         transition: Transition.rightToLeftWithFade),
   ];
 }

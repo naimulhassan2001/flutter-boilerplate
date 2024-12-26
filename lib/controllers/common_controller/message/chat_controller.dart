@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -49,7 +48,7 @@ class ChatController extends GetxController {
     var response = await ApiService.getApi("${AppUrls.chats}?page=$page");
 
     if (response.statusCode == 200) {
-      chatModel = ChatListModel.fromJson(jsonDecode(response.body));
+      chatModel = ChatListModel.fromJson(response.body);
 
       chats.addAll(chatModel.data.attributes.chatList);
 

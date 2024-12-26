@@ -32,7 +32,7 @@ class ForgotPasswordScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CommonText(
+                const CommonText(
                   text: AppString.email,
                   bottom: 8,
                   top: 80,

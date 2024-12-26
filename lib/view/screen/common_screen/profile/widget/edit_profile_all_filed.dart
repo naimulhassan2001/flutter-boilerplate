@@ -72,7 +72,7 @@ class EditProfileAllFiled extends StatelessWidget {
                       borderColor: AppColors.black,
                       fillColor: AppColors.transparent,
                       borderRadius: 10.r,
-                      onTap: () => OtherHelper.datePicker(
+                      onTap: () => OtherHelper.openDatePicker(
                           controller.dateOfBirthController),
                       hintText: AppString.dateOfBirth,
                     ),

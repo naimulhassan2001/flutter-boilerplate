@@ -11,7 +11,7 @@ class ChatListModel {
     required this.data,
   });
 
-  factory ChatListModel.fromJson(Map<String, dynamic> json) {
+  factory ChatListModel.fromJson(Map json) {
     return ChatListModel(
       status: json['status'] ?? '',
       statusCode: json['statusCode'] ?? "",

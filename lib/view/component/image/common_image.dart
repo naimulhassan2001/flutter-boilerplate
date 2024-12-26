@@ -16,6 +16,7 @@ class CommonImage extends StatelessWidget {
   final double height;
   final double width;
   final double borderRadius;
+  final double? size;
   final ImageType imageType;
   final BoxFit fill;
 
@@ -23,8 +24,9 @@ class CommonImage extends StatelessWidget {
     required this.imageSrc,
     this.imageColor,
     this.height = 24,
-    this.borderRadius = 10,
+    this.borderRadius = 0,
     this.width = 24,
+    this.size,
     this.imageType = ImageType.svg,
     this.fill = BoxFit.fill,
     this.defaultImage = AppImages.noImage,
@@ -40,32 +42,35 @@ class CommonImage extends StatelessWidget {
         imageSrc,
         // ignore: deprecated_member_use
         color: imageColor,
-        height: height.h,
-        width: width.w,
+        height: size?.sp ?? height.h,
+        width: size?.sp ?? width.w,
         fit: fill,
       );
     }
 
     if (imageType == ImageType.png) {
-      imageWidget = Image.asset(
-        imageSrc,
-        color: imageColor,
-        height: height.h,
-        width: width.w,
-        fit: fill,
-        errorBuilder: (context, error, stackTrace) {
-          if (kDebugMode) {
-            print("imageError : $error");
-          }
-          return Image.asset(defaultImage);
-        },
+      imageWidget = ClipRRect(
+        borderRadius: BorderRadius.circular(borderRadius),
+        child: Image.asset(
+          imageSrc,
+          color: imageColor,
+          height: size?.sp ?? height.h,
+          width: size?.sp ?? width.w,
+          fit: fill,
+          errorBuilder: (context, error, stackTrace) {
+            if (kDebugMode) {
+              print("imageError : $error");
+            }
+            return Image.asset(defaultImage);
+          },
+        ),
       );
     }
 
     if (imageType == ImageType.network) {
       imageWidget = CachedNetworkImage(
-        height: height.h,
-        width: width.w,
+        height: size?.sp ?? height.h,
+        width: size?.sp ?? width.w,
         imageUrl: "${AppUrls.imageUrl}/$imageSrc",
         imageBuilder: (context, imageProvider) => Container(
           decoration: BoxDecoration(
@@ -89,6 +94,9 @@ class CommonImage extends StatelessWidget {
       );
     }
 
-    return SizedBox(height: height.h, width: width.w, child: imageWidget);
+    return SizedBox(
+        height: size?.sp ?? height.h,
+        width: size?.sp ?? width.w,
+        child: imageWidget);
   }
 }

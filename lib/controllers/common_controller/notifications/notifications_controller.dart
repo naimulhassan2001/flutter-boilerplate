@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:get/get.dart';
 
@@ -21,7 +20,7 @@ class NotificationsController extends GetxController {
 
     if (response.statusCode == 200) {
       var notificationList =
-          jsonDecode(response.body)['data']['attributes']['notificationList'];
+          response.body['data']['attributes']['notificationList'];
 
       for (var notification in notificationList) {
         notifications.add(NotificationModel.fromJson(notification));

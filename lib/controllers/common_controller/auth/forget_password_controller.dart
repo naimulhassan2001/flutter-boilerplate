@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
@@ -97,7 +96,7 @@ class ForgetPasswordController extends GetxController {
     );
 
     if (response.statusCode == 200) {
-      var data = jsonDecode(response.body);
+      var data = response.body;
       forgetPasswordToken = data['data']['forgetPasswordToken'];
       Get.toNamed(AppRoutes.createPassword);
     } else {

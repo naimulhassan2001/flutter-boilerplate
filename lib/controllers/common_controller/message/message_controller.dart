@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +48,7 @@ class MessageController extends GetxController {
     );
 
     if (response.statusCode == 200) {
-      var data = jsonDecode(response.body)['data']['attributes']['messages'];
+      var data = response.body['data']['attributes']['messages'];
 
       for (var messageData in data) {
         messageModel = MessageModel.fromJson(messageData);

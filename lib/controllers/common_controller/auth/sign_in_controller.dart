@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
@@ -33,7 +32,7 @@ class SignInController extends GetxController {
     ).timeout(const Duration(seconds: 30));
 
     if (response.statusCode == 200) {
-      var data = jsonDecode(response.body);
+      var data = response.body;
 
       PrefsHelper.token = data['data']["accessToken"];
       PrefsHelper.userId = data['data']["attributes"]["_id"];
