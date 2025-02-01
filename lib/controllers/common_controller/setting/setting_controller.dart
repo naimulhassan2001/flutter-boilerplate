@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import '../../../helpers/app_routes.dart';
+import '../../../core/route/app_routes.dart';
 import '../../../services/api_service.dart';
-import '../../../utils/app_url.dart';
+import '../../../core/api_end_point/app_url.dart';
 import '../../../utils/app_utils.dart';
 
 
@@ -19,7 +19,7 @@ class SettingController extends GetxController {
 
     var body = {"password": passwordController.text};
 
-    var response = await ApiService.deleteApi(AppUrls.user, body: body);
+    var response = await ApiService.deleteApi(ApiEndPoint.user, body: body);
 
     if (response.statusCode == 200) {
       Get.offAllNamed(AppRoutes.signIn);

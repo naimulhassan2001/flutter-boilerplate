@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../controllers/common_controller/message/chat_controller.dart';
-import '../../../../helpers/app_routes.dart';
+import '../../../../core/route/app_routes.dart';
 import '../../../../helpers/my_extension.dart';
 import '../../../../models/api_response_model.dart';
 import '../../../../models/chat_list_model.dart';

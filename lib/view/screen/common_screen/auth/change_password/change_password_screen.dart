@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../../helpers/my_extension.dart';
 import '../../../../../controllers/common_controller/auth/change_password_controller.dart';
-import '../../../../../helpers/app_routes.dart';
+import '../../../../../core/route/app_routes.dart';
 import '../../../../../helpers/other_helper.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_string.dart';

@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/countries.dart';
 
-import '../../../helpers/app_routes.dart';
+import '../../../core/route/app_routes.dart';
 import '../../../helpers/other_helper.dart';
 import '../../../helpers/prefs_helper.dart';
 import '../../../services/api_service.dart';
-import '../../../utils/app_url.dart';
+import '../../../core/api_end_point/app_url.dart';
 import '../../../utils/app_utils.dart';
 
 class SignUpController extends GetxController {
@@ -80,7 +80,7 @@ class SignUpController extends GetxController {
     };
 
     var response = await ApiService.postApi(
-      AppUrls.signUp,
+      ApiEndPoint.signUp,
       body,
     );
 
@@ -121,7 +121,7 @@ class SignUpController extends GetxController {
     Map<String, String> body = {"otp": otpController.text};
     Map<String, String> header = {"SignUpToken": "signUpToken $signUpToken"};
     var response =
-        await ApiService.postApi(AppUrls.verifyEmail, body, header: header);
+        await ApiService.postApi(ApiEndPoint.verifyEmail, body, header: header);
 
     if (response.statusCode == 200) {
       var data = response.body;

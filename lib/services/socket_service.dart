@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:socket_io_client/socket_io_client.dart' as io;
 
 import '../helpers/prefs_helper.dart';
-import '../utils/app_url.dart';
+import '../core/api_end_point/app_url.dart';
 import 'notification_service.dart';
 
 class SocketServices {
@@ -13,7 +13,7 @@ class SocketServices {
   ///<<<============ Connect with socket ====================>>>
   static void connectToSocket() {
     socket = io.io(
-        AppUrls.socketUrl,
+        ApiEndPoint.socketUrl,
         io.OptionBuilder()
             .setTransports(['websocket'])
             .enableAutoConnect()

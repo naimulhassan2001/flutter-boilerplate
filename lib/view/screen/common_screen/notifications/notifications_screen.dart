@@ -5,7 +5,7 @@ import '../../../../controllers/common_controller/notifications/notifications_co
 import '../../../../models/api_response_model.dart';
 import '../../../../models/notification_model.dart';
 
-import '../../../../utils/app_url.dart';
+import '../../../../core/api_end_point/app_url.dart';
 import '../../../component/bottom_nav_bar/common_bottom_bar.dart';
 import '../../../component/other_widgets/common_loader.dart';
 import '../../../component/other_widgets/no_data.dart';
@@ -22,7 +22,7 @@ class NotificationScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: CommonText(
-          text: AppUrls.notifications,
+          text: ApiEndPoint.notifications,
           fontWeight: FontWeight.w600,
           fontSize: 24.sp,
         ),

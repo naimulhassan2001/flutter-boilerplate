@@ -8,7 +8,7 @@ import '../../../models/chat_message_model.dart';
 import '../../../models/message_model.dart';
 import '../../../services/api_service.dart';
 import '../../../services/socket_service.dart';
-import '../../../utils/app_url.dart';
+import '../../../core/api_end_point/app_url.dart';
 import '../../../utils/app_utils.dart';
 
 class MessageController extends GetxController {
@@ -44,7 +44,7 @@ class MessageController extends GetxController {
     }
 
     var response = await ApiService.getApi(
-      "${AppUrls.messages}?chatId=$chatId&page=$page&limit=15",
+      "${ApiEndPoint.messages}?chatId=$chatId&page=$page&limit=15",
     );
 
     if (response.statusCode == 200) {

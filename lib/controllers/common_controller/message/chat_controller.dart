@@ -8,7 +8,7 @@ import '../../../models/api_response_model.dart';
 import '../../../models/chat_list_model.dart';
 import '../../../services/api_service.dart';
 import '../../../services/socket_service.dart';
-import '../../../utils/app_url.dart';
+import '../../../core/api_end_point/app_url.dart';
 import '../../../utils/app_utils.dart';
 
 class ChatController extends GetxController {
@@ -45,7 +45,7 @@ class ChatController extends GetxController {
       update();
     }
 
-    var response = await ApiService.getApi("${AppUrls.chats}?page=$page");
+    var response = await ApiService.getApi("${ApiEndPoint.chats}?page=$page");
 
     if (response.statusCode == 200) {
       chatModel = ChatListModel.fromJson(response.body);

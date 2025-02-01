@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
-import '../../../helpers/app_routes.dart';
+import '../../../core/route/app_routes.dart';
 import '../../../helpers/prefs_helper.dart';
 import '../../../services/api_service.dart';
-import '../../../utils/app_url.dart';
+import '../../../core/api_end_point/app_url.dart';
 
 class SignInController extends GetxController {
   bool isLoading = false;
@@ -27,7 +27,7 @@ class SignInController extends GetxController {
     };
 
     var response = await ApiService.postApi(
-      AppUrls.signIn,
+      ApiEndPoint.signIn,
       body,
     ).timeout(const Duration(seconds: 30));
 

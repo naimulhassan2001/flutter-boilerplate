@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../utils/app_images.dart';
-import '../../../utils/app_url.dart';
+import '../../../core/api_end_point/app_url.dart';
 
 enum ImageType { png, svg, network }
 
@@ -71,7 +71,7 @@ class CommonImage extends StatelessWidget {
       imageWidget = CachedNetworkImage(
         height: size?.sp ?? height.h,
         width: size?.sp ?? width.w,
-        imageUrl: "${AppUrls.imageUrl}/$imageSrc",
+        imageUrl: "${ApiEndPoint.imageUrl}/$imageSrc",
         imageBuilder: (context, imageProvider) => Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(borderRadius.r),

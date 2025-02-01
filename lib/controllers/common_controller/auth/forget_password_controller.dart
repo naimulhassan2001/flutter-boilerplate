@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
-import '../../../helpers/app_routes.dart';
+import '../../../core/route/app_routes.dart';
 import '../../../services/api_service.dart';
-import '../../../utils/app_url.dart';
+import '../../../core/api_end_point/app_url.dart';
 import '../../../utils/app_utils.dart';
 
 class ForgetPasswordController extends GetxController {
@@ -67,7 +67,7 @@ class ForgetPasswordController extends GetxController {
     Map<String, String> body = {
       "email": emailController.text,
     };
-    var response = await ApiService.postApi(AppUrls.forgotPassword, body);
+    var response = await ApiService.postApi(ApiEndPoint.forgotPassword, body);
 
     if (response.statusCode == 200) {
       Utils.toastMessage(response.message);
@@ -91,7 +91,7 @@ class ForgetPasswordController extends GetxController {
       "otp": otpController.text
     };
     var response = await ApiService.postApi(
-      AppUrls.verifyOtp,
+      ApiEndPoint.verifyOtp,
       body,
     );
 
@@ -123,7 +123,7 @@ class ForgetPasswordController extends GetxController {
       "password": passwordController.text
     };
     var response =
-        await ApiService.postApi(AppUrls.resetPassword, body, header: header);
+        await ApiService.postApi(ApiEndPoint.resetPassword, body, header: header);
 
     if (response.statusCode == 200) {
       Utils.toastMessage(response.message);

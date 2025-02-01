@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../../../services/api_service.dart';
-import '../../../utils/app_url.dart';
+import '../../../core/api_end_point/app_url.dart';
 import '../../../utils/app_utils.dart';
 
 class ChangePasswordController extends GetxController {
@@ -23,7 +23,7 @@ class ChangePasswordController extends GetxController {
       "newPassword": newPasswordController.text
     };
     var response =
-        await ApiService.patchApi(AppUrls.changePassword, body: body);
+        await ApiService.patchApi(ApiEndPoint.changePassword, body: body);
 
     if (response.statusCode == 200) {
       Utils.toastMessage(response.message);

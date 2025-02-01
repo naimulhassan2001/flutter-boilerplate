@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '../../../models/api_response_model.dart';
 import '../../../models/html_model.dart';
 import '../../../services/api_service.dart';
-import '../../../utils/app_url.dart';
+import '../../../core/api_end_point/app_url.dart';
 import '../../../utils/app_utils.dart';
 
 class PrivacyPolicyController extends GetxController {
@@ -19,7 +19,7 @@ class PrivacyPolicyController extends GetxController {
     status = Status.loading;
     update();
 
-    var response = await ApiService.getApi(AppUrls.privacyPolicies);
+    var response = await ApiService.getApi(ApiEndPoint.privacyPolicies);
 
     if (response.statusCode == 200) {
       data =

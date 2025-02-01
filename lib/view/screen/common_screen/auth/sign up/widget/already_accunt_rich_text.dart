@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../../../../helpers/app_routes.dart';
+import '../../../../../../core/route/app_routes.dart';
 import '../../../../../../utils/app_colors.dart';
 import '../../../../../../utils/app_string.dart';
 import '../../../../../../helpers/my_extension.dart';

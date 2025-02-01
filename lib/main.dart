@@ -1,20 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'helpers/app_routes.dart';
-import 'helpers/dependency_injection.dart';
+import 'core/languages/language.dart';
+import 'core/theme/light_theme.dart';
+import 'core/route/app_routes.dart';
+import 'core/dependency/dependency_injection.dart';
 import 'helpers/prefs_helper.dart';
-import 'languages/language.dart';
 import 'services/notification_service.dart';
 import 'services/socket_service.dart';
-import 'theme/light_theme.dart';
+
+init() async {
+  try {
+    await Future.wait(
+        [PrefsHelper.getAllPrefData(), dotenv.load(fileName: "lib/core/.env")]);
+  } catch (e) {
+    print("Error loading preferences or environment variables: $e");
+  }
+}
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   DependencyInjection dI = DependencyInjection();
   dI.dependencies();
-  await PrefsHelper.getAllPrefData();
+  await init();
+
   NotificationService.initLocalNotification();
   SocketServices.connectToSocket();
 
