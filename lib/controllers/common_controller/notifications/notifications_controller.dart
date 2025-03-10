@@ -15,7 +15,7 @@ class NotificationsController extends GetxController {
     status = Status.loading;
     update();
 
-    var response = await ApiService.getApi(ApiEndPoint.notifications);
+    var response = await ApiService.get(ApiEndPoint.notifications);
 
     if (response.statusCode == 200) {
       var notificationList =

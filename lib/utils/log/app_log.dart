@@ -1,14 +1,18 @@
-import 'dart:developer';
 import 'package:flutter/foundation.dart';
+import 'package:logger/logger.dart';
 
 import 'error_log.dart';
 
 void appLog(dynamic message, {String source = '', String title = ''}) {
+  var logger = Logger(
+    printer: PrettyPrinter(),
+  );
+
   try {
     if (kDebugMode) {
-      log("""
+      logger.d("""
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-      $source
+   ==========>$source
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
   ==========>$title: ========>${message.toString()}

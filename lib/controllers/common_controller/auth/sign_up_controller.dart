@@ -80,7 +80,7 @@ class SignUpController extends GetxController {
       "role": selectRole.toLowerCase()
     };
 
-    var response = await ApiService.postApi(
+    var response = await ApiService.post(
       ApiEndPoint.signUp,
       body,
     );
@@ -123,7 +123,7 @@ class SignUpController extends GetxController {
     Map<String, String> body = {"otp": otpController.text};
     Map<String, String> header = {"SignUpToken": "signUpToken $signUpToken"};
     var response =
-        await ApiService.postApi(ApiEndPoint.verifyEmail, body, header: header);
+        await ApiService.post(ApiEndPoint.verifyEmail, body, header: header);
 
     if (response.statusCode == 200) {
       var data = response.body;

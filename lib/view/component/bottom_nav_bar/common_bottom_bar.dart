@@ -1,5 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/utils/log/app_log.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../config/route/app_routes.dart';
@@ -73,9 +73,8 @@ class _CommonBottomNavBarState extends State<CommonBottomNavBar> {
   }
 
   void onTap(int index) async {
-    if (kDebugMode) {
-      print(widget.currentIndex);
-    }
+      appLog(widget.currentIndex, source: "common bottombar");
+
     if (index == 0) {
       if (!(widget.currentIndex == 0)) {
         Get.toNamed(AppRoutes.setting);

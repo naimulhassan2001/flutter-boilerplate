@@ -18,7 +18,7 @@ class TermsOfServicesController extends GetxController {
     status = Status.loading;
     update();
 
-    var response = await ApiService.getApi(ApiEndPoint.termsOfServices);
+    var response = await ApiService.get(ApiEndPoint.termsOfServices);
 
     if (response.statusCode == 200) {
       data =

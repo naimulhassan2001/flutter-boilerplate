@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/services/api/api_service.dart';
 import 'package:flutter_boilerplate/services/storage/storage_services.dart';
+import 'package:flutter_boilerplate/utils/log/error_log.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -12,12 +12,10 @@ import 'services/socket/socket_service.dart';
 
 init() async {
   try {
-    await Future.wait([
-      LocalStorage.getAllPrefData(),
-      dotenv.load(fileName: "lib/core/.env")
-    ]);
+    await Future.wait(
+        [LocalStorage.getAllPrefData(), dotenv.load(fileName: ".env")]);
   } catch (e) {
-    print("Error loading preferences or environment variables: $e");
+    errorLog(e, source: "app main ");
   }
 }
 
@@ -29,8 +27,7 @@ Future<void> main() async {
   await init();
   NotificationService.initLocalNotification();
   SocketServices.connectToSocket();
-  
-  ApiService.getApi("https://fiverrzoom.zoom.us/j/86159494117?pwd=a2anQtmGAMJU2Ha0OWkXfZFQUkbaUM.1#success") ;
+
 
   runApp(const MyApp());
 }

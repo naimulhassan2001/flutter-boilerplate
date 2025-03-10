@@ -44,7 +44,7 @@ class MessageController extends GetxController {
       update();
     }
 
-    var response = await ApiService.getApi(
+    var response = await ApiService.get(
       "${ApiEndPoint.messages}?chatId=$chatId&page=$page&limit=15",
     );
 

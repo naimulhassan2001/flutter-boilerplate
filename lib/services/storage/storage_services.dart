@@ -1,10 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter_boilerplate/services/storage/storage_keys.dart';
+import 'package:flutter_boilerplate/utils/log/app_log.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../config/route/app_routes.dart';
-
 
 class LocalStorage {
   static String token = "";
@@ -15,10 +14,19 @@ class LocalStorage {
   static String myName = "";
   static String myEmail = "";
 
-  ///<<<======================== Get All Data Form Shared Preference ==============>
+  // Create Local Storage Instance
+  static SharedPreferences? preferences;
 
+  /// Get SharedPreferences Instance
+  static Future<SharedPreferences> _getStorage() async {
+    preferences ??= await SharedPreferences.getInstance();
+    return preferences!;
+  }
+
+  /// Get All Data From SharedPreferences
   static Future<void> getAllPrefData() async {
-    SharedPreferences localStorage = await getMyStorage();
+    final localStorage = await _getStorage();
+
     token = localStorage.getString(LocalStorageKeys.token) ?? "";
     refreshToken = localStorage.getString(LocalStorageKeys.refreshToken) ?? "";
     isLogIn = localStorage.getBool(LocalStorageKeys.isLogIn) ?? false;
@@ -27,16 +35,21 @@ class LocalStorage {
     myName = localStorage.getString(LocalStorageKeys.myName) ?? "";
     myEmail = localStorage.getString(LocalStorageKeys.myEmail) ?? "";
 
-    if (kDebugMode) {
-      print(userId);
-    }
+    appLog(userId, source: "Local Storage");
   }
 
-  ///<<<======================== Get All Data Form Shared Preference ============>
-
+  /// Remove All Data From SharedPreferences
   static Future<void> removeAllPrefData() async {
-    SharedPreferences localStorage = await getMyStorage();
+    final localStorage = await _getStorage();
     await localStorage.clear();
+    _resetLocalStorageData();
+    Get.offAllNamed(AppRoutes.signIn);
+    await getAllPrefData();
+  }
+
+  // Reset LocalStorage Data
+  static void _resetLocalStorageData() {
+    final localStorage = preferences!;
     localStorage.setString(LocalStorageKeys.token, "");
     localStorage.setString(LocalStorageKeys.refreshToken, "");
     localStorage.setString(LocalStorageKeys.userId, "");
@@ -44,33 +57,21 @@ class LocalStorage {
     localStorage.setString(LocalStorageKeys.myName, "");
     localStorage.setString(LocalStorageKeys.myEmail, "");
     localStorage.setBool(LocalStorageKeys.isLogIn, false);
-
-    Get.offAllNamed(AppRoutes.signIn);
-    getAllPrefData();
   }
 
-  ///<<<=====================Save Data To Shared Preference=====================>
-
-  static Future setString(String key, value) async {
-    SharedPreferences localStorage = await getMyStorage();
-    return localStorage.setString(key, value);
+  // Save Data To SharedPreferences
+  static Future<void> setString(String key, String value) async {
+    final localStorage = await _getStorage();
+    await localStorage.setString(key, value);
   }
 
-  static Future setBool(String key, bool value) async {
-    SharedPreferences localStorage = await getMyStorage();
-    return localStorage.setBool(key, value);
+  static Future<void> setBool(String key, bool value) async {
+    final localStorage = await _getStorage();
+    await localStorage.setBool(key, value);
   }
 
-  static Future setInt(String key, int value) async {
-    SharedPreferences localStorage = await getMyStorage();
-    return localStorage.setInt(key, value);
-  }
-
-  ///<<<======================== Create Local Storage Instance  ============>
-
-  static SharedPreferences? preferences;
-
-  static Future<SharedPreferences> getMyStorage() async {
-    return preferences ?? await SharedPreferences.getInstance();
+  static Future<void> setInt(String key, int value) async {
+    final localStorage = await _getStorage();
+    await localStorage.setInt(key, value);
   }
 }

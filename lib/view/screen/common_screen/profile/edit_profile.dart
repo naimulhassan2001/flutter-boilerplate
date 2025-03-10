@@ -49,7 +49,7 @@ class EditProfile extends StatelessWidget {
                                     height: 170,
                                     fit: BoxFit.fill,
                                   )
-                                : CommonImage(
+                                : const CommonImage(
                                     imageSrc: AppImages.profile,
                                     imageType: ImageType.png,
                                     height: 170,

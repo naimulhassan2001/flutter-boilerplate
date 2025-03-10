@@ -35,7 +35,7 @@ class ProfileScreen extends StatelessWidget {
                   child: CircleAvatar(
                     radius: 85.sp,
                     backgroundColor: Colors.transparent,
-                    child: ClipOval(
+                    child: const ClipOval(
                       child: CommonImage(
                         imageSrc: AppImages.profile,
                         imageType: ImageType.png,

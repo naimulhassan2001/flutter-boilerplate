@@ -69,7 +69,7 @@ class ChatBubbleMessage extends StatelessWidget {
                       ),
                       child: Column(
                         children: [
-                          CommonImage(
+                          const CommonImage(
                             imageSrc: AppImages.noImage,
                             fill: BoxFit.contain,
                             height: 60,

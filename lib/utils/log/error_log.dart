@@ -1,15 +1,18 @@
-import 'dart:developer';
-
 import 'package:flutter/foundation.dart';
+import 'package:logger/logger.dart';
 
 void errorLog(
   dynamic e, {
   String source = "",
   String title = "",
 }) {
+  var logger = Logger(
+    printer: PrettyPrinter(),
+  );
+
   try {
     if (kDebugMode) {
-      log(""""
+      logger.e(""""
       >>>>>>>>>>>>>>>>>>>>>>>>>>>😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
           
           $source

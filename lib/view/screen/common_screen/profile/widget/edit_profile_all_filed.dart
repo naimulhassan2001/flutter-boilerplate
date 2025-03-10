@@ -1,5 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/utils/log/app_log.dart';
 import '../../../../../utils/extensions/my_extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -47,7 +47,7 @@ class EditProfileAllFiled extends StatelessWidget {
             CommonPhoneNumberTextFiled(
               controller: controller.numberController,
               countryChange: (value) {
-                print(value);
+                appLog(value);
               },
             ),
             20.height,

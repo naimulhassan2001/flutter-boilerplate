@@ -1,5 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/utils/log/app_log.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -84,9 +84,9 @@ class OtherHelper {
     await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
     if (getImages == null) return null;
 
-    if (kDebugMode) {
-      print(getImages.path);
-    }
+
+      appLog(getImages.path, source: "Get Image Gallery");
+
 
     return getImages.path;
   }
@@ -97,9 +97,8 @@ class OtherHelper {
     await picker.pickImage(source: ImageSource.camera, imageQuality: 50);
     if (getImages == null) return null;
 
-    if (kDebugMode) {
-      print(getImages.path);
-    }
+    appLog(getImages.path, source: "Get Image Camera");
+
 
     return getImages.path;
   }
@@ -111,9 +110,8 @@ class OtherHelper {
     await picker.pickVideo(source: ImageSource.gallery);
     if (getImages == null) return null;
 
-    if (kDebugMode) {
-      print(getImages.path);
-    }
+    appLog(getImages.path, source: "Get Image video");
+
 
     return getImages.path;
   }

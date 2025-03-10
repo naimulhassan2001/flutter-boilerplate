@@ -67,7 +67,7 @@ class ForgetPasswordController extends GetxController {
     Map<String, String> body = {
       "email": emailController.text,
     };
-    var response = await ApiService.postApi(ApiEndPoint.forgotPassword, body);
+    var response = await ApiService.post(ApiEndPoint.forgotPassword, body);
 
     if (response.statusCode == 200) {
       Utils.toastMessage(response.message);
@@ -90,7 +90,7 @@ class ForgetPasswordController extends GetxController {
       "email": emailController.text,
       "otp": otpController.text
     };
-    var response = await ApiService.postApi(
+    var response = await ApiService.post(
       ApiEndPoint.verifyOtp,
       body,
     );
@@ -123,7 +123,7 @@ class ForgetPasswordController extends GetxController {
       "password": passwordController.text
     };
     var response =
-        await ApiService.postApi(ApiEndPoint.resetPassword, body, header: header);
+        await ApiService.post(ApiEndPoint.resetPassword, body, header: header);
 
     if (response.statusCode == 200) {
       Utils.toastMessage(response.message);

@@ -18,7 +18,7 @@ class PrivacyPolicyController extends GetxController {
     status = Status.loading;
     update();
 
-    var response = await ApiService.getApi(ApiEndPoint.privacyPolicies);
+    var response = await ApiService.get(ApiEndPoint.privacyPolicies);
 
     if (response.statusCode == 200) {
       data =

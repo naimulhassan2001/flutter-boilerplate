@@ -36,7 +36,7 @@ class CreatePassword extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   64.height,
-                  Center(
+                  const Center(
                     child: CommonImage(
                       imageSrc: AppImages.noImage,
                       imageType: ImageType.png,

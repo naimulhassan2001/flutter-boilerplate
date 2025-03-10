@@ -23,7 +23,7 @@ class ChangePasswordController extends GetxController {
       "newPassword": newPasswordController.text
     };
     var response =
-        await ApiService.patchApi(ApiEndPoint.changePassword, body: body);
+        await ApiService.patch(ApiEndPoint.changePassword, body: body);
 
     if (response.statusCode == 200) {
       Utils.toastMessage(response.message);

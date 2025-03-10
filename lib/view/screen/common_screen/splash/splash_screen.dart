@@ -44,7 +44,7 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Spacer(),
-            Center(
+            const Center(
                 child: CommonImage(
               imageSrc: AppImages.noImage,
               height: 70,
