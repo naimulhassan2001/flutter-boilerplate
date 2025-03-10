@@ -2,14 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../helpers/prefs_helper.dart';
-import '../../../models/api_response_model.dart';
-import '../../../models/chat_message_model.dart';
-import '../../../models/message_model.dart';
-import '../../../services/api_service.dart';
-import '../../../services/socket_service.dart';
-import '../../../core/api_end_point/app_url.dart';
+import '../../../data/models/chat_message_model.dart';
+import '../../../data/models/message_model.dart';
+
+import '../../../services/api/api_service.dart';
+import '../../../services/socket/socket_service.dart';
+import '../../../utils/constants/api_end_point.dart';
+import '../../../services/storage/storage_services.dart';
 import '../../../utils/app_utils.dart';
+import '../../../utils/enum/enum.dart';
 
 class MessageController extends GetxController {
   bool isLoading = false;
@@ -58,7 +59,7 @@ class MessageController extends GetxController {
             text: messageModel.message,
             image: messageModel.sender.image,
             isNotice: messageModel.type == "notice" ? true : false,
-            isMe: PrefsHelper.userId == messageModel.sender.id ? true : false));
+            isMe: LocalStorage.userId == messageModel.sender.id ? true : false));
       }
 
       page = page + 1;
@@ -80,7 +81,7 @@ class MessageController extends GetxController {
         ChatMessageModel(
             time: DateTime.now(),
             text: messageController.text,
-            image: PrefsHelper.myImage,
+            image: LocalStorage.myImage,
             isMe: true)
 
         // ChatMessageModel(
@@ -95,7 +96,7 @@ class MessageController extends GetxController {
     var body = {
       "chat": chatId,
       "message": messageController.text,
-      "sender": PrefsHelper.userId
+      "sender": LocalStorage.userId
     };
 
     messageController.clear();

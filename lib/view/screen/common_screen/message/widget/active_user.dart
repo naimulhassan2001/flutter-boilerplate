@@ -1,9 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../../../core/route/app_routes.dart';
-import '../../../../../models/active_user_model.dart';
+import '../../../../../config/route/app_routes.dart';
+import '../../../../../data/models/active_user_model.dart';
 import '../../../../component/image/common_image.dart';
 
 Widget activeUser(ActiveUserModel item) {

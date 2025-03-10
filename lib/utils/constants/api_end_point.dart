@@ -3,8 +3,6 @@ class ApiEndPoint {
   static const imageUrl = "http://103.145.138.74:3000";
   static const socketUrl = "http://103.145.138.74:3001";
 
-
-
   static const signUp = "$baseUrl/users/sign-up";
   static const verifyEmail = "$baseUrl/users/verify-email";
   static const signIn = "$baseUrl/users/sign-in";
@@ -19,6 +17,3 @@ class ApiEndPoint {
   static const chats = "$baseUrl/chats";
   static const messages = "$baseUrl/messages";
 }
-
-
-

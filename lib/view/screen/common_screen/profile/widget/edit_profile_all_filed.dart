@@ -1,12 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import '../../../../../helpers/my_extension.dart';
+import '../../../../../utils/extensions/my_extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../../controllers/common_controller/profile/profile_controller.dart';
 import '../../../../../helpers/other_helper.dart';
-import '../../../../../utils/app_colors.dart';
-import '../../../../../utils/app_string.dart';
+import '../../../../../utils/constants/app_colors.dart';
+import '../../../../../utils/constants/app_string.dart';
 import '../../../../component/pop_up/common_pop_menu.dart';
 import '../../../../component/text/common_text.dart';
 import '../../../../component/text_field/common_phone_number_text_filed.dart';

@@ -12,4 +12,4 @@ class ApiResponseModel {
   int get statusCode => _statusCode;
 }
 
-enum Status { loading, error, completed }
+

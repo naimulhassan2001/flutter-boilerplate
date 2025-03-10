@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../../../helpers/my_extension.dart';
+import '../../../../config/route/app_routes.dart';
+import '../../../../utils/extensions/my_extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
-import '../../../../core/route/app_routes.dart';
-import '../../../../utils/app_images.dart';
+import '../../../../utils/constants/app_images.dart';
 import '../../../component/image/common_image.dart';
 import '../../../component/other_widgets/common_loader.dart';
 
@@ -21,8 +20,8 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(
       const Duration(seconds: 3),
       () {
-        // if (PrefsHelper.isLogIn) {
-        //   if (PrefsHelper.myRole == 'consultant') {
+        // if (LocalStorage.isLogIn) {
+        //   if (LocalStorage.myRole == 'consultant') {
         //     Get.offAllNamed(AppRoutes.doctorHome);
         //   } else {
         //     Get.offAllNamed(AppRoutes.patientsHome);

@@ -1,9 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:socket_io_client/socket_io_client.dart' as io;
-
-import '../helpers/prefs_helper.dart';
-import '../core/api_end_point/app_url.dart';
-import 'notification_service.dart';
+import '../../utils/constants/api_end_point.dart';
+import '../notification/notification_service.dart';
+import '../storage/storage_services.dart';
 
 class SocketServices {
   static late io.Socket socket;
@@ -30,7 +29,7 @@ class SocketServices {
 
     socket.connect();
 
-    socket.on("user-notification::${PrefsHelper.userId}", (data) {
+    socket.on("user-notification::${LocalStorage.userId}", (data) {
       if (kDebugMode) {
         print("================> get Data on socket: $data");
       }

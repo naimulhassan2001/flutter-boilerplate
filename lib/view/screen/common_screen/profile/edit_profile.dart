@@ -1,11 +1,11 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import '../../../../helpers/my_extension.dart';
+import '../../../../utils/extensions/my_extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../controllers/common_controller/profile/profile_controller.dart';
-import '../../../../utils/app_images.dart';
-import '../../../../utils/app_string.dart';
+import '../../../../utils/constants/app_images.dart';
+import '../../../../utils/constants/app_string.dart';
 import '../../../component/button/common_button.dart';
 import '../../../component/image/common_image.dart';
 import '../../../component/text/common_text.dart';

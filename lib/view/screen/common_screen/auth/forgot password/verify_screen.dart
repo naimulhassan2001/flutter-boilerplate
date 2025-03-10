@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../../controllers/common_controller/auth/forget_password_controller.dart';
-import '../../../../../utils/app_colors.dart';
+import '../../../../../utils/constants/app_colors.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-import '../../../../../utils/app_string.dart';
+import '../../../../../utils/constants/app_string.dart';
 import '../../../../component/button/common_button.dart';
 import '../../../../component/text/common_text.dart';
 

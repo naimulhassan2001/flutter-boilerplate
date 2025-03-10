@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import '../../../services/api_service.dart';
-import '../../../core/api_end_point/app_url.dart';
+import '../../../services/api/api_service.dart';
+import '../../../utils/constants/api_end_point.dart';
 import '../../../utils/app_utils.dart';
 
 class ChangePasswordController extends GetxController {

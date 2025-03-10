@@ -1,10 +1,9 @@
 import 'package:get/get.dart';
-
-import '../../../models/api_response_model.dart';
-import '../../../models/html_model.dart';
-import '../../../services/api_service.dart';
-import '../../../core/api_end_point/app_url.dart';
+import '../../../data/models/html_model.dart';
+import '../../../services/api/api_service.dart';
+import '../../../utils/constants/api_end_point.dart';
 import '../../../utils/app_utils.dart';
+import '../../../utils/enum/enum.dart';
 
 class PrivacyPolicyController extends GetxController {
   Status status = Status.completed;

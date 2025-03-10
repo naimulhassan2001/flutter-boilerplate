@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../../../helpers/my_extension.dart';
+import '../../../../../config/route/app_routes.dart';
+import '../../../../../utils/extensions/my_extension.dart';
 import '../../../../../controllers/common_controller/auth/change_password_controller.dart';
-import '../../../../../core/route/app_routes.dart';
 import '../../../../../helpers/other_helper.dart';
-import '../../../../../utils/app_colors.dart';
-import '../../../../../utils/app_string.dart';
+import '../../../../../utils/constants/app_colors.dart';
+import '../../../../../utils/constants/app_string.dart';
 import '../../../../component/button/common_button.dart';
 import '../../../../component/text/common_text.dart';
 import '../../../../component/text_field/common_text_field.dart';

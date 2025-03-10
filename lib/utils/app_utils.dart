@@ -7,7 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import 'app_colors.dart';
+import 'constants/app_colors.dart';
 
 class Utils {
   static void fieldFocusChange(

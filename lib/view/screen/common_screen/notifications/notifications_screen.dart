@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../controllers/common_controller/notifications/notifications_controller.dart';
-import '../../../../models/api_response_model.dart';
-import '../../../../models/notification_model.dart';
-
-import '../../../../core/api_end_point/app_url.dart';
+import '../../../../utils/constants/api_end_point.dart';
+import '../../../../data/models/notification_model.dart';
+import '../../../../utils/enum/enum.dart';
 import '../../../component/bottom_nav_bar/common_bottom_bar.dart';
 import '../../../component/other_widgets/common_loader.dart';
 import '../../../component/other_widgets/no_data.dart';

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../helpers/other_helper.dart';
-import '../../../helpers/prefs_helper.dart';
-import '../../../utils/app_colors.dart';
-import '../../../utils/app_string.dart';
+import '../../../services/storage/storage_services.dart';
+import '../../../utils/constants/app_colors.dart';
+import '../../../utils/constants/app_string.dart';
 import '../button/common_button.dart';
 import '../text/common_text.dart';
 import '../text_field/common_text_field.dart';
@@ -126,7 +126,7 @@ logOutPopUp() {
               Expanded(
                   child: CommonButton(
                 titleText: AppString.yes,
-                onTap: () => PrefsHelper.removeAllPrefData(),
+                onTap: () => LocalStorage.removeAllPrefData(),
               ))
             ],
           ),

@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../utils/app_images.dart';
-import '../../../core/api_end_point/app_url.dart';
+import '../../../utils/constants/app_images.dart';
+import '../../../utils/constants/api_end_point.dart';
 
 enum ImageType { png, svg, network }
 

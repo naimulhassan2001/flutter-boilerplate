@@ -2,8 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../core/route/app_routes.dart';
-import '../../../utils/app_colors.dart';
+import '../../../config/route/app_routes.dart';
+import '../../../utils/constants/app_colors.dart';
 
 
 class CommonBottomNavBar extends StatefulWidget {

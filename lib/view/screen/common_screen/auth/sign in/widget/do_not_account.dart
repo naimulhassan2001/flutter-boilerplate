@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import '../../../../../../helpers/my_extension.dart';
+import '../../../../../../config/route/app_routes.dart';
+import '../../../../../../utils/extensions/my_extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../../../../core/route/app_routes.dart';
-import '../../../../../../utils/app_colors.dart';
-import '../../../../../../utils/app_string.dart';
+
+import '../../../../../../utils/constants/app_colors.dart';
+import '../../../../../../utils/constants/app_string.dart';
 
 class DoNotHaveAccount extends StatelessWidget {
   const DoNotHaveAccount({

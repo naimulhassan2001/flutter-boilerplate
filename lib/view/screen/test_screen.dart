@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../utils/app_string.dart';
+import '../../utils/constants/app_string.dart';
 import '../component/button/common_button.dart';
 import '../component/other_widgets/common_loader.dart';
 

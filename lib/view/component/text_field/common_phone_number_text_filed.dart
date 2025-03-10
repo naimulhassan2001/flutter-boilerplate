@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import '../../../utils/app_colors.dart';
-import '../../../utils/app_string.dart';
+import '../../../utils/constants/app_colors.dart';
+import '../../../utils/constants/app_string.dart';
 
 class CommonPhoneNumberTextFiled extends StatelessWidget {
   const CommonPhoneNumberTextFiled(

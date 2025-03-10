@@ -2,14 +2,15 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/services/storage/storage_keys.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/countries.dart';
 
-import '../../../core/route/app_routes.dart';
+import '../../../config/route/app_routes.dart';
 import '../../../helpers/other_helper.dart';
-import '../../../helpers/prefs_helper.dart';
-import '../../../services/api_service.dart';
-import '../../../core/api_end_point/app_url.dart';
+import '../../../services/api/api_service.dart';
+import '../../../utils/constants/api_end_point.dart';
+import '../../../services/storage/storage_services.dart';
 import '../../../utils/app_utils.dart';
 
 class SignUpController extends GetxController {
@@ -34,8 +35,8 @@ class SignUpController extends GetxController {
 
   TextEditingController nameController =
       TextEditingController(text: kDebugMode ? "Namimul Hassan" : "");
-  TextEditingController emailController =
-      TextEditingController(text: kDebugMode ? "developernaimul00@gmail.com" : '');
+  TextEditingController emailController = TextEditingController(
+      text: kDebugMode ? "developernaimul00@gmail.com" : '');
   TextEditingController passwordController =
       TextEditingController(text: kDebugMode ? 'hello123' : '');
   TextEditingController confirmPasswordController =
@@ -116,6 +117,7 @@ class SignUpController extends GetxController {
   Future<void> verifyOtpRepo() async {
     Get.toNamed(AppRoutes.signIn);
     return;
+
     isLoadingVerify = true;
     update();
     Map<String, String> body = {"otp": otpController.text};
@@ -126,24 +128,21 @@ class SignUpController extends GetxController {
     if (response.statusCode == 200) {
       var data = response.body;
 
-      PrefsHelper.token = data['data']["accessToken"];
-      PrefsHelper.userId = data['data']["attributes"]["_id"];
-      PrefsHelper.myImage = data['data']["attributes"]["image"];
-      PrefsHelper.myName = data['data']["attributes"]["fullName"];
-      PrefsHelper.myRole = data['data']["attributes"]["role"];
-      PrefsHelper.myEmail = data['data']["attributes"]["email"];
-      PrefsHelper.isLogIn = true;
+      LocalStorage.token = data['data']["accessToken"];
+      LocalStorage.userId = data['data']["attributes"]["_id"];
+      LocalStorage.myImage = data['data']["attributes"]["image"];
+      LocalStorage.myName = data['data']["attributes"]["fullName"];
+      LocalStorage.myEmail = data['data']["attributes"]["email"];
+      LocalStorage.isLogIn = true;
 
-      PrefsHelper.setBool("isLogIn", PrefsHelper.isLogIn);
-      PrefsHelper.setString('token', PrefsHelper.token);
-      PrefsHelper.setString("userId", PrefsHelper.userId);
-      PrefsHelper.setString("myImage", PrefsHelper.myImage);
-      PrefsHelper.setString("myName", PrefsHelper.myName);
-      PrefsHelper.setString("myEmail", PrefsHelper.myEmail);
-      PrefsHelper.setString("myRole", PrefsHelper.myRole);
-      PrefsHelper.setBool("isLogIn", PrefsHelper.isLogIn);
+      LocalStorage.setBool(LocalStorageKeys.isLogIn, LocalStorage.isLogIn);
+      LocalStorage.setString(LocalStorageKeys.token, LocalStorage.token);
+      LocalStorage.setString(LocalStorageKeys.userId, LocalStorage.userId);
+      LocalStorage.setString(LocalStorageKeys.myImage, LocalStorage.myImage);
+      LocalStorage.setString(LocalStorageKeys.myName, LocalStorage.myName);
+      LocalStorage.setString(LocalStorageKeys.myEmail, LocalStorage.myEmail);
 
-      // if (PrefsHelper.myRole == 'consultant') {
+      // if (LocalStorage.myRole == 'consultant') {
       //   Get.toNamed(AppRoutes.personalInformation);
       // } else {
       //   Get.offAllNamed(AppRoutes.patientsHome);

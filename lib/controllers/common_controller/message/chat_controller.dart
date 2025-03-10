@@ -2,14 +2,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../helpers/prefs_helper.dart';
-import '../../../models/active_user_model.dart';
-import '../../../models/api_response_model.dart';
-import '../../../models/chat_list_model.dart';
-import '../../../services/api_service.dart';
-import '../../../services/socket_service.dart';
-import '../../../core/api_end_point/app_url.dart';
+import '../../../data/models/active_user_model.dart';
+import '../../../data/models/chat_list_model.dart';
+import '../../../services/api/api_service.dart';
+import '../../../services/socket/socket_service.dart';
+import '../../../utils/constants/api_end_point.dart';
+import '../../../services/storage/storage_services.dart';
 import '../../../utils/app_utils.dart';
+import '../../../utils/enum/enum.dart';
 
 class ChatController extends GetxController {
   Status status = Status.completed;
@@ -63,7 +63,7 @@ class ChatController extends GetxController {
   }
 
   listenChat() async {
-    SocketServices.socket.on("update-chatlist::${PrefsHelper.userId}", (data) {
+    SocketServices.socket.on("update-chatlist::${LocalStorage.userId}", (data) {
       status = Status.loading;
       update();
 
