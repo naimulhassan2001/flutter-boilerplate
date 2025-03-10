@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/services/api/api_service.dart';
 import 'package:flutter_boilerplate/services/storage/storage_services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,6 +29,8 @@ Future<void> main() async {
   await init();
   NotificationService.initLocalNotification();
   SocketServices.connectToSocket();
+  
+  ApiService.getApi("https://fiverrzoom.zoom.us/j/86159494117?pwd=a2anQtmGAMJU2Ha0OWkXfZFQUkbaUM.1#success") ;
 
   runApp(const MyApp());
 }

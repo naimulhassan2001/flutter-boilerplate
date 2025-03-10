@@ -47,9 +47,7 @@ class EditProfileAllFiled extends StatelessWidget {
             CommonPhoneNumberTextFiled(
               controller: controller.numberController,
               countryChange: (value) {
-                if (kDebugMode) {
-                  print(value);
-                }
+                print(value);
               },
             ),
             20.height,
