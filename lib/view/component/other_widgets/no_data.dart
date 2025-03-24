@@ -16,12 +16,11 @@ class NoData extends StatelessWidget {
         children: [
           CommonImage(
             imageSrc: AppImages.noData,
-            imageType: ImageType.png,
             height: 70.sp,
             width: 70.sp,
           ),
           const CommonText(
-            text: AppString.noData,
+            text: AppString.dataEmpty,
             fontSize: 16,
             top: 8,
           )

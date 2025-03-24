@@ -1,5 +1,5 @@
 class AppString {
-  static const String noData = "No Data found";
+  static const String dataEmpty = "Data Empty";
   static const String noInternet = "No Internet";
   static const String checkInternet = "Check Internet";
   static const String back = "Back";
@@ -65,6 +65,10 @@ class AppString {
   static const String noInternetConnection = "No internet connection";
   static const String badResponseRequest = "Bad Response Request";
   static const String requestTimeOut = "Request Time Out";
+  static const String thisFieldIsRequired = "This field is required";
+  static const String enterValidEmail = "Enter valid email";
+  static const String passwordMustBeeEightCharacters = "Password must be 8 characters & contain both alphabets and numerics";
+  static const String thePasswordDoesNotMatch = "The password does not match";
 
 
 }

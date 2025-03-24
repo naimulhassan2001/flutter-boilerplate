@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../data/models/chat_message_model.dart';
-import '../../../../utils/extensions/my_extension.dart';
+import '../../../../utils/extensions/extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../controllers/common_controller/message/message_controller.dart';
@@ -46,7 +46,6 @@ class _MessageScreenState extends State<MessageScreen> {
                     child: ClipOval(
                       child: CommonImage(
                         imageSrc: image,
-                        imageType: ImageType.network,
                         height: 60,
                         width: 60,
                       ),

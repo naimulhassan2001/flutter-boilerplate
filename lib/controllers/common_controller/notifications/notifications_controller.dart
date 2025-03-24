@@ -1,37 +1,51 @@
-
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../data/models/notification_model.dart';
-import '../../../services/api/api_service.dart';
-import '../../../utils/constants/api_end_point.dart';
-import '../../../utils/app_utils.dart';
-import '../../../utils/enum/enum.dart';
+import '../../../data/repositories/notification_repository.dart';
 
 class NotificationsController extends GetxController {
   List notifications = [];
-  Status status = Status.completed;
+  bool isLoading = false;
+  bool isLoadingMore = false;
+  bool hasNoData = false;
+
+  int page = 0;
+
+  ScrollController scrollController = ScrollController();
+
+  void moreNotification() {
+    scrollController.addListener(() async {
+      if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
+        if (isLoadingMore || hasNoData) return;
+        isLoadingMore = true;
+        update();
+        page++;
+        List<NotificationModel> list = await notificationRepository(page);
+        if (list.isEmpty) {
+          hasNoData = true;
+        } else {
+          notifications.addAll(list);
+        }
+        isLoadingMore = false;
+        update();
+      }
+    });
+  }
 
   getNotificationsRepo() async {
-    return;
-    status = Status.loading;
+    if (isLoading || hasNoData) return;
+    isLoading = true;
     update();
 
-    var response = await ApiService.getApi(ApiEndPoint.notifications);
-
-    if (response.statusCode == 200) {
-      var notificationList =
-          response.body['data']['attributes']['notificationList'];
-
-      for (var notification in notificationList) {
-        notifications.add(NotificationModel.fromJson(notification));
-      }
-
-      status = Status.completed;
-      update();
+    page++;
+    List<NotificationModel> list = await notificationRepository(page);
+    if (list.isEmpty) {
+      hasNoData = true;
     } else {
-      status = Status.error;
-      update();
-      Utils.snackBarMessage(response.statusCode.toString(), response.message);
+      notifications.addAll(list);
     }
+    isLoading = false;
+    update();
   }
 
   static NotificationsController get instance =>
@@ -40,6 +54,7 @@ class NotificationsController extends GetxController {
   @override
   void onInit() {
     getNotificationsRepo();
+    moreNotification();
     super.onInit();
   }
 }

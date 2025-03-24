@@ -18,12 +18,12 @@ class SettingController extends GetxController {
 
     var body = {"password": passwordController.text};
 
-    var response = await ApiService.deleteApi(ApiEndPoint.user, body: body);
+    var response = await ApiService.delete(ApiEndPoint.user, body: body);
 
     if (response.statusCode == 200) {
       Get.offAllNamed(AppRoutes.signIn);
     } else {
-      Utils.snackBarMessage(response.statusCode.toString(), response.message);
+      Utils.errorSnackBar(response.statusCode.toString(), response.message);
     }
     isLoading = false;
     update();

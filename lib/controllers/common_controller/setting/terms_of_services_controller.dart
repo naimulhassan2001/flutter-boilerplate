@@ -18,16 +18,15 @@ class TermsOfServicesController extends GetxController {
     status = Status.loading;
     update();
 
-    var response = await ApiService.getApi(ApiEndPoint.termsOfServices);
+    var response = await ApiService.get(ApiEndPoint.termsOfServices);
 
     if (response.statusCode == 200) {
-      data =
-          HtmlModel.fromJson(response.body['data']['attributes']);
+      data = HtmlModel.fromJson(response.data['data']['attributes']);
 
       status = Status.completed;
       update();
     } else {
-      Utils.snackBarMessage(response.statusCode.toString(), response.message);
+      Utils.errorSnackBar(response.statusCode.toString(), response.message);
       status = Status.error;
       update();
     }

@@ -18,16 +18,16 @@ class PrivacyPolicyController extends GetxController {
     status = Status.loading;
     update();
 
-    var response = await ApiService.getApi(ApiEndPoint.privacyPolicies);
+    var response = await ApiService.get(ApiEndPoint.privacyPolicies);
 
     if (response.statusCode == 200) {
       data =
-          HtmlModel.fromJson(response.body['data']['attributes']);
+          HtmlModel.fromJson(response.data['data']['attributes']);
 
       status = Status.completed;
       update();
     } else {
-      Utils.snackBarMessage(response.statusCode.toString(), response.message);
+      Utils.errorSnackBar(response.statusCode.toString(), response.message);
       status = Status.error;
       update();
     }

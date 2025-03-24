@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../../../../services/validation/validation_service.dart';
 import '../../../../../component/text_field/common_text_field.dart';
 import '../../../../../component/text/common_text.dart';
 import '../../../../../../utils/constants/app_string.dart';
 
 import '../../../../../../controllers/common_controller/auth/sign_up_controller.dart';
-import '../../../../../../helpers/other_helper.dart';
 import '../../../../../../utils/constants/app_colors.dart';
 import '../../../../../component/text_field/common_phone_number_text_filed.dart';
 
@@ -35,7 +35,7 @@ class _SignUpAllFieldState extends State<SignUpAllField> {
               ),
               hintText: AppString.fullName,
               controller: controller.nameController,
-              validator: OtherHelper.validator,
+              validator: ValidationService.validator,
             ),
             const CommonText(
               text: AppString.email,
@@ -46,7 +46,7 @@ class _SignUpAllFieldState extends State<SignUpAllField> {
               controller: controller.emailController,
               prefixIcon: const Icon(Icons.mail, color: AppColors.black),
               hintText: AppString.email,
-              validator: OtherHelper.emailValidator,
+              validator: ValidationService.emailValidator,
             ),
             const CommonText(
               text: AppString.password,
@@ -58,7 +58,7 @@ class _SignUpAllFieldState extends State<SignUpAllField> {
               prefixIcon: const Icon(Icons.lock, color: AppColors.black),
               isPassword: true,
               hintText: AppString.password,
-              validator: OtherHelper.passwordValidator,
+              validator: ValidationService.passwordValidator,
             ),
             const CommonText(
               text: AppString.confirmPassword,
@@ -70,7 +70,7 @@ class _SignUpAllFieldState extends State<SignUpAllField> {
               prefixIcon: const Icon(Icons.lock, color: AppColors.black),
               isPassword: true,
               hintText: AppString.confirmPassword,
-              validator: (value) => OtherHelper.confirmPasswordValidator(
+              validator: (value) => ValidationService.confirmPasswordValidator(
                   value, controller.passwordController),
             ),
             const CommonText(

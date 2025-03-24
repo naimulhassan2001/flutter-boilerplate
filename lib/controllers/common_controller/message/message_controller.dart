@@ -44,12 +44,12 @@ class MessageController extends GetxController {
       update();
     }
 
-    var response = await ApiService.getApi(
+    var response = await ApiService.get(
       "${ApiEndPoint.messages}?chatId=$chatId&page=$page&limit=15",
     );
 
     if (response.statusCode == 200) {
-      var data = response.body['data']['attributes']['messages'];
+      var data = response.data['data']['attributes']['messages'];
 
       for (var messageData in data) {
         messageModel = MessageModel.fromJson(messageData);
@@ -66,7 +66,7 @@ class MessageController extends GetxController {
       status = Status.completed;
       update();
     } else {
-      Utils.snackBarMessage(response.statusCode.toString(), response.message);
+      Utils.errorSnackBar(response.statusCode.toString(), response.message);
       status = Status.error;
       update();
     }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../data/models/chat_list_model.dart';
-import '../../../../../utils/extensions/my_extension.dart';
+import '../../../../../utils/extensions/extension.dart';
 import '../../../../../utils/constants/app_colors.dart';
 import '../../../../component/image/common_image.dart';
 import '../../../../component/text/common_text.dart';
@@ -19,7 +19,6 @@ Widget chatListItem({required Chat item}) {
               child: ClipOval(
                 child: CommonImage(
                   imageSrc: item.participant.image,
-                  imageType: ImageType.network,
                   height: 70,
                   width: 70,
                 ),

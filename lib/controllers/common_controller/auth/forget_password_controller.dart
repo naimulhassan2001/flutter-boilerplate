@@ -67,10 +67,10 @@ class ForgetPasswordController extends GetxController {
     Map<String, String> body = {
       "email": emailController.text,
     };
-    var response = await ApiService.postApi(ApiEndPoint.forgotPassword, body);
+    var response = await ApiService.post(ApiEndPoint.forgotPassword, body);
 
     if (response.statusCode == 200) {
-      Utils.toastMessage(response.message);
+      Utils.successSnackBar(response.statusCode.toString(), response.message);
       Get.toNamed(AppRoutes.verifyEmail);
     } else {
       Get.snackbar(response.statusCode.toString(), response.message);
@@ -90,13 +90,13 @@ class ForgetPasswordController extends GetxController {
       "email": emailController.text,
       "otp": otpController.text
     };
-    var response = await ApiService.postApi(
+    var response = await ApiService.post(
       ApiEndPoint.verifyOtp,
       body,
     );
 
     if (response.statusCode == 200) {
-      var data = response.body;
+      var data = response.data;
       forgetPasswordToken = data['data']['forgetPasswordToken'];
       Get.toNamed(AppRoutes.createPassword);
     } else {
@@ -123,10 +123,10 @@ class ForgetPasswordController extends GetxController {
       "password": passwordController.text
     };
     var response =
-        await ApiService.postApi(ApiEndPoint.resetPassword, body, header: header);
+        await ApiService.post(ApiEndPoint.resetPassword, body, header: header);
 
     if (response.statusCode == 200) {
-      Utils.toastMessage(response.message);
+      Utils.successSnackBar(response.message,response.message);
       Get.offAllNamed(AppRoutes.signIn);
 
       emailController.clear();

@@ -19,7 +19,6 @@ Widget activeUser(ActiveUserModel item) {
         children: [
           CommonImage(
             imageSrc: item.image,
-            imageType: ImageType.png,
             height: 60,
             width: 60,
           ),

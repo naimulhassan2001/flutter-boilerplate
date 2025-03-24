@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../helpers/other_helper.dart';
+import '../../../services/file/file_service.dart';
 
 class ProfileController extends GetxController {
   List languages = ["English", "French", "Arabic"];
@@ -26,7 +26,7 @@ class ProfileController extends GetxController {
   }
 
   getProfileImage() async {
-    image = await OtherHelper.openGallery();
+    image = await FileService.openGallery();
     update();
   }
 

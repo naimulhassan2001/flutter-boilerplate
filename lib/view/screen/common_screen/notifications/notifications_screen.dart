@@ -4,11 +4,9 @@ import 'package:get/get.dart';
 import '../../../../controllers/common_controller/notifications/notifications_controller.dart';
 import '../../../../utils/constants/api_end_point.dart';
 import '../../../../data/models/notification_model.dart';
-import '../../../../utils/enum/enum.dart';
 import '../../../component/bottom_nav_bar/common_bottom_bar.dart';
 import '../../../component/other_widgets/common_loader.dart';
 import '../../../component/other_widgets/no_data.dart';
-import '../../../component/screen/error_screen.dart';
 import '../../../component/text/common_text.dart';
 import 'widget/notification_item.dart';
 
@@ -28,25 +26,23 @@ class NotificationScreen extends StatelessWidget {
       ),
       body: GetBuilder<NotificationsController>(
         builder: (controller) {
-          return switch (controller.status) {
-            Status.loading => const CommonLoader(),
-            Status.error => ErrorScreen(
-                onTap: NotificationsController.instance.getNotificationsRepo),
-            Status.completed => controller.notifications.isEmpty
-                ? const NoData()
-                : ListView.builder(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: 20.sp, vertical: 10.sp),
-                    itemCount: controller.notifications.length,
-                    physics: const BouncingScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      NotificationModel item = controller.notifications[index];
-                      return NotificationItem(
-                        item: item,
-                      );
-                    },
-                  )
-          };
+          return controller.isLoading
+              ? const CommonLoader()
+              : controller.notifications.isEmpty
+                  ? const NoData()
+                  : ListView.builder(
+                      controller: controller.scrollController,
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 20.sp, vertical: 10.sp),
+                      itemCount: controller.notifications.length,
+                      physics: const BouncingScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        NotificationModel item =
+                            controller.notifications[index];
+                        return NotificationItem(
+                          item: item,
+                        );
+                      });
         },
       ),
       bottomNavigationBar: const CommonBottomNavBar(

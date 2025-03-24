@@ -1,10 +1,10 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import '../../../../../utils/extensions/my_extension.dart';
+import 'package:flutter_boilerplate/utils/log/app_log.dart';
+import '../../../../../services/validation/validation_service.dart';
+import '../../../../../utils/extensions/extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../../controllers/common_controller/profile/profile_controller.dart';
-import '../../../../../helpers/other_helper.dart';
 import '../../../../../utils/constants/app_colors.dart';
 import '../../../../../utils/constants/app_string.dart';
 import '../../../../component/pop_up/common_pop_menu.dart';
@@ -30,7 +30,7 @@ class EditProfileAllFiled extends StatelessWidget {
             ),
             CommonTextField(
               controller: controller.nameController,
-              validator: OtherHelper.validator,
+              validator: ValidationService.validator,
               hintText: AppString.fullName,
               prefixIcon: const Icon(Icons.person),
               keyboardType: TextInputType.text,
@@ -47,57 +47,23 @@ class EditProfileAllFiled extends StatelessWidget {
             CommonPhoneNumberTextFiled(
               controller: controller.numberController,
               countryChange: (value) {
-                print(value);
+                appLog(value);
               },
             ),
             20.height,
-            Row(
-              children: [
-                Expanded(
-                    child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const CommonText(
-                      text: AppString.dateOfBirth,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700,
-                      bottom: 12,
-                    ),
-                    CommonTextField(
-                      controller: controller.dateOfBirthController,
-                      validator: OtherHelper.validator,
-                      keyboardType: TextInputType.none,
-                      borderColor: AppColors.black,
-                      fillColor: AppColors.transparent,
-                      borderRadius: 10.r,
-                      onTap: () => OtherHelper.openDatePicker(
-                          controller.dateOfBirthController),
-                      hintText: AppString.dateOfBirth,
-                    ),
-                  ],
-                )),
-                20.height,
-                Expanded(
-                    child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const CommonText(
-                      text: AppString.age,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700,
-                      bottom: 12,
-                    ),
-                    CommonTextField(
-                      controller: controller.ageController,
-                      validator: OtherHelper.validator,
-                      keyboardType: TextInputType.number,
-                      hintText: AppString.age,
-                      borderColor: AppColors.black,
-                      fillColor: AppColors.transparent,
-                    ),
-                  ],
-                )),
-              ],
+            const CommonText(
+              text: AppString.age,
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+              bottom: 12,
+            ),
+            CommonTextField(
+              controller: controller.ageController,
+              validator: ValidationService.validator,
+              keyboardType: TextInputType.number,
+              hintText: AppString.age,
+              borderColor: AppColors.black,
+              fillColor: AppColors.transparent,
             ),
             const CommonText(
               text: AppString.aboutMe,
@@ -107,7 +73,7 @@ class EditProfileAllFiled extends StatelessWidget {
             ),
             CommonTextField(
               controller: controller.descriptionController,
-              validator: OtherHelper.validator,
+              validator: ValidationService.validator,
               keyboardType: TextInputType.number,
               borderColor: AppColors.black,
               fillColor: AppColors.transparent,

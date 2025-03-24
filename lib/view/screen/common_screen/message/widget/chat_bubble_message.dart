@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../utils/constants/app_colors.dart';
-import '../../../../../utils/extensions/my_extension.dart';
+import '../../../../../utils/extensions/extension.dart';
 import '../../../../../utils/constants/app_images.dart';
 import '../../../../component/image/common_image.dart';
 import '../../../../component/text/common_text.dart';
@@ -69,7 +69,7 @@ class ChatBubbleMessage extends StatelessWidget {
                       ),
                       child: Column(
                         children: [
-                          CommonImage(
+                          const CommonImage(
                             imageSrc: AppImages.noImage,
                             fill: BoxFit.contain,
                             height: 60,
@@ -113,7 +113,6 @@ class ChatBubbleMessage extends StatelessWidget {
                                 imageSrc: image,
                                 width: 36,
                                 height: 36,
-                                imageType: ImageType.network,
                               ))),
                         const SizedBox(
                           width: 8,

@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import '../../../../utils/extensions/my_extension.dart';
+import '../../../../utils/extensions/extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../controllers/common_controller/profile/profile_controller.dart';
@@ -49,9 +49,8 @@ class EditProfile extends StatelessWidget {
                                     height: 170,
                                     fit: BoxFit.fill,
                                   )
-                                : CommonImage(
+                                : const CommonImage(
                                     imageSrc: AppImages.profile,
-                                    imageType: ImageType.png,
                                     height: 170,
                                     width: 170,
                                   ),

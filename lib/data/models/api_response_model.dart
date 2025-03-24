@@ -1,15 +1,7 @@
 class ApiResponseModel {
-  final int _statusCode;
-  final String _message;
-  final Map _body;
+  final int statusCode;
+  final String message;
+  final Map data;
 
-  ApiResponseModel(this._statusCode, this._message, this._body);
-
-  String get message => _message;
-
-  Map get body => _body;
-
-  int get statusCode => _statusCode;
+  ApiResponseModel(this.statusCode, this.message, this.data);
 }
-
-

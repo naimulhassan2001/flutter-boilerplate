@@ -7,8 +7,8 @@ import 'package:get/get.dart';
 import 'package:intl_phone_field/countries.dart';
 
 import '../../../config/route/app_routes.dart';
-import '../../../helpers/other_helper.dart';
 import '../../../services/api/api_service.dart';
+import '../../../services/file/file_service.dart';
 import '../../../utils/constants/api_end_point.dart';
 import '../../../services/storage/storage_services.dart';
 import '../../../utils/app_utils.dart';
@@ -62,7 +62,7 @@ class SignUpController extends GetxController {
   }
 
   openGallery() async {
-    image = await OtherHelper.openGallery();
+    image = await FileService.openGallery();
     update();
   }
 
@@ -80,17 +80,17 @@ class SignUpController extends GetxController {
       "role": selectRole.toLowerCase()
     };
 
-    var response = await ApiService.postApi(
+    var response = await ApiService.post(
       ApiEndPoint.signUp,
       body,
     );
 
     if (response.statusCode == 200) {
-      var data = response.body;
+      var data = response.data;
       signUpToken = data['data']['signUpToken'];
       Get.toNamed(AppRoutes.verifyUser);
     } else {
-      Utils.snackBarMessage(response.statusCode.toString(), response.message);
+      Utils.errorSnackBar(response.statusCode.toString(), response.message);
     }
     isLoading = false;
     update();
@@ -123,10 +123,10 @@ class SignUpController extends GetxController {
     Map<String, String> body = {"otp": otpController.text};
     Map<String, String> header = {"SignUpToken": "signUpToken $signUpToken"};
     var response =
-        await ApiService.postApi(ApiEndPoint.verifyEmail, body, header: header);
+        await ApiService.post(ApiEndPoint.verifyEmail, body, header: header);
 
     if (response.statusCode == 200) {
-      var data = response.body;
+      var data = response.data;
 
       LocalStorage.token = data['data']["accessToken"];
       LocalStorage.userId = data['data']["attributes"]["_id"];

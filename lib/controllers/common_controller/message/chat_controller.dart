@@ -45,10 +45,10 @@ class ChatController extends GetxController {
       update();
     }
 
-    var response = await ApiService.getApi("${ApiEndPoint.chats}?page=$page");
+    var response = await ApiService.get("${ApiEndPoint.chats}?page=$page");
 
     if (response.statusCode == 200) {
-      chatModel = ChatListModel.fromJson(response.body);
+      chatModel = ChatListModel.fromJson(response.data);
 
       chats.addAll(chatModel.data.attributes.chatList);
 
@@ -56,7 +56,7 @@ class ChatController extends GetxController {
       status = Status.completed;
       update();
     } else {
-      Utils.snackBarMessage(response.statusCode.toString(), response.message);
+      Utils.errorSnackBar(response.statusCode.toString(), response.message);
       status = Status.error;
       update();
     }

@@ -27,13 +27,13 @@ class SignInController extends GetxController {
       "password": passwordController.text
     };
 
-    var response = await ApiService.postApi(
+    var response = await ApiService.post(
       ApiEndPoint.signIn,
       body,
     ).timeout(const Duration(seconds: 30));
 
     if (response.statusCode == 200) {
-      var data = response.body;
+      var data = response.data;
 
       LocalStorage.token = data['data']["accessToken"];
       LocalStorage.userId = data['data']["attributes"]["_id"];

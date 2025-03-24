@@ -5,7 +5,7 @@ import '../../../../config/route/app_routes.dart';
 import '../../../../controllers/common_controller/message/chat_controller.dart';
 import '../../../../data/models/chat_list_model.dart';
 import '../../../../utils/enum/enum.dart';
-import '../../../../utils/extensions/my_extension.dart';
+import '../../../../utils/extensions/extension.dart';
 import '../../../../utils/constants/app_string.dart';
 import '../../../component/bottom_nav_bar/common_bottom_bar.dart';
 import '../../../component/other_widgets/common_loader.dart';

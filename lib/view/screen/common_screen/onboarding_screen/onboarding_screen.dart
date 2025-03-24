@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../config/route/app_routes.dart';
-import '../../../../utils/extensions/my_extension.dart';
+import '../../../../utils/extensions/extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../utils/constants/app_images.dart';
@@ -19,12 +19,11 @@ class OnboardingScreen extends StatelessWidget {
         child: Column(
           children: [
             180.height,
-            Center(
+            const Center(
                 child: CommonImage(
               imageSrc: AppImages.noImage,
               height: 70,
               width: 70,
-              imageType: ImageType.png,
             )),
             120.height,
             CommonButton(
