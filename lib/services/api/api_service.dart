@@ -13,8 +13,8 @@ class ApiService {
 
   /// ========== [ HTTP METHODS ] ========== ///
   static Future<ApiResponseModel> post(
-    String url,
-    dynamic body, {
+    String url, {
+    dynamic body,
     Map<String, String>? header,
   }) => _request(url, "POST", body: body, header: header);
 
@@ -114,42 +114,62 @@ class ApiService {
   }
 
   static ApiResponseModel _handleError(dynamic error) {
-    if (error is DioException) {
-      // If the error is a DioException and has a response, handle it
+    try {
       if (error.response != null) {
-        switch (error.response!.statusCode) {
-          case 502:
-            return ApiResponseModel(502, "Bad Gateway", error.response!.data);
-          default:
-            return ApiResponseModel(
-              error.response?.statusCode ?? 500,
-              error.response?.data?['message'] ??
-                  error.message ??
-                  "Unknown Error",
-              error.response?.data ?? {},
-            );
-        }
-      } else {
-        // Handle DioException that doesn't have a response
-        switch (error.type) {
-          case DioExceptionType.connectionTimeout:
-          case DioExceptionType.receiveTimeout:
-          case DioExceptionType.sendTimeout:
-            return ApiResponseModel(408, AppString.requestTimeOut, {});
-          case DioExceptionType.connectionError:
-            return ApiResponseModel(503, AppString.noInternetConnection, {});
-          default:
-            return ApiResponseModel(500, "DioException without response", {});
-        }
+        return _handleDioResponseError(error.response!);
       }
-    } else if (error is SocketException) {
+
+      if (error is DioException) {
+        return _handleDioException(error);
+      }
+
+      return _handleOtherErrors(error);
+    } catch (e) {
+      return ApiResponseModel(
+        400,
+        "Error handling failed: ${e.toString()}",
+        {},
+      );
+    }
+  }
+
+  static ApiResponseModel _handleDioResponseError(Response response) {
+    if (response.data is Map) {
+      return ApiResponseModel(
+        response.statusCode ?? 500,
+        response.data?['message'] ?? AppString.unknownError,
+        response.data,
+      );
+    }
+
+    return ApiResponseModel(
+      response.statusCode ?? 500,
+      AppString.someThingWrong,
+      {},
+    );
+  }
+
+  static ApiResponseModel _handleDioException(DioException error) {
+    switch (error.type) {
+      case DioExceptionType.connectionTimeout:
+      case DioExceptionType.receiveTimeout:
+      case DioExceptionType.sendTimeout:
+        return ApiResponseModel(408, AppString.requestTimeOut, {});
+      case DioExceptionType.connectionError:
+        return ApiResponseModel(503, AppString.noInternetConnection, {});
+      default:
+        return ApiResponseModel(500, AppString.someThingWrong, {});
+    }
+  }
+
+  static ApiResponseModel _handleOtherErrors(dynamic error) {
+    if (error is SocketException) {
       return ApiResponseModel(503, AppString.noInternetConnection, {});
     } else if (error is FormatException) {
       return ApiResponseModel(400, AppString.badResponseRequest, {});
     } else if (error is TimeoutException) {
       return ApiResponseModel(408, AppString.requestTimeOut, {});
     } else {
-      // Default error handling when none of the above matches
       return ApiResponseModel(500, error.toString(), {});
     }
   }

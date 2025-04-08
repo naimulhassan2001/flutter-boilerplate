@@ -8,6 +8,8 @@ extension View on num {
   Widget get width => SizedBox(width: toDouble().w);
 }
 
+
+
 // All Alignments Extensions
 
 extension Alignments on Widget {
@@ -17,6 +19,8 @@ extension Alignments on Widget {
 
   Widget get center => Align(alignment: Alignment.center, child: this);
 }
+
+
 
 // All Alignments Time Formatter Extensions
 extension TimeFormater on DateTime {

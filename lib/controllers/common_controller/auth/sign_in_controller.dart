@@ -29,7 +29,7 @@ class SignInController extends GetxController {
 
     var response = await ApiService.post(
       ApiEndPoint.signIn,
-      body,
+      body: body,
     ).timeout(const Duration(seconds: 30));
 
     if (response.statusCode == 200) {

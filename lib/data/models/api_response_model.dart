@@ -3,5 +3,5 @@ class ApiResponseModel {
   final String message;
   final Map data;
 
-  ApiResponseModel(this.statusCode, this.message, this.data);
+  ApiResponseModel(this.statusCode, this.message, this.data );
 }
