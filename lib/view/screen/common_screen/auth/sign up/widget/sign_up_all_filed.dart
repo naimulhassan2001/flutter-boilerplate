@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../../../services/validation/validation_service.dart';
+import '../../../../../../utils/helpers/other_helper.dart';
 import '../../../../../component/text_field/common_text_field.dart';
 import '../../../../../component/text/common_text.dart';
 import '../../../../../../utils/constants/app_string.dart';
@@ -35,7 +35,7 @@ class _SignUpAllFieldState extends State<SignUpAllField> {
               ),
               hintText: AppString.fullName,
               controller: controller.nameController,
-              validator: ValidationService.validator,
+              validator: OtherHelper.validator,
             ),
             const CommonText(
               text: AppString.email,
@@ -46,7 +46,7 @@ class _SignUpAllFieldState extends State<SignUpAllField> {
               controller: controller.emailController,
               prefixIcon: const Icon(Icons.mail, color: AppColors.black),
               hintText: AppString.email,
-              validator: ValidationService.emailValidator,
+              validator: OtherHelper.emailValidator,
             ),
             const CommonText(
               text: AppString.password,
@@ -58,7 +58,7 @@ class _SignUpAllFieldState extends State<SignUpAllField> {
               prefixIcon: const Icon(Icons.lock, color: AppColors.black),
               isPassword: true,
               hintText: AppString.password,
-              validator: ValidationService.passwordValidator,
+              validator: OtherHelper.passwordValidator,
             ),
             const CommonText(
               text: AppString.confirmPassword,
@@ -70,7 +70,7 @@ class _SignUpAllFieldState extends State<SignUpAllField> {
               prefixIcon: const Icon(Icons.lock, color: AppColors.black),
               isPassword: true,
               hintText: AppString.confirmPassword,
-              validator: (value) => ValidationService.confirmPasswordValidator(
+              validator: (value) => OtherHelper.confirmPasswordValidator(
                   value, controller.passwordController),
             ),
             const CommonText(

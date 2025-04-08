@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/utils/log/app_log.dart';
-import '../../../../../services/validation/validation_service.dart';
 import '../../../../../utils/extensions/extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../../controllers/common_controller/profile/profile_controller.dart';
 import '../../../../../utils/constants/app_colors.dart';
 import '../../../../../utils/constants/app_string.dart';
+import '../../../../../utils/helpers/other_helper.dart';
+import '../../../../../utils/log/app_log.dart';
 import '../../../../component/pop_up/common_pop_menu.dart';
 import '../../../../component/text/common_text.dart';
 import '../../../../component/text_field/common_phone_number_text_filed.dart';
@@ -30,7 +30,7 @@ class EditProfileAllFiled extends StatelessWidget {
             ),
             CommonTextField(
               controller: controller.nameController,
-              validator: ValidationService.validator,
+              validator: OtherHelper.validator,
               hintText: AppString.fullName,
               prefixIcon: const Icon(Icons.person),
               keyboardType: TextInputType.text,
@@ -59,7 +59,7 @@ class EditProfileAllFiled extends StatelessWidget {
             ),
             CommonTextField(
               controller: controller.ageController,
-              validator: ValidationService.validator,
+              validator: OtherHelper.validator,
               keyboardType: TextInputType.number,
               hintText: AppString.age,
               borderColor: AppColors.black,
@@ -73,7 +73,7 @@ class EditProfileAllFiled extends StatelessWidget {
             ),
             CommonTextField(
               controller: controller.descriptionController,
-              validator: ValidationService.validator,
+              validator: OtherHelper.validator,
               keyboardType: TextInputType.number,
               borderColor: AppColors.black,
               fillColor: AppColors.transparent,

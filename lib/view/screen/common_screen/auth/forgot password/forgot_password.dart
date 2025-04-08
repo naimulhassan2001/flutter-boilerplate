@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../../../../services/validation/validation_service.dart';
 import '../../../../../utils/extensions/extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../../controllers/common_controller/auth/forget_password_controller.dart';
 import '../../../../../utils/constants/app_string.dart';
+import '../../../../../utils/helpers/other_helper.dart';
 import '../../../../component/button/common_button.dart';
 import '../../../../component/text/common_text.dart';
 import '../../../../component/text_field/common_text_field.dart';
@@ -41,7 +41,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                   controller: controller.emailController,
                   prefixIcon: const Icon(Icons.mail),
                   hintText: AppString.email,
-                  validator: ValidationService.emailValidator,
+                  validator: OtherHelper.emailValidator,
                 ),
                 100.height,
               ],

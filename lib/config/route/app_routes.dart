@@ -21,77 +21,23 @@ class AppRoutes {
   static const String setting = "/setting_screen.dart";
 
   static List<GetPage> routes = [
-    GetPage(
-        name: test,
-        page: () => const TestScreen(),
-        transition: Transition.rightToLeftWithFade),
-    GetPage(
-        name: splash,
-        page: () => const SplashScreen(),
-        transition: Transition.rightToLeftWithFade),
-    GetPage(
-        name: onboarding,
-        page: () => const OnboardingScreen(),
-        transition: Transition.rightToLeftWithFade),
-    GetPage(
-        name: signUp,
-        page: () => SignUpScreen(),
-        transition: Transition.rightToLeftWithFade),
-    GetPage(
-        name: verifyUser,
-        page: () => const VerifyUser(),
-        transition: Transition.rightToLeftWithFade),
-    GetPage(
-        name: signIn,
-        page: () => SignInScreen(),
-        transition: Transition.rightToLeftWithFade),
-    GetPage(
-        name: forgotPassword,
-        page: () => ForgotPasswordScreen(),
-        transition: Transition.rightToLeftWithFade),
-    GetPage(
-        name: verifyEmail,
-        page: () => const VerifyScreen(),
-        transition: Transition.rightToLeftWithFade),
-    GetPage(
-        name: createPassword,
-        page: () => CreatePassword(),
-        transition: Transition.rightToLeftWithFade),
-    GetPage(
-        name: changePassword,
-        page: () => ChangePasswordScreen(),
-        transition: Transition.rightToLeftWithFade),
-    GetPage(
-        name: notifications,
-        page: () => const NotificationScreen(),
-        transition: Transition.rightToLeftWithFade),
-    GetPage(
-        name: chat,
-        page: () => const ChatListScreen(),
-        transition: Transition.rightToLeftWithFade),
-    GetPage(
-        name: message,
-        page: () => const MessageScreen(),
-        transition: Transition.rightToLeftWithFade),
-    GetPage(
-        name: profile,
-        page: () => const ProfileScreen(),
-        transition: Transition.rightToLeftWithFade),
-    GetPage(
-        name: editProfile,
-        page: () => EditProfile(),
-        transition: Transition.rightToLeftWithFade),
-    GetPage(
-        name: privacyPolicy,
-        page: () => const PrivacyPolicyScreen(),
-        transition: Transition.rightToLeftWithFade),
-    GetPage(
-        name: termsOfServices,
-        page: () => const TermsOfServicesScreen(),
-        transition: Transition.rightToLeftWithFade),
-    GetPage(
-        name: setting,
-        page: () => const SettingScreen(),
-        transition: Transition.rightToLeftWithFade),
+    GetPage(name: test, page: () => const TestScreen()),
+    GetPage(name: splash, page: () => const SplashScreen()),
+    GetPage(name: onboarding, page: () => const OnboardingScreen()),
+    GetPage(name: signUp, page: () => SignUpScreen()),
+    GetPage(name: verifyUser, page: () => const VerifyUser()),
+    GetPage(name: signIn, page: () => SignInScreen()),
+    GetPage(name: forgotPassword, page: () => ForgotPasswordScreen()),
+    GetPage(name: verifyEmail, page: () => const VerifyScreen()),
+    GetPage(name: createPassword, page: () => CreatePassword()),
+    GetPage(name: changePassword, page: () => ChangePasswordScreen()),
+    GetPage(name: notifications, page: () => const NotificationScreen()),
+    GetPage(name: chat, page: () => const ChatListScreen()),
+    GetPage(name: message, page: () => const MessageScreen()),
+    GetPage(name: profile, page: () => const ProfileScreen()),
+    GetPage(name: editProfile, page: () => EditProfile()),
+    GetPage(name: privacyPolicy, page: () => const PrivacyPolicyScreen()),
+    GetPage(name: termsOfServices, page: () => const TermsOfServicesScreen()),
+    GetPage(name: setting, page: () => const SettingScreen()),
   ];
 }

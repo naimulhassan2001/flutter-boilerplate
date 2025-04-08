@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../../../services/validation/validation_service.dart';
 import '../../../../../utils/extensions/extension.dart';
 import '../../../../../controllers/common_controller/auth/forget_password_controller.dart';
 import '../../../../../utils/constants/app_images.dart';
 import '../../../../../utils/constants/app_string.dart';
+import '../../../../../utils/helpers/other_helper.dart';
 import '../../../../component/button/common_button.dart';
 import '../../../../component/image/common_image.dart';
 import '../../../../component/text/common_text.dart';
@@ -59,7 +59,7 @@ class CreatePassword extends StatelessWidget {
                     prefixIcon: const Icon(Icons.lock),
                     hintText: AppString.password,
                     isPassword: true,
-                    validator: ValidationService.passwordValidator,
+                    validator: OtherHelper.passwordValidator,
                   ),
                   const CommonText(
                     text: AppString.password,
@@ -70,7 +70,7 @@ class CreatePassword extends StatelessWidget {
                     controller: controller.confirmPasswordController,
                     prefixIcon: const Icon(Icons.lock),
                     hintText: AppString.confirmPassword,
-                    validator: (value) => ValidationService.confirmPasswordValidator(
+                    validator: (value) => OtherHelper.confirmPasswordValidator(
                         value, controller.passwordController),
                     isPassword: true,
                   ),

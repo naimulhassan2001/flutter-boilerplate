@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../../../../config/route/app_routes.dart';
-import '../../../../../services/validation/validation_service.dart';
 import '../../../../../utils/extensions/extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -8,6 +7,7 @@ import '../../../../../controllers/common_controller/auth/sign_in_controller.dar
 
 import '../../../../../utils/constants/app_colors.dart';
 import '../../../../../utils/constants/app_string.dart';
+import '../../../../../utils/helpers/other_helper.dart';
 import '../../../../component/button/common_button.dart';
 import '../../../../component/text/common_text.dart';
 import '../../../../component/text_field/common_text_field.dart';
@@ -46,7 +46,7 @@ class SignInScreen extends StatelessWidget {
                       controller: controller.emailController,
                       prefixIcon: const Icon(Icons.mail),
                       hintText: AppString.email,
-                      validator: ValidationService.emailValidator,
+                      validator: OtherHelper.emailValidator,
                     ),
                     const CommonText(
                       text: AppString.password,
@@ -58,7 +58,7 @@ class SignInScreen extends StatelessWidget {
                       prefixIcon: const Icon(Icons.lock),
                       isPassword: true,
                       hintText: AppString.password,
-                      validator: ValidationService.passwordValidator,
+                      validator: OtherHelper.passwordValidator,
                     ),
                     Align(
                       alignment: Alignment.centerRight,

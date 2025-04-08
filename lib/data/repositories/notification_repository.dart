@@ -1,7 +1,7 @@
-import 'package:flutter_boilerplate/data/models/notification_model.dart';
 
 import '../../services/api/api_service.dart';
 import '../../utils/constants/api_end_point.dart';
+import '../models/notification_model.dart';
 
 Future<List<NotificationModel>> notificationRepository(int page) async {
   var response =

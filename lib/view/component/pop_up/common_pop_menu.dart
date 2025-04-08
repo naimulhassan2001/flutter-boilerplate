@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/services/validation/validation_service.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:new_untitled/utils/helpers/other_helper.dart';
 import '../../../services/storage/storage_services.dart';
 import '../../../utils/constants/app_colors.dart';
 import '../../../utils/constants/app_string.dart';
@@ -175,7 +175,7 @@ deletePopUp(
               CommonTextField(
                 controller: controller,
                 labelText: AppString.enterYouPassword,
-                validator: ValidationService.validator,
+                validator: OtherHelper.validator,
               )
             ],
           ),
