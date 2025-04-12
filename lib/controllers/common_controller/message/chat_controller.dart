@@ -63,7 +63,7 @@ class ChatController extends GetxController {
   }
 
   listenChat() async {
-    SocketServices.socket.on("update-chatlist::${LocalStorage.userId}", (data) {
+    SocketServices.on("update-chatlist::${LocalStorage.userId}", (data) {
       status = Status.loading;
       update();
 
@@ -80,7 +80,7 @@ class ChatController extends GetxController {
   }
 
   getActiveUser() async {
-    SocketServices.socket.emitWithAck("get-active-users", {}, ack: (data) {
+    SocketServices.emitWithAck("get-active-users", {},  (data) {
       activeUsers.clear();
       for (var item in data['data']) {
         activeUsers.add(ActiveUserModel.fromJson(item));

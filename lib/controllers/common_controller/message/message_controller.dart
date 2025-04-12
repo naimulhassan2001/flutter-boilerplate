@@ -37,7 +37,7 @@ class MessageController extends GetxController {
   MessageModel messageModel = MessageModel.fromJson({});
 
   Future<void> getMessageRepo() async {
-    return ;
+    return;
     if (page == 1) {
       messages.clear();
       status = Status.loading;
@@ -54,12 +54,15 @@ class MessageController extends GetxController {
       for (var messageData in data) {
         messageModel = MessageModel.fromJson(messageData);
 
-        messages.add(ChatMessageModel(
+        messages.add(
+          ChatMessageModel(
             time: messageModel.createdAt.toLocal(),
             text: messageModel.message,
             image: messageModel.sender.image,
             isNotice: messageModel.type == "notice" ? true : false,
-            isMe: LocalStorage.userId == messageModel.sender.id ? true : false));
+            isMe: LocalStorage.userId == messageModel.sender.id ? true : false,
+          ),
+        );
       }
 
       page = page + 1;
@@ -77,18 +80,19 @@ class MessageController extends GetxController {
     update();
 
     messages.insert(
-        0,
-        ChatMessageModel(
-            time: DateTime.now(),
-            text: messageController.text,
-            image: LocalStorage.myImage,
-            isMe: true)
+      0,
+      ChatMessageModel(
+        time: DateTime.now(),
+        text: messageController.text,
+        image: LocalStorage.myImage,
+        isMe: true,
+      ),
 
-        // ChatMessageModel(
-        //     currentTime.format(context).toString(),
-        //     controller.messageController.text,
-        //     true),
-        );
+      // ChatMessageModel(
+      //     currentTime.format(context).toString(),
+      //     controller.messageController.text,
+      //     true),
+    );
 
     isMessage = false;
     update();
@@ -96,34 +100,36 @@ class MessageController extends GetxController {
     var body = {
       "chat": chatId,
       "message": messageController.text,
-      "sender": LocalStorage.userId
+      "sender": LocalStorage.userId,
     };
 
     messageController.clear();
 
-    SocketServices.socket.emitWithAck("add-new-message", body, ack: (data) {
+    SocketServices.emitWithAck("add-new-message", body, (data) {
       if (kDebugMode) {
         print(
-            "===============================================================> Received acknowledgment: $data");
+          "===============================================================> Received acknowledgment: $data",
+        );
       }
     });
   }
 
-
   listenMessage(String chatId) async {
-    SocketServices.socket.on('new-message::$chatId', (data) {
+    SocketServices.on('new-message::$chatId', (data) {
       status = Status.loading;
       update();
 
       var time = data['createdAt'].toLocal();
       messages.insert(
-          0,
-          ChatMessageModel(
-              isNotice: data['messageType'] == "notice" ? true : false,
-              time: time,
-              text: data['message'],
-              image: data['sender']['image'],
-              isMe: false));
+        0,
+        ChatMessageModel(
+          isNotice: data['messageType'] == "notice" ? true : false,
+          time: time,
+          text: data['message'],
+          image: data['sender']['image'],
+          isMe: false,
+        ),
+      );
 
       status = Status.completed;
       update();
