@@ -10,7 +10,8 @@ class AppString {
   static const String enterYouPassword = "Enter you password";
   static const String cancel = "Cancel";
   static const String done = "Done";
-  static const String deleteDetails = "All your changes will be deleted and you will no longer be able to access them.";
+  static const String deleteDetails =
+      "All your changes will be deleted and you will no longer be able to access them.";
 
   static const String someThingWrong = "Some Thing Wrong";
   static const String tryAgain = "Try Again";
@@ -66,10 +67,9 @@ class AppString {
   static const String requestTimeOut = "Request Time Out";
   static const String thisFieldIsRequired = "This field is required";
   static const String enterValidEmail = "Enter valid email";
-  static const String passwordMustBeeEightCharacters = "Password must be 8 characters & contain both alphabets and numerics";
+  static const String passwordMustBeeEightCharacters =
+      "Password must be 8 characters & contain both alphabets and numerics";
   static const String thePasswordDoesNotMatch = "The password does not match";
-  static const String startServer = "Please start Server";
+  static const String startServer = "Please, start the Server";
   static const String unknownError = "Unknown Error";
-
-
 }

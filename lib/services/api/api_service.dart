@@ -100,53 +100,25 @@ class ApiService {
 
   static ApiResponseModel _handleResponse(Response response) {
     if (response.statusCode == 201) {
-      return ApiResponseModel(
-        200,
-        response.data['message'] ?? "",
-        response.data,
-      );
+      return ApiResponseModel(200, response.data);
     }
-    return ApiResponseModel(
-      response.statusCode ?? 500,
-      response.data['message'] ?? "",
-      response.data,
-    );
+    return ApiResponseModel(response.statusCode, response.data);
   }
 
   static ApiResponseModel _handleError(dynamic error) {
     try {
-      if (error.response != null) {
-        return _handleDioResponseError(error.response!);
-      }
-
       if (error is DioException) {
         return _handleDioException(error);
       }
 
+      if (error.response != null) {
+        return ApiResponseModel(error.response.statusCode, error.response.data);
+      }
+
       return _handleOtherErrors(error);
     } catch (e) {
-      return ApiResponseModel(
-        400,
-        "Error handling failed: ${e.toString()}",
-        {},
-      );
+      return ApiResponseModel(400, {});
     }
-  }
-
-  static ApiResponseModel _handleDioResponseError(Response response) {
-    if (response.data is Map) {
-      return ApiResponseModel(
-        response.statusCode ?? 500,
-        response.data?['message'] ?? AppString.unknownError,
-        response.data,
-      );
-    }
-
-    return ApiResponseModel(
-      response.statusCode ?? 500,
-      AppString.someThingWrong,
-      {},
-    );
   }
 
   static ApiResponseModel _handleDioException(DioException error) {
@@ -154,23 +126,26 @@ class ApiService {
       case DioExceptionType.connectionTimeout:
       case DioExceptionType.receiveTimeout:
       case DioExceptionType.sendTimeout:
-        return ApiResponseModel(408, AppString.requestTimeOut, {});
+        return ApiResponseModel(408, {"message": AppString.requestTimeOut});
       case DioExceptionType.connectionError:
-        return ApiResponseModel(503, AppString.noInternetConnection, {});
+        return ApiResponseModel(503, {
+          "message": AppString.noInternetConnection,
+        });
+
       default:
-        return ApiResponseModel(500, AppString.someThingWrong, {});
+        return ApiResponseModel(500, {});
     }
   }
 
   static ApiResponseModel _handleOtherErrors(dynamic error) {
     if (error is SocketException) {
-      return ApiResponseModel(503, AppString.noInternetConnection, {});
+      return ApiResponseModel(503, {"message": AppString.noInternetConnection});
     } else if (error is FormatException) {
-      return ApiResponseModel(400, AppString.badResponseRequest, {});
+      return ApiResponseModel(400, {"message": AppString.badResponseRequest});
     } else if (error is TimeoutException) {
-      return ApiResponseModel(408, AppString.requestTimeOut, {});
+      return ApiResponseModel(408, {"message": AppString.requestTimeOut});
     } else {
-      return ApiResponseModel(500, error.toString(), {});
+      return ApiResponseModel(500, {});
     }
   }
 }
