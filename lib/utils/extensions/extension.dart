@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart' as screenutil;
 import 'package:intl/intl.dart';
+import 'package:new_untitled/utils/log/app_log.dart';
+import 'package:new_untitled/utils/log/error_log.dart';
 
 extension View on num {
   Widget get height => SizedBox(height: toDouble().h);
 
   Widget get width => SizedBox(width: toDouble().w);
 }
-
-
 
 // All Alignments Extensions
 
@@ -19,8 +19,6 @@ extension Alignments on Widget {
 
   Widget get center => Align(alignment: Alignment.center, child: this);
 }
-
-
 
 // All Alignments Time Formatter Extensions
 extension TimeFormater on DateTime {
@@ -48,3 +46,14 @@ extension TimeFormater on DateTime {
     }
   }
 }
+
+extension AsyncTryCatch on Function() {
+    tryCatch() async {
+    try {
+      await this();
+    } catch (e, stackTrace) {
+      errorLog(stackTrace.toString(), source: "Global Try Catch");
+    }
+  }
+}
+
