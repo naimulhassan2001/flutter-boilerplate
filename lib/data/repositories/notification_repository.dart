@@ -1,11 +1,11 @@
-
 import '../../services/api/api_service.dart';
-import '../../utils/constants/api_end_point.dart';
+import '../../config/api/api_end_point.dart';
 import '../models/notification_model.dart';
 
 Future<List<NotificationModel>> notificationRepository(int page) async {
-  var response =
-      await ApiService.get("${ApiEndPoint.notifications}?page=$page");
+  var response = await ApiService.get(
+    "${ApiEndPoint.notifications}?page=$page",
+  );
 
   if (response.statusCode == 200) {
     var notificationList = response.data['data'] ?? [];

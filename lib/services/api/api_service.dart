@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:mime/mime.dart';
 import '../../data/models/api_response_model.dart';
-import '../../utils/constants/api_end_point.dart';
+import '../../config/api/api_end_point.dart';
 import '../../utils/constants/app_string.dart';
 import '../../utils/log/api_log.dart';
 import '../storage/storage_services.dart';

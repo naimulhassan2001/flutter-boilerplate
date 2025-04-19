@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../controllers/common_controller/notifications/notifications_controller.dart';
-import '../../../../utils/constants/api_end_point.dart';
+import '../../../../config/api/api_end_point.dart';
 import '../../../../data/models/notification_model.dart';
 import '../../../component/bottom_nav_bar/common_bottom_bar.dart';
 import '../../../component/other_widgets/common_loader.dart';

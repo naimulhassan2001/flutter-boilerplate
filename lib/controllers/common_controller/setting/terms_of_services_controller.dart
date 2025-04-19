@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import '../../../data/models/html_model.dart';
 import '../../../services/api/api_service.dart';
-import '../../../utils/constants/api_end_point.dart';
+import '../../../config/api/api_end_point.dart';
 import '../../../utils/app_utils.dart';
 import '../../../utils/enum/enum.dart';
 

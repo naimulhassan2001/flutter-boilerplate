@@ -18,14 +18,11 @@ Future<void> main() async {
 init() async {
   DependencyInjection dI = DependencyInjection();
   dI.dependencies();
-  NotificationService.initLocalNotification();
   SocketServices.connectToSocket();
-
-  dynamic num = 0;
-  num = num + "4f";
 
   await Future.wait([
     LocalStorage.getAllPrefData(),
+    NotificationService.initLocalNotification(),
     dotenv.load(fileName: ".env"),
   ]);
 }

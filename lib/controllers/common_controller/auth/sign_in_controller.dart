@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import '../../../config/route/app_routes.dart';
 import '../../../services/api/api_service.dart';
-import '../../../utils/constants/api_end_point.dart';
+import '../../../config/api/api_end_point.dart';
 import '../../../services/storage/storage_keys.dart';
 import '../../../services/storage/storage_services.dart';
 

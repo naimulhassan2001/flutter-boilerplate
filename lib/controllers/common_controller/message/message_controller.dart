@@ -7,7 +7,7 @@ import '../../../data/models/message_model.dart';
 
 import '../../../services/api/api_service.dart';
 import '../../../services/socket/socket_service.dart';
-import '../../../utils/constants/api_end_point.dart';
+import '../../../config/api/api_end_point.dart';
 import '../../../services/storage/storage_services.dart';
 import '../../../utils/app_utils.dart';
 import '../../../utils/enum/enum.dart';
