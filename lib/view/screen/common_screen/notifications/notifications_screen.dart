@@ -29,25 +29,29 @@ class NotificationScreen extends StatelessWidget {
           return controller.isLoading
               ? const CommonLoader()
               : controller.notifications.isEmpty
-                  ? const NoData()
-                  : ListView.builder(
-                      controller: controller.scrollController,
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 20.sp, vertical: 10.sp),
-                      itemCount: controller.notifications.length,
-                      physics: const BouncingScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        NotificationModel item =
-                            controller.notifications[index];
-                        return NotificationItem(
-                          item: item,
-                        );
-                      });
+              ? const NoData()
+              : ListView.builder(
+                controller: controller.scrollController,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 20.sp,
+                  vertical: 10.sp,
+                ),
+                itemCount:
+                    controller.isLoadingMore
+                        ? controller.notifications.length + 1
+                        : controller.notifications.length,
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (context, index) {
+                  if (index > controller.notifications.length) {
+                    return CommonLoader(size: 40, strokeWidth: 2);
+                  }
+                  NotificationModel item = controller.notifications[index];
+                  return NotificationItem(item: item);
+                },
+              );
         },
       ),
-      bottomNavigationBar: const CommonBottomNavBar(
-        currentIndex: 1,
-      ),
+      bottomNavigationBar: const CommonBottomNavBar(currentIndex: 1),
     );
   }
 }
