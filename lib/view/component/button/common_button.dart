@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:new_untitled/utils/constants/app_colors.dart';
+import 'package:new_untitled/view/component/other_widgets/common_loader.dart';
 import 'package:new_untitled/view/component/text/common_text.dart';
 
 class CommonButton extends StatefulWidget {
@@ -98,7 +99,7 @@ class _CommonButtonState extends State<CommonButton>
   }
 
   Widget _buildLoader() {
-    return CircularProgressIndicator.adaptive();
+    return CommonLoader(size: widget.buttonHeight - 12);
   }
 
   Widget _buildText() {
