@@ -1,11 +1,8 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../../../utils/constants/app_colors.dart';
-import '../other_widgets/common_loader.dart';
+import 'package:new_untitled/utils/constants/app_colors.dart';
+import 'package:new_untitled/view/component/text/common_text.dart';
 
-class CommonButton extends StatelessWidget {
+class CommonButton extends StatefulWidget {
   final VoidCallback? onTap;
   final String titleText;
   final Color titleColor;
@@ -27,7 +24,7 @@ class CommonButton extends StatelessWidget {
     this.titleSize = 16,
     this.buttonRadius = 10,
     this.titleWeight = FontWeight.w700,
-    this.buttonHeight = 60,
+    this.buttonHeight = 48,
     this.borderWidth = 1,
     this.isLoading = false,
     this.buttonWidth = double.infinity,
@@ -36,33 +33,63 @@ class CommonButton extends StatelessWidget {
   });
 
   @override
+  State<CommonButton> createState() => _CommonButtonState();
+}
+
+class _CommonButtonState extends State<CommonButton>
+    with TickerProviderStateMixin {
+  late AnimationController _animationController;
+
+  @override
+  void initState() {
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 100),
+      lowerBound: 0.0,
+      upperBound: 0.2,
+    )..addListener(() {
+      setState(() {});
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: buttonHeight.h,
-      width: buttonWidth.w,
+      height: widget.buttonHeight,
+      width: widget.buttonWidth,
       child: _buildElevatedButton(),
     );
   }
 
   // Function to build the button with common settings
   Widget _buildElevatedButton() {
-    return ElevatedButton(
-      onPressed: onTap,
-      style: _buttonStyle(),
-      child: isLoading ? _buildLoader() : _buildText(),
+    return GestureDetector(
+      onTapDown: _onTapDown,
+      onTapUp: _onTapUp,
+      onTapCancel: _onTapCancel,
+      onTap: widget.onTap,
+      child: Transform.scale(
+        scale: (1 - _animationController.value).toDouble(),
+        child: ElevatedButton(
+          onPressed: null,
+          style: _buttonStyle(),
+          child: widget.isLoading ? _buildLoader() : _buildText(),
+        ),
+      ),
     );
   }
 
   ButtonStyle _buttonStyle() {
     return ButtonStyle(
-      backgroundColor: WidgetStateProperty.all(buttonColor),
+      backgroundColor: WidgetStateProperty.all(widget.buttonColor),
       padding: WidgetStateProperty.all(EdgeInsets.zero),
       shape: WidgetStateProperty.all(
         RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(buttonRadius.r),
+          borderRadius: BorderRadius.circular(widget.buttonRadius),
           side: BorderSide(
-            color: borderColor ?? AppColors.primaryColor,
-            width: borderWidth.w,
+            color: widget.borderColor ?? Colors.blue,
+            width: widget.borderWidth,
           ),
         ),
       ),
@@ -71,22 +98,33 @@ class CommonButton extends StatelessWidget {
   }
 
   Widget _buildLoader() {
-    return CommonLoader(
-      size: buttonHeight - 10,
-    );
+    return CircularProgressIndicator.adaptive();
   }
 
   Widget _buildText() {
-    return Text(
-      titleText,
+    return CommonText(
+      text: widget.titleText,
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
       textAlign: TextAlign.center,
-      style: GoogleFonts.roboto(
-        color: titleColor,
-        fontSize: titleSize.sp,
-        fontWeight: titleWeight,
-      ),
+      fontSize: widget.titleSize,
+      color: widget.titleColor,
+      fontWeight: widget.titleWeight,
     );
+  }
+
+  _onTapDown(TapDownDetails details) {
+    if (widget.onTap == null) return;
+    _animationController.forward();
+  }
+
+  _onTapUp(TapUpDetails details) {
+    if (widget.onTap == null) return;
+    _animationController.reverse();
+  }
+
+  _onTapCancel() {
+    if (widget.onTap == null) return;
+    _animationController.reverse();
   }
 }
