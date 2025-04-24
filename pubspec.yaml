@@ -51,6 +51,7 @@ dependencies:
   flutter_html: ^3.0.0
   dio: ^5.8.0+1
   flutter_dotenv: ^5.2.1
+  image_cropper: ^9.1.0
 
 dev_dependencies:
   flutter_test:

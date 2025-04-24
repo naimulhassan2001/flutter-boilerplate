@@ -26,7 +26,7 @@ class ProfileController extends GetxController {
   }
 
   getProfileImage() async {
-    image = await OtherHelper.openGallery();
+    image = await OtherHelper.openGalleryForProfile();
     update();
   }
 
