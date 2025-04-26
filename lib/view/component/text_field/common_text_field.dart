@@ -79,8 +79,8 @@ class CommonTextField extends StatelessWidget {
         fillColor: fillColor,
         counterText: "",
         contentPadding: EdgeInsets.symmetric(
-            horizontal: paddingHorizontal.w,
-            vertical: paddingVertical.h
+          horizontal: paddingHorizontal.w,
+          vertical: paddingVertical.h,
         ),
         border: _buildBorder(),
         enabledBorder: _buildBorder(),
@@ -91,13 +91,8 @@ class CommonTextField extends StatelessWidget {
         labelText: labelText,
         hintStyle: GoogleFonts.roboto(fontSize: 14, color: hintTextColor),
         labelStyle: GoogleFonts.roboto(fontSize: 14, color: labelTextColor),
-        prefix: CommonText(
-          text: prefixText ?? "",
-          fontWeight: FontWeight.w400,
-        ),
-        suffixIcon: isPassword
-            ? _buildPasswordSuffixIcon()
-            : suffixIcon,
+        prefix: CommonText(text: prefixText ?? "", fontWeight: FontWeight.w400),
+        suffixIcon: isPassword ? _buildPasswordSuffixIcon() : suffixIcon,
       ),
     );
   }
@@ -114,13 +109,15 @@ class CommonTextField extends StatelessWidget {
       onTap: toggle,
       child: Padding(
         padding: EdgeInsetsDirectional.only(end: 10.w),
-        child: Obx(() => Icon(
-          obscureText.value
-              ? Icons.visibility_off_outlined
-              : Icons.visibility_outlined,
-          size: 20.sp,
-          color: textColor,
-        )),
+        child: Obx(
+          () => Icon(
+            obscureText.value
+                ? Icons.visibility_off_outlined
+                : Icons.visibility_outlined,
+            size: 20.sp,
+            color: textColor,
+          ),
+        ),
       ),
     );
   }

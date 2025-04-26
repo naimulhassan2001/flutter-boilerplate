@@ -95,12 +95,13 @@ class EditProfileAllFiled extends StatelessWidget {
                     fillColor: AppColors.black,
                     hintText: AppString.gender,
                     suffixIcon: PopUpMenu(
-                        items: controller.gender,
-                        iconColor: AppColors.white,
-                        selectedItem: [controller.genderController.text],
-                        onTap: controller.selectedGender),
+                      items: controller.gender,
+                      iconColor: AppColors.white,
+                      selectedItem: [controller.genderController.text],
+                      onTap: controller.selectedGender,
+                    ),
                   ),
-                )
+                ),
               ],
             ),
           ],

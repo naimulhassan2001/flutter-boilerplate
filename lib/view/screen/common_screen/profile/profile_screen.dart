@@ -78,28 +78,27 @@ class ProfileScreen extends StatelessWidget {
                           ),
                           const Spacer(),
                           PopUpMenu(
-                              items: controller.languages,
-                              selectedItem: [controller.selectedLanguage],
-                              onTap: controller.selectLanguage)
+                            items: controller.languages,
+                            selectedItem: [controller.selectedLanguage],
+                            onTap: controller.selectLanguage,
+                          ),
                         ],
                       ),
-                      const Divider()
+                      const Divider(),
                     ],
                   ),
                 ),
                 Item(
                   icon: Icons.logout,
                   title: AppString.logOut,
-                  onTap: () => logOutPopUp(),
+                  onTap: () => logOutPopUp(context),
                 ),
               ],
             ),
           );
         },
       ),
-      bottomNavigationBar: const CommonBottomNavBar(
-        currentIndex: 3,
-      ),
+      bottomNavigationBar: const CommonBottomNavBar(currentIndex: 3),
     );
   }
 }

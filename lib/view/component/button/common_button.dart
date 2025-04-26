@@ -47,7 +47,7 @@ class _CommonButtonState extends State<CommonButton>
       vsync: this,
       duration: Duration(milliseconds: 100),
       lowerBound: 0.0,
-      upperBound: 0.2,
+      upperBound: 0.15,
     )..addListener(() {
       setState(() {});
     });
