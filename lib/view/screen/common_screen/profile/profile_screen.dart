@@ -91,7 +91,7 @@ class ProfileScreen extends StatelessWidget {
                 Item(
                   icon: Icons.logout,
                   title: AppString.logOut,
-                  onTap: () => logOutPopUp(context),
+                  onTap: logOutPopUp,
                 ),
               ],
             ),

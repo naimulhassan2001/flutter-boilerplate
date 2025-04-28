@@ -99,9 +99,9 @@ class PopUpMenu extends StatelessWidget {
 
 
 
-logOutPopUp(BuildContext context) {
+logOutPopUp() {
   showDialog(
-    context: context,
+    context: Get.context!,
     builder: (context) {
       // Controller for the animation
       return AnimationPopUp(
