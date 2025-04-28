@@ -35,4 +35,32 @@ class ProfileController extends GetxController {
     update();
     Get.back();
   }
+
+  Future<void> editProfileRepo() async {
+    if (!TokenServices.isLogIn) return;
+    isLoading = true;
+    update();
+
+    Map<String, String> body = {
+      "fullName": nameController.text,
+      "phone": numberController.text,
+    };
+
+    var response = await ApiService.multipart(
+      ApiEndPoint.user,
+      body: body,
+      imagePath: image,
+      imageName: "image",
+    );
+
+    if (response.statusCode == 200) {
+      Utils.successSnackBar("Successfully Profile Updated", response.message);
+      Get.toNamed(AppRoutes.profile);
+    } else {
+      Utils.errorSnackBar(response.statusCode.toString(), response.message);
+    }
+
+    isLoading = false;
+    update();
+  }
 }

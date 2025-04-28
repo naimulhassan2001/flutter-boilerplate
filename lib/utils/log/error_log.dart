@@ -2,13 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
 
-void errorLog(
-  dynamic e, {
-  String source = "",
-  String title = "",
-}) {
-
-
+void errorLog(dynamic e, {String source = ""}) {
   try {
     if (kDebugMode) {
       log(""""
@@ -19,7 +13,7 @@ void errorLog(
       >>>>>>>>>>>>>>>>>>>>>>>>>>>😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
-     ➡️➡️➡️➡️➡️$title:========>  ${e.toString()} 🔚🔚🔚🔚🔚🔚🔚🔚
+     ➡️➡️➡️➡️➡️ :========>  ${e.toString()} 🔚🔚🔚🔚🔚🔚🔚🔚
       
 
       <<<<<<<<<<<<<<<<<<<<<<<<<<<😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡😡<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

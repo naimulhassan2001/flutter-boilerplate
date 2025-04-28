@@ -27,7 +27,7 @@ class PrivacyPolicyController extends GetxController {
       status = Status.completed;
       update();
     } else {
-      Utils.errorSnackBar(response.statusCode.toString(), response.message);
+      Utils.errorSnackBar(response.statusCode, response.message);
       status = Status.error;
       update();
     }
