@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:new_untitled/services/storage/storage_services.dart';
 import 'package:new_untitled/utils/helpers/other_helper.dart';
 
 import '../../../config/api/api_end_point.dart';
@@ -8,7 +9,6 @@ import '../../../services/api/api_service.dart';
 import '../../../services/token/token_services.dart';
 import '../../../utils/app_utils.dart';
 
-
 class ProfileController extends GetxController {
   List languages = ["English", "French", "Arabic"];
   List gender = const ["Male", "Female", "Other"];
@@ -16,7 +16,7 @@ class ProfileController extends GetxController {
   String selectedLanguage = "English";
   String? image;
 
-  bool isLoading = false ;
+  bool isLoading = false;
 
   TextEditingController nameController = TextEditingController();
   TextEditingController numberController = TextEditingController();
@@ -24,8 +24,6 @@ class ProfileController extends GetxController {
   TextEditingController ageController = TextEditingController();
   TextEditingController genderController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
-
-
 
   selectedGender(int index) {
     genderController.text = gender[index].toString();
@@ -45,7 +43,7 @@ class ProfileController extends GetxController {
   }
 
   Future<void> editProfileRepo() async {
-    if (!TokenServices.isLogIn) return;
+    if (!LocalStorage.isLogIn) return;
     isLoading = true;
     update();
 
@@ -62,6 +60,20 @@ class ProfileController extends GetxController {
     );
 
     if (response.statusCode == 200) {
+      var data = response.data;
+
+      print("object");
+
+      LocalStorage.userId = data['data']["_id"];
+      LocalStorage.myImage = data['data']["image"];
+      LocalStorage.myName = data['data']["fullName"];
+      LocalStorage.myEmail = data['data']["email"];
+
+      LocalStorage.setString("userId", LocalStorage.userId);
+      LocalStorage.setString("myImage", LocalStorage.myImage);
+      LocalStorage.setString("myName", LocalStorage.myName);
+      LocalStorage.setString("myEmail", LocalStorage.myEmail);
+
       Utils.successSnackBar("Successfully Profile Updated", response.message);
       Get.toNamed(AppRoutes.profile);
     } else {
