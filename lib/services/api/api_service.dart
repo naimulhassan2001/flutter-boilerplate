@@ -6,6 +6,7 @@ import '../../data/models/api_response_model.dart';
 import '../../config/api/api_end_point.dart';
 import '../../utils/constants/app_string.dart';
 import '../../utils/log/api_log.dart';
+import '../storage/storage_keys.dart';
 import '../storage/storage_services.dart';
 
 class ApiService {
@@ -167,6 +168,12 @@ Dio _getMyDio() {
               options.baseUrl.startsWith("http") ? "" : ApiEndPoint.baseUrl
           ..extra["stopwatch"] = stopwatch;
 
+        String storedCookies = LocalStorage.cookie;
+        if (storedCookies.isNotEmpty) {
+          List<String> cookiesList = storedCookies.split('; ');
+          options.headers['Cookie'] = cookiesList;
+        }
+
         apiRequestLog(options);
         handler.next(options);
       },
@@ -174,7 +181,15 @@ Dio _getMyDio() {
         final stopwatch =
             response.requestOptions.extra["stopwatch"] as Stopwatch?;
         stopwatch?.stop();
+
         apiResponseLog(response, stopwatch ?? Stopwatch());
+        List cookies = response.headers['set-cookie'] ?? [];
+
+        if (cookies.isNotEmpty) {
+          String cookieString = cookies.join('; ');
+          LocalStorage.cookie = cookieString;
+          LocalStorage.setString(LocalStorageKeys.cookie, cookieString);
+        }
         handler.next(response);
       },
       onError: (error, handler) {

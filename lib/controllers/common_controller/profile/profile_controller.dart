@@ -6,7 +6,6 @@ import 'package:new_untitled/utils/helpers/other_helper.dart';
 import '../../../config/api/api_end_point.dart';
 import '../../../config/route/app_routes.dart';
 import '../../../services/api/api_service.dart';
-import '../../../services/token/token_services.dart';
 import '../../../utils/app_utils.dart';
 
 class ProfileController extends GetxController {
@@ -61,8 +60,6 @@ class ProfileController extends GetxController {
 
     if (response.statusCode == 200) {
       var data = response.data;
-
-      print("object");
 
       LocalStorage.userId = data['data']["_id"];
       LocalStorage.myImage = data['data']["image"];
