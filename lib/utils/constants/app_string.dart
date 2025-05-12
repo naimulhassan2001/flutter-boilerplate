@@ -48,7 +48,6 @@ class AppString {
   static const String activeNow = "Active Now";
   static const String messageHere = "message here";
   static const String notifications = "Notifications";
-  static const String signInWithPassword = "Sign in with password";
   static const String contact = "Contact";
   static const String dateOfBirth = "Date of birth";
   static const String age = "Age";

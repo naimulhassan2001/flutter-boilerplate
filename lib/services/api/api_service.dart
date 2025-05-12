@@ -2,12 +2,12 @@ import 'dart:async';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:mime/mime.dart';
-import '../../data/models/api_response_model.dart';
 import '../../config/api/api_end_point.dart';
 import '../../utils/constants/app_string.dart';
 import '../../utils/log/api_log.dart';
 import '../storage/storage_keys.dart';
 import '../storage/storage_services.dart';
+import 'api_response_model.dart';
 
 class ApiService {
   static final Dio _dio = _getMyDio();
