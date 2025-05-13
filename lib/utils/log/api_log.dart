@@ -40,7 +40,8 @@ void apiResponseLog(Response response, Stopwatch stopwatch) {
 
 ⏳ Response Time: ${(stopwatch.elapsedMilliseconds / 1000).toStringAsFixed(2)} sec      
 📌 Status Code: ${response.statusCode}      
-🔗 Requested URL: ${response.requestOptions.uri}      
+🔗 Response URL: ${response.requestOptions.uri}      
+🔗 Response headers: ${response.headers}      
 📄 Data: ${response.data.toString()}  
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
