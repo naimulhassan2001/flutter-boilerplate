@@ -64,10 +64,10 @@ class ProfileController extends GetxController {
     if (response.statusCode == 200) {
       var data = response.data;
 
-      LocalStorage.userId = data['data']["_id"];
-      LocalStorage.myImage = data['data']["image"];
-      LocalStorage.myName = data['data']["fullName"];
-      LocalStorage.myEmail = data['data']["email"];
+      LocalStorage.userId = data['data']?["_id"] ?? "";
+      LocalStorage.myImage = data['data']?["image"] ?? "";
+      LocalStorage.myName = data['data']?["fullName"] ?? "";
+      LocalStorage.myEmail = data['data']?["email"] ?? "";
 
       LocalStorage.setString("userId", LocalStorage.userId);
       LocalStorage.setString("myImage", LocalStorage.myImage);
@@ -77,7 +77,7 @@ class ProfileController extends GetxController {
       Utils.successSnackBar("Successfully Profile Updated", response.message);
       Get.toNamed(AppRoutes.profile);
     } else {
-      Utils.errorSnackBar(response.statusCode.toString(), response.message);
+      Utils.errorSnackBar(response.statusCode, response.message);
     }
 
     isLoading = false;
