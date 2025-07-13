@@ -8,8 +8,10 @@ class ApiResponseModel {
 
   int get statusCode => _statusCode ?? 500;
 
+  bool get isSuccess => _statusCode == 200;
+
   String get message {
-    if (_statusCode != null && _statusCode == 502) {
+    if (_statusCode == 502) {
       return AppString.startServer;
     }
     return _data?['message']?.toString() ?? AppString.someThingWrong;

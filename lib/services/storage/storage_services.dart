@@ -7,7 +7,6 @@ import 'storage_keys.dart';
 
 class LocalStorage {
   static String token = "";
-  static String cookie = "";
   static String refreshToken = "";
   static bool isLogIn = false;
   static String userId = "";
@@ -29,7 +28,6 @@ class LocalStorage {
     final localStorage = await _getStorage();
 
     token = localStorage.getString(LocalStorageKeys.token) ?? "";
-    cookie = localStorage.getString(LocalStorageKeys.cookie) ?? "";
     refreshToken = localStorage.getString(LocalStorageKeys.refreshToken) ?? "";
     isLogIn = localStorage.getBool(LocalStorageKeys.isLogIn) ?? false;
     userId = localStorage.getString(LocalStorageKeys.userId) ?? "";
@@ -53,7 +51,6 @@ class LocalStorage {
   static void _resetLocalStorageData() {
     final localStorage = preferences!;
     localStorage.setString(LocalStorageKeys.token, "");
-    localStorage.setString(LocalStorageKeys.cookie, "");
     localStorage.setString(LocalStorageKeys.refreshToken, "");
     localStorage.setString(LocalStorageKeys.userId, "");
     localStorage.setString(LocalStorageKeys.myImage, "");
