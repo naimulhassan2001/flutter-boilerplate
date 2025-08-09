@@ -19,5 +19,7 @@ class AppImages {
 
   static const String onboarding_3 = "$baseurl/onboarding_3.png";
 
-  static const String verify_otp = "$baseurl/verify_otp.png";
+  static const String verifyOtp = "$baseurl/verify_otp.png";
+  static const String logo = "$baseurl/logo.png";
+  static const String language = "$baseurl/language.png";
 }
