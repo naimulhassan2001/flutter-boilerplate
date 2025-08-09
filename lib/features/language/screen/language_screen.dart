@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:new_untitled/component/button/common_button.dart';
 import 'package:new_untitled/component/image/common_image.dart';
 import 'package:new_untitled/component/text/common_text.dart';
@@ -8,8 +7,6 @@ import 'package:new_untitled/utils/constants/app_colors.dart';
 import 'package:new_untitled/utils/constants/app_images.dart';
 import 'package:new_untitled/utils/constants/app_string.dart';
 import 'package:new_untitled/utils/extensions/extension.dart';
-
-import '../../../config/route/app_routes.dart';
 import '../../onboarding_screen/widgets/indicatior.dart';
 
 class LanguageScreen extends StatelessWidget {
@@ -62,7 +59,7 @@ class LanguageScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: EdgeInsetsGeometry.only(bottom: 62.h, left: 20.w, right: 20.w),
+        padding: EdgeInsets.only(bottom: 62.h, left: 20.w, right: 20.w),
         child: CommonButton(
           onTap:
               () => controller.nextPage(

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:new_untitled/component/image/common_image.dart';
+import 'package:new_untitled/utils/constants/app_icons.dart';
 import '../../../../../../../config/route/app_routes.dart';
 import '../../../../../../../utils/extensions/extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,8 +9,6 @@ import '../../../../../component/button/common_button.dart';
 import '../../../../../component/text/common_text.dart';
 import '../../../../../component/text_field/common_text_field.dart';
 import '../controller/sign_in_controller.dart';
-
-import '../../../../../../../utils/constants/app_colors.dart';
 import '../../../../../../../utils/constants/app_string.dart';
 import '../../../../../../../utils/helpers/other_helper.dart';
 import '../widgets/do_not_account.dart';
@@ -86,8 +86,19 @@ class SignInScreen extends StatelessWidget {
                   ),
                   30.height,
 
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CommonImage(imageSrc: AppIcons.google),
+                      20.width,
+                      CommonImage(imageSrc: AppIcons.apple),
+                    ],
+                  ),
+
+                  30.height,
+
                   /// Account Creating Instruction here
-                  const DoNotHaveAccount(),
+                  const DoNotHaveAccount().center,
                   30.height,
                 ],
               ),

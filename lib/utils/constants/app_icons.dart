@@ -26,4 +26,6 @@ class AppIcons {
   static const String success = "$baseurl/success.svg";
   static const String symaptoms = "$baseurl/symaptoms.svg";
   static const String upload = "$baseurl/upload.svg";
+  static const String apple = "$baseurl/apple.svg";
+  static const String google = "$baseurl/google.svg";
 }

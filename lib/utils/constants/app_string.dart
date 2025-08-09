@@ -21,7 +21,7 @@ class AppString {
   static const String currentPassword = "Current Password";
   static const String newPassword = "New Password";
   static const String confirmPassword = "Confirm Password";
-  static const String forgotPassword = "Forgot Password";
+  static const String forgotPassword = "Forgot Your Password!";
   static const String confirm = "Confirm";
   static const String createNewPassword = "Create New Password";
   static const String createYourNewPassword = "Create Your New Password";
@@ -31,14 +31,15 @@ class AppString {
   static const String codeHasBeenSendTo = "Code has been send to";
   static const String otpIsInValid = "Otp is inValid";
   static const String resendCode = "Resend Code";
-  static const String resendCodeIn = "Resend code in";
+  static const String resendCodeIn = "Resend in";
   static const String minute = "minute";
   static const String verify = "Verify";
   static const String logIntoYourAccount = "Login to Your Account";
   static const String forgotThePassword = "Forgot password";
   static const String signIn = "Sign in";
-  static const String doNotHaveAccount = "Don’t have an account";
+  static const String doNotHaveAccount = "Don’t have an account? ";
   static const String signUp = "Sign up";
+  static const String createAccount = "Create Account";
   static const String alreadyHaveAccount = "Already have an account";
   static const String fullName = "Full Name";
   static const String createYourAccount = "Create Your Account";
@@ -65,7 +66,7 @@ class AppString {
   static const String badResponseRequest = "Bad Response Request";
   static const String requestTimeOut = "Request Time Out";
   static const String thisFieldIsRequired = "This field is required";
-  static const String enterValidEmail = "Enter valid email";
+  static const String enterValidEmail = "Enter Your E-mail";
   static const String passwordMustBeeEightCharacters =
       "Password must be 8 characters & contain both alphabets and numerics";
   static const String thePasswordDoesNotMatch = "The password does not match";

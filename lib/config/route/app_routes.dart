@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:new_untitled/features/language/screen/language_screen.dart';
 import '../../features/auth/change_password/presentation/screen/change_password_screen.dart';
 import '../../features/auth/forgot password/presentation/screen/create_password.dart';
 import '../../features/auth/forgot password/presentation/screen/forgot_password.dart';

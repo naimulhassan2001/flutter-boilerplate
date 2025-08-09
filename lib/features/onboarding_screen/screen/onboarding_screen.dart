@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:new_untitled/features/language/screen/language_screen.dart';
 import 'package:new_untitled/features/onboarding_screen/screen/onboarding_one.dart';
 import 'package:new_untitled/features/onboarding_screen/screen/onboarding_three.dart';
 
-import '../../../../../config/route/app_routes.dart';
-import '../../../../../utils/extensions/extension.dart';
-import '../../../../../utils/constants/app_images.dart';
-import '../../../../../utils/constants/app_string.dart';
-import '../../../component/button/common_button.dart';
-import '../../../component/image/common_image.dart';
 import 'onboarding_two.dart';
 
 class OnboardingScreen extends StatefulWidget {

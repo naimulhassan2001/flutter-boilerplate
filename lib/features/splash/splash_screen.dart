@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_untitled/component/button/common_button.dart';
 import 'package:new_untitled/component/text/common_text.dart';
 import 'package:new_untitled/utils/constants/app_colors.dart';
-import 'package:new_untitled/utils/constants/app_icons.dart';
 import 'package:new_untitled/utils/constants/app_string.dart';
 import 'package:new_untitled/utils/extensions/extension.dart';
 import '../../../../config/route/app_routes.dart';
@@ -33,7 +32,7 @@ class SplashScreen extends StatelessWidget {
       ),
 
       bottomNavigationBar: Padding(
-        padding: EdgeInsetsGeometry.only(bottom: 62.h, left: 20.w, right: 20.w),
+        padding: EdgeInsets.only(bottom: 62.h, left: 20.w, right: 20.w),
         child: CommonButton(
           onTap: () {
             // if (LocalStorage.isLogIn) {

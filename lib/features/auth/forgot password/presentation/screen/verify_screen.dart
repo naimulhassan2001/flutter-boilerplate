@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:new_untitled/utils/extensions/extension.dart';
 import '../../../../../component/button/common_button.dart';
+import '../../../../../component/image/common_image.dart';
 import '../../../../../component/text/common_text.dart';
+import '../../../../../component/text_field/common_text_field.dart';
+import '../../../../../utils/constants/app_images.dart';
+import '../../../../../utils/helpers/other_helper.dart';
 import '../controller/forget_password_controller.dart';
 import '../../../../../../../utils/constants/app_colors.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../../../../../../utils/constants/app_string.dart';
-
 
 class VerifyScreen extends StatefulWidget {
   const VerifyScreen({super.key});
@@ -28,107 +32,134 @@ class _VerifyScreenState extends State<VerifyScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      /// App Bar Section
-      appBar: AppBar(
-        title: const CommonText(
-          text: AppString.forgotPassword,
-          fontWeight: FontWeight.w700,
-          fontSize: 24,
-        ),
-      ),
+    return GetBuilder<ForgetPasswordController>(
+      builder:
+          (controller) => Scaffold(
+            /// App Bar Section
+            appBar: AppBar(),
 
-      /// Body Section
-      body: GetBuilder<ForgetPasswordController>(
-        builder:
-            (controller) => SingleChildScrollView(
-              padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 20.w),
-              child: Form(
-                key: formKey,
-                child: Column(
-                  children: [
-                    /// instruction how to get OTP
-                    Center(
-                      child: CommonText(
-                        text:
-                            "${AppString.codeHasBeenSendTo} ${controller.emailController.text}",
-                        fontSize: 18,
-                        top: 100,
-                        bottom: 60,
+            /// body section
+            body: Stack(
+              children: [
+                SizedBox(
+                  height: Get.height,
+                  width: Get.width,
+                  child: Column(
+                    children: [
+                      20.height,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        child: CommonImage(imageSrc: AppImages.verifyOtp),
                       ),
-                    ),
-
-                    /// OTP Filed here
-                    Flexible(
-                      flex: 0,
-                      child: PinCodeTextField(
-                        controller: controller.otpController,
-                        validator: (value) {
-                          if (value != null && value.length == 6) {
-                            return null;
-                          } else {
-                            return AppString.otpIsInValid;
-                          }
-                        },
-                        autoDisposeControllers: false,
-                        cursorColor: AppColors.black,
-                        appContext: (context),
-                        autoFocus: true,
-                        pinTheme: PinTheme(
-                          shape: PinCodeFieldShape.box,
-                          borderRadius: BorderRadius.circular(8),
-                          fieldHeight: 60.h,
-                          fieldWidth: 60.w,
-                          activeFillColor: AppColors.transparent,
-                          selectedFillColor: AppColors.transparent,
-                          inactiveFillColor: AppColors.transparent,
-                          borderWidth: 0.5.w,
-                          selectedColor: AppColors.primaryColor,
-                          activeColor: AppColors.primaryColor,
-                          inactiveColor: AppColors.black,
-                        ),
-                        length: 6,
-                        keyboardType: TextInputType.number,
-                        autovalidateMode: AutovalidateMode.disabled,
-                        enableActiveFill: true,
-                      ),
-                    ),
-
-                    /// Resent OTP or show Timer
-                    GestureDetector(
-                      onTap:
-                          controller.time == '00:00'
-                              ? () {
-                                controller.startTimer();
-                                controller.forgotPasswordRepo();
-                              }
-                              : () {},
-                      child: CommonText(
-                        text:
-                            controller.time == '00:00'
-                                ? AppString.resendCode
-                                : "${AppString.resendCodeIn} ${controller.time} ${AppString.minute}",
-                        top: 60,
-                        bottom: 100,
-                        fontSize: 18,
-                      ),
-                    ),
-
-                    ///  Submit Button here
-                    CommonButton(
-                      titleText: AppString.verify,
-                      isLoading: controller.isLoadingVerify,
-                      onTap: () {
-                        if (formKey.currentState!.validate()) {
-                          controller.verifyOtpRepo();
-                        }
-                      },
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
+
+                Positioned(
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Container(
+                    padding: EdgeInsets.only(
+                      left: 20,
+                      right: 20,
+                      top: 34,
+                      bottom: 72,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(30),
+                        topRight: Radius.circular(30),
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0xff9D9D9D).withOpacity(0.25),
+                          blurRadius: 4,
+                          spreadRadius: 4,
+                        ),
+                      ],
+                    ),
+                    child: Form(
+                      key: formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          /// forget password take email for reset Password
+                          const CommonText(
+                            text: AppString.verifyYourOTP,
+                            bottom: 4,
+                            fontSize: 18,
+                            color: AppColors.black_400,
+                          ),
+                          const CommonText(
+                            text: AppString.verifyYourOTPDetails,
+                            bottom: 16,
+                            color: AppColors.black_300,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                            maxLines: 3,
+                          ),
+
+                          Flexible(
+                            flex: 0,
+                            child: PinCodeTextField(
+                              controller: controller.otpController,
+                              autoDisposeControllers: false,
+                              cursorColor: AppColors.black,
+                              appContext: (context),
+                              autoFocus: true,
+                              pinTheme: PinTheme(
+                                shape: PinCodeFieldShape.box,
+                                fieldHeight: 48.sp,
+                                fieldWidth: 48.sp,
+                                activeFillColor: AppColors.transparent,
+                                selectedFillColor: AppColors.transparent,
+                                inactiveFillColor: AppColors.transparent,
+                                selectedColor: AppColors.primaryColor,
+                                activeColor: AppColors.primaryColor,
+                                inactiveColor: AppColors.black,
+                              ),
+                              length: 6,
+                              keyboardType: TextInputType.number,
+                              autovalidateMode: AutovalidateMode.disabled,
+                              enableActiveFill: true,
+                              validator: (value) {
+                                if (value != null && value.length == 6) {
+                                  return null;
+                                } else {
+                                  return AppString.otpIsInValid;
+                                }
+                              },
+                            ),
+                          ),
+
+                          CommonText(
+                            text:
+                                "${AppString.resendCodeIn} ${controller.time}",
+                            color: AppColors.black_300,
+                            bottom: 20,
+                            top: 16,
+                          ),
+
+                          CommonButton(
+                            titleText: AppString.sendResetCode,
+                            isLoading: controller.isLoadingEmail,
+                            titleColor: AppColors.white_500,
+                            onTap: () {
+                              if (formKey.currentState!.validate()) {
+                                controller.verifyOtpRepo();
+                              }
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-      ),
+          ),
     );
   }
 }
