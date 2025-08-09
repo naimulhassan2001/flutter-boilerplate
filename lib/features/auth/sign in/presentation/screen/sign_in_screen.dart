@@ -45,7 +45,6 @@ class SignInScreen extends StatelessWidget {
                   const CommonText(text: AppString.email, bottom: 8),
                   CommonTextField(
                     controller: controller.emailController,
-                    prefixIcon: const Icon(Icons.mail),
                     hintText: AppString.email,
                     validator: OtherHelper.emailValidator,
                   ),
@@ -58,7 +57,6 @@ class SignInScreen extends StatelessWidget {
                   ),
                   CommonTextField(
                     controller: controller.passwordController,
-                    prefixIcon: const Icon(Icons.lock),
                     isPassword: true,
                     hintText: AppString.password,
                     validator: OtherHelper.passwordValidator,
@@ -73,8 +71,8 @@ class SignInScreen extends StatelessWidget {
                         text: AppString.forgotThePassword,
                         top: 10,
                         bottom: 30,
-                        color: AppColors.primaryColor,
-                        fontSize: 16,
+                        color: Color(0xffED3528),
+                        fontSize: 12,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -82,7 +80,7 @@ class SignInScreen extends StatelessWidget {
 
                   /// Submit Button here
                   CommonButton(
-                    titleText: AppString.signIn,
+                    titleText: AppString.logIn,
                     isLoading: controller.isLoading,
                     onTap: controller.signInUser,
                   ),

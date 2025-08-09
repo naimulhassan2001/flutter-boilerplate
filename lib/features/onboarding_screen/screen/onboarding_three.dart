@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:new_untitled/component/button/common_button.dart';
 import 'package:new_untitled/component/image/common_image.dart';
 import 'package:new_untitled/component/text/common_text.dart';
+import 'package:new_untitled/config/route/app_routes.dart';
 import 'package:new_untitled/features/onboarding_screen/widgets/indicatior.dart';
 import 'package:new_untitled/utils/constants/app_colors.dart';
 import 'package:new_untitled/utils/constants/app_images.dart';
@@ -60,11 +62,7 @@ class OnboardingThree extends StatelessWidget {
               Expanded(
                 child: CommonButton(
                   titleText: AppString.next,
-                  onTap:
-                      () => controller.nextPage(
-                        duration: Duration(milliseconds: 200),
-                        curve: Curves.easeInOut,
-                      ),
+                  onTap: () => Get.toNamed(AppRoutes.signInSignUp),
                 ),
               ),
             ],

@@ -35,7 +35,7 @@ class AppString {
   static const String minute = "minute";
   static const String verify = "Verify";
   static const String logIntoYourAccount = "Login to Your Account";
-  static const String forgotThePassword = "Forgot the password";
+  static const String forgotThePassword = "Forgot password";
   static const String signIn = "Sign in";
   static const String doNotHaveAccount = "Don’t have an account";
   static const String signUp = "Sign up";
@@ -92,7 +92,7 @@ class AppString {
   static const String iAmaUser = "im a user";
   static const String onboarding5 =
       "If you're new here, don’t worry. It’s quick and easy to create an account and begin securely managing your health and emergency information with peace of mind.Sign up here to manage your health info securely.";
-  static const String continueAsGuest = "continue as a guest";
+  static const String continueAsGuest = "Continue As A Guest";
   static const String logIn = "log in";
   static const String logInDetails = "Log In to Access Your Health Information";
   static const String forgotYourPassword = "Forgot Your Password!";
