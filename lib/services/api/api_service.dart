@@ -2,11 +2,11 @@ import 'dart:async';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:mime/mime.dart';
-import '../../data/models/api_response_model.dart';
 import '../../config/api/api_end_point.dart';
 import '../../utils/constants/app_string.dart';
 import '../../utils/log/api_log.dart';
 import '../storage/storage_services.dart';
+import 'api_response_model.dart';
 
 class ApiService {
   static final Dio _dio = _getMyDio();
@@ -107,17 +107,9 @@ class ApiService {
 
   static ApiResponseModel _handleError(dynamic error) {
     try {
-      if (error is DioException) {
-        return _handleDioException(error);
-      }
-
-      if (error.response != null) {
-        return ApiResponseModel(error.response.statusCode, error.response.data);
-      }
-
-      return _handleOtherErrors(error);
+      return _handleDioException(error);
     } catch (e) {
-      return ApiResponseModel(400, {});
+      return ApiResponseModel(500, {});
     }
   }
 
@@ -127,25 +119,20 @@ class ApiService {
       case DioExceptionType.receiveTimeout:
       case DioExceptionType.sendTimeout:
         return ApiResponseModel(408, {"message": AppString.requestTimeOut});
+
+      case DioExceptionType.badResponse:
+        return ApiResponseModel(
+          error.response?.statusCode,
+          error.response?.data,
+        );
+
       case DioExceptionType.connectionError:
         return ApiResponseModel(503, {
           "message": AppString.noInternetConnection,
         });
 
       default:
-        return ApiResponseModel(500, {});
-    }
-  }
-
-  static ApiResponseModel _handleOtherErrors(dynamic error) {
-    if (error is SocketException) {
-      return ApiResponseModel(503, {"message": AppString.noInternetConnection});
-    } else if (error is FormatException) {
-      return ApiResponseModel(400, {"message": AppString.badResponseRequest});
-    } else if (error is TimeoutException) {
-      return ApiResponseModel(408, {"message": AppString.requestTimeOut});
-    } else {
-      return ApiResponseModel(500, {});
+        return ApiResponseModel(400, {});
     }
   }
 }
@@ -154,33 +141,27 @@ class ApiService {
 Dio _getMyDio() {
   Dio dio = Dio();
 
+  dio.interceptors.add(apiLog());
+
   dio.interceptors.add(
     InterceptorsWrapper(
       onRequest: (options, handler) {
-        final stopwatch = Stopwatch()..start();
         options
           ..headers["Authorization"] ??= "Bearer ${LocalStorage.token}"
           ..headers["Content-Type"] ??= "application/json"
+          ..connectTimeout = const Duration(seconds: 30)
           ..sendTimeout = const Duration(seconds: 30)
+          ..receiveDataWhenStatusError = true
+          ..responseType = ResponseType.json
           ..receiveTimeout = const Duration(seconds: 30)
           ..baseUrl =
-              options.baseUrl.startsWith("http") ? "" : ApiEndPoint.baseUrl
-          ..extra["stopwatch"] = stopwatch;
-
-        apiRequestLog(options);
+              options.baseUrl.startsWith("http") ? "" : ApiEndPoint.baseUrl;
         handler.next(options);
       },
       onResponse: (response, handler) {
-        final stopwatch =
-            response.requestOptions.extra["stopwatch"] as Stopwatch?;
-        stopwatch?.stop();
-        apiResponseLog(response, stopwatch ?? Stopwatch());
         handler.next(response);
       },
       onError: (error, handler) {
-        final stopwatch = error.requestOptions.extra["stopwatch"] as Stopwatch?;
-        stopwatch?.stop();
-        apiErrorLog(error, stopwatch ?? Stopwatch());
         handler.next(error);
       },
     ),
