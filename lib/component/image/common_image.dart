@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:new_untitled/config/api/api_end_point.dart';
 import '../../../utils/constants/app_images.dart';
 import '../../../utils/log/error_log.dart';
 
@@ -45,24 +47,32 @@ class CommonImage extends StatelessWidget {
   }
 
   Widget _buildNetworkImage() {
-    return CachedNetworkImage(
-      height: size ?? height,
-      width: size ?? width,
-      imageUrl: imageSrc,
-      fit: fill,
-      imageBuilder: (context, imageProvider) => Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(borderRadius),
-          image: DecorationImage(image: imageProvider, fit: fill),
-        ),
-      ),
-      progressIndicatorBuilder: (context, url, downloadProgress) =>
-          CircularProgressIndicator(value: downloadProgress.progress),
-      errorWidget: (context, url, error) {
-        errorLog(error, source: "Common Image");
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(borderRadius),
+      child: CachedNetworkImage(
+        height: size?.sp ?? height?.h,
+        width: size?.sp ?? width?.w,
+        imageUrl:
+            imageSrc.startsWith("http")
+                ? imageSrc
+                : "${ApiEndPoint.imageUrl}$imageSrc",
+        fit: fill,
+        imageBuilder:
+            (context, imageProvider) => Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(borderRadius),
+                image: DecorationImage(image: imageProvider, fit: fill),
+              ),
+            ),
+        progressIndicatorBuilder:
+            (context, url, downloadProgress) =>
+                CircularProgressIndicator(value: downloadProgress.progress),
+        errorWidget: (context, url, error) {
+          errorLog(error, source: "Common Image");
 
-        return _buildErrorWidget();
-      },
+          return _buildErrorWidget();
+        },
+      ),
     );
   }
 
@@ -70,8 +80,8 @@ class CommonImage extends StatelessWidget {
     return SvgPicture.asset(
       imageSrc,
       color: imageColor,
-      height: size ?? height,
-      width: size ?? width,
+      height: size?.sp ?? height?.h,
+      width: size?.sp ?? width?.w,
       fit: fill,
     );
   }
@@ -82,8 +92,8 @@ class CommonImage extends StatelessWidget {
       child: Image.asset(
         imageSrc,
         color: imageColor,
-        height: size ?? height,
-        width: size ?? width,
+        height: size?.sp ?? height?.h,
+        width: size?.sp ?? width?.w,
         fit: fill,
         errorBuilder: (context, error, stackTrace) {
           errorLog(error, source: "Common Image");
