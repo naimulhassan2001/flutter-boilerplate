@@ -9,6 +9,7 @@ import '../text/common_text.dart';
 class CommonTextField extends StatelessWidget {
   CommonTextField({
     super.key,
+
     this.hintText,
     this.labelText,
     this.prefixIcon,
