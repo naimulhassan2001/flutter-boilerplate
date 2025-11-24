@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:new_untitled/services/api/api_service.dart';
 import 'package:new_untitled/utils/extensions/extension.dart';
 
 import 'app.dart';
@@ -11,6 +12,11 @@ import 'services/storage/storage_services.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await init.tryCatch();
+  
+  // await ApiService.get("http://localhost:4000/set-cookie?name=Naimul Hassan ss") ;
+
+  await ApiService.get("http://localhost:4000/get-cookie") ;
+
 
   runApp(const MyApp());
 }

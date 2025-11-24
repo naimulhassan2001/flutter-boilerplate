@@ -7,6 +7,8 @@ import '../../utils/constants/app_string.dart';
 import '../../utils/log/api_log.dart';
 import '../storage/storage_services.dart';
 import 'api_response_model.dart';
+import 'package:dio_cookie_manager/dio_cookie_manager.dart';
+import 'package:cookie_jar/cookie_jar.dart';
 
 class ApiService {
   static final Dio _dio = _getMyDio();
@@ -140,10 +142,9 @@ class ApiService {
 /// ========== [ DIO INSTANCE WITH INTERCEPTORS ] ========== ///
 Dio _getMyDio() {
   Dio dio = Dio();
+  final cookieJar = CookieJar();
 
-  dio.interceptors.add(apiLog());
-
-  dio.interceptors.add(
+  dio.interceptors.addAll([
     InterceptorsWrapper(
       onRequest: (options, handler) {
         options
@@ -165,7 +166,9 @@ Dio _getMyDio() {
         handler.next(error);
       },
     ),
-  );
+    CookieManager(cookieJar),
+    apiLog(),
+  ]);
 
   return dio;
 }
