@@ -12,11 +12,11 @@ extension View on num {
 // All Alignments Extensions
 
 extension Alignments on Widget {
-  Widget get start => Align(alignment: Alignment.centerLeft, child: this);
+  Widget get start => Align(alignment: .centerLeft, child: this);
 
-  Widget get end => Align(alignment: Alignment.centerRight, child: this);
+  Widget get end => Align(alignment: .centerRight, child: this);
 
-  Widget get center => Align(alignment: Alignment.center, child: this);
+  Widget get center => Align(alignment: .center, child: this);
 }
 
 // All Alignments Time Formatter Extensions
@@ -47,7 +47,7 @@ extension TimeFormater on DateTime {
 }
 
 extension AsyncTryCatch on Function() {
-    tryCatch() async {
+  tryCatch() async {
     try {
       await this();
     } catch (e, stackTrace) {
@@ -55,4 +55,3 @@ extension AsyncTryCatch on Function() {
     }
   }
 }
-

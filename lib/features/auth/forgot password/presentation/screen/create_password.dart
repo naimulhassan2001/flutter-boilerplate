@@ -19,7 +19,6 @@ class CreatePassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       /// App Bar Section starts here
       appBar: AppBar(
         title: const CommonText(
@@ -33,11 +32,11 @@ class CreatePassword extends StatelessWidget {
       body: GetBuilder<ForgetPasswordController>(
         builder: (controller) {
           return SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
+            padding: .symmetric(horizontal: 20.w, vertical: 24.h),
             child: Form(
               key: _formKey,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: .start,
                 children: [
                   64.height,
 
@@ -79,12 +78,10 @@ class CreatePassword extends StatelessWidget {
                     controller: controller.confirmPasswordController,
                     prefixIcon: const Icon(Icons.lock),
                     hintText: AppString.confirmPassword,
-                    validator:
-                        (value) =>
-                        OtherHelper.confirmPasswordValidator(
-                          value,
-                          controller.passwordController,
-                        ),
+                    validator: (value) => OtherHelper.confirmPasswordValidator(
+                      value,
+                      controller.passwordController,
+                    ),
                     isPassword: true,
                   ),
                   64.height,

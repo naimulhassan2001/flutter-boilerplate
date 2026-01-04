@@ -30,11 +30,11 @@ class ChangePasswordScreen extends StatelessWidget {
       body: GetBuilder<ChangePasswordController>(
         builder: (controller) {
           return SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            padding: .symmetric(horizontal: 20.w),
             child: Form(
               key: _formKey,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: .start,
                 children: [
                   70.height,
 
@@ -69,18 +69,17 @@ class ChangePasswordScreen extends StatelessWidget {
                   CommonTextField(
                     controller: controller.confirmPasswordController,
                     hintText: AppString.confirmPassword,
-                    validator:
-                        (value) => OtherHelper.confirmPasswordValidator(
-                          value,
-                          controller.newPasswordController,
-                        ),
+                    validator: (value) => OtherHelper.confirmPasswordValidator(
+                      value,
+                      controller.newPasswordController,
+                    ),
                     isPassword: true,
                   ),
 
                   /// forget Password button
                   Align(
-                    alignment: Alignment.centerLeft,
-                    child: GestureDetector(
+                    alignment: .centerLeft,
+                    child: InkWell(
                       onTap: () => Get.toNamed(AppRoutes.forgotPassword),
                       child: CommonText(
                         text: AppString.forgotPassword,
