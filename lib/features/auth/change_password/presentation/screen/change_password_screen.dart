@@ -11,9 +11,10 @@ import '../../../../../../../utils/constants/app_colors.dart';
 import '../../../../../../../utils/constants/app_string.dart';
 import '../../../../../utils/helpers/other_helper.dart';
 
-
 class ChangePasswordScreen extends StatelessWidget {
-  const ChangePasswordScreen({super.key});
+  ChangePasswordScreen({super.key});
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class ChangePasswordScreen extends StatelessWidget {
           return SingleChildScrollView(
             padding: EdgeInsets.symmetric(horizontal: 20.w),
             child: Form(
-              key: controller.formKey,
+              key: _formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -44,7 +45,6 @@ class ChangePasswordScreen extends StatelessWidget {
                     hintText: AppString.currentPassword,
                     validator: OtherHelper.passwordValidator,
                     isPassword: true,
-                    prefixIcon: Icon(Icons.lock, size: 20.sp),
                   ),
 
                   /// New Password section
@@ -58,7 +58,6 @@ class ChangePasswordScreen extends StatelessWidget {
                     hintText: AppString.newPassword,
                     validator: OtherHelper.passwordValidator,
                     isPassword: true,
-                    prefixIcon: Icon(Icons.lock, size: 20.sp),
                   ),
 
                   /// confirm Password section
@@ -76,7 +75,6 @@ class ChangePasswordScreen extends StatelessWidget {
                           controller.newPasswordController,
                         ),
                     isPassword: true,
-                    prefixIcon: Icon(Icons.lock, size: 20.sp),
                   ),
 
                   /// forget Password button
@@ -99,7 +97,11 @@ class ChangePasswordScreen extends StatelessWidget {
                   CommonButton(
                     titleText: AppString.confirm,
                     isLoading: controller.isLoading,
-                    onTap: controller.changePasswordRepo,
+                    onTap: () {
+                      if (_formKey.currentState!.validate()) {
+                        controller.changePasswordRepo();
+                      }
+                    },
                   ),
                 ],
               ),

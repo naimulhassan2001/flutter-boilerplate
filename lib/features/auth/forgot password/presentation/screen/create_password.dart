@@ -11,15 +11,15 @@ import '../../../../../../../utils/constants/app_images.dart';
 import '../../../../../../../utils/constants/app_string.dart';
 import '../../../../../../../utils/helpers/other_helper.dart';
 
-
 class CreatePassword extends StatelessWidget {
   CreatePassword({super.key});
 
-  final formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       /// App Bar Section starts here
       appBar: AppBar(
         title: const CommonText(
@@ -35,7 +35,7 @@ class CreatePassword extends StatelessWidget {
           return SingleChildScrollView(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
             child: Form(
-              key: formKey,
+              key: _formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -80,7 +80,8 @@ class CreatePassword extends StatelessWidget {
                     prefixIcon: const Icon(Icons.lock),
                     hintText: AppString.confirmPassword,
                     validator:
-                        (value) => OtherHelper.confirmPasswordValidator(
+                        (value) =>
+                        OtherHelper.confirmPasswordValidator(
                           value,
                           controller.passwordController,
                         ),
@@ -93,7 +94,7 @@ class CreatePassword extends StatelessWidget {
                     titleText: AppString.continues,
                     isLoading: controller.isLoadingReset,
                     onTap: () {
-                      if (formKey.currentState!.validate()) {
+                      if (_formKey.currentState!.validate()) {
                         controller.resetPasswordRepo();
                       }
                     },

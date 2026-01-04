@@ -43,7 +43,7 @@ class ForgetPasswordController extends GetxController {
 
   /// create Forget Password Controller instance
   static ForgetPasswordController get instance =>
-      Get.put(ForgetPasswordController());
+      Get.find<ForgetPasswordController>();
 
   @override
   void dispose() {
@@ -52,6 +52,9 @@ class ForgetPasswordController extends GetxController {
     otpController.dispose();
     passwordController.dispose();
     confirmPasswordController.dispose();
+    time = "00:00";
+    start = 0;
+    _timer?.cancel();
     super.dispose();
   }
 

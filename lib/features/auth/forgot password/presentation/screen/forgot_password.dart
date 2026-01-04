@@ -12,7 +12,7 @@ import '../../../../../../../utils/helpers/other_helper.dart';
 class ForgotPasswordScreen extends StatelessWidget {
   ForgotPasswordScreen({super.key});
 
-  final formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class ForgotPasswordScreen extends StatelessWidget {
             body: SingleChildScrollView(
               padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
               child: Form(
-                key: formKey,
+                key: _formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -40,7 +40,6 @@ class ForgotPasswordScreen extends StatelessWidget {
                     const CommonText(text: AppString.email, bottom: 8, top: 80),
                     CommonTextField(
                       controller: controller.emailController,
-                      prefixIcon: const Icon(Icons.mail),
                       hintText: AppString.email,
                       validator: OtherHelper.emailValidator,
                     ),
@@ -59,7 +58,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                 titleText: AppString.continues,
                 isLoading: controller.isLoadingEmail,
                 onTap: () {
-                  if (formKey.currentState!.validate()) {
+                  if (_formKey.currentState!.validate()) {
                     controller.forgotPasswordRepo();
                   }
                 },

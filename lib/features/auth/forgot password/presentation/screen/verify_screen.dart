@@ -17,7 +17,7 @@ class VerifyScreen extends StatefulWidget {
 }
 
 class _VerifyScreenState extends State<VerifyScreen> {
-  final formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
   /// init State here
   @override
@@ -44,7 +44,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
             (controller) => SingleChildScrollView(
               padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 20.w),
               child: Form(
-                key: formKey,
+                key: _formKey,
                 child: Column(
                   children: [
                     /// instruction how to get OTP
@@ -119,7 +119,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
                       titleText: AppString.verify,
                       isLoading: controller.isLoadingVerify,
                       onTap: () {
-                        if (formKey.currentState!.validate()) {
+                        if (_formKey.currentState!.validate()) {
                           controller.verifyOtpRepo();
                         }
                       },
