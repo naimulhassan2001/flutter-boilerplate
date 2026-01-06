@@ -5,7 +5,7 @@ analyzer:
     dead_code: ignore
     unused_import: warning
     unused_local_variable: warning
-    todo: ignore
+    todo: info
 
 linter:
   rules:
