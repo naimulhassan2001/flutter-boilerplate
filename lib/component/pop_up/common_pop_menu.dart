@@ -130,7 +130,6 @@ void logOutPopUp() {
                         child: CommonButton(
                           titleText: AppString.no,
                           borderWidth: 1.5,
-                          borderColor: AppColors.primaryColor,
                           buttonColor: AppColors.transparent,
                           titleColor: AppColors.primaryColor,
                           onTap: () => Get.back(),
@@ -183,16 +182,12 @@ void deletePopUp({
                     text: AppString.areYouSure,
                     fontSize: 20.sp,
                     fontWeight: FontWeight.w700,
-                    color: AppColors.black,
-                    maxLines: 1,
                     bottom: 24.h,
                   ),
                 ),
                 CommonText(
                   text: AppString.deleteDetails,
                   fontSize: 16.sp,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.black,
                   maxLines: 2,
                   bottom: 20.h,
                 ),
@@ -222,7 +217,6 @@ void deletePopUp({
                 Expanded(
                   child: CommonButton(
                     titleText: AppString.done,
-                    titleColor: AppColors.white,
                     buttonRadius: 4.r,
                     buttonHeight: 48.h,
                     onTap: () async {

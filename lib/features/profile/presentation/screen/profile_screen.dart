@@ -44,7 +44,6 @@ class ProfileScreen extends StatelessWidget {
                       child: CommonImage(
                         imageSrc: AppImages.profile,
                         size: 170,
-                        defaultImage: AppImages.profile,
                       ),
                     ),
                   ),
@@ -101,7 +100,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
 
                 /// Log Out item here
-                Item(
+                const Item(
                   icon: Icons.logout,
                   title: AppString.logOut,
                   onTap: logOutPopUp,

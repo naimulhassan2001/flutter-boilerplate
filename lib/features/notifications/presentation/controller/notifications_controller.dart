@@ -32,7 +32,7 @@ class NotificationsController extends GetxController {
         isLoadingMore = true;
         update();
         page++;
-        List<NotificationModel> list = await notificationRepository(page);
+      final List<NotificationModel> list = await notificationRepository(page);
         if (list.isEmpty) {
           hasNoData = true;
         } else {
@@ -52,7 +52,7 @@ class NotificationsController extends GetxController {
     update();
 
     page++;
-    List<NotificationModel> list = await notificationRepository(page);
+    final List<NotificationModel> list = await notificationRepository(page);
     if (list.isEmpty) {
       hasNoData = true;
     } else {

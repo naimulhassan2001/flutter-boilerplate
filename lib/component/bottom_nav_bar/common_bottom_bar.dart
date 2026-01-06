@@ -58,7 +58,7 @@ class CommonBottomNavBar extends StatelessWidget {
   }
 
   void onTap(int index) async {
-    appLog(currentIndex, source: "common bottombar");
+    appLog(currentIndex, source: 'common bottombar');
 
     if (index == currentIndex) return;
     switch (index) {
@@ -79,7 +79,7 @@ class CommonBottomNavBar extends StatelessWidget {
         break;
 
       default:
-        appLog("Invalid bottom bar index: $index");
+        appLog('Invalid bottom bar index: $index');
     }
   }
 }

@@ -44,8 +44,8 @@ class MessageController extends GetxController {
       update();
     }
 
-    var response = await ApiService.get(
-      "${ApiEndPoint.messages}?chatId=$chatId&page=$page&limit=15",
+    final response = await ApiService.get(
+      '${ApiEndPoint.messages}?chatId=$chatId&page=$page&limit=15',
     );
 
     if (response.statusCode == 200) {
@@ -59,7 +59,7 @@ class MessageController extends GetxController {
             time: messageModel.createdAt.toLocal(),
             text: messageModel.message,
             image: messageModel.sender.image,
-            isNotice: messageModel.type == "notice" ? true : false,
+            isNotice: messageModel.type == 'notice' ? true : false,
             isMe: LocalStorage.userId == messageModel.sender.id ? true : false,
           ),
         );
@@ -97,15 +97,15 @@ class MessageController extends GetxController {
     isMessage = false;
     update();
 
-    var body = {
-      "chat": chatId,
-      "message": messageController.text,
-      "sender": LocalStorage.userId,
+    final body = {
+      'chat': chatId,
+      'message': messageController.text,
+      'sender': LocalStorage.userId,
     };
 
     messageController.clear();
 
-    SocketServices.emitWithAck("add-new-message", body, (data) {
+    SocketServices.emitWithAck('add-new-message', body, (data) {
       if (kDebugMode) {
         print(
           "===============================================================> Received acknowledgment: $data",

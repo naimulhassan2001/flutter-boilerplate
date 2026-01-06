@@ -57,15 +57,15 @@ class ChatListScreen extends StatelessWidget {
                     itemCount: controller.chats.length,
                     padding: EdgeInsets.only(top: 16.h),
                     itemBuilder: (context, index) {
-                      ChatModel item = controller.chats[index];
+                     final ChatModel item = controller.chats[index];
                       return GestureDetector(
                         /// routing with data
                         onTap: () => Get.toNamed(
                           AppRoutes.message,
                           parameters: {
-                            "chatId": item.id,
-                            "name": item.participant.fullName,
-                            "image": item.participant.image,
+                            'chatId': item.id,
+                            'name': item.participant.fullName,
+                            'image': item.participant.image,
                           },
                         ),
 

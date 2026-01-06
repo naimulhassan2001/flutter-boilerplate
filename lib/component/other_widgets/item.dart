@@ -9,7 +9,7 @@ class Item extends StatelessWidget {
       {super.key,
       this.icon,
       required this.title,
-      this.image = "",
+      this.image = '',
       this.disableDivider = false,
       this.onTap,
       this.color = AppColors.black,

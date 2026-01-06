@@ -51,7 +51,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
                     Center(
                       child: CommonText(
                         text:
-                            "${AppString.codeHasBeenSendTo} ${controller.emailController.text}",
+                            '${AppString.codeHasBeenSendTo} ${controller.emailController.text}',
                         fontSize: 18,
                         top: 100,
                         bottom: 60,
@@ -107,7 +107,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
                         text:
                             controller.time == '00:00'
                                 ? AppString.resendCode
-                                : "${AppString.resendCodeIn} ${controller.time} ${AppString.minute}",
+                                : '${AppString.resendCodeIn} ${controller.time} ${AppString.minute}',
                         top: 60,
                         bottom: 100,
                         fontSize: 18,

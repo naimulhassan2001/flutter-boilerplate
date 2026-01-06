@@ -16,7 +16,7 @@ Future<void> main() async {
 
 Future<void> init() async {
   try {
-    DependencyInjection dI = DependencyInjection();
+    final dI = DependencyInjection();
     dI.dependencies();
     SocketServices.connectToSocket();
 
@@ -29,9 +29,9 @@ Future<void> init() async {
 
       /// TODO : Need to UnComment
       // NotificationService.initLocalNotification(),
-      dotenv.load(fileName: ".env"),
+      dotenv.load(),
     ]);
   } catch (e) {
-    errorLog(e, source: "main.dart");
+    errorLog(e, source: 'main.dart');
   }
 }

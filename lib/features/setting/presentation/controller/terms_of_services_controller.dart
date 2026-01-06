@@ -22,7 +22,7 @@ class TermsOfServicesController extends GetxController {
     status = Status.loading;
     update();
 
-    var response = await ApiService.get(ApiEndPoint.termsOfServices);
+    final response = await ApiService.get(ApiEndPoint.termsOfServices);
 
     if (response.statusCode == 200) {
       data = HtmlModel.fromJson(response.data['data']['attributes']);

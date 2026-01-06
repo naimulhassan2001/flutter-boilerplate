@@ -45,8 +45,7 @@ class CommonPhoneNumberTextFiled extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(8)),
         ),
       ),
-      initialCountryCode: "BD",
-      disableLengthCheck: false,
+      initialCountryCode: 'BD',
     );
   }
 }

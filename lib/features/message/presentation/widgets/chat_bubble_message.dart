@@ -36,8 +36,7 @@ class ChatBubbleMessage extends StatelessWidget {
             isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
           Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: .center,
             children: [
               Container(
                 margin: EdgeInsets.only(left: 10.w),
@@ -54,7 +53,6 @@ class ChatBubbleMessage extends StatelessWidget {
                     if (!isMe)
                       const CommonImage(
                         imageSrc: AppImages.noImage,
-                        fill: BoxFit.contain,
                         size: 60,
                       ),
 

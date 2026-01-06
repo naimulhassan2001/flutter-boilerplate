@@ -2,10 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import '../../../../../config/route/app_routes.dart';
-import '../../../../../services/api/api_service.dart';
-import '../../../../../config/api/api_end_point.dart';
-import '../../../../../services/storage/storage_keys.dart';
-import '../../../../../services/storage/storage_services.dart';
+
 
 class SignInController extends GetxController {
   /// Sign in Button Loading variable
@@ -19,7 +16,7 @@ class SignInController extends GetxController {
     text: kDebugMode ? 'developernaimul00@gmail.com' : '',
   );
   TextEditingController passwordController = TextEditingController(
-    text: kDebugMode ? 'hello123' : "",
+    text: kDebugMode ? 'hello123' : '',
   );
 
   /// Sign in Api call here
@@ -32,45 +29,45 @@ class SignInController extends GetxController {
     isLoading = true;
     update();
 
-    Map<String, String> body = {
-      "email": emailController.text,
-      "password": passwordController.text,
-    };
+    /// TODO : need to Uncomment
 
-    var response = await ApiService.post(
-      ApiEndPoint.signIn,
-      body: body,
-    ).timeout(const Duration(seconds: 30));
+    // final Map<String, String> body = {
+    //   'email': emailController.text,
+    //   'password': passwordController.text,
+    // };
 
-    if (response.statusCode == 200) {
-      var data = response.data;
+    // final response = await ApiService.post(ApiEndPoint.signIn, body: body);
 
-      LocalStorage.token = data['data']["accessToken"];
-      LocalStorage.userId = data['data']["attributes"]["_id"];
-      LocalStorage.myImage = data['data']["attributes"]["image"];
-      LocalStorage.myName = data['data']["attributes"]["fullName"];
+    // if (response.statusCode == 200) {
+    //   final Map<String, dynamic> data = Map<String, dynamic>.from(
+    //     response.data,
+    //   );
+    //   LocalStorage.token = data['data']['accessToken'];
+    //   LocalStorage.userId = data['data']['attributes']['_id'];
+    //   LocalStorage.myImage = data['data']['attributes']['image'];
+    //   LocalStorage.myName = data['data']['attributes']['fullName'];
 
-      LocalStorage.myEmail = data['data']["attributes"]["email"];
-      LocalStorage.isLogIn = true;
+    //   LocalStorage.myEmail = data['data']['attributes']['email'];
+    //   LocalStorage.isLogIn = true;
 
-      LocalStorage.setBool(LocalStorageKeys.isLogIn, LocalStorage.isLogIn);
-      LocalStorage.setString(LocalStorageKeys.token, LocalStorage.token);
-      LocalStorage.setString(LocalStorageKeys.userId, LocalStorage.userId);
-      LocalStorage.setString(LocalStorageKeys.myImage, LocalStorage.myImage);
-      LocalStorage.setString(LocalStorageKeys.myName, LocalStorage.myName);
-      LocalStorage.setString(LocalStorageKeys.myEmail, LocalStorage.myEmail);
+    //   LocalStorage.setBool(LocalStorageKeys.isLogIn, LocalStorage.isLogIn);
+    //   LocalStorage.setString(LocalStorageKeys.token, LocalStorage.token);
+    //   LocalStorage.setString(LocalStorageKeys.userId, LocalStorage.userId);
+    //   LocalStorage.setString(LocalStorageKeys.myImage, LocalStorage.myImage);
+    //   LocalStorage.setString(LocalStorageKeys.myName, LocalStorage.myName);
+    //   LocalStorage.setString(LocalStorageKeys.myEmail, LocalStorage.myEmail);
 
-      // if (LocalStorage.myRole == 'consultant') {
-      //   Get.offAllNamed(AppRoutes.doctorHome);
-      // } else {
-      //   Get.offAllNamed(AppRoutes.patientsHome);
-      // }
+    //   // if (LocalStorage.myRole == 'consultant') {
+    //   //   Get.offAllNamed(AppRoutes.doctorHome);
+    //   // } else {
+    //   //   Get.offAllNamed(AppRoutes.patientsHome);
+    //   // }
 
-      emailController.clear();
-      passwordController.clear();
-    } else {
-      Get.snackbar(response.statusCode.toString(), response.message);
-    }
+    //   emailController.clear();
+    //   passwordController.clear();
+    // } else {
+    //   Get.snackbar(response.statusCode.toString(), response.message);
+    // }
 
     isLoading = false;
     update();

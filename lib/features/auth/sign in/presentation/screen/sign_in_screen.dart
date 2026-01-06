@@ -30,7 +30,6 @@ class SignInScreen extends StatelessWidget {
             child: Form(
               key: controller.formKey,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   /// Log In Instruction here

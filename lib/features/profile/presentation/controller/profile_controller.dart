@@ -9,13 +9,13 @@ import '../../../../utils/helpers/other_helper.dart';
 
 class ProfileController extends GetxController {
   /// Language List here
-  List languages = ["English", "French", "Arabic"];
+  List languages = ['English', 'French', 'Arabic'];
 
   /// form key here
   final formKey = GlobalKey<FormState>();
 
   /// select Language here
-  String selectedLanguage = "English";
+  String selectedLanguage = 'English';
 
   /// select image here
   String? image;
@@ -48,32 +48,31 @@ class ProfileController extends GetxController {
     isLoading = true;
     update();
 
-    Map<String, String> body = {
-      "fullName": nameController.text,
-      "phone": numberController.text,
+    final body = {
+      'fullName': nameController.text,
+      'phone': numberController.text,
     };
 
-    var response = await ApiService.multipart(
+    final response = await ApiService.multipart(
       ApiEndPoint.user,
       body: body,
       imagePath: image,
-      imageName: "image",
     );
 
     if (response.statusCode == 200) {
       var data = response.data;
 
-      LocalStorage.userId = data['data']?["_id"] ?? "";
-      LocalStorage.myImage = data['data']?["image"] ?? "";
-      LocalStorage.myName = data['data']?["fullName"] ?? "";
-      LocalStorage.myEmail = data['data']?["email"] ?? "";
+      LocalStorage.userId = data['data']?["_id"] ?? '';
+      LocalStorage.myImage = data['data']?["image"] ?? '';
+      LocalStorage.myName = data['data']?["fullName"] ?? '';
+      LocalStorage.myEmail = data['data']?["email"] ?? '';
 
-      LocalStorage.setString("userId", LocalStorage.userId);
-      LocalStorage.setString("myImage", LocalStorage.myImage);
-      LocalStorage.setString("myName", LocalStorage.myName);
-      LocalStorage.setString("myEmail", LocalStorage.myEmail);
+      LocalStorage.setString('userId', LocalStorage.userId);
+      LocalStorage.setString('myImage', LocalStorage.myImage);
+      LocalStorage.setString('myName', LocalStorage.myName);
+      LocalStorage.setString('myEmail', LocalStorage.myEmail);
 
-      Utils.successSnackBar("Successfully Profile Updated", response.message);
+      Utils.successSnackBar('Successfully Profile Updated', response.message);
       Get.toNamed(AppRoutes.profile);
     } else {
       Utils.errorSnackBar(response.statusCode, response.message);

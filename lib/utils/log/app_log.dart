@@ -17,6 +17,6 @@ ${source.isNotEmpty ? ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 """);
     }
   } catch (e) {
-    errorLog(e, source: "App Log");
+    errorLog(e, source: 'App Log');
   }
 }

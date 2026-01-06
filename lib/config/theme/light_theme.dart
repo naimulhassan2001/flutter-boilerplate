@@ -8,8 +8,8 @@ ThemeData themeData = ThemeData(
   splashColor: AppColors.transparent,
   highlightColor: AppColors.transparent,
   hoverColor: AppColors.transparent,
-  scrollbarTheme: ScrollbarThemeData(),
 
+  /// AppBar Theme
   appBarTheme: const AppBarTheme(
     shadowColor: AppColors.transparent,
     surfaceTintColor: AppColors.transparent,
@@ -27,7 +27,7 @@ ThemeData themeData = ThemeData(
       padding: EdgeInsets.zero,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
-        side: const BorderSide(color: AppColors.primaryColor, width: 1),
+        side: const BorderSide(color: AppColors.primaryColor),
       ),
     ),
   ),

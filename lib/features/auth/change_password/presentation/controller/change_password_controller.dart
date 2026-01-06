@@ -20,11 +20,11 @@ class ChangePasswordController extends GetxController {
     isLoading = true;
     update();
 
-    Map<String, String> body = {
-      "oldPassword": currentPasswordController.text,
-      "newPassword": newPasswordController.text,
+    final Map<String, String> body = {
+      'oldPassword': currentPasswordController.text,
+      'newPassword': newPasswordController.text,
     };
-    var response = await ApiService.patch(
+    final response = await ApiService.patch(
       ApiEndPoint.changePassword,
       body: body,
     );

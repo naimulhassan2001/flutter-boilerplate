@@ -85,11 +85,11 @@ class CommonTextField extends StatelessWidget {
           errorMaxLines: 2,
           isDense: isDense,
           filled: true,
-          prefixIconConstraints: BoxConstraints(maxWidth: 30, maxHeight: 30),
+          prefixIconConstraints: const BoxConstraints(maxWidth: 30, maxHeight: 30),
           prefixIcon: prefixIcon,
           fillColor: fillColor,
 
-          counterText: "",
+          counterText: '',
           contentPadding: EdgeInsets.symmetric(
             horizontal: paddingHorizontal.w,
             vertical: paddingVertical.h,
@@ -104,7 +104,7 @@ class CommonTextField extends StatelessWidget {
           hintStyle: GoogleFonts.roboto(fontSize: 14, color: hintTextColor),
           labelStyle: GoogleFonts.roboto(fontSize: 14, color: labelTextColor),
           prefix: CommonText(
-            text: prefixText ?? "",
+            text: prefixText ?? '',
             fontWeight: FontWeight.w400,
           ),
           suffixIcon: isPassword ? _buildPasswordSuffixIcon() : suffixIcon,

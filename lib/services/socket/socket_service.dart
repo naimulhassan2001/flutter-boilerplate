@@ -17,11 +17,11 @@ class SocketServices {
           .build(),
     );
 
-    _socket.onConnect((data) => appLog("=============> Connection $data"));
-    _socket.onConnectError((data) => appLog("========>Connection Error $data"));
+    _socket.onConnect((data) => appLog('=============> Connection $data'));
+    _socket.onConnectError((data) => appLog('========>Connection Error $data'));
     _socket.connect();
-    _socket.on("user-notification::${LocalStorage.userId}", (data) {
-      appLog("================> get Data on socket: $data");
+    _socket.on('user-notification::${LocalStorage.userId}', (data) {
+      appLog('================> get Data on socket: $data');
       /// TODO: need to uncomment
       // NotificationService.showNotification(data);
     });

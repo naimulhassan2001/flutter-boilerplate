@@ -11,7 +11,7 @@ class OtherHelper {
   static RegExp passRegExp = RegExp(r'(?=.*[a-z])(?=.*[0-9])');
 
   static String? validator(dynamic value) {
-    if (value.isEmpty) {
+    if (value == null || value.isEmpty) {
       return AppString.thisFieldIsRequired;
     }
     return null;
@@ -69,10 +69,10 @@ class OtherHelper {
     );
 
     if (picked != null) {
-      controller.text = "${picked.year}/${picked.month}/${picked.day}";
+      controller.text = '${picked.year}/${picked.month}/${picked.day}';
       return picked.toIso8601String();
     }
-    return "";
+    return '';
   }
 
   static Future<String?> openGallery() async {

@@ -44,18 +44,14 @@ class NotificationItem extends StatelessWidget {
                         fontSize: 16,
                         fontWeight: FontWeight.w700,
                         textAlign: TextAlign.start,
-                        maxLines: 1,
                       ),
                     ),
 
                     /// Notification Time here
                     CommonText(
                       text: item.createdAt.checkTime,
-                      fontSize: 14,
                       fontWeight: FontWeight.w700,
                       textAlign: TextAlign.start,
-                      color: AppColors.black,
-                      maxLines: 1,
                     ),
                   ],
                 ),
@@ -63,10 +59,8 @@ class NotificationItem extends StatelessWidget {
                 /// Notification Message here
                 CommonText(
                   text: item.message,
-                  fontSize: 14,
                   fontWeight: FontWeight.w400,
                   maxLines: 2,
-                  color: AppColors.black,
                   textAlign: TextAlign.start,
                   bottom: 10,
                   top: 4,

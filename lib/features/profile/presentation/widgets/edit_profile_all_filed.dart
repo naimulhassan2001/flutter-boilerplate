@@ -30,7 +30,6 @@ class EditProfileAllFiled extends StatelessWidget {
           validator: OtherHelper.validator,
           hintText: AppString.fullName,
           prefixIcon: const Icon(Icons.person),
-          keyboardType: TextInputType.text,
           borderColor: AppColors.black,
           fillColor: AppColors.transparent,
         ),

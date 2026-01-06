@@ -22,12 +22,12 @@ class SignUpController extends GetxController {
   Timer? _timer;
   int start = 0;
 
-  String time = "";
+  String time = '';
 
-  List selectedOption = ["User", "Consultant"];
+  List selectedOption = ['User', 'Consultant'];
 
-  String selectRole = "User";
-  String countryCode = "+880";
+  String selectRole = 'User';
+  String countryCode = '+880';
   String? image;
 
   String signUpToken = '';
@@ -35,10 +35,10 @@ class SignUpController extends GetxController {
   static SignUpController get instance => Get.put(SignUpController());
 
   TextEditingController nameController = TextEditingController(
-    text: kDebugMode ? "Namimul Hassan" : "",
+    text: kDebugMode ? 'Naimul Hassan' : '',
   );
   TextEditingController emailController = TextEditingController(
-    text: kDebugMode ? "developernaimul00@gmail.com" : '',
+    text: kDebugMode ? 'developernaimul00@gmail.com' : '',
   );
   TextEditingController passwordController = TextEditingController(
     text: kDebugMode ? 'hello123' : '',
@@ -79,16 +79,16 @@ class SignUpController extends GetxController {
     return;
     isLoading = true;
     update();
-    Map<String, String> body = {
-      "fullName": nameController.text,
-      "email": emailController.text,
-      "phoneNumber": numberController.text,
-      "countryCode": countryCode,
-      "password": passwordController.text,
-      "role": selectRole.toLowerCase(),
+    final Map<String, String> body = {
+      'fullName': nameController.text,
+      'email': emailController.text,
+      'phoneNumber': numberController.text,
+      'countryCode': countryCode,
+      'password': passwordController.text,
+      'role': selectRole.toLowerCase(),
     };
 
-    var response = await ApiService.post(ApiEndPoint.signUp, body: body);
+    final response = await ApiService.post(ApiEndPoint.signUp, body: body);
 
     if (response.statusCode == 200) {
       var data = response.data;
@@ -110,7 +110,7 @@ class SignUpController extends GetxController {
         final minutes = (start ~/ 60).toString().padLeft(2, '0');
         final seconds = (start % 60).toString().padLeft(2, '0');
 
-        time = "$minutes:$seconds";
+        time = '$minutes:$seconds';
 
         update();
       } else {
@@ -125,9 +125,9 @@ class SignUpController extends GetxController {
 
     isLoadingVerify = true;
     update();
-    Map<String, String> body = {"otp": otpController.text};
-    Map<String, String> header = {"SignUpToken": "signUpToken $signUpToken"};
-    var response = await ApiService.post(
+   final Map<String, String> body = {'otp': otpController.text};
+   final Map<String, String> header = {'SignUpToken': 'signUpToken $signUpToken'};
+    final response = await ApiService.post(
       ApiEndPoint.verifyEmail,
       body: body,
       header: header,

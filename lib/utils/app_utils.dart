@@ -16,7 +16,7 @@ class Utils {
 
   static void errorSnackBar(dynamic title, String message) {
     Get.snackbar(
-      kDebugMode ? title.toString() : "Oops",
+      kDebugMode ? title.toString() : 'Oops',
       message,
       colorText: AppColors.white,
       backgroundColor: AppColors.red,

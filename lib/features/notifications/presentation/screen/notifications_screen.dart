@@ -50,9 +50,9 @@ class NotificationScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   ///  Notification More Data Loading Bar
                   if (index > controller.notifications.length) {
-                    return CommonLoader(size: 40, strokeWidth: 2);
+                    return const CommonLoader(size: 40, strokeWidth: 2);
                   }
-                  NotificationModel item = controller.notifications[index];
+                  final NotificationModel item = controller.notifications[index];
 
                   ///  Notification card item
                   return NotificationItem(item: item);

@@ -61,9 +61,6 @@ class _CommonButtonState extends State<CommonButton> {
   Widget _buildText() {
     return CommonText(
       text: widget.titleText,
-      maxLines: 1,
-      overflow: TextOverflow.ellipsis,
-      textAlign: TextAlign.center,
       fontSize: widget.titleSize,
       color: widget.titleColor,
       fontWeight: widget.titleWeight,
