@@ -95,7 +95,7 @@ class CommonImage extends StatelessWidget {
         width: size?.sp ?? width?.w,
         fit: fill,
         errorBuilder: (context, error, stackTrace) {
-          errorLog(error, source: "Common Image");
+          errorLog(error, source: 'Common Image');
           return _buildErrorWidget();
         },
       ),

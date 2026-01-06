@@ -47,10 +47,10 @@ class ChatController extends GetxController {
       update();
     }
 
-    var response = await ApiService.get("${ApiEndPoint.chats}?page=$page");
+    final response = await ApiService.get('${ApiEndPoint.chats}?page=$page');
 
     if (response.statusCode == 200) {
-      var data = response.data['chats'] ?? [];
+      final data = response.data['chats'] ?? [];
 
       for (var item in data) {
         chats.add(ChatModel.fromJson(item));
@@ -68,7 +68,7 @@ class ChatController extends GetxController {
 
   /// Chat data Update  Socket listener
   void listenChat() async {
-    SocketServices.on("update-chatlist::${LocalStorage.userId}", (data) {
+    SocketServices.on('update-chatlist::${LocalStorage.userId}', (data) {
       page = 1;
       chats.clear();
 

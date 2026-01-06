@@ -3,7 +3,7 @@ import '../../utils/constants/app_string.dart';
 
 class ApiResponseModel {
   final int? _statusCode;
-  final Map? _data;
+  final Map<String, dynamic>? _data;
 
   ApiResponseModel(this._statusCode, this._data);
 
@@ -18,5 +18,5 @@ class ApiResponseModel {
     return _data?['message']?.toString() ?? AppString.someThingWrong;
   }
 
-  Map get data => _data ?? {};
+  Map<String, dynamic> get data => _data ?? {};
 }

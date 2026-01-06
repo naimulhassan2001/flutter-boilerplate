@@ -10,14 +10,16 @@ class OtherHelper {
   );
   static RegExp passRegExp = RegExp(r'(?=.*[a-z])(?=.*[0-9])');
 
-  static String? validator(dynamic value) {
+  static String? validator(dynamic val) {
+    final String? value = val;
     if (value == null || value.isEmpty) {
       return AppString.thisFieldIsRequired;
     }
     return null;
   }
 
-  static String? emailValidator(dynamic value) {
+  static String? emailValidator(dynamic val) {
+    final String? value = val;
     if (value == null || value.isEmpty) {
       return AppString.thisFieldIsRequired;
     } else if (!emailRegexp.hasMatch(value)) {
@@ -26,7 +28,8 @@ class OtherHelper {
     return null;
   }
 
-  static String? passwordValidator(dynamic value) {
+  static String? passwordValidator(dynamic val) {
+    final String? value = val;
     if (value == null || value.isEmpty) {
       return AppString.thisFieldIsRequired;
     } else if (value.length < 8) {
@@ -37,10 +40,11 @@ class OtherHelper {
     return null;
   }
 
-  static String? confirmPasswordValidator(dynamic
-    value,
+  static String? confirmPasswordValidator(
+    dynamic val,
     TextEditingController passwordController,
   ) {
+    final String? value = val;
     if (value == null || value.isEmpty) {
       return AppString.thisFieldIsRequired;
     } else if (value != passwordController.text) {
@@ -53,15 +57,12 @@ class OtherHelper {
     TextEditingController controller,
   ) async {
     final DateTime? picked = await showDatePicker(
-      builder:
-          (context, child) => Theme(
-            data: Theme.of(context).copyWith(
-              colorScheme: const ColorScheme.light(
-                primary: AppColors.primaryColor,
-              ),
-            ),
-            child: child!,
-          ),
+      builder: (context, child) => Theme(
+        data: Theme.of(context).copyWith(
+          colorScheme: const ColorScheme.light(primary: AppColors.primaryColor),
+        ),
+        child: child!,
+      ),
       context: Get.context!,
       initialDate: DateTime.now(),
       firstDate: DateTime.now(),

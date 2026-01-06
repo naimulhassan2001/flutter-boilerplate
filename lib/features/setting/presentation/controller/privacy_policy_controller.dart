@@ -25,7 +25,9 @@ class PrivacyPolicyController extends GetxController {
     final response = await ApiService.get(ApiEndPoint.privacyPolicies);
 
     if (response.statusCode == 200) {
-      data = HtmlModel.fromJson(response.data['data']['attributes']);
+      final Map<String, dynamic> data = response.data['data'] ?? {};
+      final Map<String, dynamic> attributes = data['attributes'] ?? {};
+      this.data = HtmlModel.fromJson(attributes);
 
       status = Status.completed;
       update();

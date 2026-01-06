@@ -17,10 +17,10 @@ class MessageController extends GetxController {
   bool isMoreLoading = false;
   String? video;
 
-  List messages = [];
+  List<ChatMessageModel> messages = [];
 
-  String chatId = "";
-  String name = "";
+  String chatId = '';
+  String name = '';
 
   int page = 1;
   int currentIndex = 0;
@@ -49,9 +49,11 @@ class MessageController extends GetxController {
     );
 
     if (response.statusCode == 200) {
-      var data = response.data['data']['attributes']['messages'];
+      final Map<String, dynamic>? data = response.data['data'] ?? {};
+      final Map<String, dynamic>? attributes = data?['attributes'] ?? {};
+      final List<dynamic> messages = attributes?['messages'] ?? [];
 
-      for (var messageData in data) {
+      for (var messageData in messages) {
         messageModel = MessageModel.fromJson(messageData);
 
         messages.add(
@@ -108,7 +110,7 @@ class MessageController extends GetxController {
     SocketServices.emitWithAck('add-new-message', body, (data) {
       if (kDebugMode) {
         print(
-          "===============================================================> Received acknowledgment: $data",
+          '===============================================================> Received acknowledgment: $data',
         );
       }
     });
@@ -119,14 +121,16 @@ class MessageController extends GetxController {
       status = Status.loading;
       update();
 
-      var time = data['createdAt'].toLocal();
+      final messageModel = MessageModel.fromJson(data);
+
+      final time = messageModel.createdAt.toLocal();
       messages.insert(
         0,
         ChatMessageModel(
-          isNotice: data['messageType'] == "notice" ? true : false,
+          isNotice: messageModel.type == 'notice' ? true : false,
           time: time,
-          text: data['message'],
-          image: data['sender']['image'],
+          text: messageModel.message,
+          image: messageModel.sender.image,
           isMe: false,
         ),
       );

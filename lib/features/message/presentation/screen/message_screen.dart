@@ -18,9 +18,9 @@ class MessageScreen extends StatefulWidget {
 }
 
 class _MessageScreenState extends State<MessageScreen> {
-  String chatId = Get.parameters["chatId"] ?? "";
-  String name = Get.parameters["name"] ?? "";
-  String image = Get.parameters["image"] ?? "";
+  String chatId = Get.parameters['chatId'] ?? '';
+  String name = Get.parameters['name'] ?? '';
+  String image = Get.parameters['image'] ?? '';
 
   @override
   void initState() {
@@ -40,7 +40,6 @@ class _MessageScreenState extends State<MessageScreen> {
             leading: Padding(
               padding: EdgeInsets.only(left: 20.w),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   /// participant image here
                   CircleAvatar(
@@ -65,36 +64,35 @@ class _MessageScreenState extends State<MessageScreen> {
           ),
 
           /// Body Section starts here
-          body:
-              controller.isLoading
-                  /// Loading bar here
-                  ? const Center(child: CircularProgressIndicator())
-                  /// Show data  here
-                  : ListView.builder(
-                    reverse: true,
-                    controller: controller.scrollController,
-                    itemCount:
-                        controller.isMoreLoading
-                            ? controller.messages.length + 1
-                            : controller.messages.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      /// Message item here
-                      if (index < controller.messages.length) {
-                        ChatMessageModel message = controller.messages[index];
-                        return ChatBubbleMessage(
-                          index: index,
-                          image: message.image,
-                          time: message.time,
-                          text: message.text,
-                          isMe: message.isMe,
-                          onTap: () {},
-                        );
-                      } else {
-                        /// More data loading bar
-                        return const Center(child: CircularProgressIndicator());
-                      }
-                    },
-                  ),
+          body: controller.isLoading
+              /// Loading bar here
+              ? const Center(child: CircularProgressIndicator())
+              /// Show data  here
+              : ListView.builder(
+                  reverse: true,
+                  controller: controller.scrollController,
+                  itemCount: controller.isMoreLoading
+                      ? controller.messages.length + 1
+                      : controller.messages.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    /// Message item here
+                    if (index < controller.messages.length) {
+                      final ChatMessageModel message =
+                          controller.messages[index];
+                      return ChatBubbleMessage(
+                        index: index,
+                        image: message.image,
+                        time: message.time,
+                        text: message.text,
+                        isMe: message.isMe,
+                        onTap: () {},
+                      );
+                    } else {
+                      /// More data loading bar
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                  },
+                ),
 
           /// bottom Navigation Bar Section starts here
           bottomNavigationBar: AnimatedPadding(

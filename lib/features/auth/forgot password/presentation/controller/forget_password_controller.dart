@@ -116,8 +116,8 @@ class ForgetPasswordController extends GetxController {
     final response = await ApiService.post(ApiEndPoint.verifyOtp, body: body);
 
     if (response.statusCode == 200) {
-     var data = response.data;
-      forgetPasswordToken = data['data']?['forgetPasswordToken'] ?? '';
+      final Map<String, dynamic>? data = response.data['data'] ?? {};
+      forgetPasswordToken = data?['forgetPasswordToken'] ?? '';
       Get.toNamed(AppRoutes.createPassword);
     } else {
       Get.snackbar(response.statusCode.toString(), response.message);

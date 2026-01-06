@@ -60,12 +60,12 @@ class ProfileController extends GetxController {
     );
 
     if (response.statusCode == 200) {
-      var data = response.data;
+      final Map<String, dynamic> data = response.data['data'] ?? {};
 
-      LocalStorage.userId = data['data']?["_id"] ?? '';
-      LocalStorage.myImage = data['data']?["image"] ?? '';
-      LocalStorage.myName = data['data']?["fullName"] ?? '';
-      LocalStorage.myEmail = data['data']?["email"] ?? '';
+      LocalStorage.userId = data['_id'] ?? '';
+      LocalStorage.myImage = data['image'] ?? '';
+      LocalStorage.myName = data['fullName'] ?? '';
+      LocalStorage.myEmail = data['email'] ?? '';
 
       LocalStorage.setString('userId', LocalStorage.userId);
       LocalStorage.setString('myImage', LocalStorage.myImage);

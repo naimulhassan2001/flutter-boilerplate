@@ -91,8 +91,8 @@ class SignUpController extends GetxController {
     final response = await ApiService.post(ApiEndPoint.signUp, body: body);
 
     if (response.statusCode == 200) {
-      var data = response.data;
-      signUpToken = data['data']['signUpToken'];
+      final Map<String, dynamic>? data = response.data['data'] ?? {};
+      signUpToken = data?['signUpToken'] ?? '';
       Get.toNamed(AppRoutes.verifyUser);
     } else {
       Utils.errorSnackBar(response.statusCode.toString(), response.message);
@@ -125,8 +125,10 @@ class SignUpController extends GetxController {
 
     isLoadingVerify = true;
     update();
-   final Map<String, String> body = {'otp': otpController.text};
-   final Map<String, String> header = {'SignUpToken': 'signUpToken $signUpToken'};
+    final Map<String, String> body = {'otp': otpController.text};
+    final Map<String, String> header = {
+      'SignUpToken': 'signUpToken $signUpToken',
+    };
     final response = await ApiService.post(
       ApiEndPoint.verifyEmail,
       body: body,
@@ -134,13 +136,14 @@ class SignUpController extends GetxController {
     );
 
     if (response.statusCode == 200) {
-      var data = response.data;
+      final Map<String, dynamic>? data = response.data['data'] ?? {};
+      final Map<String, dynamic>? user = data?['user'] ?? {};
 
-      LocalStorage.token = data['data']["accessToken"];
-      LocalStorage.userId = data['data']["attributes"]["_id"];
-      LocalStorage.myImage = data['data']["attributes"]["image"];
-      LocalStorage.myName = data['data']["attributes"]["fullName"];
-      LocalStorage.myEmail = data['data']["attributes"]["email"];
+      LocalStorage.token = data?['accessToken'] ?? '';
+      LocalStorage.userId = user?['_id'] ?? '';
+      LocalStorage.myImage = user?['image'] ?? '';
+      LocalStorage.myName = user?['fullName'] ?? '';
+      LocalStorage.myEmail = user?['email'] ?? '';
       LocalStorage.isLogIn = true;
 
       LocalStorage.setBool(LocalStorageKeys.isLogIn, LocalStorage.isLogIn);
