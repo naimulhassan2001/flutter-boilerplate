@@ -13,7 +13,7 @@ class SettingController extends GetxController {
   bool isLoading = false;
 
   /// account delete api call here
-  deleteAccountRepo() async {
+  Future<void> deleteAccountRepo() async {
     isLoading = true;
     update();
 

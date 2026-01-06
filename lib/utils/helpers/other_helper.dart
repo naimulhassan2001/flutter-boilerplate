@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:new_untitled/utils/constants/app_string.dart';
 import '../constants/app_colors.dart';
+import '../constants/app_string.dart';
 
 class OtherHelper {
   static RegExp emailRegexp = RegExp(
@@ -10,14 +10,14 @@ class OtherHelper {
   );
   static RegExp passRegExp = RegExp(r'(?=.*[a-z])(?=.*[0-9])');
 
-  static String? validator(value) {
+  static String? validator(dynamic value) {
     if (value.isEmpty) {
       return AppString.thisFieldIsRequired;
     }
     return null;
   }
 
-  static String? emailValidator(value) {
+  static String? emailValidator(dynamic value) {
     if (value == null || value.isEmpty) {
       return AppString.thisFieldIsRequired;
     } else if (!emailRegexp.hasMatch(value)) {
@@ -26,7 +26,7 @@ class OtherHelper {
     return null;
   }
 
-  static String? passwordValidator(value) {
+  static String? passwordValidator(dynamic value) {
     if (value == null || value.isEmpty) {
       return AppString.thisFieldIsRequired;
     } else if (value.length < 8) {
@@ -37,7 +37,7 @@ class OtherHelper {
     return null;
   }
 
-  static String? confirmPasswordValidator(
+  static String? confirmPasswordValidator(dynamic
     value,
     TextEditingController passwordController,
   ) {

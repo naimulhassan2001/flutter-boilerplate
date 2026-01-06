@@ -75,7 +75,7 @@ class MessageController extends GetxController {
     }
   }
 
-  addNewMessage() async {
+  void addNewMessage() async {
     isMessage = true;
     update();
 
@@ -114,7 +114,7 @@ class MessageController extends GetxController {
     });
   }
 
-  listenMessage(String chatId) async {
+  void listenMessage(String chatId) async {
     SocketServices.on('new-message::$chatId', (data) {
       status = Status.loading;
       update();

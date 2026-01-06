@@ -1,7 +1,4 @@
-# Keep all PushProvisioning related classes from Stripe SDK
-
-
--ignorewarnings
--keep class * {
-  public private *;
-}
+-keep class io.flutter.** { *; }
+-keep class com.dexterous.** { *; }
+-keep class okhttp3.** { *; }
+-keep class retrofit2.** { *; }

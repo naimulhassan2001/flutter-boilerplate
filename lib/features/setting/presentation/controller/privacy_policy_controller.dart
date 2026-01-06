@@ -17,7 +17,7 @@ class PrivacyPolicyController extends GetxController {
       Get.put(PrivacyPolicyController());
 
   /// Privacy Policy Api call here
-  getPrivacyPolicyRepo() async {
+  Future<void> getPrivacyPolicyRepo() async {
     return;
     status = Status.loading;
     update();

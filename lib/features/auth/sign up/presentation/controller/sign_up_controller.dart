@@ -1,17 +1,15 @@
 import 'dart:async';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/countries.dart';
-import 'package:new_untitled/utils/helpers/other_helper.dart';
-
 import '../../../../../config/route/app_routes.dart';
 import '../../../../../services/api/api_service.dart';
 import '../../../../../services/storage/storage_keys.dart';
 import '../../../../../config/api/api_end_point.dart';
 import '../../../../../services/storage/storage_services.dart';
 import '../../../../../utils/app_utils.dart';
+import '../../../../../utils/helpers/other_helper.dart';
 
 class SignUpController extends GetxController {
   /// Sign Up Form Key
@@ -61,21 +59,21 @@ class SignUpController extends GetxController {
     super.dispose();
   }
 
-  onCountryChange(Country value) {
+  void onCountryChange(Country value) {
     countryCode = value.dialCode.toString();
   }
 
-  setSelectedRole(value) {
+  void setSelectedRole(String value) {
     selectRole = value;
     update();
   }
 
-  openGallery() async {
+  void openGallery() async {
     image = await OtherHelper.openGallery();
     update();
   }
 
-  signUpUser() async {
+  void signUpUser() async {
     if (!signUpFormKey.currentState!.validate()) return;
     Get.toNamed(AppRoutes.verifyUser);
     return;

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:new_untitled/utils/helpers/other_helper.dart';
 import '../../../services/storage/storage_services.dart';
 import '../../../utils/constants/app_colors.dart';
 import '../../../utils/constants/app_string.dart';
+import '../../utils/helpers/other_helper.dart';
 import '../button/common_button.dart';
 import '../text/common_text.dart';
 import '../text_field/common_text_field.dart';
@@ -99,7 +99,7 @@ class PopUpMenu extends StatelessWidget {
 
 
 
-logOutPopUp() {
+void logOutPopUp() {
   showDialog(
     context: Get.context!,
     builder: (context) {
@@ -158,7 +158,7 @@ logOutPopUp() {
   );
 }
 
-deletePopUp({
+void deletePopUp({
   required TextEditingController controller,
   required VoidCallback onTap,
   bool isLoading = false,
@@ -230,55 +230,6 @@ deletePopUp({
                         await AnimationPopUpState.closeDialog();
                         onTap();
                       }
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      );
-    },
-  );
-}
-
-logOutPopUps() {
-  showDialog(
-    context: Get.context!,
-    builder: (context) {
-      return AnimationPopUp(
-        child: AlertDialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.r),
-          ),
-          contentPadding: EdgeInsets.all(12.sp),
-          title: const CommonText(
-            text: AppString.youSureWantToLogout,
-            maxLines: 2,
-            fontWeight: FontWeight.w600,
-          ),
-          actions: [
-            Row(
-              children: [
-                Expanded(
-                  child: CommonButton(
-                    titleText: AppString.no,
-                    borderWidth: 1.5,
-                    borderColor: AppColors.primaryColor,
-                    buttonColor: AppColors.transparent,
-                    titleColor: AppColors.primaryColor,
-                    onTap: () {
-                      AnimationPopUpState.closeDialog();
-                    },
-                  ),
-                ),
-                SizedBox(width: 16.w),
-                Expanded(
-                  child: CommonButton(
-                    titleText: AppString.yes,
-                    onTap: () async {
-                      await AnimationPopUpState.closeDialog();
-                      LocalStorage.removeAllPrefData();
                     },
                   ),
                 ),

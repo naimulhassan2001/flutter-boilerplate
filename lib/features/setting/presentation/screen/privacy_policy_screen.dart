@@ -26,25 +26,21 @@ class PrivacyPolicyScreen extends StatelessWidget {
 
       /// Body Section stats here
       body: GetBuilder<PrivacyPolicyController>(
-        builder:
-            (controller) => switch (controller.status) {
-              /// Loading bar here
-              Status.loading => const CommonLoader(),
+        builder: (controller) => switch (controller.status) {
+          /// Loading bar here
+          Status.loading => const CommonLoader(),
 
-              /// Error Handle here
-              Status.error => ErrorScreen(
-                onTap: PrivacyPolicyController.instance.getPrivacyPolicyRepo(),
-              ),
+          /// Error Handle here
+          Status.error => ErrorScreen(
+            onTap: PrivacyPolicyController.instance.getPrivacyPolicyRepo,
+          ),
 
-              /// Show main data here
-              Status.completed => SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 24,
-                  horizontal: 20,
-                ),
-                child: Html(data: controller.data.content),
-              ),
-            },
+          /// Show main data here
+          Status.completed => SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+            child: Html(data: controller.data.content),
+          ),
+        },
       ),
     );
   }

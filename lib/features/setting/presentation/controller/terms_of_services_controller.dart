@@ -17,7 +17,7 @@ class TermsOfServicesController extends GetxController {
       Get.put(TermsOfServicesController());
 
   ///  Terms of services Api call here
-  geTermsOfServicesRepo() async {
+  Future<void> geTermsOfServicesRepo() async {
     return;
     status = Status.loading;
     update();

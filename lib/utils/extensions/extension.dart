@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart' as screenutil;
 import 'package:intl/intl.dart';
-import 'package:new_untitled/utils/log/error_log.dart';
 
 extension View on num {
   Widget get height => SizedBox(height: toDouble().h);
@@ -46,12 +45,3 @@ extension TimeFormater on DateTime {
   }
 }
 
-extension AsyncTryCatch on Function() {
-  tryCatch() async {
-    try {
-      await this();
-    } catch (e, stackTrace) {
-      errorLog(stackTrace.toString(), source: "Global Try Catch");
-    }
-  }
-}

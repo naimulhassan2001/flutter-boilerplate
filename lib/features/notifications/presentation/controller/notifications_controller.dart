@@ -45,7 +45,7 @@ class NotificationsController extends GetxController {
   }
 
   /// Notification data Loading function
-  getNotificationsRepo() async {
+ void getNotificationsRepo() async {
     return;
     if (isLoading || hasNoData) return;
     isLoading = true;
