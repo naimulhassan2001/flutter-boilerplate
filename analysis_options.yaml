@@ -21,11 +21,10 @@ linter:
     avoid_returning_null_for_future: true
 
     # Performance
-    use_const_constructors: true
-    use_const_literals_to_create_immutables: true
+    prefer_const_constructors: true
+    prefer_const_literals_to_create_immutables: true
 
     # Readability
-    prefer_const_constructors: true
     prefer_final_locals: true
     prefer_final_fields: true
 
