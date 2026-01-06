@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:new_untitled/utils/extensions/extension.dart';
-
 import 'app.dart';
 import 'config/dependency/dependency_injection.dart';
-import 'services/notification/notification_service.dart';
 import 'services/socket/socket_service.dart';
 import 'services/storage/storage_services.dart';
 
@@ -27,7 +25,8 @@ init() async {
       DeviceOrientation.portraitDown,
     ]),
     LocalStorage.getAllPrefData(),
-    NotificationService.initLocalNotification(),
+    /// TODO : Need to UnComment
+    // NotificationService.initLocalNotification(),
     dotenv.load(fileName: ".env"),
   ]);
 }

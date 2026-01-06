@@ -4,7 +4,6 @@ import 'package:new_untitled/utils/constants/app_colors.dart';
 import '../other_widgets/common_loader.dart';
 import '../text/common_text.dart';
 
-
 class CommonButton extends StatefulWidget {
   final VoidCallback? onTap;
   final String titleText;
@@ -39,64 +38,19 @@ class CommonButton extends StatefulWidget {
   State<CommonButton> createState() => _CommonButtonState();
 }
 
-class _CommonButtonState extends State<CommonButton>
-    with TickerProviderStateMixin {
-  late AnimationController _animationController;
+class _CommonButtonState extends State<CommonButton> {
 
-  @override
-  void initState() {
-    _animationController = AnimationController(
-      vsync: this,
-      duration: Duration(milliseconds: 100),
-      lowerBound: 0.0,
-      upperBound: 0.15,
-    )..addListener(() {
-      setState(() {});
-    });
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: widget.buttonHeight,
-      width: widget.buttonWidth,
-      child: _buildElevatedButton(),
-    );
+    return _buildElevatedButton();
   }
 
   // Function to build the button with common settings
   Widget _buildElevatedButton() {
-    return GestureDetector(
-      onTapDown: _onTapDown,
-      onTapUp: _onTapUp,
-      onTapCancel: _onTapCancel,
-      onTap: widget.onTap,
-      child: Transform.scale(
-        scale: (1 - _animationController.value).toDouble(),
-        child: ElevatedButton(
-          onPressed: null,
-          style: _buttonStyle(),
-          child: widget.isLoading ? _buildLoader() : _buildText(),
-        ),
-      ),
-    );
-  }
-
-  ButtonStyle _buttonStyle() {
-    return ButtonStyle(
-      backgroundColor: WidgetStateProperty.all(widget.buttonColor),
-      padding: WidgetStateProperty.all(EdgeInsets.zero),
-      shape: WidgetStateProperty.all(
-        RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(widget.buttonRadius),
-          side: BorderSide(
-            color: widget.borderColor ?? Colors.blue,
-            width: widget.borderWidth,
-          ),
-        ),
-      ),
-      elevation: WidgetStateProperty.all(0),
+    return ElevatedButton(
+      onPressed: widget.onTap,
+      child: widget.isLoading ? _buildLoader() : _buildText(),
     );
   }
 
@@ -114,20 +68,5 @@ class _CommonButtonState extends State<CommonButton>
       color: widget.titleColor,
       fontWeight: widget.titleWeight,
     );
-  }
-
-  _onTapDown(TapDownDetails details) {
-    if (widget.onTap == null) return;
-    _animationController.forward();
-  }
-
-  _onTapUp(TapUpDetails details) {
-    if (widget.onTap == null) return;
-    _animationController.reverse();
-  }
-
-  _onTapCancel() {
-    if (widget.onTap == null) return;
-    _animationController.reverse();
   }
 }
