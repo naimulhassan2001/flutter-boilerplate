@@ -5,92 +5,81 @@ import '../../../config/route/app_routes.dart';
 import '../../../utils/constants/app_colors.dart';
 import '../../../utils/log/app_log.dart';
 
+final List<Widget> _unselectedIcons = [
+  const Icon(Icons.settings_outlined, color: AppColors.black),
+  const Icon(Icons.notifications_outlined, color: AppColors.black),
+  const Icon(Icons.chat, color: AppColors.black),
+  const Icon(Icons.person_2_outlined, color: AppColors.black),
+];
 
-class CommonBottomNavBar extends StatefulWidget {
+final List<Widget> _selectedIcons = [
+  const Icon(Icons.settings_outlined, color: AppColors.primaryColor),
+  const Icon(Icons.notifications, color: AppColors.primaryColor),
+  const Icon(Icons.chat, color: AppColors.primaryColor),
+  const Icon(Icons.person, color: AppColors.primaryColor),
+];
+
+class CommonBottomNavBar extends StatelessWidget {
+  const CommonBottomNavBar({super.key, required this.currentIndex});
   final int currentIndex;
-
-  const CommonBottomNavBar({required this.currentIndex, super.key});
-
-  @override
-  State<CommonBottomNavBar> createState() => _CommonBottomNavBarState();
-}
-
-class _CommonBottomNavBarState extends State<CommonBottomNavBar> {
-  var bottomNavIndex = 0;
-  List<Widget> unselectedIcons = [
-    const Icon(Icons.settings_outlined, color: AppColors.black),
-    const Icon(Icons.notifications_outlined, color: AppColors.black),
-    const Icon(Icons.chat, color: AppColors.black),
-    const Icon(Icons.person_2_outlined, color: AppColors.black),
-  ];
-
-  List<Widget> selectedIcons = [
-    const Icon(Icons.settings_outlined, color: AppColors.primaryColor),
-    const Icon(Icons.notifications, color: AppColors.primaryColor),
-    const Icon(Icons.chat, color: AppColors.primaryColor),
-    const Icon(Icons.person, color: AppColors.primaryColor),
-  ];
-
-  @override
-  void initState() {
-    bottomNavIndex = widget.currentIndex;
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics: const NeverScrollableScrollPhysics(),
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        alignment: Alignment.center,
-        padding: EdgeInsets.all(12.sp),
-        decoration: BoxDecoration(
-            color: AppColors.blueLight,
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20.r),
-                topRight: Radius.circular(20.r))),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: List.generate(unselectedIcons.length, (index) {
-            return GestureDetector(
-              onTap: () => onTap(index),
-              child: Container(
-                margin: EdgeInsetsDirectional.all(12.sp),
-                child: Column(
-                  children: [
-                    index == bottomNavIndex
-                        ? selectedIcons[index]
-                        : unselectedIcons[index],
-                  ],
-                ),
-              ),
-            );
-          }),
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      alignment: Alignment.center,
+      padding: EdgeInsets.all(12.sp),
+      decoration: BoxDecoration(
+        color: AppColors.blueLight,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20.r),
+          topRight: Radius.circular(20.r),
         ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: List.generate(_unselectedIcons.length, (index) {
+          return InkWell(
+            onTap: () => onTap(index),
+            child: Container(
+              margin: EdgeInsetsDirectional.all(12.sp),
+              child: Column(
+                children: [
+                  index == currentIndex
+                      ? _selectedIcons[index]
+                      : _unselectedIcons[index],
+                ],
+              ),
+            ),
+          );
+        }),
       ),
     );
   }
 
   void onTap(int index) async {
-      appLog(widget.currentIndex, source: "common bottombar");
+    appLog(currentIndex, source: "common bottombar");
 
-    if (index == 0) {
-      if (!(widget.currentIndex == 0)) {
+    if (index == currentIndex) return;
+    switch (index) {
+      case 0:
         Get.toNamed(AppRoutes.setting);
-      }
-    } else if (index == 1) {
-      if (!(widget.currentIndex == 1)) {
+        break;
+
+      case 1:
         Get.toNamed(AppRoutes.notifications);
-      }
-    } else if (index == 2) {
-      if (!(widget.currentIndex == 2)) {
+        break;
+
+      case 2:
         Get.toNamed(AppRoutes.chat);
-      }
-    } else if (index == 3) {
-      if (!(widget.currentIndex == 3)) {
+        break;
+
+      case 3:
         Get.toNamed(AppRoutes.profile);
-      }
+        break;
+
+      default:
+        appLog("Invalid bottom bar index: $index");
     }
   }
 }
