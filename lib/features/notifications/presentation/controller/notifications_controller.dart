@@ -5,7 +5,7 @@ import '../../repository/notification_repository.dart';
 
 class NotificationsController extends GetxController {
   /// Notification List
-  List notifications = [];
+  List<NotificationModel> notifications = [];
 
   /// Notification Loading Bar
   bool isLoading = false;
@@ -45,7 +45,7 @@ class NotificationsController extends GetxController {
   }
 
   /// Notification data Loading function
- void getNotificationsRepo() async {
+  Future<void> getNotificationsRepo() async {
     return;
     if (isLoading || hasNoData) return;
     isLoading = true;

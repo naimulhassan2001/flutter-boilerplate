@@ -57,7 +57,7 @@ class CommonBottomNavBar extends StatelessWidget {
     );
   }
 
-  void onTap(int index) async {
+  Future<void> onTap(int index) async {
     appLog(currentIndex, source: 'common bottombar');
 
     if (index == currentIndex) return;

@@ -24,7 +24,7 @@ class SignUpController extends GetxController {
 
   String time = '';
 
-  List selectedOption = ['User', 'Consultant'];
+  List<String> selectedOption = ['User', 'Consultant'];
 
   String selectRole = 'User';
   String countryCode = '+880';
@@ -68,12 +68,12 @@ class SignUpController extends GetxController {
     update();
   }
 
-  void openGallery() async {
+  Future<void> openGallery() async {
     image = await OtherHelper.openGallery();
     update();
   }
 
-  void signUpUser() async {
+  Future<void> signUpUser() async {
     if (!signUpFormKey.currentState!.validate()) return;
     Get.toNamed(AppRoutes.verifyUser);
     return;

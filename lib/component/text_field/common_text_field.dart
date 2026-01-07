@@ -60,7 +60,7 @@ class CommonTextField extends StatelessWidget {
   final VoidCallback? onTap;
   final TextEditingController? controller;
   final TextInputAction textInputAction;
-  final FormFieldValidator? validator;
+  final FormFieldValidator<String>? validator;
   final TextInputType keyboardType;
   final List<TextInputFormatter>? inputFormatters;
 

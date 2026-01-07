@@ -19,7 +19,7 @@ class ChatController extends GetxController {
   int page = 1;
 
   /// Chat List here
-  List chats = [];
+  List<ChatModel> chats = [];
 
   /// Chat Scroll Controller
   ScrollController scrollController = ScrollController();
@@ -67,7 +67,7 @@ class ChatController extends GetxController {
   }
 
   /// Chat data Update  Socket listener
-  void listenChat() async {
+  Future<void> listenChat() async {
     SocketServices.on('update-chatlist::${LocalStorage.userId}', (data) {
       page = 1;
       chats.clear();

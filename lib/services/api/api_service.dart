@@ -100,7 +100,7 @@ class ApiService {
     }
   }
 
-  static ApiResponseModel _handleResponse(Response response) {
+  static ApiResponseModel _handleResponse(Response<dynamic> response) {
     if (response.statusCode == 201) {
       return ApiResponseModel(200, response.data);
     }

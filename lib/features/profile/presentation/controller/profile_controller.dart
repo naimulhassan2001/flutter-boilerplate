@@ -9,7 +9,7 @@ import '../../../../utils/helpers/other_helper.dart';
 
 class ProfileController extends GetxController {
   /// Language List here
-  List languages = ['English', 'French', 'Arabic'];
+  List<String> languages = ['English', 'French', 'Arabic'];
 
   /// form key here
   final formKey = GlobalKey<FormState>();
@@ -28,7 +28,7 @@ class ProfileController extends GetxController {
   TextEditingController numberController = TextEditingController();
 
   /// select image function here
-  void getProfileImage() async {
+  Future<void> getProfileImage() async {
     image = await OtherHelper.openGalleryForProfile();
     update();
   }

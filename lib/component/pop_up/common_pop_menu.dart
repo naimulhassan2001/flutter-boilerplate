@@ -24,8 +24,8 @@ class PopUpMenu extends StatelessWidget {
     this.iconData = Icons.keyboard_arrow_down_outlined,
   });
 
-  final List items;
-  final List selectedItem;
+  final List<String> items;
+  final List<String> selectedItem;
   final Color selectedColor;
   final Color iconColor;
   final Color unselectedColor;
