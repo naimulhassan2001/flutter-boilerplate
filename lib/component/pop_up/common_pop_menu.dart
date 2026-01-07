@@ -97,8 +97,6 @@ class PopUpMenu extends StatelessWidget {
 }
 
 
-
-
 void logOutPopUp() {
   showDialog(
     context: Get.context!,
