@@ -28,22 +28,39 @@ The project follows a feature-first structure:
 
 ```text
 lib/
-├── component/      # Reusable UI components (Buttons, Inputs, etc.)
-├── config/         # App configuration
-│   ├── dependency/ # Dependency Injection setup
-│   ├── route/      # App Routes
-│   └── theme/      # Theme configuration
-├── features/       # Feature modules
-│   ├── auth/       # Authentication (Login, Register, etc.)
-│   ├── message/    # Messaging features
-│   ├── profile/    # User profile management
-│   └── ...
-├── services/       # Core services
-│   ├── socket/     # Socket.io service
-│   └── storage/    # Local storage service
-├── utils/          # Helper functions and constants
-├── app.dart        # Main App Widget & ScreenUtil setup
-└── main.dart       # App Entry Point & Initialization
+├── component/          # Reusable UI components
+│   ├── bottom_nav_bar/ # Bottom navigation widget
+│   ├── button/         # Custom button widgets
+│   ├── image/          # Image handling widgets
+│   ├── text_field/     # Custom text input fields
+│   └── ...             # Other shared widgets (text, popups, etc.)
+├── config/             # App configuration
+│   ├── api/            # API endpoints & configuration
+│   ├── dependency/     # Dependency Injection (GetX bindings)
+│   ├── languages/      # Localization & translations
+│   ├── route/          # App Routes management
+│   └── theme/          # App Theme styling
+├── features/           # Feature-based modules
+│   ├── auth/           # Authentication (Login, Register, OTP)
+│   ├── message/        # Chat & Messaging features
+│   ├── notifications/  # Notification listing & handling
+│   ├── onboarding/     # Onboarding screens
+│   ├── profile/        # User profile & settings
+│   ├── setting/        # App settings
+│   └── splash/         # Splash screen logic
+├── services/           # External & Core services
+│   ├── api/            # Dio API client implementation
+│   ├── firebase/       # Firebase services integration
+│   ├── location/       # Geolocation services
+│   ├── notification/   # Push notification services
+│   ├── socket/         # Socket.io connection implementation
+│   └── storage/        # Local storage (SharedPrefs)
+├── utils/              # Helper utilities
+│   ├── constants/      # App constants (Assets, Strings, Dimens)
+│   ├── extensions/     # Dart extensions
+│   └── log/            # Logging utilities
+├── app.dart            # Main App Widget (ScreenUtil & Theme init)
+└── main.dart           # Application Entry Point
 ```
 
 ## 🏁 Getting Started
