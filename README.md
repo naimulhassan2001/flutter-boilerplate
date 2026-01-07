@@ -63,6 +63,22 @@ lib/
 └── main.dart           # Application Entry Point
 ```
 
+
+
+## 🔧 Flutter Version Management (FVM)
+
+This project adopts [FVM (Flutter Version Management)](https://fvm.app/) to ensure project stability and developer consistency.
+
+**Current Flutter Version:** `3.38.5`
+
+### Why we use FVM?
+
+*   **Consistency:** Guarantees that every developer works with the exact same Flutter SDK version, eliminating "it works on my machine" issues caused by version mismatches.
+*   **Per-Project SDKs:** Allows this project to use a specific Flutter version without affecting your global Flutter installation or other projects.
+*   **Reproducibility:** Ensures that builds are reproducible across different environments (local dev, CI/CD).
+*   **Easy Upgrades:** managing SDK upgrades becomes explicit and safe, as the version is pinned in the configuration.
+
+
 ## 🏁 Getting Started
 
 ### Prerequisites
