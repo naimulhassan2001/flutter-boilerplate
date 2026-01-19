@@ -119,7 +119,7 @@ class CommonTextField extends StatelessWidget {
       borderSide: BorderSide(
         color:
         borderColor == AppColors.transparent
-            ? Colors.grey.withOpacity(0.3)
+            ? Colors.grey.withValues(alpha: 0.3)
             : borderColor,
       ),
     );

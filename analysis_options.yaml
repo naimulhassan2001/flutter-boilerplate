@@ -9,6 +9,7 @@ analyzer:
     avoid_print: warning
     missing_return: error
     missing_required_param: error
+   
 
   language:
     strict-casts: false
