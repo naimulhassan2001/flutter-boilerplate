@@ -1,0 +1,67 @@
+name: Flutter Android Play Store CI/CD
+
+# Trigger workflow when pushing to the "production" branch
+on:
+  push:
+    branches:
+      - production
+
+jobs:
+  build:
+    # Use Ubuntu server for running the workflow
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Download your GitHub repo code
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Step 2: Install Java (needed for Android builds)
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      # Step 3: Install Flutter SDK
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.38.5
+
+      # Step 4: Install Flutter dependencies (pubspec.yaml packages)
+      - name: Install Dependencies
+        run: flutter pub get
+
+      # Step 5: Decode Base64 keystore secret into real file
+      - name: Decode Keystore
+        run: |
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/app/upload-keystore.jks
+
+      # Step 6: Create key.properties file dynamically (for signing)
+      - name: Create key.properties
+        run: |
+          echo "storePassword=${{ secrets.STORE_PASSWORD }}" > android/key.properties
+          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/key.properties
+          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> android/key.properties
+          echo "storeFile=../app/upload-keystore.jks" >> android/key.properties
+
+      # Step 7: Build Android App Bundle (AAB) for Play Store
+      - name: Build App Bundle (AAB)
+        run: flutter build appbundle --release
+
+      # Step 8: Upload AAB to Google Play Console (Internal Testing)
+      - name: Upload to Google Play (Internal)
+        uses: r0adkll/upload-google-play@v1
+        with:
+          # Google Play API service account JSON
+          serviceAccountJsonPlainText: ${{ secrets.PLAY_STORE_JSON }}
+
+          # Your app package name (must match Play Console)
+          packageName: com.breathing.user
+
+          # Path to generated AAB file
+          releaseFiles: build/app/outputs/bundle/release/app-release.aab
+
+          # Upload track: internal testing
+          track: internal

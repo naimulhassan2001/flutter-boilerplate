@@ -1,0 +1,62 @@
+name: Flutter iOS TestFlight CI/CD
+
+on:
+  push:
+    branches:
+      - production
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      # Step 1: Checkout repo
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Step 2: Setup Flutter
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.38.5
+
+      # Step 3: Install Flutter packages
+      - name: Install Dependencies
+        run: flutter pub get
+
+      # Step 4: Install CocoaPods dependencies
+      - name: Install Pods
+        run: |
+          cd ios
+          pod install
+          cd ..
+
+      # Step 5: Import iOS Signing Certificate (.p12)
+      - name: Install iOS Certificate
+        run: |
+          echo "${{ secrets.IOS_P12_BASE64 }}" | base64 --decode > cert.p12
+          security create-keychain -p "" build.keychain
+          security unlock-keychain -p "" build.keychain
+          security import cert.p12 -k build.keychain -P "${{ secrets.IOS_P12_PASSWORD }}" -T /usr/bin/codesign
+          security list-keychains -s build.keychain
+          security set-key-partition-list -S apple-tool:,apple: -s -k "" build.keychain
+
+      # Step 6: Install Provisioning Profile
+      - name: Install Provisioning Profile
+        run: |
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          echo "${{ secrets.IOS_PROVISION_PROFILE }}" | base64 --decode > profile.mobileprovision
+          cp profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
+
+      # Step 7: Build IPA for App Store
+      - name: Build iOS IPA
+        run: flutter build ipa --release
+
+      # Step 8: Upload IPA to TestFlight
+      - name: Upload to TestFlight
+        uses: apple-actions/upload-testflight-build@v1
+        with:
+          api_key_id: ${{ secrets.APP_STORE_KEY_ID }}
+          api_issuer: ${{ secrets.APP_STORE_ISSUER_ID }}
+          api_private_key: ${{ secrets.APP_STORE_PRIVATE_KEY }}
+          app_path: build/ios/ipa/*.ipa
