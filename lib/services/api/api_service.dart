@@ -1,174 +1,76 @@
 import 'dart:async';
-import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:mime/mime.dart';
-import '../../config/api/api_end_point.dart';
-import '../../utils/constants/app_string.dart';
-import '../../utils/log/api_log.dart';
-import '../storage/storage_services.dart';
-import 'api_response_model.dart';
-import 'package:dio_cookie_manager/dio_cookie_manager.dart';
-import 'package:cookie_jar/cookie_jar.dart';
+import './api_response_model.dart';
+import './config.dart';
+import './api_response_handler.dart';
+import './multipart_helper.dart';
 
 class ApiService {
-  static final Dio _dio = _getMyDio();
+  static final Dio _dio = DioConfig.create();
 
-  /// ========== [ HTTP METHODS ] ========== ///
-  static Future<ApiResponseModel> post(
-    String url, {
-    dynamic body,
-    Map<String, String>? header,
-  }) => _request(url, 'POST', body: body, header: header);
+  /// ================= HTTP METHODS =================
 
   static Future<ApiResponseModel> get(
     String url, {
-    Map<String, String>? header,
-  }) => _request(url, 'GET', header: header);
+    dynamic body,
+    Map<String, String>? headers,
+  }) => _request(url, method: 'GET', headers: headers);
+
+  static Future<ApiResponseModel> post(
+    String url, {
+    dynamic body,
+    Map<String, String>? headers,
+  }) => _request(url, method: 'POST', body: body, headers: headers);
 
   static Future<ApiResponseModel> put(
     String url, {
     dynamic body,
-    Map<String, String>? header,
-  }) => _request(url, 'PUT', body: body, header: header);
+    Map<String, String>? headers,
+  }) => _request(url, method: 'PUT', body: body, headers: headers);
 
   static Future<ApiResponseModel> patch(
     String url, {
     dynamic body,
-    Map<String, String>? header,
-  }) => _request(url, 'PATCH', body: body, header: header);
+    Map<String, String>? headers,
+  }) => _request(url, method: 'PATCH', body: body, headers: headers);
 
   static Future<ApiResponseModel> delete(
     String url, {
     dynamic body,
-    Map<String, String>? header,
-  }) => _request(url, 'DELETE', body: body, header: header);
+    Map<String, String>? headers,
+  }) => _request(url, method: 'DELETE', body: body, headers: headers);
 
-  static Future<ApiResponseModel> multipart(
-    String url, {
-    Map<String, String> header = const {},
+  /// ================= MULTIPART =================
+
+  static Future<ApiResponseModel> multipart({
+    required String url,
+    List<MultipartFileItem> files = const [],
     Map<String, String> body = const {},
     String method = 'POST',
-    String imageName = 'image',
-    String? imagePath,
+    Map<String, String>? headers,
   }) async {
-    final formData = FormData();
-    if (imagePath != null && imagePath.isNotEmpty) {
-      final file = File(imagePath);
-      final extension = file.path.split('.').last.toLowerCase();
-      final mimeType = lookupMimeType(imagePath);
-
-      formData.files.add(
-        MapEntry(
-          imageName,
-          await MultipartFile.fromFile(
-            imagePath,
-            filename: '$imageName.$extension',
-            contentType:
-                mimeType != null
-                    ? DioMediaType.parse(mimeType)
-                    : DioMediaType.parse('image/jpeg'),
-          ),
-        ),
-      );
-    }
-
-    body.forEach((key, value) {
-      formData.fields.add(MapEntry(key, value));
-    });
-
-    header['Content-Type'] = 'multipart/form-data';
-
-    return _request(url, method, body: formData, header: header);
+    final formData = await MultipartHelper.build(files: files, fields: body);
+    return _request(url, method: method, body: formData, headers: headers);
   }
 
-  /// ========== [ API REQUEST HANDLER ] ========== ///
+  /// ================= CORE REQUEST =================
+
   static Future<ApiResponseModel> _request(
-    String url,
-    String method, {
+    String url, {
+    required String method,
     dynamic body,
-    Map<String, String>? header,
+    Map<String, String>? headers,
   }) async {
     try {
       final response = await _dio.request(
         url,
         data: body,
-        options: Options(method: method, headers: header),
+        options: Options(method: method, headers: headers),
       );
-      return _handleResponse(response);
+
+      return ApiResponseHandler.handleSuccess(response);
     } catch (e) {
-      return _handleError(e);
+      return ApiResponseHandler.handleError(e);
     }
   }
-
-  static ApiResponseModel _handleResponse(Response<dynamic> response) {
-    if (response.statusCode == 201) {
-      return ApiResponseModel(200, response.data);
-    }
-    return ApiResponseModel(response.statusCode, response.data);
-  }
-
-  static ApiResponseModel _handleError(dynamic error) {
-    try {
-      return _handleDioException(error);
-    } catch (e) {
-      return ApiResponseModel(500, {});
-    }
-  }
-
-  static ApiResponseModel _handleDioException(DioException error) {
-    switch (error.type) {
-      case DioExceptionType.connectionTimeout:
-      case DioExceptionType.receiveTimeout:
-      case DioExceptionType.sendTimeout:
-        return ApiResponseModel(408, {'message': AppString.requestTimeOut});
-
-      case DioExceptionType.badResponse:
-        return ApiResponseModel(
-          error.response?.statusCode,
-          error.response?.data,
-        );
-
-      case DioExceptionType.connectionError:
-        return ApiResponseModel(503, {
-          'message': AppString.noInternetConnection,
-        });
-
-      default:
-        return ApiResponseModel(400, {});
-    }
-  }
-}
-
-/// ========== [ DIO INSTANCE WITH INTERCEPTORS ] ========== ///
-Dio _getMyDio() {
-final  Dio dio = Dio();
-final cookieJar = CookieJar();
-
-  dio.interceptors.addAll([
-    InterceptorsWrapper(
-      onRequest: (options, handler) {
-        options
-          ..headers['Authorization'] ??= 'Bearer ${LocalStorage.token}'
-          ..headers['Content-Type'] ??= 'application/json'
-          ..connectTimeout = const Duration(seconds: 30)
-          ..sendTimeout = const Duration(seconds: 30)
-          ..receiveDataWhenStatusError = true
-          ..responseType = ResponseType.json
-          ..receiveTimeout = const Duration(seconds: 30)
-          ..baseUrl =
-              options.baseUrl.startsWith('http') ? '' : ApiEndPoint.baseUrl;
-        handler.next(options);
-      },
-      onResponse: (response, handler) {
-        handler.next(response);
-      },
-      onError: (error, handler) {
-        handler.next(error);
-      },
-    ),
-    CookieManager(cookieJar),
-    apiLog(),
-  ]);
-
-  return dio;
 }

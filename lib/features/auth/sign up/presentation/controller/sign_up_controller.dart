@@ -135,7 +135,7 @@ class SignUpController extends GetxController {
     final response = await ApiService.post(
       ApiEndPoint.verifyEmail,
       body: body,
-      header: header,
+      headers: header,
     );
 
     if (response.statusCode == 200) {

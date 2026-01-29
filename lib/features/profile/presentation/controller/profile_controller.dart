@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:untitled/services/api/multipart_helper.dart';
 import '../../../../config/api/api_end_point.dart';
 import '../../../../config/route/app_routes.dart';
 import '../../../../services/api/api_service.dart';
@@ -54,9 +55,9 @@ class ProfileController extends GetxController {
     };
 
     final response = await ApiService.multipart(
-      ApiEndPoint.user,
+      url: ApiEndPoint.user,
       body: body,
-      imagePath: image,
+      files: [MultipartFileItem(fileName: 'image', filePath: image ?? '')],
     );
 
     if (response.statusCode == 200) {

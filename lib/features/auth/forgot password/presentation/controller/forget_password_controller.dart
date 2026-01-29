@@ -148,7 +148,7 @@ class ForgetPasswordController extends GetxController {
     final response = await ApiService.post(
       ApiEndPoint.resetPassword,
       body: body,
-      header: header,
+      headers: header,
     );
 
     if (response.statusCode == 200) {
