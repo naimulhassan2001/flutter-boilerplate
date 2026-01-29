@@ -1,133 +1,75 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import '../constants/app_colors.dart';
-import '../constants/app_string.dart';
 
 class OtherHelper {
-  static RegExp emailRegexp = RegExp(
-    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
-  );
-  static RegExp passRegExp = RegExp(r'(?=.*[a-z])(?=.*[0-9])');
+  OtherHelper._();
 
-  static String? validator(dynamic val) {
-    final String? value = val;
-    if (value == null || value.isEmpty) {
-      return AppString.thisFieldIsRequired;
-    }
-    return null;
-  }
-
-  static String? emailValidator(dynamic val) {
-    final String? value = val;
-    if (value == null || value.isEmpty) {
-      return AppString.thisFieldIsRequired;
-    } else if (!emailRegexp.hasMatch(value)) {
-      return AppString.enterValidEmail;
-    }
-    return null;
-  }
-
-  static String? passwordValidator(dynamic val) {
-    final String? value = val;
-    if (value == null || value.isEmpty) {
-      return AppString.thisFieldIsRequired;
-    } else if (value.length < 8) {
-      return AppString.passwordMustBeeEightCharacters;
-    } else if (!passRegExp.hasMatch(value)) {
-      return AppString.passwordMustBeeEightCharacters;
-    }
-    return null;
-  }
-
-  static String? confirmPasswordValidator(
-    dynamic val,
-    TextEditingController passwordController,
-  ) {
-    final String? value = val;
-    if (value == null || value.isEmpty) {
-      return AppString.thisFieldIsRequired;
-    } else if (value != passwordController.text) {
-      return AppString.thePasswordDoesNotMatch;
-    }
-    return null;
-  }
-
-  static Future<String> openDatePickerDialog(
-    TextEditingController controller,
-  ) async {
-    final DateTime? picked = await showDatePicker(
+  static Future<String?> pickDate({
+    required BuildContext context,
+    required TextEditingController controller,
+    DateTime? firstDate,
+    DateTime? lastDate,
+  }) async {
+    final picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: firstDate ?? DateTime(1900),
+      lastDate: lastDate ?? DateTime(2101),
       builder: (context, child) => Theme(
         data: Theme.of(context).copyWith(
           colorScheme: const ColorScheme.light(primary: AppColors.primaryColor),
         ),
         child: child!,
       ),
-      context: Get.context!,
-      initialDate: DateTime.now(),
-      firstDate: DateTime.now(),
-      lastDate: DateTime(2101),
     );
 
-    if (picked != null) {
-      controller.text = '${picked.year}/${picked.month}/${picked.day}';
-      return picked.toIso8601String();
-    }
-    return '';
+    if (picked == null) return null;
+
+    controller.text = DateFormat('yyyy/MM/dd').format(picked);
+    return picked.toIso8601String();
   }
 
-  static Future<String?> openGallery() async {
-    final ImagePicker picker = ImagePicker();
+  static Future<String?> pickImage({
+    ImageSource source = .gallery,
+    int quality = 50,
+  }) async {
+    final picker = ImagePicker();
     final XFile? image = await picker.pickImage(
-      source: ImageSource.gallery,
-      imageQuality: 50,
+      source: source,
+      imageQuality: quality,
     );
     return image?.path;
   }
 
-  static Future<String?> openGalleryForProfile() async {
-    final ImagePicker picker = ImagePicker();
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-
-    if (pickedFile != null) {
-      return pickedFile.path;
-    }
-    return null;
-  }
-
-  static Future<String?> pickVideoFromGallery() async {
-    final ImagePicker picker = ImagePicker();
+  static Future<String?> pickVideo() async {
+    final picker = ImagePicker();
     final XFile? video = await picker.pickVideo(source: ImageSource.gallery);
     return video?.path;
   }
 
-  static Future<String?> openCamera() async {
-    final ImagePicker picker = ImagePicker();
-    final XFile? image = await picker.pickImage(
-      source: ImageSource.camera,
-      imageQuality: 50,
-    );
-    return image?.path;
-  }
-
-  static Future<String> openTimePickerDialog(
+  static Future<String?> pickTime({
+    required BuildContext context,
     TextEditingController? controller,
-  ) async {
-    final TimeOfDay? picked = await showTimePicker(
-      context: Get.context!,
+  }) async {
+    final picked = await showTimePicker(
+      context: context,
       initialTime: TimeOfDay.now(),
     );
 
-    if (picked != null) {
-      final String formattedTime = formatTime(picked);
-      controller?.text = formattedTime;
-      return formattedTime;
-    }
-    return '';
+    if (picked == null) return null;
+
+    final formatted = formatTime(picked);
+    controller?.text = formatted;
+    return formatted;
   }
 
   static String formatTime(TimeOfDay time) {
-    return "${time.hour > 12 ? (time.hour - 12).toString().padLeft(2, '0') : (time.hour == 0 ? 12 : time.hour).toString().padLeft(2, '0')}:"
-        "${time.minute.toString().padLeft(2, '0')} ${time.hour >= 12 ? "PM" : "AM"}";
+    final hour = time.hourOfPeriod == 0 ? 12 : time.hourOfPeriod;
+    final minute = time.minute.toString().padLeft(2, '0');
+    final period = time.period == DayPeriod.am ? 'AM' : 'PM';
+
+    return '$hour:$minute $period';
   }
 }

@@ -5,17 +5,18 @@ import '../image/common_image.dart';
 import '../text/common_text.dart';
 
 class Item extends StatelessWidget {
-  const Item(
-      {super.key,
-      this.icon,
-      required this.title,
-      this.image = '',
-      this.disableDivider = false,
-      this.onTap,
-      this.color = AppColors.black,
-      this.vertical = 4,
-      this.horizontal = 24,
-      this.disableIcon = false});
+  const Item({
+    super.key,
+    this.icon,
+    required this.title,
+    this.image = '',
+    this.disableDivider = false,
+    this.onTap,
+    this.color = AppColors.black,
+    this.vertical = 4,
+    this.horizontal = 24,
+    this.disableIcon = false,
+  });
 
   final IconData? icon;
   final String title;
@@ -32,35 +33,28 @@ class Item extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Padding(
-        padding: EdgeInsets.symmetric(
-            horizontal: horizontal.w, vertical: vertical.h),
+        padding: .symmetric(horizontal: horizontal.w, vertical: vertical.h),
         child: Column(
           children: [
             Row(
               children: [
                 icon != null
-                    ? Icon(
-                        icon,
-                        color: color,
-                      )
+                    ? Icon(icon, color: color)
                     : CommonImage(imageSrc: image),
                 CommonText(
                   text: title,
                   color: color,
-                  fontWeight: FontWeight.w400,
+                  fontWeight: .w400,
                   fontSize: 18,
                   left: 16,
                 ),
                 const Spacer(),
                 disableIcon
                     ? const SizedBox()
-                    : Icon(
-                        Icons.arrow_forward_ios_outlined,
-                        size: 20.sp,
-                      )
+                    : Icon(Icons.arrow_forward_ios_outlined, size: 20.sp),
               ],
             ),
-            disableDivider ? const SizedBox() : const Divider()
+            disableDivider ? const SizedBox() : const Divider(),
           ],
         ),
       ),

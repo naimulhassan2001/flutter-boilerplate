@@ -9,7 +9,7 @@ import '../../../../services/api/api_service.dart';
 import '../../../../services/socket/socket_service.dart';
 import '../../../../config/api/api_end_point.dart';
 import '../../../../services/storage/storage_services.dart';
-import '../../../../utils/app_utils.dart';
+import '../../../../utils/app_snackbar.dart';
 import '../../../../utils/enum/enum.dart';
 
 class MessageController extends GetxController {
@@ -71,7 +71,10 @@ class MessageController extends GetxController {
       status = Status.completed;
       update();
     } else {
-      Utils.errorSnackBar(response.statusCode.toString(), response.message);
+      AppSnackbar.error(
+        title: response.statusCode.toString(),
+        message: response.message,
+      );
       status = Status.error;
       update();
     }

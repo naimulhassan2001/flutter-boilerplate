@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import '../../../../../config/route/app_routes.dart';
 import '../../../../../services/api/api_service.dart';
 import '../../../../../config/api/api_end_point.dart';
-import '../../../../../utils/app_utils.dart';
+import '../../../../../utils/app_snackbar.dart';
 
 class ForgetPasswordController extends GetxController {
   /// Loading for forget password
@@ -93,7 +93,10 @@ class ForgetPasswordController extends GetxController {
     );
 
     if (response.statusCode == 200) {
-      Utils.successSnackBar(response.statusCode.toString(), response.message);
+      AppSnackbar.success(
+        title: response.statusCode.toString(),
+        message: response.message,
+      );
       Get.toNamed(AppRoutes.verifyEmail);
     } else {
       Get.snackbar(response.statusCode.toString(), response.message);
@@ -149,7 +152,10 @@ class ForgetPasswordController extends GetxController {
     );
 
     if (response.statusCode == 200) {
-      Utils.successSnackBar(response.message, response.message);
+      AppSnackbar.success(
+        title: response.statusCode.toString(),
+        message: response.message,
+      );
       Get.offAllNamed(AppRoutes.signIn);
 
       emailController.clear();

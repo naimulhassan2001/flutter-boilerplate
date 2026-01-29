@@ -6,10 +6,10 @@ import '../../../../../../../utils/extensions/extension.dart';
 import '../../../../../component/button/common_button.dart';
 import '../../../../../component/text/common_text.dart';
 import '../../../../../component/text_field/common_text_field.dart';
+import '../../../../../utils/helpers/validation.dart';
 import '../controller/change_password_controller.dart';
 import '../../../../../../../utils/constants/app_colors.dart';
 import '../../../../../../../utils/constants/app_string.dart';
-import '../../../../../utils/helpers/other_helper.dart';
 
 class ChangePasswordScreen extends StatelessWidget {
   ChangePasswordScreen({super.key});
@@ -43,7 +43,7 @@ class ChangePasswordScreen extends StatelessWidget {
                   CommonTextField(
                     controller: controller.currentPasswordController,
                     hintText: AppString.currentPassword,
-                    validator: OtherHelper.passwordValidator,
+                    validator: AppValidation.password,
                     isPassword: true,
                   ),
 
@@ -56,7 +56,7 @@ class ChangePasswordScreen extends StatelessWidget {
                   CommonTextField(
                     controller: controller.newPasswordController,
                     hintText: AppString.newPassword,
-                    validator: OtherHelper.passwordValidator,
+                    validator: AppValidation.password,
                     isPassword: true,
                   ),
 
@@ -69,7 +69,7 @@ class ChangePasswordScreen extends StatelessWidget {
                   CommonTextField(
                     controller: controller.confirmPasswordController,
                     hintText: AppString.confirmPassword,
-                    validator: (value) => OtherHelper.confirmPasswordValidator(
+                    validator: (value) => AppValidation.confirmPassword(
                       value,
                       controller.newPasswordController,
                     ),

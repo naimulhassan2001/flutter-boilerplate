@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../services/storage/storage_services.dart';
 import '../../../utils/constants/app_colors.dart';
 import '../../../utils/constants/app_string.dart';
-import '../../utils/helpers/other_helper.dart';
+import '../../utils/helpers/validation.dart';
 import '../button/common_button.dart';
 import '../text/common_text.dart';
 import '../text_field/common_text_field.dart';
@@ -41,61 +41,55 @@ class PopUpMenu extends StatelessWidget {
       height: height.h,
       child: PopupMenuButton<String>(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.r),
+          borderRadius: .circular(8.r),
           side: BorderSide(color: selectedColor),
         ),
         offset: const Offset(1, 1),
-        padding: EdgeInsets.zero,
-        itemBuilder:
-            (BuildContext context) =>
-        <PopupMenuEntry<String>>[
+        padding: .zero,
+        itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
           PopupMenuItem<String>(
             value: 'option1',
             child: Column(
               children: List.generate(
                 items.length,
-                    (index) =>
-                    GestureDetector(
-                      onTap: () async {
-                        await AnimationPopUpState.closeDialog();
-                        onTap(index);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Row(
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                border: Border.all(color: selectedColor),
-                                color:
-                                selectedItem.contains(
-                                  items[index].toString(),
-                                )
-                                    ? selectedColor
-                                    : unselectedColor,
-                                shape: BoxShape.circle,
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            Text(items[index].toString(), style: style),
-                          ],
+                (index) => GestureDetector(
+                  onTap: () async {
+                    await AnimationPopUpState.closeDialog();
+                    onTap(index);
+                  },
+                  child: Padding(
+                    padding: const .all(12.0),
+                    child: Row(
+                      children: [
+                        Container(
+                          padding: const .all(10),
+                          decoration: BoxDecoration(
+                            border: .all(color: selectedColor),
+                            color:
+                                selectedItem.contains(items[index].toString())
+                                ? selectedColor
+                                : unselectedColor,
+                            shape: BoxShape.circle,
+                          ),
                         ),
-                      ),
+                        const SizedBox(width: 8),
+                        Text(items[index].toString(), style: style),
+                      ],
                     ),
+                  ),
+                ),
               ),
             ),
           ),
         ],
         icon: Padding(
-          padding: EdgeInsets.only(left: isContainer ? 40 : 0),
+          padding: .only(left: isContainer ? 40 : 0),
           child: Icon(iconData, color: iconColor, size: height),
         ),
       ),
     );
   }
 }
-
 
 void logOutPopUp() {
   showDialog(
@@ -166,20 +160,18 @@ void deletePopUp({
     builder: (context) {
       return AnimationPopUp(
         child: AlertDialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12.0),
-          ),
-          contentPadding: const EdgeInsets.only(bottom: 12),
+          shape: RoundedRectangleBorder(borderRadius: .circular(12.0)),
+          contentPadding: const .only(bottom: 12),
           title: Form(
             key: formKey,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: .start,
               children: [
                 Center(
                   child: CommonText(
                     text: AppString.areYouSure,
                     fontSize: 20.sp,
-                    fontWeight: FontWeight.w700,
+                    fontWeight: .w700,
                     bottom: 24.h,
                   ),
                 ),
@@ -192,7 +184,7 @@ void deletePopUp({
                 CommonTextField(
                   controller: controller,
                   labelText: AppString.enterYouPassword,
-                  validator: OtherHelper.validator,
+                  validator: AppValidation.required,
                 ),
               ],
             ),

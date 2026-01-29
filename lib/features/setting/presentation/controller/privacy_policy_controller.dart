@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import '../../data/model/html_model.dart';
 import '../../../../services/api/api_service.dart';
 import '../../../../config/api/api_end_point.dart';
-import '../../../../utils/app_utils.dart';
+import '../../../../utils/app_snackbar.dart';
 import '../../../../utils/enum/enum.dart';
 
 class PrivacyPolicyController extends GetxController {
@@ -32,7 +32,10 @@ class PrivacyPolicyController extends GetxController {
       status = Status.completed;
       update();
     } else {
-      Utils.errorSnackBar(response.statusCode, response.message);
+      AppSnackbar.error(
+        title: response.statusCode.toString(),
+        message: response.message,
+      );
       status = Status.error;
       update();
     }

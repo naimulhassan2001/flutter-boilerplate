@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:untitled/utils/extensions/extension.dart';
 import '../../../utils/constants/app_colors.dart';
 import '../../../utils/constants/app_string.dart';
 
@@ -12,39 +13,39 @@ class ErrorScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: .center,
         children: [
-          const SizedBox(
-            height: 20,
-          ),
+          20.height,
           const Text(
             AppString.someThingWrong,
             style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 16,
-                color: AppColors.white),
+              fontWeight: .w500,
+              fontSize: 16,
+              color: AppColors.white,
+            ),
           ),
-          const SizedBox(
-            height: 20,
-          ),
+          20.height,
           ElevatedButton(
             onPressed: onTap,
             style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primaryColor,
-                minimumSize: Size(Get.width / 1.6, 40),
-                shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
+              backgroundColor: AppColors.primaryColor,
+              minimumSize: Size(Get.width / 1.6, 40),
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
                   topRight: Radius.circular(32),
                   bottomLeft: Radius.circular(32),
-                ))),
+                ),
+              ),
+            ),
             child: const Text(
               AppString.tryAgain,
               style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.white),
+                fontSize: 18,
+                fontWeight: .w500,
+                color: Colors.white,
+              ),
             ),
-          )
+          ),
         ],
       ),
     );

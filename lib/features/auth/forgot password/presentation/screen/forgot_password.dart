@@ -5,9 +5,9 @@ import 'package:get/get.dart';
 import '../../../../../component/button/common_button.dart';
 import '../../../../../component/text/common_text.dart';
 import '../../../../../component/text_field/common_text_field.dart';
+import '../../../../../utils/helpers/validation.dart';
 import '../controller/forget_password_controller.dart';
 import '../../../../../../../utils/constants/app_string.dart';
-import '../../../../../../../utils/helpers/other_helper.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   ForgotPasswordScreen({super.key});
@@ -17,54 +17,53 @@ class ForgotPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ForgetPasswordController>(
-      builder:
-          (controller) => Scaffold(
-            /// App Bar Section
-            appBar: AppBar(
-              title: const CommonText(
-                text: AppString.forgotPassword,
-                fontWeight: FontWeight.w700,
-                fontSize: 24,
-              ),
-            ),
+      builder: (controller) => Scaffold(
+        /// App Bar Section
+        appBar: AppBar(
+          title: const CommonText(
+            text: AppString.forgotPassword,
+            fontWeight: FontWeight.w700,
+            fontSize: 24,
+          ),
+        ),
 
-            /// body section
-            body: SingleChildScrollView(
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    /// forget password take email for reset Password
-                    const CommonText(text: AppString.email, bottom: 8, top: 80),
-                    CommonTextField(
-                      controller: controller.emailController,
-                      hintText: AppString.email,
-                      validator: OtherHelper.emailValidator,
-                    ),
-                    100.height,
-                  ],
+        /// body section
+        body: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                /// forget password take email for reset Password
+                const CommonText(text: AppString.email, bottom: 8, top: 80),
+                CommonTextField(
+                  controller: controller.emailController,
+                  hintText: AppString.email,
+                  validator: AppValidation.email,
                 ),
-              ),
-            ),
-
-            /// Bottom Navigation Bar Section
-            bottomNavigationBar: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-
-              /// Submit Button
-              child: CommonButton(
-                titleText: AppString.continues,
-                isLoading: controller.isLoadingEmail,
-                onTap: () {
-                  if (_formKey.currentState!.validate()) {
-                    controller.forgotPasswordRepo();
-                  }
-                },
-              ),
+                100.height,
+              ],
             ),
           ),
+        ),
+
+        /// Bottom Navigation Bar Section
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+
+          /// Submit Button
+          child: CommonButton(
+            titleText: AppString.continues,
+            isLoading: controller.isLoadingEmail,
+            onTap: () {
+              if (_formKey.currentState!.validate()) {
+                controller.forgotPasswordRepo();
+              }
+            },
+          ),
+        ),
+      ),
     );
   }
 }

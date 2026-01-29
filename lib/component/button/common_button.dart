@@ -4,7 +4,7 @@ import 'package:untitled/utils/constants/app_colors.dart';
 import '../other_widgets/common_loader.dart';
 import '../text/common_text.dart';
 
-class CommonButton extends StatefulWidget {
+class CommonButton extends StatelessWidget {
   final VoidCallback? onTap;
   final String titleText;
   final Color titleColor;
@@ -35,35 +35,27 @@ class CommonButton extends StatefulWidget {
   });
 
   @override
-  State<CommonButton> createState() => _CommonButtonState();
-}
-
-class _CommonButtonState extends State<CommonButton> {
-
-
-  @override
   Widget build(BuildContext context) {
     return _buildElevatedButton();
   }
 
-  // Function to build the button with common settings
   Widget _buildElevatedButton() {
     return ElevatedButton(
-      onPressed: widget.onTap,
-      child: widget.isLoading ? _buildLoader() : _buildText(),
+      onPressed: onTap,
+      child: isLoading ? _buildLoader() : _buildText(),
     );
   }
 
   Widget _buildLoader() {
-    return CommonLoader(size: widget.buttonHeight - 12);
+    return CommonLoader(size: buttonHeight - 12);
   }
 
   Widget _buildText() {
     return CommonText(
-      text: widget.titleText,
-      fontSize: widget.titleSize,
-      color: widget.titleColor,
-      fontWeight: widget.titleWeight,
+      text: titleText,
+      fontSize: titleSize,
+      color: titleColor,
+      fontWeight: titleWeight,
     );
   }
 }

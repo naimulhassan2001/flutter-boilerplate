@@ -8,7 +8,7 @@ import '../../../../../services/api/api_service.dart';
 import '../../../../../services/storage/storage_keys.dart';
 import '../../../../../config/api/api_end_point.dart';
 import '../../../../../services/storage/storage_services.dart';
-import '../../../../../utils/app_utils.dart';
+import '../../../../../utils/app_snackbar.dart';
 import '../../../../../utils/helpers/other_helper.dart';
 
 class SignUpController extends GetxController {
@@ -69,7 +69,7 @@ class SignUpController extends GetxController {
   }
 
   Future<void> openGallery() async {
-    image = await OtherHelper.openGallery();
+    image = await OtherHelper.pickImage();
     update();
   }
 
@@ -95,7 +95,10 @@ class SignUpController extends GetxController {
       signUpToken = data?['signUpToken'] ?? '';
       Get.toNamed(AppRoutes.verifyUser);
     } else {
-      Utils.errorSnackBar(response.statusCode.toString(), response.message);
+      AppSnackbar.error(
+        title: response.statusCode.toString(),
+        message: response.message,
+      );
     }
     isLoading = false;
     update();

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../../../services/api/api_service.dart';
 import '../../../../../config/api/api_end_point.dart';
-import '../../../../../utils/app_utils.dart';
+import '../../../../../utils/app_snackbar.dart';
 
 class ChangePasswordController extends GetxController {
   bool isLoading = false;
@@ -30,7 +30,10 @@ class ChangePasswordController extends GetxController {
     );
 
     if (response.statusCode == 200) {
-      Utils.successSnackBar(response.statusCode.toString(), response.message);
+      AppSnackbar.success(
+        title: response.statusCode.toString(),
+        message: response.message,
+      );
 
       currentPasswordController.clear();
       newPasswordController.clear();

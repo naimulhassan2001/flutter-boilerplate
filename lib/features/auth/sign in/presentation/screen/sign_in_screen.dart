@@ -6,11 +6,11 @@ import 'package:get/get.dart';
 import '../../../../../component/button/common_button.dart';
 import '../../../../../component/text/common_text.dart';
 import '../../../../../component/text_field/common_text_field.dart';
+import '../../../../../utils/helpers/validation.dart';
 import '../controller/sign_in_controller.dart';
 
 import '../../../../../../../utils/constants/app_colors.dart';
 import '../../../../../../../utils/constants/app_string.dart';
-import '../../../../../../../utils/helpers/other_helper.dart';
 import '../widgets/do_not_account.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -46,7 +46,7 @@ class SignInScreen extends StatelessWidget {
                     controller: controller.emailController,
                     prefixIcon: const Icon(Icons.mail),
                     hintText: AppString.email,
-                    validator: OtherHelper.emailValidator,
+                    validator: AppValidation.email,
                   ),
 
                   /// Account Password Input here
@@ -60,7 +60,7 @@ class SignInScreen extends StatelessWidget {
                     prefixIcon: const Icon(Icons.lock),
                     isPassword: true,
                     hintText: AppString.password,
-                    validator: OtherHelper.passwordValidator,
+                    validator: AppValidation.password,
                   ),
 
                   /// Forget Password Button here

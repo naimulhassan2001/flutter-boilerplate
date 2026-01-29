@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 
 extension View on num {
   Widget get height => SizedBox(height: toDouble().h);
-
   Widget get width => SizedBox(width: toDouble().w);
 }
 
@@ -12,20 +11,15 @@ extension View on num {
 
 extension Alignments on Widget {
   Widget get start => Align(alignment: .centerLeft, child: this);
-
   Widget get end => Align(alignment: .centerRight, child: this);
-
   Widget get center => Align(child: this);
 }
 
 // All Alignments Time Formatter Extensions
 extension TimeFormater on DateTime {
   String get time => DateFormat('h:mm a').format(this);
-
   String get date => DateFormat('dd-MM-yyyy').format(this);
-
   String get dayName => DateFormat('E').format(this);
-
   String get checkTime {
     final currentDateTime = DateTime.now();
 
@@ -44,4 +38,3 @@ extension TimeFormater on DateTime {
     }
   }
 }
-

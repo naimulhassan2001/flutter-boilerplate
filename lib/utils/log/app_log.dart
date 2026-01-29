@@ -19,14 +19,3 @@ ${source.isNotEmpty ? ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     errorLog(e, source: 'App Log');
   }
 }
-
-
-void setupGlobalLogging() {
-  final originalDebugPrint = debugPrint;
-
-  debugPrint = (String? message, {int? wrapWidth}) {
-    if (message == null) return;
-
-    originalDebugPrint('➡️debugPrint: $message', wrapWidth: wrapWidth);
-  };
-}

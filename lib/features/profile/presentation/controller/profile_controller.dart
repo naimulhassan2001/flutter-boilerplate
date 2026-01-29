@@ -4,7 +4,7 @@ import '../../../../config/api/api_end_point.dart';
 import '../../../../config/route/app_routes.dart';
 import '../../../../services/api/api_service.dart';
 import '../../../../services/storage/storage_services.dart';
-import '../../../../utils/app_utils.dart';
+import '../../../../utils/app_snackbar.dart';
 import '../../../../utils/helpers/other_helper.dart';
 
 class ProfileController extends GetxController {
@@ -29,7 +29,7 @@ class ProfileController extends GetxController {
 
   /// select image function here
   Future<void> getProfileImage() async {
-    image = await OtherHelper.openGalleryForProfile();
+    image = await OtherHelper.pickImage();
     update();
   }
 
@@ -72,10 +72,16 @@ class ProfileController extends GetxController {
       LocalStorage.setString('myName', LocalStorage.myName);
       LocalStorage.setString('myEmail', LocalStorage.myEmail);
 
-      Utils.successSnackBar('Successfully Profile Updated', response.message);
+      AppSnackbar.success(
+        title: 'Successfully Profile Updated',
+        message: response.message,
+      );
       Get.toNamed(AppRoutes.profile);
     } else {
-      Utils.errorSnackBar(response.statusCode, response.message);
+      AppSnackbar.error(
+        title: response.statusCode.toString(),
+        message: response.message,
+      );
     }
 
     isLoading = false;

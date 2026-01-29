@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import '../../../../component/text/common_text.dart';
 import '../../../../component/text_field/common_phone_number_text_filed.dart';
 import '../../../../component/text_field/common_text_field.dart';
+import '../../../../utils/helpers/validation.dart';
 import '../controller/profile_controller.dart';
 import '../../../../../utils/constants/app_colors.dart';
 import '../../../../../utils/constants/app_string.dart';
-import '../../../../../utils/helpers/other_helper.dart';
 import '../../../../../utils/log/app_log.dart';
-
 
 class EditProfileAllFiled extends StatelessWidget {
   const EditProfileAllFiled({super.key, required this.controller});
@@ -27,7 +26,7 @@ class EditProfileAllFiled extends StatelessWidget {
         ),
         CommonTextField(
           controller: controller.nameController,
-          validator: OtherHelper.validator,
+          validator: AppValidation.required,
           hintText: AppString.fullName,
           prefixIcon: const Icon(Icons.person),
           borderColor: AppColors.black,

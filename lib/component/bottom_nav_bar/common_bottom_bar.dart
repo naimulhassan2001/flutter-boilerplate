@@ -21,28 +21,29 @@ final List<Widget> _selectedIcons = [
 
 class CommonBottomNavBar extends StatelessWidget {
   const CommonBottomNavBar({super.key, required this.currentIndex});
+
   final int currentIndex;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      alignment: Alignment.center,
-      padding: EdgeInsets.all(12.sp),
+      alignment: .center,
+      padding: .all(12.sp),
       decoration: BoxDecoration(
         color: AppColors.blueLight,
-        borderRadius: BorderRadius.only(
+        borderRadius: .only(
           topLeft: Radius.circular(20.r),
           topRight: Radius.circular(20.r),
         ),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: .spaceBetween,
         children: List.generate(_unselectedIcons.length, (index) {
           return InkWell(
             onTap: () => onTap(index),
             child: Container(
-              margin: EdgeInsetsDirectional.all(12.sp),
+              margin: .all(12.sp),
               child: Column(
                 children: [
                   index == currentIndex
@@ -58,7 +59,7 @@ class CommonBottomNavBar extends StatelessWidget {
   }
 
   Future<void> onTap(int index) async {
-    appLog(currentIndex, source: 'common bottombar');
+    appLog(currentIndex, source: 'common bottom bar');
 
     if (index == currentIndex) return;
     switch (index) {

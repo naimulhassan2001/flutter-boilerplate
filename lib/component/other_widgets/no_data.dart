@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../utils/constants/app_images.dart';
 import '../../../utils/constants/app_string.dart';
 import '../image/common_image.dart';
@@ -10,20 +9,12 @@ class NoData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: .min,
         children: [
-          CommonImage(
-            imageSrc: AppImages.noData,
-            height: 70.sp,
-            width: 70.sp,
-          ),
-          const CommonText(
-            text: AppString.dataEmpty,
-            fontSize: 16,
-            top: 8,
-          )
+          CommonImage(imageSrc: AppImages.noData, size: 70),
+          CommonText(text: AppString.dataEmpty, fontSize: 16, top: 8),
         ],
       ),
     );

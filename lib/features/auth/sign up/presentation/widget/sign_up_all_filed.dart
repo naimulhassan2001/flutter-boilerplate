@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../../../../../utils/helpers/other_helper.dart';
 import '../../../../../../utils/constants/app_string.dart';
 import '../../../../../component/text/common_text.dart';
 import '../../../../../component/text_field/common_text_field.dart';
+import '../../../../../utils/helpers/validation.dart';
 import '../controller/sign_up_controller.dart';
 import '../../../../../../utils/constants/app_colors.dart';
-
 
 class SignUpAllField extends StatelessWidget {
   const SignUpAllField({super.key, required this.controller});
@@ -23,7 +22,7 @@ class SignUpAllField extends StatelessWidget {
           prefixIcon: const Icon(Icons.person),
           hintText: AppString.fullName,
           controller: controller.nameController,
-          validator: OtherHelper.validator,
+          validator: AppValidation.required,
         ),
 
         /// User Email here
@@ -32,7 +31,7 @@ class SignUpAllField extends StatelessWidget {
           controller: controller.emailController,
           prefixIcon: const Icon(Icons.mail, color: AppColors.black),
           hintText: AppString.email,
-          validator: OtherHelper.emailValidator,
+          validator: AppValidation.email,
         ),
 
         /// User Password here
@@ -42,7 +41,7 @@ class SignUpAllField extends StatelessWidget {
           prefixIcon: const Icon(Icons.lock, color: AppColors.black),
           isPassword: true,
           hintText: AppString.password,
-          validator: OtherHelper.passwordValidator,
+          validator: AppValidation.password,
         ),
 
         /// User Confirm Password here
@@ -52,11 +51,8 @@ class SignUpAllField extends StatelessWidget {
           prefixIcon: const Icon(Icons.lock, color: AppColors.black),
           isPassword: true,
           hintText: AppString.confirmPassword,
-          validator:
-              (value) => OtherHelper.confirmPasswordValidator(
-                value,
-                controller.passwordController,
-              ),
+          validator: (value) =>
+              AppValidation.confirmPassword(value, controller.passwordController),
         ),
       ],
     );

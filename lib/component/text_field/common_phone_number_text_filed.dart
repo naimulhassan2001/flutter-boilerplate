@@ -5,8 +5,11 @@ import '../../../utils/constants/app_colors.dart';
 import '../../../utils/constants/app_string.dart';
 
 class CommonPhoneNumberTextFiled extends StatelessWidget {
-  const CommonPhoneNumberTextFiled(
-      {super.key, required this.controller, required this.countryChange});
+  const CommonPhoneNumberTextFiled({
+    super.key,
+    required this.controller,
+    required this.countryChange,
+  });
 
   final TextEditingController controller;
   final Function(Country value) countryChange;
@@ -21,28 +24,28 @@ class CommonPhoneNumberTextFiled extends StatelessWidget {
         fillColor: AppColors.filledColor,
         filled: true,
         disabledBorder: OutlineInputBorder(
-          borderSide: BorderSide.none,
-          borderRadius: BorderRadius.all(Radius.circular(8)),
+          borderSide: .none,
+          borderRadius: .all(.circular(8)),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide.none,
-          borderRadius: BorderRadius.all(Radius.circular(8)),
+          borderSide: .none,
+          borderRadius: .all(.circular(8)),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide.none,
-          borderRadius: BorderRadius.all(Radius.circular(8)),
+          borderSide: .none,
+          borderRadius: .all(.circular(8)),
         ),
         errorBorder: OutlineInputBorder(
-          borderSide: BorderSide.none,
-          borderRadius: BorderRadius.all(Radius.circular(8)),
+          borderSide: .none,
+          borderRadius: .all(.circular(8)),
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderSide: BorderSide.none,
-          borderRadius: BorderRadius.all(Radius.circular(8)),
+          borderSide: .none,
+          borderRadius: .all(.circular(8)),
         ),
         border: OutlineInputBorder(
-          borderSide: BorderSide.none,
-          borderRadius: BorderRadius.all(Radius.circular(8)),
+          borderSide: .none,
+          borderRadius: .all(.circular(8)),
         ),
       ),
       initialCountryCode: 'BD',

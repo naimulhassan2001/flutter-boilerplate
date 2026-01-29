@@ -29,7 +29,6 @@ class CommonImage extends StatelessWidget {
     super.key,
   });
 
-
   @override
   Widget build(BuildContext context) {
     if (imageSrc.contains('assets/icons')) {
@@ -47,25 +46,22 @@ class CommonImage extends StatelessWidget {
 
   Widget _buildNetworkImage() {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(borderRadius),
+      borderRadius: .circular(borderRadius),
       child: CachedNetworkImage(
         height: size?.sp ?? height?.h,
         width: size?.sp ?? width?.w,
-        imageUrl:
-            imageSrc.startsWith('http')
-                ? imageSrc
-                : '${ApiEndPoint.imageUrl}$imageSrc',
+        imageUrl: imageSrc.startsWith('http')
+            ? imageSrc
+            : '${ApiEndPoint.imageUrl}$imageSrc',
         fit: fill,
-        imageBuilder:
-            (context, imageProvider) => Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(borderRadius),
-                image: DecorationImage(image: imageProvider, fit: fill),
-              ),
-            ),
-        progressIndicatorBuilder:
-            (context, url, downloadProgress) =>
-                CircularProgressIndicator(value: downloadProgress.progress),
+        imageBuilder: (context, imageProvider) => Container(
+          decoration: BoxDecoration(
+            borderRadius: .circular(borderRadius),
+            image: DecorationImage(image: imageProvider, fit: fill),
+          ),
+        ),
+        progressIndicatorBuilder: (context, url, downloadProgress) =>
+            CircularProgressIndicator(value: downloadProgress.progress),
         errorWidget: (context, url, error) {
           errorLog(error, source: 'Common Image');
 
@@ -87,7 +83,7 @@ class CommonImage extends StatelessWidget {
 
   Widget _buildPngImage() {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(borderRadius),
+      borderRadius: .circular(borderRadius),
       child: Image.asset(
         imageSrc,
         color: imageColor,

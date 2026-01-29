@@ -1,4 +1,6 @@
 class AppString {
+  AppString._();
+
   static const String dataEmpty = 'Data Empty';
   static const String noInternet = 'No Internet';
   static const String checkInternet = 'Check Internet';

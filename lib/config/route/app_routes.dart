@@ -19,7 +19,7 @@ import '../../features/splash/splash_screen.dart';
 
 class AppRoutes {
   static const String test = '/test_screen.dart';
-  static const String splash = '/splash_screen.dart';
+  static const String splash = '/';
   static const String onboarding = '/onboarding_screen.dart';
   static const String signUp = '/sign_up_screen.dart';
   static const String verifyUser = '/verify_user.dart';

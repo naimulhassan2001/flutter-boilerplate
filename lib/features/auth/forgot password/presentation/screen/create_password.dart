@@ -6,10 +6,10 @@ import '../../../../../component/button/common_button.dart';
 import '../../../../../component/image/common_image.dart';
 import '../../../../../component/text/common_text.dart';
 import '../../../../../component/text_field/common_text_field.dart';
+import '../../../../../utils/helpers/validation.dart';
 import '../controller/forget_password_controller.dart';
 import '../../../../../../../utils/constants/app_images.dart';
 import '../../../../../../../utils/constants/app_string.dart';
-import '../../../../../../../utils/helpers/other_helper.dart';
 
 class CreatePassword extends StatelessWidget {
   CreatePassword({super.key});
@@ -65,7 +65,7 @@ class CreatePassword extends StatelessWidget {
                     prefixIcon: const Icon(Icons.lock),
                     hintText: AppString.password,
                     isPassword: true,
-                    validator: OtherHelper.passwordValidator,
+                    validator: AppValidation.password,
                   ),
 
                   /// Confirm Password here
@@ -78,7 +78,7 @@ class CreatePassword extends StatelessWidget {
                     controller: controller.confirmPasswordController,
                     prefixIcon: const Icon(Icons.lock),
                     hintText: AppString.confirmPassword,
-                    validator: (value) => OtherHelper.confirmPasswordValidator(
+                    validator: (value) => AppValidation.confirmPassword(
                       value,
                       controller.passwordController,
                     ),
