@@ -23,3 +23,17 @@ void errorLog(dynamic e, {String source = ''}) {
     ///////
   }
 }
+
+
+void globalError(Object error, StackTrace? stack) {
+  debugPrint(' Global Error ❌ ERROR: $error');
+
+  if (stack != null) {
+    debugPrint('Global Error 📌 STACK TRACE:\n$stack');
+  }
+
+
+
+  // Optional: Send to remote logging
+  // FirebaseCrashlytics.instance.recordError(error, stack);
+}

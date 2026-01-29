@@ -11,19 +11,37 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      ensureScreenSize: true,
+      designSize: const Size(428, 926),
       minTextAdapt: true,
       splitScreenMode: true,
-      designSize: const Size(428, 926),
-      child: GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        navigatorKey: Get.key,
-        defaultTransition: Transition.fadeIn,
-        theme: themeData,
-        transitionDuration: const Duration(milliseconds: 300),
-        initialRoute: AppRoutes.splash,
-        getPages: AppRoutes.routes,
-      ),
+
+      builder: (context, child) {
+        return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          navigatorKey: Get.key,
+
+          theme: themeData,
+
+          defaultTransition: Transition.fadeIn,
+          transitionDuration: const Duration(milliseconds: 200),
+
+          initialRoute: AppRoutes.splash,
+          getPages: AppRoutes.routes,
+
+          home: child,
+        );
+      },
+
+      child: const _AppRoot(),
     );
+  }
+}
+
+class _AppRoot extends StatelessWidget {
+  const _AppRoot();
+
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox.shrink();
   }
 }

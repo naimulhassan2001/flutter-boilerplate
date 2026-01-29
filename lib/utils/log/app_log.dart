@@ -1,11 +1,10 @@
-import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'error_log.dart';
 
 void appLog(dynamic message, {String source = ''}) {
   try {
     if (kDebugMode) {
-      log("""
+      debugPrint("""
 ${source.isNotEmpty ? ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" : ""}
       $source
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -19,4 +18,15 @@ ${source.isNotEmpty ? ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   } catch (e) {
     errorLog(e, source: 'App Log');
   }
+}
+
+
+void setupGlobalLogging() {
+  final originalDebugPrint = debugPrint;
+
+  debugPrint = (String? message, {int? wrapWidth}) {
+    if (message == null) return;
+
+    originalDebugPrint('➡️debugPrint: $message', wrapWidth: wrapWidth);
+  };
 }
