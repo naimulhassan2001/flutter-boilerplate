@@ -71,7 +71,7 @@ class ChatController extends GetxController {
 
   /// Chat data Update  Socket listener
   Future<void> listenChat() async {
-    SocketServices.on('update-chatlist::${LocalStorage.userId}', (data) {
+    SocketService.on('update-chatlist::${LocalStorage.userId}', (data) {
       page = 1;
       chats.clear();
 

@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:untitled/services/socket/socket_service.dart';
 
 import '../../config/route/app_routes.dart';
 import '../../utils/log/app_log.dart';
@@ -45,6 +46,11 @@ class LocalStorage {
     _resetLocalStorageData();
     Get.offAllNamed(AppRoutes.signIn);
     await getAllPrefData();
+  }
+
+  static Future<void> logOut() async {
+    SocketService.disconnect();
+    await removeAllPrefData();
   }
 
   // Reset LocalStorage Data

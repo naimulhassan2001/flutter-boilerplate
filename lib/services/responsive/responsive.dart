@@ -1,20 +1,38 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class Responsive {
-  static BuildContext context = Get.context!;
+  Responsive._(); // Prevent instantiation
 
-  static double isSize() => MediaQuery.of(context).size.width;
+  /// Breakpoints (logical pixels)
+  static const double mobileMaxWidth = 600;
+  static const double tabletMaxWidth = 1024;
 
-  static bool isMobile() => MediaQuery.of(context).size.width < 600;
+  /// Current Flutter view
+  static FlutterView _view(BuildContext context) =>
+      View.of(context);
 
-  static bool isTablet() =>
-      MediaQuery.of(context).size.width < 1024 &&
-      MediaQuery.of(context).size.width >= 600;
-
-  static bool isDesktop() => MediaQuery.of(context).size.width >= 1024;
-
-  static void init(BuildContext ctx) {
-    context = ctx;
+  /// Screen width (logical pixels)
+  static double width(BuildContext context) {
+    final view = _view(context);
+    return view.physicalSize.width / view.devicePixelRatio;
   }
+
+  /// Screen height (logical pixels)
+  static double height(BuildContext context) {
+    final view = _view(context);
+    return view.physicalSize.height / view.devicePixelRatio;
+  }
+
+  /// Device type helpers
+  static bool isMobile(BuildContext context) =>
+      width(context) < mobileMaxWidth;
+
+  static bool isTablet(BuildContext context) =>
+      width(context) >= mobileMaxWidth &&
+          width(context) < tabletMaxWidth;
+
+  static bool isDesktop(BuildContext context) =>
+      width(context) >= tabletMaxWidth;
 }

@@ -8,21 +8,14 @@ import 'services/socket/socket_service.dart';
 import 'services/storage/storage_services.dart';
 
 Future<void> main() async {
-  runZonedGuarded(
-    () async {
-      WidgetsFlutterBinding.ensureInitialized();
-      FlutterError.onError = (details) {
-        globalError(details.exception, details.stack);
-      };
-      runApp(const MyApp());
-      WidgetsBinding.instance.addPostFrameCallback((_) async {
-        await init();
-      });
-    },
-    (error, stack) {
-      globalError(error, stack);
-    },
-  );
+  runZonedGuarded(() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    FlutterError.onError = (d) => globalError(d.exception, d.stack);
+    runApp(const MyApp());
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await init();
+    });
+  }, (error, stack) => globalError(error, stack));
 }
 
 Future<void> init() async {
@@ -35,7 +28,7 @@ Future<void> init() async {
     ]);
 
     Future.delayed(const Duration(milliseconds: 300), () {
-      SocketServices.connectToSocket();
+      SocketService.connect();
     });
   } catch (e, stack) {
     globalError(e, stack);

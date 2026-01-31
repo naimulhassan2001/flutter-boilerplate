@@ -110,7 +110,7 @@ class MessageController extends GetxController {
 
     messageController.clear();
 
-    SocketServices.emitWithAck('add-new-message', body, (data) {
+    SocketService.emitWithAck('add-new-message', body, (data) {
       if (kDebugMode) {
         print(
           '===============================================================> Received acknowledgment: $data',
@@ -120,7 +120,7 @@ class MessageController extends GetxController {
   }
 
   Future<void> listenMessage(String chatId) async {
-    SocketServices.on('new-message::$chatId', (data) {
+    SocketService.on('new-message::$chatId', (data) {
       status = Status.loading;
       update();
 
