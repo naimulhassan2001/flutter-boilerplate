@@ -15,7 +15,7 @@ class LocalStorage {
   static String myName = '';
   static String myEmail = '';
 
-  // Create Local Storage Instance
+  /// Create Local Storage Instance
   static SharedPreferences? preferences;
 
   /// Get SharedPreferences Instance
