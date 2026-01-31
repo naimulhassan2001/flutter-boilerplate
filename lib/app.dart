@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'config/route/app_routes.dart';
+import 'config/scroll_behavior/scroll_behavior.dart';
 import 'config/theme/light_theme.dart';
 
 class MyApp extends StatelessWidget {
@@ -14,9 +15,11 @@ class MyApp extends StatelessWidget {
       designSize: const Size(428, 926),
       minTextAdapt: true,
       splitScreenMode: true,
+
       builder: (context, child) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
+          scrollBehavior: const AppScrollBehavior(),
           navigatorKey: Get.key,
           theme: themeData,
           defaultTransition: Transition.fadeIn,

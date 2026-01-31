@@ -23,7 +23,7 @@ class CreatePassword extends StatelessWidget {
       appBar: AppBar(
         title: const CommonText(
           text: AppString.createNewPassword,
-          fontWeight: FontWeight.w700,
+          fontWeight: .w700,
           fontSize: 24,
         ),
       ),
@@ -39,36 +39,27 @@ class CreatePassword extends StatelessWidget {
                 crossAxisAlignment: .start,
                 children: [
                   64.height,
+                  const CommonImage(
+                    imageSrc: AppImages.noImage,
+                    size: 297,
+                  ).center,
 
-                  /// Reset password image here
-                  const Center(
-                    child: CommonImage(
-                      imageSrc: AppImages.noImage,
-                      height: 297,
-                      width: 297,
-                    ),
-                  ),
-
-                  /// Instruction of Creating New Password
                   const CommonText(
                     text: AppString.createYourNewPassword,
                     fontSize: 18,
-                    textAlign: TextAlign.start,
+                    textAlign: .start,
                     top: 64,
                     bottom: 24,
                   ),
 
-                  /// New Password here
                   const CommonText(text: AppString.password, bottom: 8),
                   CommonTextField(
                     controller: controller.passwordController,
-                    prefixIcon: const Icon(Icons.lock),
                     hintText: AppString.password,
                     isPassword: true,
                     validator: AppValidation.password,
                   ),
 
-                  /// Confirm Password here
                   const CommonText(
                     text: AppString.password,
                     bottom: 8,
@@ -76,7 +67,6 @@ class CreatePassword extends StatelessWidget {
                   ),
                   CommonTextField(
                     controller: controller.confirmPasswordController,
-                    prefixIcon: const Icon(Icons.lock),
                     hintText: AppString.confirmPassword,
                     validator: (value) => AppValidation.confirmPassword(
                       value,
@@ -84,15 +74,14 @@ class CreatePassword extends StatelessWidget {
                     ),
                     isPassword: true,
                   ),
-                  64.height,
 
-                  /// Submit Button here
+                  64.height,
                   CommonButton(
                     titleText: AppString.continues,
-                    isLoading: controller.isLoadingReset,
+                    isLoading: controller.isLoading,
                     onTap: () {
                       if (_formKey.currentState!.validate()) {
-                        controller.resetPasswordRepo();
+                        controller.resetPassword();
                       }
                     },
                   ),

@@ -44,7 +44,7 @@ class AppRoutes {
     GetPage(name: verifyUser, page: () => const VerifyUser()),
     GetPage(name: signIn, page: () => const SignInScreen()),
     GetPage(name: forgotPassword, page: () => ForgotPasswordScreen()),
-    GetPage(name: verifyEmail, page: () => const VerifyScreen()),
+    GetPage(name: verifyEmail, page: () => VerifyScreen()),
     GetPage(name: createPassword, page: () => CreatePassword()),
     GetPage(name: changePassword, page: () => ChangePasswordScreen()),
     GetPage(name: notifications, page: () => const NotificationScreen()),

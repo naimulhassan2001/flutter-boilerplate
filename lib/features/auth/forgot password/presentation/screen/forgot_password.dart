@@ -22,18 +22,18 @@ class ForgotPasswordScreen extends StatelessWidget {
         appBar: AppBar(
           title: const CommonText(
             text: AppString.forgotPassword,
-            fontWeight: FontWeight.w700,
+            fontWeight: .w700,
             fontSize: 24,
           ),
         ),
 
         /// body section
         body: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
+          padding: .symmetric(horizontal: 20.w, vertical: 24.h),
           child: Form(
             key: _formKey,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: .start,
               children: [
                 /// forget password take email for reset Password
                 const CommonText(text: AppString.email, bottom: 8, top: 80),
@@ -50,15 +50,15 @@ class ForgotPasswordScreen extends StatelessWidget {
 
         /// Bottom Navigation Bar Section
         bottomNavigationBar: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+          padding: const .symmetric(vertical: 30, horizontal: 20),
 
           /// Submit Button
           child: CommonButton(
             titleText: AppString.continues,
-            isLoading: controller.isLoadingEmail,
+            isLoading: controller.isLoading,
             onTap: () {
               if (_formKey.currentState!.validate()) {
-                controller.forgotPasswordRepo();
+                controller.sendForgetPasswordEmail();
               }
             },
           ),
