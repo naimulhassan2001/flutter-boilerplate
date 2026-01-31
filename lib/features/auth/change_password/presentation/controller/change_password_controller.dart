@@ -13,13 +13,11 @@ class ChangePasswordController extends GetxController {
   TextEditingController confirmPasswordController = TextEditingController();
 
   ///  change password function
-
   Future<void> changePasswordRepo() async {
     Get.back();
     return;
     isLoading = true;
     update();
-
     final Map<String, String> body = {
       'oldPassword': currentPasswordController.text,
       'newPassword': newPasswordController.text,

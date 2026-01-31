@@ -24,7 +24,7 @@ class ChangePasswordScreen extends StatelessWidget {
         title: const CommonText(
           text: AppString.changePassword,
           fontSize: 20,
-          fontWeight: FontWeight.w600,
+          fontWeight: .w600,
         ),
       ),
       body: GetBuilder<ChangePasswordController>(
@@ -84,7 +84,7 @@ class ChangePasswordScreen extends StatelessWidget {
                       child: CommonText(
                         text: AppString.forgotPassword,
                         color: AppColors.primaryColor,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: .w600,
                         fontSize: 18.sp,
                         top: 16.h,
                         bottom: 20.h,
