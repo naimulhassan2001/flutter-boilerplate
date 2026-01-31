@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import '../../../../../config/route/app_routes.dart';
-
 
 class SignInController extends GetxController {
   /// Sign in Button Loading variable
@@ -12,12 +10,8 @@ class SignInController extends GetxController {
   final formKey = GlobalKey<FormState>();
 
   /// email and password Controller here
-  TextEditingController emailController = TextEditingController(
-    text: kDebugMode ? 'developernaimul00@gmail.com' : '',
-  );
-  TextEditingController passwordController = TextEditingController(
-    text: kDebugMode ? 'hello123' : '',
-  );
+  final TextEditingController emailController = .new();
+  final TextEditingController passwordController = .new();
 
   /// Sign in Api call here
 
