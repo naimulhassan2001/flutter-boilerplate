@@ -7,6 +7,8 @@ import '../../utils/log/api_log.dart';
 import 'auth_interceptor.dart';
 
 class DioConfig {
+  DioConfig._();
+
   static Dio create() {
     final dio = Dio(
       BaseOptions(

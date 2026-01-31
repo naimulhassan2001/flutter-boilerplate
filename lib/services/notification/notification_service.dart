@@ -1,54 +1,106 @@
-// import 'dart:math';
-// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'dart:math';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:get/get.dart';
+import 'package:untitled/config/route/app_routes.dart';
 
+class NotificationService {
+  NotificationService._();
 
-// class NotificationService {
-//   static FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-//       FlutterLocalNotificationsPlugin();
+  static final _notificationsPlugin = FlutterLocalNotificationsPlugin();
 
-//   static Future<void> initLocalNotification() async {
-//     flutterLocalNotificationsPlugin
-//         .resolvePlatformSpecificImplementation<
-//             AndroidFlutterLocalNotificationsPlugin>()
-//         ?.requestNotificationsPermission();
-//     var androidInitializationSettings =
-//         const AndroidInitializationSettings("@mipmap/ic_launcher");
-//     var iosInitializationSettings = const DarwinInitializationSettings();
+  static const String _channelId = 'high_importance_channel';
+  static const String _channelName = 'High Importance Notifications';
+  static const String _channelDescription = 'Used for important notifications';
 
-//     var initializationSettings = InitializationSettings(
-//         android: androidInitializationSettings, iOS: iosInitializationSettings);
+  /// Initialize local notifications
+  static Future<void> init() async {
+    await _requestAndroidPermission();
+    await _initializePlugin();
+    await _createAndroidChannel();
+  }
 
-//     await flutterLocalNotificationsPlugin.initialize(initializationSettings,
-//         onDidReceiveNotificationResponse: (payload) {
-//       // print("Route");
-//       // Get.toNamed(AppRoute.notification);
-//     });
-//   }
+  /// Request notification permission
+  static Future<void> _requestAndroidPermission() async {
+    final androidPlugin = _notificationsPlugin
+        .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin
+        >();
+    await androidPlugin?.requestNotificationsPermission();
+  }
 
-//   static Future<void> showNotification(dynamic message) async {
+  /// Initialize notification plugin
+  static Future<void> _initializePlugin() async {
+    const androidSettings = AndroidInitializationSettings(
+      '@mipmap/ic_launcher',
+    );
+    const iosSettings = DarwinInitializationSettings();
+    const settings = InitializationSettings(
+      android: androidSettings,
+      iOS: iosSettings,
+    );
+    await _notificationsPlugin.initialize(
+      settings,
+      onDidReceiveNotificationResponse: _onNotificationTap,
+    );
+  }
 
-//     AndroidNotificationChannel channel = AndroidNotificationChannel(
-//         Random.secure().nextInt(10000).toString(),
-//         "High Importance Notification",
-//         importance: Importance.max);
+  /// Handle notification tap
+  static void _onNotificationTap(NotificationResponse response) {
+    if (kDebugMode) {
+      debugPrint('Notification tapped: ${response.payload}');
+    }
+    Get.toNamed(AppRoutes.notifications);
+  }
 
-//     AndroidNotificationDetails androidNotificationDetails =
-//         AndroidNotificationDetails(channel.id, channel.name,
-//             channelDescription: "your channel Description",
-//             importance: Importance.high,
-//             priority: Priority.high,
-//             ticker: "ticker");
+  /// Create Android notification channel
+  static Future<void> _createAndroidChannel() async {
+    const AndroidNotificationChannel channel = AndroidNotificationChannel(
+      _channelId,
+      _channelName,
+      description: _channelDescription,
+      importance: Importance.high,
+    );
+    final androidPlugin = _notificationsPlugin
+        .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin
+        >();
 
-//     DarwinNotificationDetails darwinNotificationDetails =
-//         const DarwinNotificationDetails(
-//             presentAlert: true, presentBadge: true, presentSound: true);
+    await androidPlugin?.createNotificationChannel(channel);
+  }
 
-//     NotificationDetails notificationDetails = NotificationDetails(
-//         android: androidNotificationDetails, iOS: darwinNotificationDetails);
+  /// Show notification
+  static Future<void> show({
+    required String title,
+    required String body,
+    String? payload,
+  }) async {
+    final notificationId = Random().nextInt(100000);
+    const androidDetails = AndroidNotificationDetails(
+      _channelId,
+      _channelName,
+      channelDescription: _channelDescription,
+      importance: Importance.high,
+      priority: Priority.high,
+    );
 
-//     Future.delayed(Duration.zero, () {
-//       flutterLocalNotificationsPlugin.show(
-//           0, message['message'], message['type'], notificationDetails);
-//     });
-//   }
-// }
+    const iosDetails = DarwinNotificationDetails(
+      presentAlert: true,
+      presentBadge: true,
+      presentSound: true,
+    );
+
+    const notificationDetails = NotificationDetails(
+      android: androidDetails,
+      iOS: iosDetails,
+    );
+
+    await _notificationsPlugin.show(
+      notificationId,
+      title,
+      body,
+      notificationDetails,
+      payload: payload,
+    );
+  }
+}

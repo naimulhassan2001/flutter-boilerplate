@@ -1,118 +1,71 @@
-// import 'package:flutter/foundation.dart';
-// import 'package:geolocator/geolocator.dart';
-// import 'package:geocoding/geocoding.dart';
-//
-// class LocationService {
-//   static inti() async {
-//     bool isEnabled = await checkLocationEnabled();
-//     if (isEnabled) {
-//       locationPermission();
-//     }
-//   }
-//
-//   static Future<bool> checkLocationEnabled() async {
-//     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
-//
-//     if (kDebugMode) {
-//       print(serviceEnabled);
-//     }
-//     return serviceEnabled;
-//   }
-//
-//   static Future<bool> locationPermission() async {
-//     LocationPermission permission = await Geolocator.checkPermission();
-//     if (kDebugMode) {
-//       print(permission);
-//     }
-//
-//     if (permission == LocationPermission.denied) {
-//       permission = await Geolocator.requestPermission();
-//       if (kDebugMode) {
-//         print(permission);
-//       }
-//       if (permission == LocationPermission.denied) {
-//         return false;
-//       } else {
-//         return true;
-//       }
-//     } else {
-//       return true;
-//     }
-//   }
-//
-//   static Future<Position?> getCurrentPosition() async {
-//     Position? positions;
-//     try {
-//       bool isEnabled = await checkLocationEnabled();
-//       if (!isEnabled) {
-//         isEnabled = await Geolocator.openLocationSettings();
-//       }
-//       if (isEnabled) {
-//         bool isPermission = await locationPermission();
-//         if (isPermission) {
-//           positions = await Geolocator.getCurrentPosition();
-//           print(positions);
-//
-//           return positions;
-//         }
-//       }
-//       return positions;
-//     } catch (e) {
-//       return positions;
-//     }
-//   }
-//
-//   static Future<List> addressToCoordinate(String address) async {
-//     try {
-//       bool isEnabled = await checkLocationEnabled();
-//       if (!isEnabled) {
-//         isEnabled = await Geolocator.openLocationSettings();
-//       }
-//       if (isEnabled) {
-//         bool isPermission = await locationPermission();
-//         if (isPermission) {
-//           List<Location> locations = await locationFromAddress(address);
-//           if (kDebugMode) {
-//             print(locations.first.longitude);
-//           }
-//           return locations;
-//         }
-//       }
-//
-//       return [];
-//     } catch (e) {
-//       return [];
-//     }
-//   }
-//
-//   static Future<List> coordinateToAddress(
-//       {required double lat, required double long}) async {
-//     try {
-//       bool isEnabled = await checkLocationEnabled();
-//       if (!isEnabled) {
-//         isEnabled = await Geolocator.openLocationSettings();
-//       }
-//       if (isEnabled) {
-//         bool isPermission = await locationPermission();
-//         if (isPermission) {
-//           List<Placemark> placeMarks = await placemarkFromCoordinates(
-//             lat,
-//             long,
-//           );
-//           print(placeMarks.first.street);
-//           print(placeMarks.first.country);
-//           print(placeMarks.first.administrativeArea);
-//           print(placeMarks.first.subLocality);
-//           print(placeMarks.first.isoCountryCode);
-//           print(placeMarks);
-//           return placeMarks;
-//         }
-//       }
-//       //
-//
-//       return [];
-//     } catch (e) {
-//       return [];
-//     }
-//   }
-// }
+import 'package:geolocator/geolocator.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:untitled/utils/log/app_log.dart';
+import 'package:untitled/utils/log/error_log.dart';
+
+class LocationService {
+  /// Initialize location service
+  static Future<void> init() async {
+    await _ensureLocationAccess();
+  }
+
+  /// Check and request location service + permission
+  static Future<bool> _ensureLocationAccess() async {
+    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      serviceEnabled = await Geolocator.openLocationSettings();
+      if (!serviceEnabled) return false;
+    }
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+    }
+    if (permission == LocationPermission.deniedForever) {
+      appLog('Location permission permanently denied');
+      return false;
+    }
+    return permission == LocationPermission.always ||
+        permission == LocationPermission.whileInUse;
+  }
+
+  /// Get current user position
+  static Future<Position?> getCurrentPosition() async {
+    try {
+      final hasAccess = await _ensureLocationAccess();
+      if (!hasAccess) return null;
+      return await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high,
+      );
+    } catch (e) {
+      errorLog('getCurrentPosition error: $e');
+      return null;
+    }
+  }
+
+  /// Convert address to coordinates
+  static Future<List<Location>> addressToCoordinate(String address) async {
+    try {
+      final hasAccess = await _ensureLocationAccess();
+      if (!hasAccess) return [];
+      return await locationFromAddress(address);
+    } catch (e) {
+      errorLog('addressToCoordinate error: $e');
+      return [];
+    }
+  }
+
+  /// Convert coordinates to address
+  static Future<List<Placemark>> coordinateToAddress({
+    required double latitude,
+    required double longitude,
+  }) async {
+    try {
+      final hasAccess = await _ensureLocationAccess();
+      if (!hasAccess) return [];
+      return await placemarkFromCoordinates(latitude, longitude);
+    } catch (e) {
+      errorLog('coordinateToAddress error: $e');
+      return [];
+    }
+  }
+}
