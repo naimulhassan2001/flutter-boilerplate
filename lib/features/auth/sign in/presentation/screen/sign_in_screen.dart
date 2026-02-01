@@ -14,7 +14,9 @@ import '../../../../../../../utils/constants/app_string.dart';
 import '../widgets/do_not_account.dart';
 
 class SignInScreen extends StatelessWidget {
-  const SignInScreen({super.key});
+  SignInScreen({super.key});
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +28,11 @@ class SignInScreen extends StatelessWidget {
       body: GetBuilder<SignInController>(
         builder: (controller) {
           return SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
+            padding: .symmetric(horizontal: 20.w, vertical: 24.h),
             child: Form(
-              key: controller.formKey,
+              key: _formKey,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: .start,
                 children: [
                   /// Log In Instruction here
                   const CommonText(
@@ -44,7 +46,6 @@ class SignInScreen extends StatelessWidget {
                   const CommonText(text: AppString.email, bottom: 8),
                   CommonTextField(
                     controller: controller.emailController,
-                    prefixIcon: const Icon(Icons.mail),
                     hintText: AppString.email,
                     validator: AppValidation.email,
                   ),
@@ -57,7 +58,6 @@ class SignInScreen extends StatelessWidget {
                   ),
                   CommonTextField(
                     controller: controller.passwordController,
-                    prefixIcon: const Icon(Icons.lock),
                     isPassword: true,
                     hintText: AppString.password,
                     validator: AppValidation.password,
@@ -65,7 +65,7 @@ class SignInScreen extends StatelessWidget {
 
                   /// Forget Password Button here
                   Align(
-                    alignment: Alignment.centerRight,
+                    alignment: .centerRight,
                     child: GestureDetector(
                       onTap: () => Get.toNamed(AppRoutes.forgotPassword),
                       child: const CommonText(
@@ -74,7 +74,7 @@ class SignInScreen extends StatelessWidget {
                         bottom: 30,
                         color: AppColors.primaryColor,
                         fontSize: 16,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: .w600,
                       ),
                     ),
                   ),
@@ -83,7 +83,12 @@ class SignInScreen extends StatelessWidget {
                   CommonButton(
                     titleText: AppString.signIn,
                     isLoading: controller.isLoading,
-                    onTap: controller.signInUser,
+                    onTap: () {
+                      if (!_formKey.currentState!.validate()) {
+                        return;
+                      }
+                      controller.signInUser();
+                    },
                   ),
                   30.height,
 

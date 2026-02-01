@@ -7,16 +7,14 @@ class SignInController extends GetxController {
   bool isLoading = false;
 
   /// Sign in form key , help for Validation
-  final formKey = GlobalKey<FormState>();
 
   /// email and password Controller here
-  final TextEditingController emailController = .new();
-  final TextEditingController passwordController = .new();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   /// Sign in Api call here
 
   Future<void> signInUser() async {
-    if (!formKey.currentState!.validate()) return;
     Get.toNamed(AppRoutes.profile);
     return;
 

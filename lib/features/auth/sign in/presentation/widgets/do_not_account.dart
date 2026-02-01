@@ -16,33 +16,31 @@ class DoNotHaveAccount extends StatelessWidget {
     return Text.rich(
       TextSpan(
         children: [
-
           TextSpan(
             text: AppString.doNotHaveAccount,
             style: GoogleFonts.plusJakartaSans(
               color: AppColors.secondary,
               fontSize: 16,
-              fontWeight: FontWeight.w500,
+              fontWeight: .w500,
             ),
           ),
 
           /// Sign Up Button here
           TextSpan(
             text: AppString.signUp,
-            recognizer:
-                TapGestureRecognizer()
-                  ..onTap = () {
-                    Get.toNamed(AppRoutes.signUp);
-                  },
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                Get.toNamed(AppRoutes.signUp);
+              },
             style: GoogleFonts.plusJakartaSans(
               color: AppColors.primaryColor,
               fontSize: 16,
-              fontWeight: FontWeight.w600,
+              fontWeight: .w600,
             ),
           ),
         ],
       ),
-      textAlign: TextAlign.center,
+      textAlign: .center,
     );
   }
 }
