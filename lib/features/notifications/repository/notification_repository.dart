@@ -3,21 +3,19 @@ import '../../../config/api/api_end_point.dart';
 import '../data/model/notification_model.dart';
 
 Future<List<NotificationModel>> notificationRepository(int page) async {
-  final response = await ApiService.get(
-    '${ApiEndPoint.notifications}?page=$page',
-  );
+  try {
+    final response = await ApiService.get(
+      '${ApiEndPoint.notifications}?page=$page',
+    );
 
-  if (response.statusCode == 200) {
-    final notificationList = response.data['data'] ?? [];
-
-   final List<NotificationModel> list = [];
-
-    for (var notification in notificationList) {
-      list.add(NotificationModel.fromJson(notification));
+    if (response.statusCode != 200) {
+      throw Exception(response.message);
     }
 
-    return list;
-  } else {
-    return [];
+    final List<dynamic> rawList = response.data['data'] ?? [];
+
+    return rawList.map((e) => NotificationModel.fromJson(e)).toList();
+  } catch (e) {
+    rethrow;
   }
 }

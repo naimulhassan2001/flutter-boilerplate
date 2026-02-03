@@ -6,83 +6,86 @@ import 'package:get/get.dart';
 import '../../../../component/button/common_button.dart';
 import '../../../../component/image/common_image.dart';
 import '../../../../component/text/common_text.dart';
+import '../../../../services/storage/storage_services.dart';
 import '../controller/profile_controller.dart';
 import '../../../../../../utils/constants/app_images.dart';
 import '../../../../../../utils/constants/app_string.dart';
 import '../widgets/edit_profile_all_filed.dart';
 
 class EditProfile extends StatelessWidget {
-  const EditProfile({super.key});
+  EditProfile({super.key});
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ProfileController>(
       builder: (controller) {
+        final userImage = LocalStorage.user.image;
+
         return Scaffold(
-          /// App Bar Sections Starts here
+          /// AppBar
           appBar: AppBar(
             centerTitle: true,
             title: const CommonText(
               text: AppString.profile,
               fontSize: 20,
-              fontWeight: FontWeight.w600,
+              fontWeight: .w600,
             ),
           ),
 
-          /// Body Sections Starts here
+          /// Body
           body: SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
+            padding: .symmetric(horizontal: 20.w, vertical: 24.h),
             child: Form(
-              key: controller.formKey,
+              key: _formKey,
               child: Column(
                 children: [
-                  /// User Profile image here
+                  /// Profile image
                   Stack(
+                    alignment: .bottomRight,
                     children: [
-                      Center(
-                        child: CircleAvatar(
-                          radius: 85.sp,
-                          backgroundColor: Colors.transparent,
-                          child: ClipOval(
-                            child:
-                                controller.image != null
-                                    ? Image.file(
-                                      File(controller.image!),
-                                      width: 170,
-                                      height: 170,
-                                      fit: BoxFit.fill,
-                                    )
-                                    : const CommonImage(
-                                      imageSrc: AppImages.profile,
-                                      height: 170,
-                                      width: 170,
-                                    ),
-                          ),
+                      CircleAvatar(
+                        radius: 70.r,
+                        backgroundColor: Colors.transparent,
+                        child: ClipOval(
+                          child: controller.image != null
+                              ? Image.file(
+                                  File(controller.image!),
+                                  width: 140,
+                                  height: 140,
+                                  fit: BoxFit.cover,
+                                )
+                              : CommonImage(
+                                  imageSrc: userImage.isEmpty
+                                      ? AppImages.profile
+                                      : userImage,
+                                  width: 140,
+                                  height: 140,
+                                ),
                         ),
                       ),
 
-                      /// image change icon here
-                      Positioned(
-                        bottom: 0,
-                        left: Get.width * 0.53,
-                        child: IconButton(
-                          style: ButtonStyle(
-                            backgroundColor: WidgetStateColor.resolveWith(
-                              (states) => Colors.black,
-                            ),
-                          ),
-                          onPressed: controller.getProfileImage,
-                          icon: const Icon(Icons.edit, color: Colors.white),
+                      /// Edit icon
+                      IconButton(
+                        onPressed: controller.getProfileImage,
+                        icon: const Icon(Icons.edit),
+                        color: Colors.white,
+                        style: IconButton.styleFrom(
+                          backgroundColor: Colors.black,
                         ),
                       ),
                     ],
                   ),
 
-                  /// user all information filed here
+                  24.height,
+
+                  /// Fields
                   EditProfileAllFiled(controller: controller),
+
                   30.height,
 
-                  /// Submit Button here
+                  /// Save button
                   CommonButton(
                     titleText: AppString.saveAndChanges,
                     isLoading: controller.isLoading,

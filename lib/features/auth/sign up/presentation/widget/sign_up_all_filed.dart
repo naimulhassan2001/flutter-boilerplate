@@ -4,7 +4,6 @@ import '../../../../../component/text/common_text.dart';
 import '../../../../../component/text_field/common_text_field.dart';
 import '../../../../../utils/helpers/validation.dart';
 import '../controller/sign_up_controller.dart';
-import '../../../../../../utils/constants/app_colors.dart';
 
 class SignUpAllField extends StatelessWidget {
   const SignUpAllField({super.key, required this.controller});
@@ -14,12 +13,11 @@ class SignUpAllField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: .start,
       children: [
         /// User Name here
         const CommonText(text: AppString.fullName, bottom: 8, top: 12),
         CommonTextField(
-          prefixIcon: const Icon(Icons.person),
           hintText: AppString.fullName,
           controller: controller.nameController,
           validator: AppValidation.required,
@@ -29,7 +27,6 @@ class SignUpAllField extends StatelessWidget {
         const CommonText(text: AppString.email, bottom: 8, top: 12),
         CommonTextField(
           controller: controller.emailController,
-          prefixIcon: const Icon(Icons.mail, color: AppColors.black),
           hintText: AppString.email,
           validator: AppValidation.email,
         ),
@@ -38,7 +35,6 @@ class SignUpAllField extends StatelessWidget {
         const CommonText(text: AppString.password, bottom: 8, top: 12),
         CommonTextField(
           controller: controller.passwordController,
-          prefixIcon: const Icon(Icons.lock, color: AppColors.black),
           isPassword: true,
           hintText: AppString.password,
           validator: AppValidation.password,
@@ -48,11 +44,12 @@ class SignUpAllField extends StatelessWidget {
         const CommonText(text: AppString.confirmPassword, bottom: 8, top: 12),
         CommonTextField(
           controller: controller.confirmPasswordController,
-          prefixIcon: const Icon(Icons.lock, color: AppColors.black),
           isPassword: true,
           hintText: AppString.confirmPassword,
-          validator: (value) =>
-              AppValidation.confirmPassword(value, controller.passwordController),
+          validator: (value) => AppValidation.confirmPassword(
+            value,
+            controller.passwordController,
+          ),
         ),
       ],
     );

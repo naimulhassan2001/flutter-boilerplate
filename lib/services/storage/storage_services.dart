@@ -48,29 +48,29 @@ class LocalStorage {
   }
 
   /// Save token
-  static Future<void> saveToken(String value) async {
+  static Future<void> saveToken(String? value) async {
+    if (value == null || value.isEmpty) {
+      appLog(' Token is  : $value');
+      return;
+    }
     token = value;
     await _storage.setString(LocalStorageKeys.token, value);
   }
 
   /// Save refresh token
-  static Future<void> saveRefreshToken(String value) async {
+  static Future<void> saveRefreshToken(String? value) async {
+    if (value == null || value.isEmpty) {
+      appLog('Refresh Token is  : $value');
+      return;
+    }
     refreshToken = value;
     await _storage.setString(LocalStorageKeys.refreshToken, value);
   }
 
   /// Save full user model
-  static Future<void> saveUser(UserModel model) async {
-    _user = model;
-    await _storage.setString(
-      LocalStorageKeys.user,
-      jsonEncode({
-        '_id': model.id,
-        'fullName': model.name,
-        'email': model.email,
-        'image': model.image,
-      }),
-    );
+  static Future<void> saveUser(Map<String, dynamic>? json) async {
+    _user = UserModel.fromJson(json);
+    await _storage.setString(LocalStorageKeys.user, jsonEncode(_user.toMap()));
   }
 
   /// Remove all data from SharedPreferences

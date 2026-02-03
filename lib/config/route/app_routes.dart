@@ -40,7 +40,7 @@ class AppRoutes {
   static List<GetPage<String>> routes = [
     GetPage(name: splash, page: () => const SplashScreen()),
     GetPage(name: onboarding, page: () => const OnboardingScreen()),
-    GetPage(name: signUp, page: () => const SignUpScreen()),
+    GetPage(name: signUp, page: () => SignUpScreen()),
     GetPage(name: verifyUser, page: () => const VerifyUser()),
     GetPage(name: signIn, page: () => SignInScreen()),
     GetPage(name: forgotPassword, page: () => ForgotPasswordScreen()),
@@ -51,7 +51,7 @@ class AppRoutes {
     GetPage(name: chat, page: () => const ChatListScreen()),
     GetPage(name: message, page: () => const MessageScreen()),
     GetPage(name: profile, page: () => const ProfileScreen()),
-    GetPage(name: editProfile, page: () => const EditProfile()),
+    GetPage(name: editProfile, page: () => EditProfile()),
     GetPage(name: privacyPolicy, page: () => const PrivacyPolicyScreen()),
     GetPage(name: termsOfServices, page: () => const TermsOfServicesScreen()),
     GetPage(name: setting, page: () => const SettingScreen()),

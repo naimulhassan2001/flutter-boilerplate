@@ -1,93 +1,109 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../data/model/chat_list_model.dart';
+import '../../../../config/api/api_end_point.dart';
 import '../../../../services/api/api_service.dart';
 import '../../../../services/socket/socket_service.dart';
-import '../../../../config/api/api_end_point.dart';
 import '../../../../services/storage/storage_services.dart';
 import '../../../../utils/app_snackbar.dart';
 import '../../../../utils/enum/enum.dart';
 
 class ChatController extends GetxController {
-  /// Api status check here
   Status status = Status.completed;
-
-  /// Chat more Data Loading Bar
   bool isMoreLoading = false;
-
-  /// page no here
   int page = 1;
+  final List<ChatModel> chats = [];
 
-  /// Chat List here
-  List<ChatModel> chats = [];
+  /// Scroll controller
+  final ScrollController scrollController = ScrollController();
 
-  /// Chat Scroll Controller
-  ScrollController scrollController = ScrollController();
+  /// Get controller instance
+  static ChatController get instance => Get.find<ChatController>();
 
-  /// Chat Controller Instance create here
-  static ChatController get instance => Get.put(ChatController());
+  /// Init controller
+  @override
+  void onInit() {
+    super.onInit();
+    getChats();
+    listenChat();
+    scrollController.addListener(_onScroll);
+  }
 
-  /// Chat More data Loading function
-  Future<void> moreChats() async {
-    if (scrollController.position.pixels ==
+  /// Scroll listener for pagination
+  void _onScroll() {
+    if (scrollController.position.pixels >=
         scrollController.position.maxScrollExtent) {
+      moreChats();
+    }
+  }
+
+  /// Load more chats when reach bottom
+  Future<void> moreChats() async {
+    if (isMoreLoading || status == Status.loading) return;
+
+    try {
       isMoreLoading = true;
       update();
-      await getChatRepo();
+      await getChats();
+    } finally {
       isMoreLoading = false;
       update();
     }
   }
 
-  /// Chat data Loading function
-  Future<void> getChatRepo() async {
+  /// Fetch chats from API
+  Future<void> getChats() async {
     return;
-    if (page == 1) {
-      status = Status.loading;
-      update();
-    }
-
-    final response = await ApiService.get('${ApiEndPoint.chats}?page=$page');
-
-    if (response.statusCode == 200) {
-      final data = response.data['chats'] ?? [];
-
-      for (var item in data) {
-        chats.add(ChatModel.fromJson(item));
+    try {
+      if (page == 1) {
+        status = Status.loading;
+        update();
       }
 
-      page = page + 1;
+      final response = await ApiService.get('${ApiEndPoint.chats}?page=$page');
+
+      if (response.statusCode != 200) {
+        throw Exception(response.message);
+      }
+
+      final List<dynamic> data = response.data['chats'] ?? [];
+      final newChats = data.map((e) => ChatModel.fromJson(e)).toList();
+      chats.addAll(newChats);
+      page++;
       status = Status.completed;
-      update();
-    } else {
-      AppSnackbar.error(
-        title: response.statusCode.toString(),
-        message: response.message,
-      );
+    } catch (e) {
       status = Status.error;
+      AppSnackbar.error(title: 'Error', message: e.toString());
+    } finally {
       update();
     }
   }
 
-  /// Chat data Update  Socket listener
-  Future<void> listenChat() async {
-    SocketService.on('update-chatlist::${LocalStorage.user.id}', (data) {
+  /// Listen chat updates from socket
+  void listenChat() {
+    final userId = LocalStorage.user.id;
+    SocketService.on('update-chatlist::$userId', (data) {
       page = 1;
       chats.clear();
-
-      for (var item in data) {
-        chats.add(ChatModel.fromJson(item));
-      }
-
+      final List<dynamic> list = data ?? [];
+      chats.addAll(list.map((e) => ChatModel.fromJson(e)).toList());
       status = Status.completed;
       update();
     });
   }
 
-  /// Controller on Init¬
+  /// Refresh chats manually
+  Future<void> refreshChats() async {
+    page = 1;
+    chats.clear();
+    await getChats();
+  }
+
+  /// Dispose controller
   @override
-  void onInit() {
-    getChatRepo();
-    super.onInit();
+  void onClose() {
+    scrollController.dispose();
+    super.onClose();
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:untitled/services/api/multipart_helper.dart';
+
 import '../../../../config/api/api_end_point.dart';
 import '../../../../config/route/app_routes.dart';
 import '../../../../services/api/api_service.dart';
@@ -9,76 +11,85 @@ import '../../../../utils/app_snackbar.dart';
 import '../../../../utils/helpers/other_helper.dart';
 
 class ProfileController extends GetxController {
-  /// Language List here
-  List<String> languages = ['English', 'French', 'Arabic'];
-
-  /// form key here
-  final formKey = GlobalKey<FormState>();
-
-  /// select Language here
+  /// Language list
+  final List<String> languages = ['English', 'French', 'Arabic'];
   String selectedLanguage = 'English';
-
-  /// select image here
   String? image;
-
-  /// edit button loading here
   bool isLoading = false;
 
-  /// all controller here
-  TextEditingController nameController = TextEditingController();
-  TextEditingController numberController = TextEditingController();
+  /// Text controllers
+  final nameController = TextEditingController();
+  final numberController = TextEditingController();
 
-  /// select image function here
+  /// Pick profile image
   Future<void> getProfileImage() async {
     image = await OtherHelper.pickImage();
     update();
   }
 
-  /// select language  function here
+  /// Select language
   void selectLanguage(int index) {
     selectedLanguage = languages[index];
     update();
     Get.back();
   }
 
-  /// update profile function here
-  Future<void> editProfileRepo() async {
-    if (!formKey.currentState!.validate()) return;
-
-    if (!LocalStorage.isLogin) return;
-    isLoading = true;
+  /// Set loading safely
+  void _setLoading(bool value) {
+    isLoading = value;
     update();
+  }
 
-    final body = {
-      'fullName': nameController.text,
-      'phone': numberController.text,
-    };
+  /// Update profile
+  Future<void> editProfileRepo() async {
+    if (LocalStorage.token.isEmpty) return;
 
-    final response = await ApiService.multipart(
-      url: ApiEndPoint.user,
-      body: body,
-      files: [MultipartFileItem(fileName: 'image', filePath: image ?? '')],
-    );
+    try {
+      _setLoading(true);
 
-    if (response.statusCode == 200) {
+      final body = {
+        'fullName': nameController.text.trim(),
+        'phone': numberController.text.trim(),
+      };
+
+      final files = image != null
+          ? [MultipartFileItem(fileName: 'image', filePath: image!)]
+          : <MultipartFileItem>[];
+
+      final response = await ApiService.multipart(
+        url: ApiEndPoint.user,
+        body: body,
+        files: files,
+      );
+
+      if (response.statusCode != 200) {
+        throw Exception(response.message);
+      }
+
       final Map<String, dynamic> data = response.data['data'] ?? {};
-      LocalStorage.saveToken(data['accessToken'] ?? '');
-      LocalStorage.saveRefreshToken(data['refreshToken'] ?? '');
-      LocalStorage.saveUser(data['user'] ?? '');
+
+      LocalStorage.saveUser(data['user']);
 
       AppSnackbar.success(
-        title: 'Successfully Profile Updated',
-        message: response.message,
+        title: 'Success',
+        message: 'Profile updated successfully',
       );
-      Get.toNamed(AppRoutes.profile);
-    } else {
-      AppSnackbar.error(
-        title: response.statusCode.toString(),
-        message: response.message,
-      );
-    }
 
-    isLoading = false;
-    update();
+      nameController.clear();
+      numberController.clear();
+      Get.offNamed(AppRoutes.profile);
+    } catch (e) {
+      AppSnackbar.error(title: 'Error', message: e.toString());
+    } finally {
+      _setLoading(false);
+    }
+  }
+
+  /// Dispose controllers
+  @override
+  void onClose() {
+    nameController.dispose();
+    numberController.dispose();
+    super.onClose();
   }
 }

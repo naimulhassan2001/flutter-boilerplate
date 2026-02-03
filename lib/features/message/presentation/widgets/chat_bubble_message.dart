@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:untitled/utils/extensions/extension.dart';
+
 import '../../../../../utils/constants/app_colors.dart';
-import '../../../../../utils/constants/app_images.dart';
 import '../../../../component/image/common_image.dart';
 import '../../../../component/text/common_text.dart';
-
 
 class ChatBubbleMessage extends StatelessWidget {
   final DateTime time;
   final String text;
   final String image;
   final bool isMe;
-  final int index;
-  final int messageIndex;
-
   final VoidCallback onTap;
 
   const ChatBubbleMessage({
@@ -23,54 +21,60 @@ class ChatBubbleMessage extends StatelessWidget {
     required this.image,
     required this.isMe,
     required this.onTap,
-    this.index = 0,
-    this.messageIndex = 1,
   });
 
   @override
   Widget build(BuildContext context) {
+    final bubbleColor = isMe ? AppColors.primaryColor : AppColors.white;
+
+    final textColor = isMe ? AppColors.white : AppColors.black;
+
     return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment:
-            isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+      padding: .symmetric(vertical: 6.h, horizontal: 12.w),
+      child: Row(
+        mainAxisAlignment: isMe ? .end : .start,
+        crossAxisAlignment: .end,
         children: [
-          Row(
-            mainAxisAlignment: .center,
-            children: [
-              Container(
-                margin: EdgeInsets.only(left: 10.w),
-                padding: EdgeInsets.only(left: 10.w),
-                width: 220,
-                height: 120,
+          /// Avatar (only for others)
+          if (!isMe)
+            Padding(
+              padding: EdgeInsets.only(right: 8.w),
+              child: CommonImage(imageSrc: image, size: 36),
+            ),
+
+          /// Bubble
+          Flexible(
+            child: GestureDetector(
+              onTap: onTap,
+              child: Container(
+                padding: .symmetric(horizontal: 14.w, vertical: 10.h),
+                constraints: BoxConstraints(maxWidth: Get.width * .7),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8.r),
-                  color: AppColors.white,
+                  color: bubbleColor,
+                  borderRadius: .circular(12.r),
                 ),
                 child: Column(
+                  crossAxisAlignment: .start,
                   children: [
-                    /// participant Image here
-                    if (!isMe)
-                      const CommonImage(
-                        imageSrc: AppImages.noImage,
-                        size: 60,
-                      ),
+                    /// Message text
+                    CommonText(text: text, color: textColor),
 
-                    ///Message here
-                    Container(
-                      color: AppColors.primaryColor,
-                      width: 220,
+                    4.height,
+
+                    /// Time
+                    Align(
+                      alignment: .bottomRight,
                       child: CommonText(
-                        maxLines: 5,
-                        text: text,
-                        fontSize: 18,
-                        color: AppColors.white,
+                        text:
+                            '${time.hour}:${time.minute.toString().padLeft(2, '0')}',
+                        fontSize: 10,
+                        color: textColor.withValues(alpha: .7),
                       ),
                     ),
                   ],
                 ),
               ),
-            ],
+            ),
           ),
         ],
       ),

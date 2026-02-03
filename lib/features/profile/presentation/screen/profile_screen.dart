@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+
 import 'package:untitled/services/storage/storage_services.dart';
+import 'package:untitled/utils/extensions/extension.dart';
+
 import '../../../../../../config/route/app_routes.dart';
+import '../../../../../../utils/constants/app_images.dart';
+import '../../../../../../utils/constants/app_string.dart';
+
 import '../../../../component/bottom_nav_bar/common_bottom_bar.dart';
 import '../../../../component/image/common_image.dart';
 import '../../../../component/other_widgets/item.dart';
 import '../../../../component/pop_up/common_pop_menu.dart';
 import '../../../../component/text/common_text.dart';
+
 import '../controller/profile_controller.dart';
-import '../../../../../../utils/constants/app_images.dart';
-import '../../../../../../utils/constants/app_string.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -18,75 +23,71 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /// App Bar Section Starts here
+      /// App bar
       appBar: AppBar(
-        centerTitle: true,
         title: const CommonText(
           text: AppString.profile,
-          fontWeight: FontWeight.w600,
+          fontWeight: .w600,
           fontSize: 24,
         ),
       ),
 
-      /// Body Section Starts here
+      /// Body
       body: GetBuilder<ProfileController>(
         builder: (controller) {
-          return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
+          final user = LocalStorage.user;
+
+          return SingleChildScrollView(
+            padding: .symmetric(horizontal: 20.w, vertical: 24.h),
             child: Column(
               children: [
-                /// User Profile Image here
-                Center(
-                  child: CircleAvatar(
-                    radius: 85.sp,
-                    backgroundColor: Colors.transparent,
-                    child: const ClipOval(
-                      child: CommonImage(
-                        imageSrc: AppImages.profile,
-                        size: 170,
-                      ),
-                    ),
+                /// Profile image
+                16.height,
+
+                CircleAvatar(
+                  backgroundColor: Colors.transparent,
+                  child: ClipOval(
+                    child: CommonImage(imageSrc: user.image, size: 140),
                   ),
                 ),
 
-                /// User Name here
-                 CommonText(
-                  text: LocalStorage.user.name,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
-                  top: 20,
-                  bottom: 24,
-                ),
+                /// Name
+                CommonText(text: user.name, fontSize: 18, fontWeight: .w700),
 
-                /// Edit Profile item here
+                24.height,
+
+                /// Edit profile
                 Item(
                   icon: Icons.person,
                   title: AppString.editProfile,
                   onTap: () => Get.toNamed(AppRoutes.editProfile),
                 ),
 
-                /// Setting item here
+                /// Settings
                 Item(
                   icon: Icons.settings,
                   title: AppString.settings,
                   onTap: () => Get.toNamed(AppRoutes.setting),
                 ),
 
-                /// Language item here
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 24.w),
+                /// Language
+                Padding(
+                  padding: .symmetric(horizontal: 16.w),
                   child: Column(
                     children: [
                       Row(
                         children: [
                           const Icon(Icons.language),
+
+                          12.width,
+
                           CommonText(
                             text: controller.selectedLanguage,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 18,
-                            left: 16,
+                            fontSize: 16,
                           ),
+
                           const Spacer(),
+
                           PopUpMenu(
                             items: controller.languages,
                             selectedItem: [controller.selectedLanguage],
@@ -99,7 +100,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ),
 
-                /// Log Out item here
+                /// Logout
                 const Item(
                   icon: Icons.logout,
                   title: AppString.logOut,
@@ -111,7 +112,7 @@ class ProfileScreen extends StatelessWidget {
         },
       ),
 
-      /// Bottom Navigation Bar Section Starts here
+      /// Bottom nav
       bottomNavigationBar: const CommonBottomNavBar(currentIndex: 3),
     );
   }

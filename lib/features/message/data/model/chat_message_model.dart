@@ -6,7 +6,7 @@ class ChatMessageModel {
   final bool isCall;
   final bool isNotice;
 
-  ChatMessageModel({
+  const ChatMessageModel({
     required this.time,
     required this.text,
     required this.image,

@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+
 import '../../../../../../config/route/app_routes.dart';
+import '../../../../../../utils/constants/app_string.dart';
+import '../../../../../../utils/enum/enum.dart';
+
 import '../../../../component/bottom_nav_bar/common_bottom_bar.dart';
 import '../../../../component/other_widgets/common_loader.dart';
 import '../../../../component/screen/error_screen.dart';
 import '../../../../component/text/common_text.dart';
 import '../../../../component/text_field/common_text_field.dart';
-import '../controller/chat_controller.dart';
+
 import '../../data/model/chat_list_model.dart';
-import '../../../../../../utils/enum/enum.dart';
-import '../../../../../../utils/constants/app_string.dart';
+import '../controller/chat_controller.dart';
 import '../widgets/chat_list_item.dart';
 
 class ChatListScreen extends StatelessWidget {
@@ -19,60 +22,61 @@ class ChatListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /// App Bar Section Starts here
+      /// App bar
       appBar: AppBar(
         centerTitle: true,
         title: const CommonText(
           text: AppString.inbox,
-          fontWeight: FontWeight.w600,
+          fontWeight: .w600,
           fontSize: 24,
         ),
       ),
 
-      /// Body Section Starts here
+      /// Body
       body: GetBuilder<ChatController>(
+        init: ChatController(), // ensure created once
         builder: (controller) => switch (controller.status) {
-          /// Loading bar here
+          /// Loading
           Status.loading => const CommonLoader(),
 
-          /// Error Handle here
-          Status.error => ErrorScreen(
-            onTap: ChatController.instance.getChatRepo,
-          ),
+          /// Error
+          Status.error => ErrorScreen(onTap: controller.getChats),
 
-          /// Show main data here
+          /// Completed
           Status.completed => Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+            padding: .symmetric(horizontal: 20.w, vertical: 10.h),
             child: Column(
               children: [
-                /// User Search bar here
+                /// Search bar
                 CommonTextField(
                   prefixIcon: const Icon(Icons.search),
                   hintText: AppString.searchDoctor,
                 ),
 
-                /// Show all Chat List here
+                /// Chat list
                 Expanded(
-                  child: ListView.builder(
-                    itemCount: controller.chats.length,
-                    padding: EdgeInsets.only(top: 16.h),
-                    itemBuilder: (context, index) {
-                     final ChatModel item = controller.chats[index];
-                      return GestureDetector(
-                        /// routing with data
-                        onTap: () => Get.toNamed(
-                          AppRoutes.message,
-                          parameters: {
-                            'chatId': item.id,
-                            'name': item.participant.fullName,
-                            'image': item.participant.image,
-                          },
-                        ),
+                  child: RefreshIndicator(
+                    onRefresh: controller.refreshChats,
+                    child: ListView.builder(
+                      padding: .only(top: 16.h),
+                      controller: controller.scrollController,
+                      itemCount: controller.chats.length,
+                      itemBuilder: (_, index) {
+                        final ChatModel item = controller.chats[index];
 
-                        /// Chat List item here
-                        child: chatListItem(item: controller.chats[index]),
-                      );
-                    },
+                        return GestureDetector(
+                          onTap: () => Get.toNamed(
+                            AppRoutes.message,
+                            parameters: {
+                              'chatId': item.id,
+                              'name': item.participant.fullName,
+                              'image': item.participant.image,
+                            },
+                          ),
+                          child: ChatListItem(item: item),
+                        );
+                      },
+                    ),
                   ),
                 ),
               ],
@@ -81,7 +85,7 @@ class ChatListScreen extends StatelessWidget {
         },
       ),
 
-      /// Bottom Navigation Bar Section Starts here
+      /// Bottom nav
       bottomNavigationBar: const CommonBottomNavBar(currentIndex: 2),
     );
   }

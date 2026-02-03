@@ -1,55 +1,74 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:untitled/utils/extensions/extension.dart';
 import '../../../../component/image/common_image.dart';
 import '../../../../component/text/common_text.dart';
 import '../../data/model/chat_list_model.dart';
-import '../../../../../utils/extensions/extension.dart';
-import '../../../../../utils/constants/app_colors.dart';
 
+class ChatListItem extends StatelessWidget {
+  final ChatModel item;
 
-Widget chatListItem({required ChatModel item}) {
-  return Container(
-    padding: EdgeInsets.only(left: 12.w, right: 12.w, bottom: 12.h),
-    decoration: const BoxDecoration(color: AppColors.transparent),
-    child: Column(
-      children: [
-        Row(
-          children: [
-            /// participant image here
-            CircleAvatar(
-              radius: 35.sp,
-              child: ClipOval(
-                child: CommonImage(imageSrc: item.participant.image, size: 70),
+  const ChatListItem({super.key, required this.item});
+
+  @override
+  Widget build(BuildContext context) {
+    final message = item.latestMessage.message;
+
+    return Padding(
+      padding: .symmetric(horizontal: 12.w, vertical: 10.h),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              CommonImage(
+                imageSrc: item.participant.image,
+                size: 56,
+                borderRadius: 500,
               ),
-            ),
-            12.width,
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  /// participant Name here
-                  CommonText(
-                    text: item.participant.fullName,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18,
-                  ),
+              12.height,
 
-                  /// participant Last Message here
-                  CommonText(
-                    text: item.latestMessage.message,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 12,
-                  ),
-                ],
+              /// Name + message
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: .start,
+                  children: [
+                    /// Name
+                    CommonText(
+                      text: item.participant.fullName,
+                      fontWeight: .w600,
+                      fontSize: 16,
+                    ),
+
+                    4.height,
+
+                    /// Last message preview
+                    CommonText(text: message, fontSize: 13, color: Colors.grey),
+                  ],
+                ),
               ),
-            ),
-          ],
-        ),
-        16.height,
 
-        /// Divider here
-        const Divider(height: 1),
-      ],
-    ),
-  );
+              /// Optional time
+              CommonText(
+                text: _formatTime(item.latestMessage.createdAt),
+                fontSize: 11,
+                color: Colors.grey,
+              ),
+            ],
+          ),
+
+          10.height,
+
+          /// Divider
+          const Divider(height: 1),
+        ],
+      ),
+    );
+  }
+
+  /// Format message time
+  String _formatTime(DateTime time) {
+    final hour = time.hour;
+    final minute = time.minute.toString().padLeft(2, '0');
+    return '$hour:$minute';
+  }
 }

@@ -53,7 +53,6 @@ class SignInController extends GetxController {
     } catch (e) {
       AppSnackbar.error(title: 'Error', message: e.toString());
     } finally {
-      /// ALWAYS executed
       isLoading = false;
       update();
     }

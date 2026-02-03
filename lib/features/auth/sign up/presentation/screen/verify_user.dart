@@ -16,7 +16,7 @@ class VerifyUser extends StatefulWidget {
 }
 
 class _VerifyUserState extends State<VerifyUser> {
-  final formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -31,7 +31,7 @@ class _VerifyUserState extends State<VerifyUser> {
       appBar: AppBar(
         title: const CommonText(
           text: AppString.otpVerify,
-          fontWeight: FontWeight.w700,
+          fontWeight: .w700,
           fontSize: 24,
         ),
       ),
@@ -40,9 +40,9 @@ class _VerifyUserState extends State<VerifyUser> {
       body: GetBuilder<SignUpController>(
         builder: (controller) {
           return SingleChildScrollView(
-            padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 20.w),
+            padding: .symmetric(vertical: 24.h, horizontal: 20.w),
             child: Form(
-              key: formKey,
+              key: _formKey,
               child: Column(
                 children: [
                   /// instruction how to get OTP
@@ -56,7 +56,6 @@ class _VerifyUserState extends State<VerifyUser> {
                       maxLines: 3,
                     ),
                   ),
-
 
                   /// OTP Filed here
                   Flexible(
@@ -82,7 +81,7 @@ class _VerifyUserState extends State<VerifyUser> {
                       ),
                       length: 6,
                       keyboardType: TextInputType.number,
-                      autovalidateMode: AutovalidateMode.disabled,
+                      autovalidateMode: AutovalidateMode.onUnfocus,
                       enableActiveFill: true,
                       validator: (value) {
                         if (value != null && value.length == 6) {
@@ -96,18 +95,16 @@ class _VerifyUserState extends State<VerifyUser> {
 
                   /// Resent OTP or show Timer
                   GestureDetector(
-                    onTap:
-                        controller.time == '00:00'
-                            ? () {
-                              controller.startTimer();
-                              controller.signUpUser();
-                            }
-                            : () {},
+                    onTap: controller.time == '00:00'
+                        ? () {
+                            controller.startTimer();
+                            controller.signUpUser();
+                          }
+                        : () {},
                     child: CommonText(
-                      text:
-                          controller.time == '00:00'
-                              ? AppString.resendCode
-                              : '${AppString.resendCodeIn} ${controller.time} ${AppString.minute}',
+                      text: controller.time == '00:00'
+                          ? AppString.resendCode
+                          : '${AppString.resendCodeIn} ${controller.time} ${AppString.minute}',
                       top: 60,
                       bottom: 100,
                       fontSize: 18,
@@ -119,8 +116,8 @@ class _VerifyUserState extends State<VerifyUser> {
                     titleText: AppString.verify,
                     isLoading: controller.isLoadingVerify,
                     onTap: () {
-                      if (formKey.currentState!.validate()) {
-                        controller.verifyOtpRepo();
+                      if (_formKey.currentState!.validate()) {
+                        controller.verifyOtp();
                       }
                     },
                   ),

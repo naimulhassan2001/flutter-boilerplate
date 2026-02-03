@@ -4,7 +4,7 @@ class ChatModel {
 
   final LatestMessage latestMessage;
 
-  ChatModel({
+  const ChatModel({
     required this.id,
     required this.participant,
     required this.latestMessage,
@@ -24,7 +24,11 @@ class Participant {
   final String fullName;
   final String image;
 
-  Participant({required this.id, required this.fullName, required this.image});
+  const Participant({
+    required this.id,
+    required this.fullName,
+    required this.image,
+  });
 
   factory Participant.fromJson(Map<String, dynamic> json) {
     return Participant(
@@ -40,7 +44,7 @@ class LatestMessage {
   final String message;
   final DateTime createdAt;
 
-  LatestMessage({
+  const LatestMessage({
     required this.id,
     required this.message,
     required this.createdAt,

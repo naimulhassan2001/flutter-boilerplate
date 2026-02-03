@@ -10,7 +10,9 @@ import '../widget/already_accunt_rich_text.dart';
 import '../widget/sign_up_all_filed.dart';
 
 class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({super.key});
+  SignUpScreen({super.key});
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +24,9 @@ class SignUpScreen extends StatelessWidget {
       body: GetBuilder<SignUpController>(
         builder: (controller) {
           return SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 24.w),
+            padding: .symmetric(horizontal: 24.w),
             child: Form(
-              key: controller.signUpFormKey,
+              key: _formKey,
               child: Column(
                 children: [
                   /// Sign UP Instructions here
@@ -43,7 +45,10 @@ class SignUpScreen extends StatelessWidget {
                   CommonButton(
                     titleText: AppString.signUp,
                     isLoading: controller.isLoading,
-                    onTap: controller.signUpUser,
+                    onTap: () {
+                      if (!_formKey.currentState!.validate()) return;
+                      controller.signUpUser();
+                    },
                   ),
                   24.height,
 

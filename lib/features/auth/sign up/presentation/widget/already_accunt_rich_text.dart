@@ -22,22 +22,21 @@ class AlreadyAccountRichText extends StatelessWidget {
             style: GoogleFonts.plusJakartaSans(
               color: AppColors.black,
               fontSize: 16,
-              fontWeight: FontWeight.w500,
+              fontWeight: .w500,
             ),
           ),
 
           /// Sign In Button Here
           TextSpan(
             text: AppString.signIn,
-            recognizer:
-                TapGestureRecognizer()
-                  ..onTap = () {
-                    Get.toNamed(AppRoutes.signIn);
-                  },
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                Get.toNamed(AppRoutes.signIn);
+              },
             style: GoogleFonts.plusJakartaSans(
               color: AppColors.primaryColor,
               fontSize: 16,
-              fontWeight: FontWeight.w600,
+              fontWeight: .w600,
             ),
           ),
         ],

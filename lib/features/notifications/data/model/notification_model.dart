@@ -9,7 +9,7 @@ class NotificationModel {
   final DateTime createdAt;
   final DateTime updatedAt;
 
-  NotificationModel({
+  const NotificationModel({
     required this.id,
     required this.message,
     required this.linkId,
@@ -21,17 +21,21 @@ class NotificationModel {
     required this.updatedAt,
   });
 
-  factory NotificationModel.fromJson(Map<String, dynamic> json) {
+  factory NotificationModel.fromJson(Map<String, dynamic>? json) {
     return NotificationModel(
-      id: json['_id'] ?? '',
-      message: json['message'] ?? '',
-      linkId: json['linkId'] ?? '',
-      type: json['type'] ?? '',
-      role: json['role'] ?? '',
-      receiver: json['receiver'] ?? '',
-      v: json['__v'] ?? 0,
-      createdAt: DateTime.tryParse(json['createdAt']) ?? DateTime.now(),
-      updatedAt: DateTime.tryParse(json['updatedAt']) ?? DateTime.now(),
+      id: json?['_id'] ?? '',
+      message: json?['message'] ?? '',
+      linkId: json?['linkId'] ?? '',
+      type: json?['type'] ?? '',
+      role: json?['role'] ?? '',
+      receiver: json?['receiver'] ?? '',
+      v: json?['__v'] ?? 0,
+      createdAt:
+          DateTime.tryParse(json?['createdAt'] ?? '') ??
+          DateTime.fromMillisecondsSinceEpoch(0),
+      updatedAt:
+          DateTime.tryParse(json?['updatedAt'] ?? '') ??
+          DateTime.fromMillisecondsSinceEpoch(0),
     );
   }
 }
