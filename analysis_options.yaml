@@ -2,14 +2,14 @@ include: package:flutter_lints/flutter.yaml
 
 analyzer:
   errors:
-    dead_code: ignore
+    dead_code: info
     unused_import: warning
     unused_local_variable: warning
     todo: info
     avoid_print: warning
     missing_return: error
     missing_required_param: error
-   
+
 
   language:
     strict-casts: false

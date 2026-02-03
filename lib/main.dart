@@ -24,7 +24,7 @@ Future<void> init() async {
     dI.dependencies();
     await Future.wait([
       SystemChrome.setPreferredOrientations([.portraitUp, .portraitDown]),
-      LocalStorage.getAllPrefData(),
+      LocalStorage.init(),
     ]);
 
     Future.delayed(const Duration(milliseconds: 300), () {

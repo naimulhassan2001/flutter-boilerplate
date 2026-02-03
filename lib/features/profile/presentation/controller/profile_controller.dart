@@ -45,7 +45,7 @@ class ProfileController extends GetxController {
   Future<void> editProfileRepo() async {
     if (!formKey.currentState!.validate()) return;
 
-    if (!LocalStorage.isLogIn) return;
+    if (!LocalStorage.isLogin) return;
     isLoading = true;
     update();
 
@@ -62,16 +62,9 @@ class ProfileController extends GetxController {
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = response.data['data'] ?? {};
-
-      LocalStorage.userId = data['_id'] ?? '';
-      LocalStorage.myImage = data['image'] ?? '';
-      LocalStorage.myName = data['fullName'] ?? '';
-      LocalStorage.myEmail = data['email'] ?? '';
-
-      LocalStorage.setString('userId', LocalStorage.userId);
-      LocalStorage.setString('myImage', LocalStorage.myImage);
-      LocalStorage.setString('myName', LocalStorage.myName);
-      LocalStorage.setString('myEmail', LocalStorage.myEmail);
+      LocalStorage.saveToken(data['accessToken'] ?? '');
+      LocalStorage.saveRefreshToken(data['refreshToken'] ?? '');
+      LocalStorage.saveUser(data['user'] ?? '');
 
       AppSnackbar.success(
         title: 'Successfully Profile Updated',

@@ -132,8 +132,7 @@ void logOutPopUp() {
                         child: CommonButton(
                           titleText: AppString.yes,
                           onTap: () {
-                            LocalStorage.logOut();
-                            Get.back();
+                            LocalStorage.logout();
                           },
                         ),
                       ),

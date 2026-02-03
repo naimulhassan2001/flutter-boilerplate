@@ -49,7 +49,7 @@ class SocketService {
 
   /// ================= USER NOTIFICATION =================
   static void _registerUserNotificationListener() {
-    final userId = LocalStorage.userId;
+    final userId = LocalStorage.user.id;
     if (_socket == null || userId.isEmpty) {
       appLog('⚠️ User ID not available. Notification listener skipped.');
       return;

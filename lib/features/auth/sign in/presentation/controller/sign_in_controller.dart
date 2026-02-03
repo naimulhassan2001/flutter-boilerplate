@@ -1,67 +1,68 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:untitled/utils/app_snackbar.dart';
+import '../../../../../config/api/api_end_point.dart';
 import '../../../../../config/route/app_routes.dart';
+import '../../../../../services/api/api_service.dart';
+import '../../../../../services/storage/storage_services.dart';
 
 class SignInController extends GetxController {
   /// Sign in Button Loading variable
   bool isLoading = false;
-
-  /// Sign in form key , help for Validation
 
   /// email and password Controller here
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
   /// Sign in Api call here
-
   Future<void> signInUser() async {
-    Get.toNamed(AppRoutes.profile);
-    return;
+    if (isLoading) return;
 
-    isLoading = true;
-    update();
+    try {
+      isLoading = true;
+      update();
 
-    /// TODO : need to Uncomment
+      Get.toNamed(AppRoutes.profile);
+      return;
 
-    // final Map<String, String> body = {
-    //   'email': emailController.text,
-    //   'password': passwordController.text,
-    // };
+      final Map<String, String> body = {
+        'email': emailController.text.trim(),
+        'password': passwordController.text.trim(),
+      };
 
-    // final response = await ApiService.post(ApiEndPoint.signIn, body: body);
+      final response = await ApiService.post(ApiEndPoint.signIn, body: body);
 
-    // if (response.statusCode == 200) {
-    //   final Map<String, dynamic> data = Map<String, dynamic>.from(
-    //     response.data,
-    //   );
-    //   LocalStorage.token = data['data']['accessToken'];
-    //   LocalStorage.userId = data['data']['attributes']['_id'];
-    //   LocalStorage.myImage = data['data']['attributes']['image'];
-    //   LocalStorage.myName = data['data']['attributes']['fullName'];
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> data = response.data['data'] ?? '';
+        LocalStorage.saveToken(data['accessToken'] ?? '');
+        LocalStorage.saveRefreshToken(data['refreshToken'] ?? '');
+        LocalStorage.saveUser(data['user'] ?? '');
 
-    //   LocalStorage.myEmail = data['data']['attributes']['email'];
-    //   LocalStorage.isLogIn = true;
+        /// clear
+        emailController.clear();
+        passwordController.clear();
 
-    //   LocalStorage.setBool(LocalStorageKeys.isLogIn, LocalStorage.isLogIn);
-    //   LocalStorage.setString(LocalStorageKeys.token, LocalStorage.token);
-    //   LocalStorage.setString(LocalStorageKeys.userId, LocalStorage.userId);
-    //   LocalStorage.setString(LocalStorageKeys.myImage, LocalStorage.myImage);
-    //   LocalStorage.setString(LocalStorageKeys.myName, LocalStorage.myName);
-    //   LocalStorage.setString(LocalStorageKeys.myEmail, LocalStorage.myEmail);
+        /// navigate
+        Get.offAllNamed(AppRoutes.profile);
+      } else {
+        AppSnackbar.error(
+          title: response.statusCode.toString(),
+          message: response.message,
+        );
+      }
+    } catch (e) {
+      AppSnackbar.error(title: 'Error', message: e.toString());
+    } finally {
+      /// ALWAYS executed
+      isLoading = false;
+      update();
+    }
+  }
 
-    //   // if (LocalStorage.myRole == 'consultant') {
-    //   //   Get.offAllNamed(AppRoutes.doctorHome);
-    //   // } else {
-    //   //   Get.offAllNamed(AppRoutes.patientsHome);
-    //   // }
-
-    //   emailController.clear();
-    //   passwordController.clear();
-    // } else {
-    //   Get.snackbar(response.statusCode.toString(), response.message);
-    // }
-
-    isLoading = false;
-    update();
+  @override
+  void onClose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.onClose();
   }
 }

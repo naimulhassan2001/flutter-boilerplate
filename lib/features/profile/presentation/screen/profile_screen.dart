@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:untitled/services/storage/storage_services.dart';
 import '../../../../../../config/route/app_routes.dart';
 import '../../../../component/bottom_nav_bar/common_bottom_bar.dart';
 import '../../../../component/image/common_image.dart';
 import '../../../../component/other_widgets/item.dart';
 import '../../../../component/pop_up/common_pop_menu.dart';
 import '../../../../component/text/common_text.dart';
-import '../../../../services/storage/storage_keys.dart';
 import '../controller/profile_controller.dart';
 import '../../../../../../utils/constants/app_images.dart';
 import '../../../../../../utils/constants/app_string.dart';
@@ -50,8 +50,8 @@ class ProfileScreen extends StatelessWidget {
                 ),
 
                 /// User Name here
-                const CommonText(
-                  text: LocalStorageKeys.myName,
+                 CommonText(
+                  text: LocalStorage.user.name,
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
                   top: 20,

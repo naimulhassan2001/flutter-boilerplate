@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:intl_phone_field/countries.dart';
 import '../../../../../config/route/app_routes.dart';
 import '../../../../../services/api/api_service.dart';
-import '../../../../../services/storage/storage_keys.dart';
 import '../../../../../config/api/api_end_point.dart';
 import '../../../../../services/storage/storage_services.dart';
 import '../../../../../utils/app_snackbar.dart';
@@ -139,22 +138,11 @@ class SignUpController extends GetxController {
     );
 
     if (response.statusCode == 200) {
-      final Map<String, dynamic>? data = response.data['data'] ?? {};
-      final Map<String, dynamic>? user = data?['user'] ?? {};
+      final Map<String, dynamic> data = response.data['data'] ?? {};
 
-      LocalStorage.token = data?['accessToken'] ?? '';
-      LocalStorage.userId = user?['_id'] ?? '';
-      LocalStorage.myImage = user?['image'] ?? '';
-      LocalStorage.myName = user?['fullName'] ?? '';
-      LocalStorage.myEmail = user?['email'] ?? '';
-      LocalStorage.isLogIn = true;
-
-      LocalStorage.setBool(LocalStorageKeys.isLogIn, LocalStorage.isLogIn);
-      LocalStorage.setString(LocalStorageKeys.token, LocalStorage.token);
-      LocalStorage.setString(LocalStorageKeys.userId, LocalStorage.userId);
-      LocalStorage.setString(LocalStorageKeys.myImage, LocalStorage.myImage);
-      LocalStorage.setString(LocalStorageKeys.myName, LocalStorage.myName);
-      LocalStorage.setString(LocalStorageKeys.myEmail, LocalStorage.myEmail);
+      LocalStorage.saveToken(data['accessToken'] ?? '');
+      LocalStorage.saveRefreshToken(data['refreshToken'] ?? '');
+      LocalStorage.saveUser(data['user'] ?? '');
 
       // if (LocalStorage.myRole == 'consultant') {
       //   Get.toNamed(AppRoutes.personalInformation);
