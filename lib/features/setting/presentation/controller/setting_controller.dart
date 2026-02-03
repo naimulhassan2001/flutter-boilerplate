@@ -1,35 +1,56 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+
 import '../../../../config/route/app_routes.dart';
 import '../../../../services/api/api_service.dart';
 import '../../../../config/api/api_end_point.dart';
 import '../../../../utils/app_snackbar.dart';
 
 class SettingController extends GetxController {
-  /// Password controller here , use for delete account
-  TextEditingController passwordController = TextEditingController();
+  /// Password input
 
-  /// loading check , use delete account
   bool isLoading = false;
+  final TextEditingController passwordController = TextEditingController();
 
-  /// account delete api call here
-  Future<void> deleteAccountRepo() async {
-    isLoading = true;
+  void _setLoading(bool value) {
+    isLoading = value;
     update();
+  }
 
-    final body = {'password': passwordController.text};
+  /// Delete account
+  Future<void> deleteAccount() async {
+    final password = passwordController.text.trim();
 
-    final response = await ApiService.delete(ApiEndPoint.user, body: body);
-
-    if (response.statusCode == 200) {
-      Get.offAllNamed(AppRoutes.signIn);
-    } else {
-      AppSnackbar.error(
-        title: response.statusCode.toString(),
-        message: response.message,
-      );
+    if (password.isEmpty) {
+      AppSnackbar.error(title: 'Error', message: 'Password required');
+      return;
     }
-    isLoading = false;
-    update();
+
+    return;
+    try {
+      _setLoading(true);
+
+      final body = {'password': password};
+
+      final response = await ApiService.delete(ApiEndPoint.user, body: body);
+
+      if (response.statusCode != 200) {
+        throw Exception(response.message);
+      }
+
+      passwordController.clear();
+      Get.offAllNamed(AppRoutes.signIn);
+    } catch (e) {
+      AppSnackbar.error(title: 'Error', message: e.toString());
+    } finally {
+      _setLoading(false);
+    }
+  }
+
+  /// Dispose controller
+  @override
+  void onClose() {
+    passwordController.dispose();
+    super.onClose();
   }
 }

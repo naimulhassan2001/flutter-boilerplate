@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import '../../../../../../config/route/app_routes.dart';
-import '../../../../../../utils/extensions/extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../component/bottom_nav_bar/common_bottom_bar.dart';
 import '../../../../component/pop_up/common_pop_menu.dart';
 import '../../../../component/text/common_text.dart';
 import '../controller/setting_controller.dart';
-import '../../../../../../utils/constants/app_colors.dart';
 import '../../../../../../utils/constants/app_string.dart';
 import '../widgets/setting_item.dart';
 
@@ -17,9 +15,8 @@ class SettingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /// App Bar Section starts here
+      /// AppBar
       appBar: AppBar(
-        centerTitle: true,
         title: const CommonText(
           text: AppString.settings,
           fontSize: 20,
@@ -27,70 +24,43 @@ class SettingScreen extends StatelessWidget {
         ),
       ),
 
-      /// Body Section starts here
+      /// Body
       body: GetBuilder<SettingController>(
         builder: (controller) {
-          return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30.w),
+          return SingleChildScrollView(
+            padding: .symmetric(horizontal: 20.w, vertical: 24.h),
             child: Column(
               children: [
-                70.height,
-
-                /// Change password Item here
-                InkWell(
+                /// Change password
+                SettingItem(
+                  title: AppString.changePassword,
+                  iconData: Icons.lock_outline,
                   onTap: () => Get.toNamed(AppRoutes.changePassword),
-                  child: const SettingItem(
-                    title: AppString.changePassword,
-                    iconDate: Icons.lock_outline,
-                  ),
                 ),
 
-                /// Terms of Service Item here
-                InkWell(
+                /// Terms
+                SettingItem(
+                  title: AppString.termsOfServices,
+                  iconData: Icons.gavel,
                   onTap: () => Get.toNamed(AppRoutes.termsOfServices),
-                  child: const SettingItem(
-                    title: AppString.termsOfServices,
-                    iconDate: Icons.gavel,
-                  ),
                 ),
 
-                /// Privacy Policy Item here
-                InkWell(
+                /// Privacy
+                SettingItem(
+                  title: AppString.privacyPolicy,
+                  iconData: Icons.privacy_tip_outlined,
                   onTap: () => Get.toNamed(AppRoutes.privacyPolicy),
-                  child: const SettingItem(
-                    title: AppString.privacyPolicy,
-                    iconDate: Icons.network_wifi_1_bar,
-                  ),
                 ),
 
-                /// Delete Account Item here
-                InkWell(
-                  onTap:
-                      () => deletePopUp(
-                        controller: controller.passwordController,
-                        onTap: controller.deleteAccountRepo,
-                        isLoading: controller.isLoading,
-                      ),
-                  child: Container(
-                    height: 52.h,
-                    padding: EdgeInsets.symmetric(horizontal: 20.w),
-                    decoration: BoxDecoration(
-                      color: AppColors.blueLight,
-                      borderRadius: BorderRadius.circular(4.r),
-                    ),
-                    child: Row(
-                      children: [
-                        const Icon(
-                          Icons.delete_outline_rounded,
-                          color: AppColors.secondary,
-                        ),
-                        CommonText(
-                          text: AppString.deleteAccount,
-                          color: AppColors.secondary,
-                          left: 12.w,
-                        ),
-                      ],
-                    ),
+                /// Delete account
+                SettingItem(
+                  title: AppString.deleteAccount,
+                  iconData: Icons.delete_outline_rounded,
+                  textColor: Colors.red,
+                  onTap: () => deletePopUp(
+                    controller: controller.passwordController,
+                    onTap: controller.deleteAccount,
+                    isLoading: controller.isLoading,
                   ),
                 ),
               ],
@@ -99,7 +69,7 @@ class SettingScreen extends StatelessWidget {
         },
       ),
 
-      /// Bottom Navigation Bar Section starts here
+      /// Bottom nav
       bottomNavigationBar: const CommonBottomNavBar(currentIndex: 0),
     );
   }

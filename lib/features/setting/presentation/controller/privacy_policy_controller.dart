@@ -11,37 +11,34 @@ class PrivacyPolicyController extends GetxController {
   Status status = Status.completed;
 
   /// HTML data
-  HtmlModel data = const HtmlModel(id: '', content: '');
+  HtmlModel data = HtmlModel.fromJson({});
 
   /// Instance (for lazyPut/bindings)
-  static PrivacyPolicyController get instance => Get.find();
+  static PrivacyPolicyController get instance =>
+      Get.find<PrivacyPolicyController>();
 
   /// Fetch privacy policy
   Future<void> getPrivacyPolicy() async {
+    return;
     try {
       status = Status.loading;
       update();
 
-      final response =
-      await ApiService.get(ApiEndPoint.privacyPolicies);
+      final response = await ApiService.get(ApiEndPoint.privacyPolicies);
 
       if (response.statusCode != 200) {
         throw Exception(response.message);
       }
 
-      final Map<String, dynamic> raw =
-          response.data?['data']?['attributes'] ?? {};
+      final Map<String, dynamic> rawData = response.data['data'] ?? {};
+      final Map<String, dynamic> raw = rawData['attributes'] ?? {};
 
       data = HtmlModel.fromJson(raw);
 
       status = Status.completed;
     } catch (e) {
       status = Status.error;
-
-      AppSnackbar.error(
-        title: 'Error',
-        message: e.toString(),
-      );
+      AppSnackbar.error(title: 'Error', message: e.toString());
     } finally {
       update();
     }

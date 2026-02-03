@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+
 import '../../data/model/html_model.dart';
 import '../../../../services/api/api_service.dart';
 import '../../../../config/api/api_end_point.dart';
@@ -6,45 +7,42 @@ import '../../../../utils/app_snackbar.dart';
 import '../../../../utils/enum/enum.dart';
 
 class TermsOfServicesController extends GetxController {
-  /// Api status check here
+  /// API status
   Status status = Status.completed;
+  HtmlModel data = const HtmlModel(id: '', content: '');
 
-  ///  HTML model initialize here
-  HtmlModel data = HtmlModel.fromJson({});
-
-  /// Terms of services Controller instance create here
   static TermsOfServicesController get instance =>
-      Get.put(TermsOfServicesController());
+      Get.find<TermsOfServicesController>();
 
-  ///  Terms of services Api call here
-  Future<void> geTermsOfServicesRepo() async {
+  /// Fetch terms of services
+  Future<void> getTermsOfServices() async {
     return;
-    status = Status.loading;
-    update();
+    try {
+      status = Status.loading;
+      update();
+      final response = await ApiService.get(ApiEndPoint.termsOfServices);
 
-    final response = await ApiService.get(ApiEndPoint.termsOfServices);
+      if (response.statusCode != 200) {
+        throw Exception(response.message);
+      }
 
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> data = response.data['data'] ?? {};
-      final Map<String, dynamic> attributes = data['attributes'] ?? {};
-      this.data = HtmlModel.fromJson(attributes);
+      final Map<String, dynamic> rawData = response.data['data'] ?? {};
+      final Map<String, dynamic> raw = rawData['attributes'] ?? {};
+
+      data = HtmlModel.fromJson(raw);
 
       status = Status.completed;
-      update();
-    } else {
-      AppSnackbar.error(
-        title: response.statusCode.toString(),
-        message: response.message,
-      );
+    } catch (e) {
       status = Status.error;
+      AppSnackbar.error(title: 'Error', message: e.toString());
+    } finally {
       update();
     }
   }
 
-  /// Controller on Init here
   @override
   void onInit() {
-    geTermsOfServicesRepo();
     super.onInit();
+    getTermsOfServices();
   }
 }
