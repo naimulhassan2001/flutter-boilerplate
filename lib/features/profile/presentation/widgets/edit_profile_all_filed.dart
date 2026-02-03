@@ -20,7 +20,7 @@ class EditProfileAllFiled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: .start,
       children: [
         /// Full name
         const CommonText(text: AppString.fullName, fontWeight: .w600),

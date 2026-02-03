@@ -6,7 +6,6 @@ import 'package:untitled/services/storage/storage_services.dart';
 import 'package:untitled/utils/extensions/extension.dart';
 
 import '../../../../../../config/route/app_routes.dart';
-import '../../../../../../utils/constants/app_images.dart';
 import '../../../../../../utils/constants/app_string.dart';
 
 import '../../../../component/bottom_nav_bar/common_bottom_bar.dart';

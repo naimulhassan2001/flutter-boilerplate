@@ -84,6 +84,7 @@ class NotificationsController extends GetxController {
   }
 
   /// Refresh manually
+  @override
   Future<void> refresh() async {
     page = 1;
     hasNoData = false;

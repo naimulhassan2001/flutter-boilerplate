@@ -170,6 +170,7 @@ class MessageController extends GetxController {
   }
 
   /// Refresh messages manually
+  @override
   Future<void> refresh() async {
     page = 1;
     await getMessages();
