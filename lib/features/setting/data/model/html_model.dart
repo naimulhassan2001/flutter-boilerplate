@@ -2,15 +2,12 @@ class HtmlModel {
   final String id;
   final String content;
 
-  HtmlModel({
-    required this.id,
-    required this.content,
-  });
+  const HtmlModel({required this.id, required this.content});
 
-  factory HtmlModel.fromJson(Map<String, dynamic> json) {
+  factory HtmlModel.fromJson(Map<String, dynamic>? json) {
     return HtmlModel(
-      id: json['_id'] ?? '',
-      content: json['content'] ?? 'No Data Found',
+      id: json?['_id'] ?? '',
+      content: json?['content'] ?? 'No Data Found',
     );
   }
 }

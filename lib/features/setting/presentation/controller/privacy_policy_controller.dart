@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+
 import '../../data/model/html_model.dart';
 import '../../../../services/api/api_service.dart';
 import '../../../../config/api/api_end_point.dart';
@@ -6,45 +7,49 @@ import '../../../../utils/app_snackbar.dart';
 import '../../../../utils/enum/enum.dart';
 
 class PrivacyPolicyController extends GetxController {
-  /// Api status check here
+  /// API status
   Status status = Status.completed;
 
-  ///  HTML model initialize here
-  HtmlModel data = HtmlModel.fromJson({});
+  /// HTML data
+  HtmlModel data = const HtmlModel(id: '', content: '');
 
-  /// Privacy Policy Controller instance create here
-  static PrivacyPolicyController get instance =>
-      Get.put(PrivacyPolicyController());
+  /// Instance (for lazyPut/bindings)
+  static PrivacyPolicyController get instance => Get.find();
 
-  /// Privacy Policy Api call here
-  Future<void> getPrivacyPolicyRepo() async {
-    return;
-    status = Status.loading;
-    update();
+  /// Fetch privacy policy
+  Future<void> getPrivacyPolicy() async {
+    try {
+      status = Status.loading;
+      update();
 
-    final response = await ApiService.get(ApiEndPoint.privacyPolicies);
+      final response =
+      await ApiService.get(ApiEndPoint.privacyPolicies);
 
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> data = response.data['data'] ?? {};
-      final Map<String, dynamic> attributes = data['attributes'] ?? {};
-      this.data = HtmlModel.fromJson(attributes);
+      if (response.statusCode != 200) {
+        throw Exception(response.message);
+      }
+
+      final Map<String, dynamic> raw =
+          response.data?['data']?['attributes'] ?? {};
+
+      data = HtmlModel.fromJson(raw);
 
       status = Status.completed;
-      update();
-    } else {
-      AppSnackbar.error(
-        title: response.statusCode.toString(),
-        message: response.message,
-      );
+    } catch (e) {
       status = Status.error;
+
+      AppSnackbar.error(
+        title: 'Error',
+        message: e.toString(),
+      );
+    } finally {
       update();
     }
   }
 
-  /// Controller on Init here
   @override
   void onInit() {
-    getPrivacyPolicyRepo();
     super.onInit();
+    getPrivacyPolicy();
   }
 }
