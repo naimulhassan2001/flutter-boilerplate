@@ -10,6 +10,10 @@ class DioApiClient implements ApiClient {
 
   DioApiClient({Dio? dio}) : _dio = dio ?? DioConfig.create();
 
+  DioApiClient({Dio? dio}) {
+    _dio = dio ?? DioConfig.create();
+  }
+
   @override
   Future<ApiResponseModel> get(
     String url, {
