@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:intl_phone_field/countries.dart';
 import '../../../../../config/route/app_routes.dart';
 import '../../../../../config/api/api_end_point.dart';
+import '../../../../../services/api/api_client.dart';
 import '../../../../../services/api/api_service.dart';
 import '../../../../../services/storage/storage_services.dart';
 import '../../../../../utils/app_snackbar.dart';
@@ -11,6 +12,8 @@ import '../../../../../utils/helpers/other_helper.dart';
 
 class SignUpController extends GetxController {
   static SignUpController get instance => Get.find<SignUpController>();
+
+  final ApiClient apiClient = DioApiClient();
 
   bool isLoading = false;
   bool isLoadingVerify = false;
@@ -81,7 +84,7 @@ class SignUpController extends GetxController {
         'role': selectRole.toLowerCase(),
       };
 
-      final response = await ApiService.post(ApiEndPoint.signUp, body: body);
+      final response = await apiClient.post(ApiEndPoint.signUp, body: body);
 
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = response.data['data'] ?? {};
@@ -123,7 +126,7 @@ class SignUpController extends GetxController {
       _setVerifyLoading(true);
       final body = {'otp': otpController.text};
       final headers = {'SignUpToken': 'signUpToken $signUpToken'};
-      final response = await ApiService.post(
+      final response = await apiClient.post(
         ApiEndPoint.verifyEmail,
         body: body,
         headers: headers,

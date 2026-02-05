@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import '../../../../../services/api/api_client.dart';
 import '../../../../../services/api/api_service.dart';
 import '../../../../../config/api/api_end_point.dart';
 import '../../../../../utils/app_snackbar.dart';
@@ -12,6 +13,8 @@ class ChangePasswordController extends GetxController {
   TextEditingController newPasswordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
 
+  final ApiClient apiClient = DioApiClient();
+
   ///  change password function
   Future<void> changePasswordRepo() async {
     Get.back();
@@ -22,7 +25,7 @@ class ChangePasswordController extends GetxController {
       'oldPassword': currentPasswordController.text,
       'newPassword': newPasswordController.text,
     };
-    final response = await ApiService.patch(
+    final response = await apiClient.patch(
       ApiEndPoint.changePassword,
       body: body,
     );

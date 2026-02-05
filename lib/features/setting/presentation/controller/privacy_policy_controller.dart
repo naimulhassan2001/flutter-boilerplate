@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:untitled/services/api/api_client.dart';
 
 import '../../data/model/html_model.dart';
 import '../../../../services/api/api_service.dart';
@@ -17,6 +18,8 @@ class PrivacyPolicyController extends GetxController {
   static PrivacyPolicyController get instance =>
       Get.find<PrivacyPolicyController>();
 
+  final ApiClient apiClient = DioApiClient();
+
   /// Fetch privacy policy
   Future<void> getPrivacyPolicy() async {
     return;
@@ -24,7 +27,7 @@ class PrivacyPolicyController extends GetxController {
       status = Status.loading;
       update();
 
-      final response = await ApiService.get(ApiEndPoint.privacyPolicies);
+      final response = await apiClient.get(ApiEndPoint.privacyPolicies);
 
       if (response.statusCode != 200) {
         throw Exception(response.message);

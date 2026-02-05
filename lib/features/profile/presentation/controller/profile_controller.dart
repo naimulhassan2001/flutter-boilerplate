@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:untitled/services/api/api_client.dart';
 
 import 'package:untitled/services/api/multipart_helper.dart';
 
@@ -20,6 +21,8 @@ class ProfileController extends GetxController {
   /// Text controllers
   final nameController = TextEditingController();
   final numberController = TextEditingController();
+
+  final ApiClient apiClient = DioApiClient();
 
   /// Pick profile image
   Future<void> getProfileImage() async {
@@ -56,7 +59,7 @@ class ProfileController extends GetxController {
           ? [MultipartFileItem(fileName: 'image', filePath: image!)]
           : <MultipartFileItem>[];
 
-      final response = await ApiService.multipart(
+      final response = await apiClient.multipart(
         url: ApiEndPoint.user,
         body: body,
         files: files,

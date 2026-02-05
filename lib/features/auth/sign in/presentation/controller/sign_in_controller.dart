@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:untitled/utils/app_snackbar.dart';
 import '../../../../../config/api/api_end_point.dart';
 import '../../../../../config/route/app_routes.dart';
+import '../../../../../services/api/api_client.dart';
 import '../../../../../services/api/api_service.dart';
 import '../../../../../services/storage/storage_services.dart';
 
@@ -13,6 +14,8 @@ class SignInController extends GetxController {
   /// email and password Controller here
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
+  final ApiClient apiClient = DioApiClient();
 
   /// Sign in Api call here
   Future<void> signInUser() async {
@@ -30,7 +33,7 @@ class SignInController extends GetxController {
         'password': passwordController.text.trim(),
       };
 
-      final response = await ApiService.post(ApiEndPoint.signIn, body: body);
+      final response = await apiClient.post(ApiEndPoint.signIn, body: body);
 
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = response.data['data'] ?? '';

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../../config/api/api_end_point.dart';
 import '../../../../../config/route/app_routes.dart';
+import '../../../../../services/api/api_client.dart';
 import '../../../../../services/api/api_service.dart';
 import '../../../../../utils/app_snackbar.dart';
 import '../../../../../utils/enum/enum.dart';
@@ -17,6 +18,7 @@ class ForgetPasswordController extends GetxController {
 
   static ForgetPasswordController get instance =>
       Get.find<ForgetPasswordController>();
+  final ApiClient apiClient = DioApiClient();
 
   void setValue() {
     if (kDebugMode) return;
@@ -61,9 +63,10 @@ class ForgetPasswordController extends GetxController {
 
   /// ===================== Forget Password Repo =====================
   Future<void> sendForgetPasswordEmail() async {
+    return;
     try {
       _setLoading(true);
-      final response = await ApiService.post(
+      final response = await apiClient.post(
         ApiEndPoint.forgotPassword,
         body: {'email': emailController.text.trim()},
       );
@@ -94,7 +97,7 @@ class ForgetPasswordController extends GetxController {
   Future<void> verifyOtp() async {
     try {
       _setLoading(true);
-      final response = await ApiService.post(
+      final response = await apiClient.post(
         ApiEndPoint.verifyOtp,
         body: {
           'email': emailController.text.trim(),
@@ -124,7 +127,7 @@ class ForgetPasswordController extends GetxController {
   Future<void> resetPassword() async {
     try {
       _setLoading(true);
-      final response = await ApiService.post(
+      final response = await apiClient.post(
         ApiEndPoint.resetPassword,
         headers: {'Forget-password': 'Forget-password $forgetPasswordToken'},
         body: {

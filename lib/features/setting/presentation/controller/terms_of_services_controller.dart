@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:untitled/services/api/api_client.dart';
 
 import '../../data/model/html_model.dart';
 import '../../../../services/api/api_service.dart';
@@ -14,13 +15,15 @@ class TermsOfServicesController extends GetxController {
   static TermsOfServicesController get instance =>
       Get.find<TermsOfServicesController>();
 
+  final ApiClient apiClient = DioApiClient();
+
   /// Fetch terms of services
   Future<void> getTermsOfServices() async {
     return;
     try {
       status = Status.loading;
       update();
-      final response = await ApiService.get(ApiEndPoint.termsOfServices);
+      final response = await apiClient.get(ApiEndPoint.termsOfServices);
 
       if (response.statusCode != 200) {
         throw Exception(response.message);

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:untitled/utils/log/error_log.dart';
 
+import '../../../../services/api/api_client.dart';
 import '../../data/model/chat_message_model.dart';
 import '../../data/model/message_model.dart';
 
@@ -16,6 +17,8 @@ import '../../../../utils/enum/enum.dart';
 class MessageController extends GetxController {
   /// Controller instance
   static MessageController get instance => Get.find<MessageController>();
+
+  final ApiClient apiClient = DioApiClient();
 
   Status status = Status.completed;
   bool isLoading = false;
@@ -55,7 +58,7 @@ class MessageController extends GetxController {
         update();
       }
 
-      final response = await ApiService.get(
+      final response = await apiClient.get(
         '${ApiEndPoint.messages}?chatId=$chatId&page=$page&limit=15',
       );
 
