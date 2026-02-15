@@ -32,7 +32,7 @@ Before starting, ensure you have:
 - [x] Manage policy declarations
 - [x] Manage deep links
 
-6.  Click **Invite user**.
+6. Click **Invite user**.
 
 
 ----
@@ -48,13 +48,13 @@ base64 -i android/app/upload-keystore.jks > .github/workflows/keystore_base64.tx
 
 Go to your Repo: **Settings > Secrets and variables > Actions > New repository secret**.
 
-| Secret Name | Value to Paste |
-| :--- | :--- |
-| `KEYSTORE_BASE64` | The output of the command above. |
-| `STORE_PASSWORD` | Password for your keystore file. |
-| `KEY_PASSWORD` | Password for your key alias (usually same as store). |
-| `KEY_ALIAS` | Alias name (e.g., `upload`, `key0`). |
-| `PLAY_STORE_JSON` | Content of your Service Account JSON file. |
+| Secret Name       | Value to Paste                                       |
+|:------------------|:-----------------------------------------------------|
+| `KEYSTORE_BASE64` | The output of the command above.                     |
+| `STORE_PASSWORD`  | Password for your keystore file.                     |
+| `KEY_PASSWORD`    | Password for your key alias (usually same as store). |
+| `KEY_ALIAS`       | Alias name (e.g., `upload`, `key0`).                 |
+| `PLAY_STORE_JSON` | Content of your Service Account JSON file.           |
 
 
 <https://docs.google.com/document/d/1F3EU1D0uUV17cEpjH12iCZjBJSmVNMZ57KEHgofAFYI/edit?tab=t.0>
