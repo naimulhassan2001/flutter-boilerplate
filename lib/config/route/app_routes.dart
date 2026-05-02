@@ -3,7 +3,7 @@ import '../../features/auth/change_password/presentation/screen/change_password_
 import '../../features/auth/forgot password/presentation/screen/create_password.dart';
 import '../../features/auth/forgot password/presentation/screen/forgot_password.dart';
 import '../../features/auth/forgot password/presentation/screen/verify_screen.dart';
-import '../../features/auth/sign in/presentation/screen/sign_in_screen.dart';
+import '../../features/auth/sign_in/presentation/screen/sign_in_screen.dart';
 import '../../features/auth/sign up/presentation/screen/sign_up_screen.dart';
 import '../../features/auth/sign up/presentation/screen/verify_user.dart';
 import '../../features/message/presentation/screen/chat_screen.dart';

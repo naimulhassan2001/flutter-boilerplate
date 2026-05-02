@@ -18,7 +18,6 @@ class _AppWrapperState extends State<AppWrapper> {
   @override
   void initState() {
     super.initState();
-
     _setupGlobalErrorHandling();
     _lifecycleHandler.start();
   }
