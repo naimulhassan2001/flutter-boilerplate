@@ -45,29 +45,26 @@ class CommonImage extends StatelessWidget {
   }
 
   Widget _buildNetworkImage() {
-    return ClipRRect(
-      borderRadius: .circular(borderRadius),
-      child: CachedNetworkImage(
-        height: size?.sp ?? height?.h,
-        width: size?.sp ?? width?.w,
-        imageUrl: imageSrc.startsWith('http')
-            ? imageSrc
-            : '${ApiEndPoint.imageUrl}$imageSrc',
-        fit: fill,
-        imageBuilder: (context, imageProvider) => Container(
-          decoration: BoxDecoration(
-            borderRadius: .circular(borderRadius),
-            image: DecorationImage(image: imageProvider, fit: fill),
-          ),
+    return CachedNetworkImage(
+      height: size?.sp ?? height?.h,
+      width: size?.sp ?? width?.w,
+      imageUrl: imageSrc.startsWith('http')
+          ? imageSrc
+          : '${ApiEndPoint.imageUrl}$imageSrc',
+      fit: fill,
+      imageBuilder: (context, imageProvider) => Container(
+        decoration: BoxDecoration(
+          borderRadius: .circular(borderRadius),
+          image: DecorationImage(image: imageProvider, fit: fill),
         ),
-        progressIndicatorBuilder: (context, url, downloadProgress) =>
-            CircularProgressIndicator(value: downloadProgress.progress),
-        errorWidget: (context, url, error) {
-          errorLog(error, source: 'Common Image');
-
-          return _buildErrorWidget();
-        },
       ),
+      progressIndicatorBuilder: (context, url, downloadProgress) =>
+          CircularProgressIndicator(value: downloadProgress.progress),
+      errorWidget: (context, url, error) {
+        errorLog(error, source: 'Common Image');
+
+        return _buildErrorWidget();
+      },
     );
   }
 
@@ -82,19 +79,16 @@ class CommonImage extends StatelessWidget {
   }
 
   Widget _buildPngImage() {
-    return ClipRRect(
-      borderRadius: .circular(borderRadius),
-      child: Image.asset(
-        imageSrc,
-        color: imageColor,
-        height: size?.sp ?? height?.h,
-        width: size?.sp ?? width?.w,
-        fit: fill,
-        errorBuilder: (context, error, stackTrace) {
-          errorLog(error, source: 'Common Image');
-          return _buildErrorWidget();
-        },
-      ),
+    return Image.asset(
+      imageSrc,
+      color: imageColor,
+      height: size?.sp ?? height?.h,
+      width: size?.sp ?? width?.w,
+      fit: fill,
+      errorBuilder: (context, error, stackTrace) {
+        errorLog(error, source: 'Common Image');
+        return _buildErrorWidget();
+      },
     );
   }
 }

@@ -17,18 +17,16 @@ ThemeData themeData = ThemeData(
     centerTitle: true,
   ),
 
-  // Elevated Button Theme
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       backgroundColor: AppColors.primaryColor,
-      elevation: 0,
-      maximumSize: const Size(double.infinity, 48),
+      foregroundColor: AppColors.white,
+      disabledBackgroundColor: AppColors.primaryColor.withValues(alpha: 0.5),
+      disabledForegroundColor: AppColors.white.withValues(alpha: 0.7),
       minimumSize: const Size(double.infinity, 48),
-      padding: EdgeInsets.zero,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-        side: const BorderSide(color: AppColors.primaryColor),
-      ),
+      elevation: 0,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
     ),
   ),
 

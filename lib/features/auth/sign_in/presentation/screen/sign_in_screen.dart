@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:untitled/component/other_widgets/common_loader.dart';
 
 import '../../../../../component/button/common_button.dart';
 import '../../../../../component/text/common_text.dart';
@@ -56,7 +57,7 @@ class SignInScreen extends StatelessWidget {
                   ),
                   Align(
                     alignment: .centerRight,
-                    child: GestureDetector(
+                    child: InkWell(
                       onTap: () => Get.toNamed(AppRoutes.forgotPassword),
                       child: const CommonText(
                         text: AppString.forgotThePassword,
@@ -68,13 +69,14 @@ class SignInScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  CommonButton(
-                    titleText: AppString.signIn,
-                    isLoading: controller.isLoading,
-                    onTap: () {
+                  ElevatedButton(
+                    onPressed: () {
                       if (!_formKey.currentState!.validate()) return;
                       controller.submit();
                     },
+                    child: controller.isLoading
+                        ? const CommonLoader()
+                        : const Text(AppString.signIn),
                   ),
                   30.height,
                   const DoNotHaveAccount(),
