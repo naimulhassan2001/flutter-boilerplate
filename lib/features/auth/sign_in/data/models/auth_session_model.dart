@@ -7,11 +7,12 @@ class AuthSessionModel extends AuthSession {
     required super.user,
   });
 
-  factory AuthSessionModel.fromJson(Map<String, dynamic> json) {
+  factory AuthSessionModel.fromJson(Map<String, dynamic>? json) {
+    final data = json ?? {};
     return AuthSessionModel(
-      accessToken: json['accessToken'] as String? ?? '',
-      refreshToken: json['refreshToken'] as String? ?? '',
-      user: (json['user'] as Map?)?.cast<String, dynamic>() ?? const {},
+      accessToken: data['accessToken'] ?? '',
+      refreshToken: data['refreshToken'] ?? '',
+      user: data['user'] ?? {},
     );
   }
 }
